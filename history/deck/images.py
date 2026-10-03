@@ -25,10 +25,10 @@ IMAGES = {
                "https://commons.wikimedia.org/wiki/File:The_Moon_Goddess_Chang_E_-_Unidentified_artist,_after_Tang_Yin.jpg"),
     "houyi": ("hist2-houyi.jpg", "Hou Yi shooting at the suns; Xiao Yuncong (17th century)",
               "https://commons.wikimedia.org/wiki/File:Houyi_Shooting_an_Arrow,_Xiao_Yuncong.gif"),
-    "xiwangmu": ("hist2-xiwangmu.jpg", "The Queen Mother of the West; detail of a painting by Xie Wenli",
-                 "https://commons.wikimedia.org/wiki/File:Detail_of_Xie_Wenli%27s_painting_of_Xi_Wangmu.jpg"),
-    "cowherd": ("hist2-cowherd.jpg", "The Cowherd and the Weaver Girl meeting on the magpie bridge; festival lantern",
-                "https://commons.wikimedia.org/wiki/File:The_Magpie_Bridge.jpg"),
+    "xiwangmu": ("hist2-xiwangmu.jpg", "The Queen Mother of the West with an attendant; Kano Osanobu (Japan, 19th century), "
+                 "Metropolitan Museum of Art", "https://commons.wikimedia.org/wiki/File:Kano_Osanobu_-_Queen_Mother_of_the_West_-_36.100.99_-_Metropolitan_Museum_of_Art.jpg"),
+    "cowherd": ("hist2-cowherd.jpg", "The Cowherd and the Weaver Girl with their children; painting in the Long Corridor, "
+                "Summer Palace", "https://commons.wikimedia.org/wiki/File:Niulang_and_Zhinv_(Long_Corridor).JPG"),
     "kitchen_god": ("hist2-kitchen-god.jpg", "Zao Jun, the Kitchen God, with attendants; New Year print",
                     "https://commons.wikimedia.org/wiki/File:Zao_Jun_-_The_Kitchen_God_-_-_Project_Gutenberg_eText_15250.jpg"),
     "mazu": ("hist2-mazu.jpg", "Mazu enthroned; carved and gilded wood, late Qing",
@@ -53,9 +53,8 @@ IMAGES = {
                "https://commons.wikimedia.org/wiki/File:Xiyou.PNG"),
     "daiyu": ("hist2-daiyu.jpg", "Lin Daiyu burying fallen flowers; Qing album leaf",
               "https://commons.wikimedia.org/wiki/File:Lin_Daiyu_Burying_Flowers.png"),
-    "eight_immortals": ("hist2-eight-immortals.jpg", "The Eight Immortals at the Queen Mother of the West's gathering; "
-                        "detail of a Ming painting (British Museum)",
-                        "https://commons.wikimedia.org/wiki/File:Detail_of_%E7%91%A4%E6%B1%A0%E4%BB%99%E5%8A%87%E5%9C%96_(Gathering_of_Immortals)_Ming_dynasty_painting_British_Museum.jpg"),
-    "jttw": ("hist2-jttw.jpg", "The opening page of a Ming edition of <i>Journey to the West</i>",
-             "https://commons.wikimedia.org/wiki/File:Evl53201b_pic.jpg"),
+    "eight_immortals": ("hist2-eight-immortals.jpg", "The Eight Immortals; Zhu Wenxin, hanging scroll (detail), "
+                        "Walters Art Museum", "https://commons.wikimedia.org/wiki/File:Zhu_Wenxin_-_The_Eight_Immortals_-_Walters_3570_-_Detail.jpg"),
+    "jttw": ("hist2-jttw.jpg", "Sun Wukong raises his staff at the fleeing White Bone Demon while Xuanzang holds him back; Zhu Bajie, "
+             "Sha Wujing, and the White Dragon Horse look on. Long Corridor, Summer Palace", "https://commons.wikimedia.org/wiki/File:Bai_Gu_Jing_at_Long_Corridor_1.JPG"),
 }
