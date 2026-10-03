@@ -15,6 +15,7 @@ and copy these into `C:\QB\stockfisher\`:
 - `history\notes\01_supplement_mythology_literature.docx` — the qbreader gaps in your notes, from Mythology
   through the Classics, plus 10 corrections at the top.
 - `history\notes\02_prehistory_xia_writeup.docx` — a rewrite of Prehistory and the Xia (my test write-up).
+- `history\notes\03_shang_supplement_bonus.docx` — a bonus: the same qbreader gap sweep for the Shang.
 - `history\deck\DESIGN.md` — how the deck is built and why (one page).
 
 ## 3. Add the History cards to Anki (Anki open)
