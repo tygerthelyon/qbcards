@@ -1,0 +1,176 @@
+<title>China Buzzer Drill</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+/* Layout: one reading column like a moderator's packet page; controls in a quiet strip above, a stats ledger below. */
+:root{
+  --paper:#f7f3ea; --ink:#2b2b2b; --muted:#6f685e; --rule:#d8d0c0; --accent:#6b4c3b; --tint:#efe7d6;
+  --good:#3f6b3a; --bad:#9a3b2e; --power:#8a5a12;
+  --display:"Cormorant Garamond", "Iowan Old Style", Palatino, Georgia, serif;
+  --body:"Source Sans 3", Optima, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#1b1a18; --ink:#e6dfd3; --muted:#a39a8c; --rule:#3a3631; --accent:#d2ab8f; --tint:#26241f;
+  --good:#8fbf84; --bad:#e08d7f; --power:#e0b56a; color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#1b1a18; --ink:#e6dfd3; --muted:#a39a8c; --rule:#3a3631; --accent:#d2ab8f; --tint:#26241f;
+  --good:#8fbf84; --bad:#e08d7f; --power:#e0b56a; color-scheme:dark}
+[hidden]{display:none!important}
+html,body{background:var(--paper);color:var(--ink)}
+body{font-family:var(--body);font-size:17px;line-height:1.55;padding-inline:16px;padding-block:20px 60px}
+.wrap{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+header{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 16px;border-bottom:1px solid var(--rule);padding-bottom:10px}
+h1{font-family:var(--display);font-weight:600;font-size:2rem;margin:0;color:var(--accent);text-wrap:balance}
+.sub{color:var(--muted);font-size:.9rem;margin:0}
+.controls{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:.9rem}
+.controls label{display:flex;align-items:center;gap:6px;color:var(--muted)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font:inherit;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--rule);background:none;color:var(--muted);border-radius:999px;padding:4px 12px;cursor:pointer}
+.chip[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);background:var(--tint)}
+select,input[type=range]{accent-color:var(--accent)}
+select{font:inherit;background:var(--paper);color:var(--ink);border:1px solid var(--rule);border-radius:4px;padding:2px 6px}
+.meta{font-family:var(--mono);font-size:.78rem;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+#text{font-size:1.15rem;line-height:1.7;min-height:9.5em;text-align:left}
+#text .rest{color:var(--muted)}
+#text .buzz{display:inline-block;background:var(--accent);color:var(--paper);font-family:var(--mono);font-size:.7rem;padding:0 5px;border-radius:3px;margin:0 3px;vertical-align:middle}
+.power{color:var(--power);font-weight:600}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+button.main{font:inherit;font-weight:600;font-size:1rem;padding:12px 22px;border-radius:6px;border:1px solid var(--accent);background:var(--accent);color:var(--paper);cursor:pointer;min-width:9em}
+button.ghost{font:inherit;font-size:.95rem;padding:11px 18px;border-radius:6px;border:1px solid var(--rule);background:none;color:var(--ink);cursor:pointer}
+button:focus-visible,.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.kbd{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+#answer{border-top:1px solid var(--rule);padding-top:12px}
+#answer .lbl{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+#answer .a{font-family:var(--display);font-size:1.45rem;font-weight:600;color:var(--accent);line-height:1.3}
+#guess{font:inherit;width:100%;max-width:420px;padding:8px 10px;border:1px solid var(--rule);border-radius:6px;background:var(--paper);color:var(--ink)}
+.ledger{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:6px;overflow:hidden}
+.ledger div{background:var(--paper);padding:10px 12px}
+.ledger b{display:block;font-family:var(--display);font-size:1.6rem;font-variant-numeric:tabular-nums;color:var(--ink)}
+.ledger span{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.hint{font-size:.85rem;color:var(--muted)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>China Buzzer Drill</h1>
+    <p class="sub"><span id="count"></span> real qbreader tossups on Chinese myth, the Four Classics, the canon, and prehistory</p>
+  </header>
+
+  <div class="controls">
+    <div class="chips" role="group" aria-label="Topics">
+      <button class="chip" data-cat="myth" aria-pressed="true">Mythology</button>
+      <button class="chip" data-cat="lit" aria-pressed="true">Novels &amp; classics</button>
+      <button class="chip" data-cat="pre" aria-pressed="true">Prehistory &amp; Xia</button>
+    </div>
+    <label for="diff">Difficulty
+      <select id="diff"><option value="0-10">all</option><option value="0-4">1–4 (middle school, high school)</option>
+      <option value="5-7">5–7 (college)</option><option value="8-10">8–10 (open)</option></select></label>
+    <label for="speed">Speed <input type="range" id="speed" min="80" max="700" step="20" value="320"> <span id="speedv" class="kbd"></span></label>
+  </div>
+
+  <div class="meta"><span id="m-set"></span><span id="m-diff"></span><span id="m-cat"></span></div>
+  <div id="text" aria-live="polite"></div>
+
+  <div class="bar" id="bar-read">
+    <button class="main" id="buzz">Buzz</button>
+    <button class="ghost" id="skip">Skip</button>
+    <span class="kbd">space = buzz · s = skip</span>
+  </div>
+  <div class="bar" id="bar-judge" hidden>
+    <input id="guess" placeholder="Type your answer (optional), then judge yourself" autocomplete="off">
+    <button class="main" id="right" style="background:var(--good);border-color:var(--good)">I got it</button>
+    <button class="ghost" id="wrong">Missed</button>
+    <span class="kbd">enter / j = got it · k = missed</span>
+  </div>
+  <div id="answer" hidden><div class="lbl">Answer line</div><div class="a" id="ans"></div>
+    <p class="hint" id="verdict"></p>
+    <div class="bar"><button class="main" id="next">Next tossup</button><span class="kbd">space = next</span></div></div>
+
+  <div class="ledger" aria-label="This session">
+    <div><b id="s-n">0</b><span>Heard</span></div>
+    <div><b id="s-c">0</b><span>Correct</span></div>
+    <div><b id="s-p">0</b><span>Powers</span></div>
+    <div><b id="s-neg">0</b><span>Missed</span></div>
+    <div><b id="s-acc">–</b><span>Accuracy</span></div>
+    <div><b id="s-at">–</b><span>Avg buzz point</span></div>
+  </div>
+  <p class="hint">A <span class="power">power</span> is a correct buzz before the (*) mark. The buzz point is how far into the question you were, so a lower number means an earlier buzz. Questions come from qbreader's public database; read your own judgement against the full answer line, prompts included.</p>
+</div>
+
+<script>
+const DATA = __DATA__;
+const $ = id => document.getElementById(id);
+let pool = [], cur = null, words = [], idx = 0, timer = null, state = 'idle';
+const stats = {n:0,c:0,p:0,neg:0,at:[]};
+function load(){ try{ const s = JSON.parse(localStorage.getItem('cbd-stats')||'null'); if(s) Object.assign(stats,s);}catch(e){} }
+function save(){ try{ localStorage.setItem('cbd-stats', JSON.stringify(stats)); }catch(e){} }
+function cats(){ return [...document.querySelectorAll('.chip[aria-pressed="true"]')].map(b=>b.dataset.cat); }
+function rebuild(){
+  const [lo,hi] = $('diff').value.split('-').map(Number), cs = cats();
+  pool = DATA.filter(q => cs.includes(q.c) && q.d>=lo && q.d<=hi);
+  $('count').textContent = pool.length;
+}
+function showStats(){
+  $('s-n').textContent=stats.n; $('s-c').textContent=stats.c; $('s-p').textContent=stats.p; $('s-neg').textContent=stats.neg;
+  $('s-acc').textContent = stats.n ? Math.round(100*stats.c/stats.n)+'%' : '–';
+  $('s-at').textContent = stats.at.length ? Math.round(100*stats.at.reduce((a,b)=>a+b,0)/stats.at.length)+'%' : '–';
+}
+const CAT = {myth:'Mythology', lit:'Novels & classics', pre:'Prehistory & Xia'};
+function start(){
+  rebuild(); if(!pool.length){ $('text').textContent='No tossups match these filters. Turn on another topic or widen the difficulty.'; return; }
+  cur = pool[Math.floor(Math.random()*pool.length)];
+  words = cur.q.split(/\s+/); idx = 0; state='reading';
+  $('m-set').textContent = cur.s; $('m-diff').textContent = cur.d ? 'difficulty '+cur.d : ''; $('m-cat').textContent = CAT[cur.c];
+  $('bar-read').hidden=false; $('bar-judge').hidden=true; $('answer').hidden=true; $('guess').value='';
+  $('text').textContent=''; tick();
+}
+function delay(){ return 60000 / Number($('speed').value); }
+function tick(){
+  clearTimeout(timer);
+  if(idx>=words.length){ state='end'; buzz(true); return; }
+  idx++; $('text').textContent = words.slice(0,idx).join(' ');
+  timer = setTimeout(tick, delay());
+}
+function powerIndex(){ const i = words.findIndex(w => w.includes('(*)')); return i<0 ? -1 : i; }
+function buzz(atEnd){
+  if(state!=='reading' && state!=='end') return;
+  clearTimeout(timer); state='judging';
+  const shown = words.slice(0,idx).join(' '), rest = words.slice(idx).join(' ');
+  $('text').innerHTML = '';
+  $('text').append(document.createTextNode(shown+' '));
+  if(!atEnd){ const b=document.createElement('span'); b.className='buzz'; b.textContent='BUZZ'; $('text').append(b); }
+  const r=document.createElement('span'); r.className='rest'; r.textContent=' '+rest; $('text').append(r);
+  $('bar-read').hidden=true; $('bar-judge').hidden=false; $('guess').focus({preventScroll:true});
+}
+function judge(ok){
+  if(state!=='judging') return; state='answered';
+  const frac = idx/words.length, pi = powerIndex(), power = ok && pi>=0 && idx<=pi;
+  stats.n++; if(ok){ stats.c++; stats.at.push(frac); if(power) stats.p++; } else stats.neg++;
+  save(); showStats();
+  $('ans').textContent = cur.a;
+  $('verdict').innerHTML = ok ? (power ? '<span class="power">Power</span> — you buzzed at '+Math.round(frac*100)+'%.' : 'Correct at '+Math.round(frac*100)+'% of the question.')
+    : 'Missed. Read the answer line, then the question again for the clue you didn\'t know.';
+  $('bar-judge').hidden=true; $('answer').hidden=false; $('next').focus({preventScroll:true});
+}
+document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{ b.setAttribute('aria-pressed', b.getAttribute('aria-pressed')!=='true'); rebuild(); });
+$('diff').onchange=rebuild;
+$('speed').oninput=()=>{ $('speedv').textContent=$('speed').value+' wpm'; };
+$('buzz').onclick=()=>buzz(false); $('skip').onclick=start; $('next').onclick=start;
+$('right').onclick=()=>judge(true); $('wrong').onclick=()=>judge(false);
+document.addEventListener('keydown', e=>{
+  const typing = document.activeElement===$('guess');
+  if(e.key==='Enter' && state==='judging'){ e.preventDefault(); judge(true); return; }
+  if(typing) return;
+  if(e.code==='Space'){ e.preventDefault(); if(state==='reading') buzz(false); else if(state==='answered'||state==='idle') start(); }
+  else if(e.key==='s' && state==='reading') start();
+  else if(e.key==='j' && state==='judging') judge(true);
+  else if(e.key==='k' && state==='judging') judge(false);
+});
+load(); showStats(); $('speedv').textContent=$('speed').value+' wpm'; rebuild();
+// open on a fully shown example so the page reads at rest; Next starts live reading
+(function(){ cur = pool[0] || DATA[0]; if(!cur) return; words=cur.q.split(/\s+/); idx=words.length;
+  $('m-set').textContent=cur.s+' (example)'; $('m-diff').textContent=cur.d?'difficulty '+cur.d:''; $('m-cat').textContent=CAT[cur.c];
+  $('text').textContent=cur.q; $('bar-read').hidden=true; $('answer').hidden=false; $('ans').textContent=cur.a;
+  $('verdict').textContent='Press Next tossup (or space) to start. The question reads word by word; buzz as soon as you know it.'; state='answered'; })();
+</script>
