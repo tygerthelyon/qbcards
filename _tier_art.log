@@ -1,0 +1,51 @@
+pool: 10261 real art tossups
+difficulty: min 1 median 7 max 10
+
+name                                      score  ans  men  diff   pos tier now
+   Renaissance                             8.27    7  383   4.9  0.77 tier1-core
+   Nighthawks                              6.21   32   62   3.3  0.97 tier1-core
+   Las Meninas                             5.58   35   46   4.2  0.96 tier1-core
+   The Scream                              5.53   29   52   3.3  0.95 tier1-core
+   The School of Athens                    5.43   29   72   4.1  0.91 tier1-core
+   Impressionism                           5.16   36   29   4.2  0.70 tier1-core
+   American Gothic                         5.12   32   34   3.8  0.96 tier1-core
+   The Night Watch (or The Militia Compa   4.99   29   61   4.5  0.96 tier1-core
+   The Last Supper                         4.86   37    0   3.9  0.50 tier1-core
+   Guernica                                4.66   23   69   4.0  0.90 tier1-core
+   Pre-Raphaelite Brotherhood              4.42   37   23   5.4  0.80 tier1-core
+   The Persistence of Memory               4.05   11   87   3.0  0.95 tier1-core
+   Hudson River School                     4.04   22   45   3.8  0.91 tier1-core
+   Rococo                                  3.93   23   76   5.3  0.81 tier1-core
+   Mona Lisa (or La Gioconda)              3.73   20   44   3.9  0.90 tier1-core
+   The Thinker                             3.69   15   65   3.7  0.92 tier1-core
+   The Luncheon on the Grass               3.69   25   40   5.0  0.86 tier1-core
+   The Gates of Hell                       3.56   17   71   4.5  0.82 tier1-core
+   Cubism                                  3.56   22   60   5.0  0.68 tier1-core
+   Venus of Urbino                         3.53   22   70   5.7  0.86 tier1-core
+   Starry Night                            3.48   16   59   4.1  0.90 tier1-core
+   The Last Supper                         3.17   25    0   4.2  0.50 tier1-core
+   Baroque                                 3.12    7  158   6.4  0.81 tier1-core
+   Liberty Leading the People              3.10   15   55   4.5  0.94 tier1-core
+   David                                   3.09   24    0   4.1  0.50 tier1-core
+   I and the Village                       3.01   15   55   4.7  0.93 tier1-core
+   David                                   3.00   24    0   4.3  0.50 tier1-core
+   The Death of Marat                      2.98   20   25   4.6  0.94 tier1-core
+   Primavera (or The Spring)               2.96   17   58   5.3  0.83 tier1-core
+   The Ambassadors                         2.93   18   46   5.1  0.81 tier1-core
+   The Ghent Altarpiece (or The Adoratio   2.91   22   24   5.1  0.79 tier1-core
+   The Raft of the Medusa                  2.83   18   26   4.4  0.92 tier1-core
+   Pointillism                             2.68   18   16   4.1  0.80 tier1-core
+   Pop art                                 2.67   21   16   5.0  0.66 tier1-core
+   Sunday Afternoon on the Island of La    2.60   17   30   4.8  0.84 tier1-core
+   The Burial of the Count of Orgaz        2.59   19   35   5.7  0.88 tier1-core
+   Mosaic                                  2.51   15   67   5.2  0.39 tier1-core
+   George Washington (or Lansdowne Portr   2.47   18   10   4.3  0.79 tier1-core
+   George Washington (or Vaughan Portrai   2.44   18    8   4.3  0.87 tier1-core
+   George Washington (or Athenaeum Portr   2.43   18    8   4.3  0.83 tier1-core
+   Watson and the Shark                    2.36   17   22   5.2  0.95 tier1-core
+   The Calling of St. Matthew              2.34   16   35   5.7  0.96 tier1-core
+   Abstract Expressionism                  2.25   20   12   5.7  0.66 tier1-core
+   Christina's World                       2.20   14   31   5.2  0.94 tier1-core
+   Luncheon of the Boating Party           2.10   13   34   5.2  0.85 tier1-core
+
+scored 2923 of 4891 notes -> _qb_scores_art.json  (N=10261)

@@ -1,0 +1,51 @@
+pool: 10431 real photo tossups
+difficulty: min 1 median 7 max 10
+
+name                                      score  ans  men  diff   pos tier now
+   Street photography                      3.31   28    3   4.8  0.90 tier1-core
+   Georgia O'Keeffe: A Portrait            1.47   13    0   4.9  0.50 tier3-deepcut
+   Migrant Mother ( Destitute Pea Picker   1.06    1   45   5.0  0.92 tier3-deepcut
+   Paris by Night                          0.53    5    3   6.0  0.85 tier2-solid
+   Zone System                             0.46    0   31   4.8  0.50 tier1-core
+   The Falling Soldier ( Loyalist Militi   0.46    2    8   3.5  0.83 tier3-deepcut
+   Group f/64                              0.45    4   22   8.0  0.57 tier1-core
+   Photomontage                            0.44    3   16   6.3  0.39 tier1-core
+   Raising the Flag on Iwo Jima            0.44    2    9   4.5  0.88 tier1-core
+   Daguerreotype                           0.34    3    6   6.3  0.49 tier1-core
+   The decisive moment                     0.34    3   27   9.3  0.64 tier1-core
+   Equivalents                             0.31    1   17   5.0  0.33 tier1-core
+   The Steerage ( Das Zwischendeck )       0.31    1   32  10.0  0.80 tier3-deepcut
+   New Objectivity                         0.31    0   23   6.5  0.66 tier2-solid
+   Farm Security Administration            0.26    0   17   5.6  0.66 tier1-core
+   Photo-Secession                         0.24    1    9   6.0  0.74 tier2-solid
+   Moonrise, Hernandez, New Mexico         0.24    0   12   4.6  0.76 tier1-core
+   Camera obscura                          0.22    0   17   6.2  0.58 tier1-core
+   Wall Street                             0.22    2    4   7.0  0.98 tier1-core
+   Camera Work                             0.20    0   16   6.6  0.63 tier1-core
+   The Horse in Motion ( Sallie Gardner    0.20    1    2   3.0  0.92 tier3-deepcut
+   The Pond ‒ Moonlight                    0.18    1    4   5.0  0.60 tier2-solid
+   The Perfect Moment                      0.17    1   10   8.0  0.75 tier1-core
+   Monolith, the Face of Half Dome         0.16    0    8   4.8  0.82 tier1-core
+   White Angel Breadline                   0.16    1   16  10.0  0.61 tier1-core
+   Child with Toy Hand Grenade in Centra   0.16    0   10   6.4  0.82 tier1-core
+   Le Violon d'Ingres ( Ingres's Violin    0.15    0   12   6.9  0.70 tier3-deepcut
+   Winter, Fifth Avenue                    0.15    0   11   5.9  0.55 tier2-solid
+   The Terminal ( The Car Horse )          0.14    0   13   7.0  0.54 tier3-deepcut
+   The Magnificent Eleven (collection of   0.14    0   12   6.8  0.57 tier3-deepcut
+   Rhein II ( Der Rhein II )               0.14    1    6   8.0  0.92 tier3-deepcut
+   Dalí Atomicus                           0.11    1    1   6.0  0.59 tier2-solid
+   Girl with a Mirror                      0.10    2    0   9.5  0.50 tier4-rare
+   Rayograph                               0.10    2    0   9.0  0.50 tier1-core
+   99 Cent                                 0.09    0   10   8.5  0.78 tier1-core
+   Let Us Now Praise Famous Men            0.09    0    8   6.9  0.55 tier1-core
+   Behind the Gare Saint-Lazare ( Derriè   0.09    0    7   7.4  0.78 tier3-deepcut
+   Guerrillero Heroico ( Heroic Guerrill   0.08    1    4   9.0  0.83 tier3-deepcut
+   The Brig                                0.08    1    0   7.0  0.50 tier1-core
+   Photojournalism                         0.07    1    4   9.0  0.54 tier1-core
+   Pictorialism                            0.07    1    4  10.0  0.36 tier1-core
+   Photogram                               0.07    1    3  10.0  0.47 tier2-solid
+   Straight photography                    0.07    0    5   5.0  0.40 tier2-solid
+   The Falling Man                         0.06    1    2  10.0  0.77 tier1-core
+   Sleeping by the Mississippi             0.06    1    0   8.0  0.50 tier3-deepcut
+
+scored 108 of 468 notes -> _qb_scores_photo.json  (N=10431)

@@ -1,0 +1,51 @@
+pool: 10373 real music tossups
+difficulty: min 1 median 7 max 10
+
+name                                      score  ans  men  diff   pos tier now
+   The Four Seasons                        9.06   55  115   4.6  0.88 tier1-core
+   Carmen                                  7.36   53   40   4.4  0.91 tier2-solid
+   The Planets                             6.60   47   39   4.4  0.87 tier2-solid
+   Carmen Suite No. 1                      6.44   53    0   4.4  0.50 tier2-solid
+   Carmen Suite No. 2                      6.44   53    0   4.4  0.50 tier2-solid
+   Messiah                                 6.20   31  113   4.6  0.90 tier2-solid
+   Die Zauberflöte                         5.57   35   54   4.2  0.82 tier2-solid
+   Pictures at an Exhibition               4.72   36   36   5.0  0.76 tier2-solid
+   Don Giovanni                            4.70   39   29   5.3  0.69 tier1-core
+   Oratorio                                4.63   14  268   6.4  0.58 tier1-core
+   Rhapsody in Blue                        4.45   27   70   5.1  0.90 tier2-solid
+   Symphony No. 9                          4.38   32   30   4.8  0.94 tier1-core
+   Carnival of the Animals                 4.25   28   54   5.0  0.84 tier2-solid
+   La bohème                               4.21   33   22   5.0  0.96 tier1-core
+   Aida                                    4.02   34    0   4.6  0.50 tier1-core
+   1812 Overture                           3.80   20   59   4.5  0.94 tier1-core
+   La traviata                             3.70   31   29   5.7  0.91 tier1-core
+   Rigoletto                               3.61   26   33   5.0  0.88 tier1-core
+   Peer Gynt                               3.55   19   73   5.3  0.92 tier2-solid
+   Pizzicato                               3.49    3  267   5.7  0.41 tier2-solid
+   Symphonie fantastique                   3.44   25   47   5.6  0.83 tier2-solid
+   Cadenza                                 3.22    2  235   5.0  0.38 tier1-core
+   Bolero                                  3.16   11  113   5.8  0.89 tier2-solid
+   Incidental music                        3.09    1  256   7.0  0.62 tier2-solid
+   Carmina Burana                          2.92   27    8   5.6  0.77 tier1-core
+   Turandot                                2.87   23   20   5.2  0.78 tier2-solid
+   Tosca                                   2.83   28    0   5.7  0.50 tier1-core
+   Dies irae                               2.76    8  162   6.2  0.54 tier1-core
+   Symphony No. 9                          2.72   18   29   4.7  0.83 tier1-core
+   The Ring Cycle                          2.68   10   54   3.6  0.88 tier3-deepcut
+   Madama Butterfly                        2.60   21   11   5.0  0.96 tier1-core
+   Ostinato                                2.57    1  299   8.0  0.50 tier2-solid
+   The Nutcracker                          2.57   15   38   4.7  0.88 tier1-core
+   Prélude à l'après-midi d'un faune       2.45   10   86   5.9  0.82 tier2-solid
+   Toccata                                 2.44   17  130   7.7  0.58 tier1-core
+   Appalachian Spring                      2.43    7   67   4.3  0.92 tier2-solid
+   Symphony No. 41                         2.41   14   71   6.2  0.77 tier1-core
+   Enigma Variations                       2.40   13   66   5.9  0.82 tier2-solid
+   Peter and the Wolf                      2.40    7   66   4.1  0.87 tier2-solid
+   Brandenburg Concerto No. 5              2.28   25    1   6.4  0.64 tier2-solid
+   Brandenburg Concerto No. 3              2.27   25    0   6.4  0.50 tier2-solid
+   Waltz, Op. 64 No. 1                     2.21    7   58   4.0  0.83 tier1-core
+   Symphony No. 8                          2.20    7   75   5.6  0.93 tier1-core
+   Well-Tempered Clavier                   2.19    9   89   6.4  0.82 tier3-deepcut
+   Symphony No. 3                          2.18   12   47   5.3  0.84 tier1-core
+
+scored 817 of 1084 notes -> _qb_scores_music.json  (N=10373)

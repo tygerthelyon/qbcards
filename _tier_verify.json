@@ -1,0 +1,3455 @@
+{
+"music": [
+{
+"name": "Requiem",
+"creator": "Giuseppe Verdi",
+"ids": [
+1787711405195,
+1787711405775,
+1787711405776,
+1787711405777
+],
+"tossups": 509,
+"bonuses": 468,
+"with_maker": 55,
+"sample": [
+"Giuseppe Verdi [or Giuseppe Fortunino Francesco Verdi]",
+"requiem mass [accept mass for the dead before mention; promp",
+"Giuseppe Verdi's Requiem [accept Giuseppe Verdi's Messa da R"
+]
+},
+{
+"name": "Organ Symphony No. 5",
+"creator": "Charles-Marie Widor",
+"ids": [
+1787711405208
+],
+"tossups": 0,
+"bonuses": 2,
+"with_maker": 2,
+"sample": [
+"['organ [or pipe organ]', 'Camille Saint-Saens (\"san-SAWNS\")",
+"['pipe organ', 'toccata', 'Charles-Marie Widor (vee-DORE)']"
+]
+},
+{
+"name": "Nocturne, Op. 27 No. 2",
+"creator": "Frédéric Chopin",
+"ids": [
+1787711405571
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Le Jeu de Robin et de Marion",
+"creator": "Adam de la Halle",
+"ids": [
+1787792906293
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Messe de Notre Dame",
+"creator": "Guillaume de Machaut",
+"ids": [
+1787792906294
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Missa L'homme armé",
+"creator": "Guillaume Du Fay",
+"ids": [
+1787792906295
+],
+"tossups": 9,
+"bonuses": 5,
+"with_maker": 2,
+"sample": [
+"['mass [or missa; or messe; accept Missa pange lingua; accep",
+"['\"L\\'homme arme\" (lum ar-MAY) [or \"The Armed Man\"]', 'Josqu"
+]
+},
+{
+"name": "Canticum Canticorum",
+"creator": "Giovanni Pierluigi da Palestrina",
+"ids": [
+1787792906298
+],
+"tossups": 1,
+"bonuses": 5,
+"with_maker": 3,
+"sample": [
+"['masses [or missa]', 'Giovanni Pierluigi da Palestrina', 'P",
+"['Pope Marcellus Mass [or Missa Papae Marcelli]', 'Giovanni ",
+"['motet [or motectum; or mottetto]', 'Giovanni Pierluigi da "
+]
+},
+{
+"name": "Symphony, Op. 11 No. 3",
+"creator": "Johann Stamitz",
+"ids": [
+1787792906315
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Tabuh-Tabuhan",
+"creator": "Colin McPhee",
+"ids": [
+1787792906344
+],
+"tossups": 0,
+"bonuses": 1,
+"with_maker": 1,
+"sample": [
+"['gamelan', 'Benjamin Britten', 'Le marteau sans maitre [or "
+]
+},
+{
+"name": "Symphonie pour un homme seul",
+"creator": "Pierre Schaeffer",
+"ids": [
+1787792906350
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "4'33\"",
+"creator": "John Cage",
+"ids": [
+1787792906351
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Pithoprakta",
+"creator": "Iannis Xenakis",
+"ids": [
+1787792906353
+],
+"tossups": 1,
+"bonuses": 8,
+"with_maker": 9,
+"sample": [
+"Greek [or Hellenes ; accept Greece or Hellas or Hellenic Rep",
+"['Erik Satie [or Eric Alfred Leslie Satie]', 'Edgard Varese ",
+"['Aaron Copland', '(Juliette) Nadia Boulanger', 'Iannis Xena"
+]
+},
+{
+"name": "Apocalypsis",
+"creator": "R. Murray Schafer",
+"ids": [
+1787792906361
+],
+"tossups": 9,
+"bonuses": 6,
+"with_maker": 1,
+"sample": [
+"['Raymond Murray Schafer', 'Glenn Gould [or Glenn Herbert Go"
+]
+},
+{
+"name": "Alleluia",
+"creator": "Eric Whitacre",
+"ids": [
+1787792906367
+],
+"tossups": 34,
+"bonuses": 14,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Violin Concerto No. 2",
+"creator": "Henryk Wieniawski",
+"ids": [
+1788199516988
+],
+"tossups": 8,
+"bonuses": 7,
+"with_maker": 2,
+"sample": [
+"['Henryk Wieniawski (\"v\\'yen-YAHF-skee\")', 'Franz Liszt [or ",
+"['Caprice no. 24 in A minor [or Caprice no. 24 in A minor; o"
+]
+},
+{
+"name": "La Juive",
+"creator": "Fromental Halévy",
+"ids": [
+1788489953119
+],
+"tossups": 4,
+"bonuses": 4,
+"with_maker": 7,
+"sample": [
+"Louis-Hector Berlioz",
+"Anvils",
+"Jacob or Jacques Offenbach (accept \"Ba-ta-clan\" before \"his\""
+]
+},
+{
+"name": "Die lustigen Weiber von Windsor",
+"creator": "Otto Nicolai",
+"ids": [
+1788489953134
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Der Barbier von Bagdad",
+"creator": "Peter Cornelius",
+"ids": [
+1788489953136
+],
+"tossups": 0,
+"bonuses": 1,
+"with_maker": 1,
+"sample": [
+"['Turandot', 'The Barber of Baghdad [or Der Barbier von Bagd"
+]
+},
+{
+"name": "The Bohemian Girl",
+"creator": "Michael William Balfe",
+"ids": [
+1788489953153
+],
+"tossups": 2,
+"bonuses": 2,
+"with_maker": 3,
+"sample": [
+"Ah, Wilderness!",
+"['The Bohemian Girl', 'Ireland', 'I Puritani [or The Puritan",
+"['The Bohemian Girl', 'The Dumb Girl of Portici (or The Mute"
+]
+},
+{
+"name": "I Lombardi alla prima crociata",
+"creator": "Giuseppe Verdi",
+"ids": [
+1788489953154
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Attila",
+"creator": "Giuseppe Verdi",
+"ids": [
+1788489953156
+],
+"tossups": 108,
+"bonuses": 96,
+"with_maker": 1,
+"sample": [
+"['Marengo', 'Genoa', 'Aetius or Ezio']"
+]
+},
+{
+"name": "Les pêcheurs de perles",
+"creator": "Georges Bizet",
+"ids": [
+1788489953173
+],
+"tossups": 2,
+"bonuses": 13,
+"with_maker": 15,
+"sample": [
+"The Pearl Fishers (Les Pecheurs de Perles)",
+"The Pearl Fishers [accept Les Pecheurs de Perles]",
+"['Carmen (The aria is \"Habanera.\")', 'Mary [or the Virgin Ma"
+]
+},
+{
+"name": "L'amore dei tre re",
+"creator": "Italo Montemezzi",
+"ids": [
+1788489953195
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Véronique",
+"creator": "André Messager",
+"ids": [
+1788489953201
+],
+"tossups": 5,
+"bonuses": 8,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Der Kaiser von Atlantis",
+"creator": "Viktor Ullmann",
+"ids": [
+1788489953231
+],
+"tossups": 0,
+"bonuses": 1,
+"with_maker": 1,
+"sample": [
+"['Der Kaiser von Atlantis or The Emperor of Atlantis', 'Savi"
+]
+},
+{
+"name": "Flammen",
+"creator": "Erwin Schulhoff",
+"ids": [
+1788489953232
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Il prigioniero",
+"creator": "Luigi Dallapiccola",
+"ids": [
+1788489953266
+],
+"tossups": 1,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Luci mie traditrici",
+"creator": "Salvatore Sciarrino",
+"ids": [
+1788489953269
+],
+"tossups": 0,
+"bonuses": 1,
+"with_maker": 1,
+"sample": [
+"['Nokia ringtone [prompt on Gran Vals by asking \"What melody"
+]
+},
+{
+"name": "Dantons Tod",
+"creator": "Gottfried von Einem",
+"ids": [
+1788489953270
+],
+"tossups": 2,
+"bonuses": 3,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Lear",
+"creator": "Aribert Reimann",
+"ids": [
+1788489953275
+],
+"tossups": 177,
+"bonuses": 160,
+"with_maker": 2,
+"sample": [
+"Dietrich Fischer-Dieskau",
+"Federal Republic of Germany [or FRG; or Bundesrepublik Deuts"
+]
+},
+{
+"name": "Die Eroberung von Mexico",
+"creator": "Wolfgang Rihm",
+"ids": [
+1788489953280
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Thomas",
+"creator": "Einojuhani Rautavaara",
+"ids": [
+1788489953286
+],
+"tossups": 6269,
+"bonuses": 5487,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Handmaid's Tale",
+"creator": "Poul Ruders",
+"ids": [
+1788489953287
+],
+"tossups": 152,
+"bonuses": 99,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "A Midsummer Night's Dream",
+"creator": "Benjamin Britten",
+"ids": [
+1788489953293
+],
+"tossups": 144,
+"bonuses": 171,
+"with_maker": 16,
+"sample": [
+"midsummer [Midsummer Vigil, The Midsummer Marriage, A Midsum",
+"['Peter Pears(\"peers\") [or Sir Peter Neville Luard Pears]', ",
+"['UK [or United Kingdom or England or Britain]', 'Benjamin B"
+]
+},
+{
+"name": "Mary of Egypt",
+"creator": "John Tavener",
+"ids": [
+1788489953308
+],
+"tossups": 7,
+"bonuses": 2,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Greek",
+"creator": "Mark-Anthony Turnage",
+"ids": [
+1788489953312
+],
+"tossups": 4326,
+"bonuses": 4992,
+"with_maker": 0,
+"sample": []
+}
+],
+"photo": [
+{
+"name": "Abraham Lincoln",
+"creator": "Mathew Brady",
+"ids": [
+1787796124429
+],
+"tossups": 567,
+"bonuses": 471,
+"with_maker": 5,
+"sample": [
+"Battle of Antietam [accept Battle of Sharpsburg before read]",
+"the American Civil War [accept War Between the States; accep",
+"['Mathew Brady', 'Dorothea Lange', 'Malcolm Browne']"
+]
+},
+{
+"name": "Sarah Bernhardt",
+"creator": "Nadar",
+"ids": [
+1787796394432
+],
+"tossups": 24,
+"bonuses": 15,
+"with_maker": 3,
+"sample": [
+"Sarah Bernhardt",
+"['Sarah Bernhardt', 'Felix Nadar', 'Sir Joshua Reynolds']",
+"['Nadar or Gaspard-Felix Tournachon', 'Sarah Bernhardt', 'Vi"
+]
+},
+{
+"name": "Old Faithful",
+"creator": "William Henry Jackson",
+"ids": [
+1787796882319
+],
+"tossups": 32,
+"bonuses": 34,
+"with_maker": 6,
+"sample": [
+"Wyoming [or WY]",
+"Yellowstone National Park [prompt on Wyoming; prompt on Mont",
+"Wyoming"
+]
+},
+{
+"name": "First Flight",
+"creator": "John T. Daniels",
+"ids": [
+1787797719065
+],
+"tossups": 16,
+"bonuses": 8,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "San Francisco Earthquake",
+"creator": "Arnold Genthe",
+"ids": [
+1787797963921
+],
+"tossups": 23,
+"bonuses": 19,
+"with_maker": 2,
+"sample": [
+"1906 San Francisco Earthquake",
+"1906 San Francisco earthquake [accept 1906 earthquake until "
+]
+},
+{
+"name": "The North Pole",
+"creator": "Robert E. Peary",
+"ids": [
+1787798081159
+],
+"tossups": 67,
+"bonuses": 76,
+"with_maker": 18,
+"sample": [
+"Robert Peary [or Robert Edwin Peary Sr.]",
+"polar exploration [accept answers like exploring the Arctic ",
+"Reaching the North Pole (accept equivalent descriptions of N"
+]
+},
+{
+"name": "Triangle Shirtwaist Factory",
+"creator": "Brown Brothers",
+"ids": [
+1787798184054
+],
+"tossups": 26,
+"bonuses": 18,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The South Pole",
+"creator": "Olav Bjaaland",
+"ids": [
+1787798217696
+],
+"tossups": 73,
+"bonuses": 62,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Bricklayer",
+"creator": "August Sander",
+"ids": [
+1787798864183
+],
+"tossups": 18,
+"bonuses": 2,
+"with_maker": 1,
+"sample": [
+"Germany [or Deutschland; accept East Germany or West Germany"
+]
+},
+{
+"name": "The Hague",
+"creator": "Erich Salomon",
+"ids": [
+1787798981267
+],
+"tossups": 80,
+"bonuses": 70,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Lynching",
+"creator": "Lawrence Beitler",
+"ids": [
+1787799662699
+],
+"tossups": 131,
+"bonuses": 87,
+"with_maker": 1,
+"sample": [
+"fruit [accept \"Strange Fruit\"; accept \"Bitter Fruit\"]"
+]
+},
+{
+"name": "Sleeping Woman",
+"creator": "Man Ray",
+"ids": [
+1787799722798
+],
+"tossups": 36,
+"bonuses": 23,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Brussels",
+"creator": "Henri Cartier-Bresson",
+"ids": [
+1787799847271
+],
+"tossups": 155,
+"bonuses": 112,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Bonnie and Clyde",
+"creator": "W.D. Jones",
+"ids": [
+1787800033782
+],
+"tossups": 21,
+"bonuses": 19,
+"with_maker": 2,
+"sample": [
+"['Henry Ford', 'Bonnie and Clyde (accept Bonnie Elizabeth Pa",
+"['Henry Ford', 'Bonnie and Clyde (accept Bonnie Elizabeth Pa"
+]
+},
+{
+"name": "Surgeon's Photograph",
+"creator": "Ian Wetherell",
+"ids": [
+1787800137662
+],
+"tossups": 9,
+"bonuses": 9,
+"with_maker": 1,
+"sample": [
+"the Loch Ness Monster [or Nessie]"
+]
+},
+{
+"name": "Bloody Saturday",
+"creator": "H.S. Wong",
+"ids": [
+1787800541290
+],
+"tossups": 7,
+"bonuses": 5,
+"with_maker": 1,
+"sample": [
+"['Lu Xun', 'Shanghai', 'tuberculosis [or tb]']"
+]
+},
+{
+"name": "Anne Frank",
+"creator": "Polyfoto",
+"ids": [
+1787800656002
+],
+"tossups": 93,
+"bonuses": 82,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Mulberry Street",
+"creator": "Weegee",
+"ids": [
+1787800740468
+],
+"tossups": 9,
+"bonuses": 8,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Anti-Jewish",
+"creator": "Henry Guttman",
+"ids": [
+1787801052346
+],
+"tossups": 12,
+"bonuses": 11,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Buckingham Palace",
+"creator": "Reggie Speller",
+"ids": [
+1787801100036
+],
+"tossups": 27,
+"bonuses": 13,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Saipan",
+"creator": "W. Eugene Smith",
+"ids": [
+1787801602160
+],
+"tossups": 13,
+"bonuses": 11,
+"with_maker": 2,
+"sample": [
+"['Saipan', 'B-29 Superfortress [or B-29 Superfortress]', 'D-",
+"['Battle of Iwo Jima [accept Operation Detachment]', 'Battle"
+]
+},
+{
+"name": "Yalta Conference",
+"creator": "U.S. Army Signal Corps",
+"ids": [
+1787801719194
+],
+"tossups": 16,
+"bonuses": 11,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Benito Mussolini",
+"creator": "Vincenzo Carrese",
+"ids": [
+1787802142328
+],
+"tossups": 112,
+"bonuses": 112,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Route 66",
+"creator": "Andreas Feininger",
+"ids": [
+1787802513903
+],
+"tossups": 19,
+"bonuses": 16,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Country Doctor",
+"creator": "W. Eugene Smith",
+"ids": [
+1787802675429
+],
+"tossups": 37,
+"bonuses": 31,
+"with_maker": 2,
+"sample": [
+"doctors [accept A Country Doctor; accept Doctor Mackenzie; a",
+"['Ethan Frome', 'Brooklyn (prompt on New York City or NYC)',"
+]
+},
+{
+"name": "Albert Einstein",
+"creator": "Arthur Sasse",
+"ids": [
+1787802910425
+],
+"tossups": 203,
+"bonuses": 269,
+"with_maker": 5,
+"sample": [
+"['jumping [accept synonyms such as leaping or bouncing or ho",
+"['Philippe Halsman', 'Salvador Dali', 'Albert Einstein']",
+"[\"Georgia O'Keeffe [or Georgia Totto O'Keeffe]\", 'Albert Ein"
+]
+},
+{
+"name": "Photo 51",
+"creator": "Raymond Gosling and Rosalind Franklin",
+"ids": [
+1787802949583
+],
+"tossups": 19,
+"bonuses": 19,
+"with_maker": 35,
+"sample": [
+"James Watson [or James Dewey Watson]",
+"DNA [or deoxyribonucleic acid; prompt on nucleic acid, rejec",
+"DNA [or deoxyribonucleic acid; accept chromatin before \"link"
+]
+},
+{
+"name": "Everest",
+"creator": "Edmund Hillary",
+"ids": [
+1787803119328
+],
+"tossups": 81,
+"bonuses": 70,
+"with_maker": 43,
+"sample": [
+"Kathmandu",
+"Mount Everest",
+"Mount Everest [or Sagarmatha, or Chomolungma, or Zhumulangma"
+]
+},
+{
+"name": "Camelot",
+"creator": "Hy Peskin",
+"ids": [
+1787803179852
+],
+"tossups": 86,
+"bonuses": 61,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Monroe",
+"creator": "Matty Zimmerman",
+"ids": [
+1787803249739
+],
+"tossups": 337,
+"bonuses": 305,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Jackie Robinson",
+"creator": "Ralph Morse",
+"ids": [
+1787803279119
+],
+"tossups": 21,
+"bonuses": 29,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The New King",
+"creator": "Charles Trainor",
+"ids": [
+1787803456892
+],
+"tossups": 6,
+"bonuses": 9,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Birmingham, Alabama",
+"creator": "Charles Moore",
+"ids": [
+1787804750275
+],
+"tossups": 9,
+"bonuses": 6,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Zapruder film",
+"creator": "Abraham Zapruder",
+"ids": [
+1787804949892
+],
+"tossups": 15,
+"bonuses": 7,
+"with_maker": 22,
+"sample": [
+"Dallas, Texas [accept Dallas-Fort Worth]",
+"assassinationofJohn F.Kennedy (accept descriptionsof themurd",
+"Don DeLillo"
+]
+},
+{
+"name": "Unidentified Flying Object",
+"creator": "Ralph Ditter",
+"ids": [
+1787805414597
+],
+"tossups": 0,
+"bonuses": 4,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "My Lai",
+"creator": "Ronald L. Haeberle",
+"ids": [
+1787805561210
+],
+"tossups": 35,
+"bonuses": 25,
+"with_maker": 8,
+"sample": [
+"My Lai massacre [accept Son My Massacre; prompt on Vietnam W",
+"My Lai (mee lye) massacre [or Son My massacre; accept Pinkvi",
+"My Lai massacre [accept synonyms for massacre, accept Son My"
+]
+},
+{
+"name": "Earthrise",
+"creator": "William Anders",
+"ids": [
+1787805766591
+],
+"tossups": 6,
+"bonuses": 7,
+"with_maker": 9,
+"sample": [
+"Earth [accept Earthrise; accept the globe; accept Terra, acc",
+"Earth [accept Earthrise]",
+"Apollo astronauts"
+]
+},
+{
+"name": "Woodstock",
+"creator": "Bill Eppridge",
+"ids": [
+1787805977803
+],
+"tossups": 63,
+"bonuses": 72,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Kent State Shootings",
+"creator": "John Paul Filo",
+"ids": [
+1787813232249
+],
+"tossups": 10,
+"bonuses": 10,
+"with_maker": 2,
+"sample": [
+"Kent State shootings or massacre",
+"['Kent State University [accept Kent State shootings or acce"
+]
+},
+{
+"name": "Nixon in China",
+"creator": "Oliver F. Atkins",
+"ids": [
+1787813232254
+],
+"tossups": 68,
+"bonuses": 87,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Munich Massacre",
+"creator": "Kurt Strumpf",
+"ids": [
+1787813232256
+],
+"tossups": 22,
+"bonuses": 11,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Soweto Uprising",
+"creator": "Sam Nzima",
+"ids": [
+1787813232265
+],
+"tossups": 25,
+"bonuses": 23,
+"with_maker": 7,
+"sample": [
+"Afrikaans [or Afrikaansch; accept Cape Dutch or Kaap-Holland",
+"apartheid",
+"Soweto Uprising"
+]
+},
+{
+"name": "The Red Planet",
+"creator": "Viking 1",
+"ids": [
+1787813232266
+],
+"tossups": 9,
+"bonuses": 6,
+"with_maker": 3,
+"sample": [
+"Mars rovers [accept anything mentioning rovers on Mars; prom",
+"['Mars', 'Phobos', 'Olympus Mons']",
+"['Mars', 'Phobos', 'Olympus Mons']"
+]
+},
+{
+"name": "Cambodia",
+"creator": "Jay Ullal",
+"ids": [
+1787813232269
+],
+"tossups": 177,
+"bonuses": 160,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Peace Treaty",
+"creator": "Yaakov Saar",
+"ids": [
+1787813232271
+],
+"tossups": 185,
+"bonuses": 101,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "John Lennon and Yoko Ono",
+"creator": "Annie Leibovitz",
+"ids": [
+1787813232274
+],
+"tossups": 5,
+"bonuses": 9,
+"with_maker": 4,
+"sample": [
+"['Annie Leibovitz [or Anna-Lou Leibovitz]', 'Rolling Stone',",
+"['Sam Taylor-Wood (accept Sam Taylor-Johnson)', 'Annie Leibo",
+"['John Lennon', 'Annie Leibovitz', 'got milk?']"
+]
+},
+{
+"name": "Miracle on Ice",
+"creator": "Heinz Kluetmeier",
+"ids": [
+1787813232275
+],
+"tossups": 10,
+"bonuses": 9,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Michael Jordan",
+"creator": "Co Rentmeester",
+"ids": [
+1787813232283
+],
+"tossups": 52,
+"bonuses": 49,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Challenger Disaster",
+"creator": "Michele McDonald",
+"ids": [
+1787813232285
+],
+"tossups": 24,
+"bonuses": 20,
+"with_maker": 2,
+"sample": [
+"Challenger disaster",
+"Challenger disaster [accept equivalents like the Challenger "
+]
+},
+{
+"name": "Air Jordan",
+"creator": "Walter Iooss",
+"ids": [
+1787813232292
+],
+"tossups": 3,
+"bonuses": 7,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Nicolae Ceaușescu",
+"creator": "Christopher Pillitz",
+"ids": [
+1787813232297
+],
+"tossups": 69,
+"bonuses": 67,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Operation Desert Storm",
+"creator": "David Turnley",
+"ids": [
+1787813232299
+],
+"tossups": 27,
+"bonuses": 14,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Bosnia",
+"creator": "Ron Haviv",
+"ids": [
+1787813232305
+],
+"tossups": 63,
+"bonuses": 103,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Oklahoma City Bombing",
+"creator": "Charles Porter IV",
+"ids": [
+1787813232309
+],
+"tossups": 20,
+"bonuses": 7,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Pillars of Creation",
+"creator": "Hubble Space Telescope",
+"ids": [
+1787813232311
+],
+"tossups": 17,
+"bonuses": 14,
+"with_maker": 11,
+"sample": [
+"the James Webb Space Telescope [or the JWST]",
+"the Pillars of Creation [prompt on Eagle Nebula with \"what s",
+"nebulae"
+]
+},
+{
+"name": "Hurricane Katrina (man on a submerged vehicle)",
+"creator": "Robert Galbraith",
+"ids": [
+1787813232334
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Hurricane Katrina (New Orleans after the levees)",
+"creator": "David Phillip",
+"ids": [
+1787813232335
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Power of One",
+"creator": "Oded Balilty",
+"ids": [
+1787813232337
+],
+"tossups": 12,
+"bonuses": 10,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Situation Room",
+"creator": "Pete Souza",
+"ids": [
+1787813232349
+],
+"tossups": 8,
+"bonuses": 5,
+"with_maker": 5,
+"sample": [
+"Barack Obama",
+"the killing of Osama bin Mohammed bin Awad bin Laden [accept",
+"Hillary Clinton [or Hillary Rodham; prompt on Clinton]"
+]
+},
+{
+"name": "Aida",
+"creator": "Rodrigo Abd",
+"ids": [
+1787813232351
+],
+"tossups": 90,
+"bonuses": 91,
+"with_maker": 2,
+"sample": [
+"[' The Cairo Trilogy ', 'Kamal Abd al-Jawad', 'Jacqueline Ke",
+"['Palace Walk [or Between the Two Palaces; or Bayn al-qasray"
+]
+},
+{
+"name": "Fashion Week",
+"creator": "Lucas Jackson",
+"ids": [
+1787813232352
+],
+"tossups": 7,
+"bonuses": 12,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Sandy Hook",
+"creator": "Shannon Hicks",
+"ids": [
+1787813232354
+],
+"tossups": 10,
+"bonuses": 19,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "North Korea",
+"creator": "David Guttenfelder",
+"ids": [
+1787813232356
+],
+"tossups": 181,
+"bonuses": 176,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Climate Change",
+"creator": "Sergio Pitamitz",
+"ids": [
+1787813232365
+],
+"tossups": 137,
+"bonuses": 140,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Self-Portrait",
+"creator": "Robert Mapplethorpe",
+"ids": [
+1787814658542
+],
+"tossups": 609,
+"bonuses": 419,
+"with_maker": 9,
+"sample": [
+"Robert Mapplethorpe",
+"Robert Mapplethorpe",
+"Albrecht Durer (The clues are all about his 1500 self-portra"
+]
+},
+{
+"name": "I Have a Dream",
+"creator": "Agence France-Presse",
+"ids": [
+1787851771006
+],
+"tossups": 73,
+"bonuses": 44,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Pale Blue Dot",
+"creator": "Voyager 1",
+"ids": [
+1787851797903
+],
+"tossups": 9,
+"bonuses": 6,
+"with_maker": 6,
+"sample": [
+"blue [accept Pale Blue Dot; accept blueshift; accept whitish",
+"Earth",
+"['Voyager 1', 'Saturn', 'Pale Blue Dot']"
+]
+},
+{
+"name": "Bliss",
+"creator": "Charles O'Rear",
+"ids": [
+1787851797907
+],
+"tossups": 198,
+"bonuses": 136,
+"with_maker": 3,
+"sample": [
+"Windows XP desktop background photo [accept Bliss before \"Bl",
+"Microsoft [or Microsoft Corporation; accept Microsoft Window",
+"['the Afghan Girl [or Sharbat Gula; accept any answer indica"
+]
+},
+{
+"name": "The Open Door",
+"creator": "William Henry Fox Talbot",
+"ids": [
+1787851797912
+],
+"tossups": 17,
+"bonuses": 15,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Los Angeles, California",
+"creator": "Garry Winogrand",
+"ids": [
+1787878345068
+],
+"tossups": 13,
+"bonuses": 26,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Snow",
+"creator": "Saul Leiter",
+"ids": [
+1787878345072
+],
+"tossups": 1328,
+"bonuses": 926,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Cuban Missile Crisis",
+"creator": "Neal Boenzi",
+"ids": [
+1788489984195
+],
+"tossups": 68,
+"bonuses": 59,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Homecoming",
+"creator": "Louie Favorite",
+"ids": [
+1788489984217
+],
+"tossups": 76,
+"bonuses": 73,
+"with_maker": 1,
+"sample": [
+"['Washington, D.C. [or Washington, District of Columbia; acc"
+]
+},
+{
+"name": "Untitled Film Stills",
+"creator": "Cindy Sherman",
+"ids": [
+1788489984228
+],
+"tossups": 10,
+"bonuses": 23,
+"with_maker": 33,
+"sample": [
+"sex [accept the Sex Pistols] (Malcolm McLaren was also the m",
+"film [or cinema; or movies; or motion pictures; accept Untit",
+"Cindy Sherman [or Cynthia Morris Sherman]"
+]
+}
+],
+"art": [
+{
+"name": "Mao",
+"creator": "Andy Warhol",
+"ids": [
+1787890517089
+],
+"tossups": 299,
+"bonuses": 323,
+"with_maker": 31,
+"sample": [
+"Mao Zedong [or Mao Tse-tung; accept Chairman Mao]",
+"Andy Warhol [or Andrew Warhola, Jr.]",
+"New York City [or NYC] (Keith Haring sold paraphernalia of h"
+]
+},
+{
+"name": "Freedom from Fear",
+"creator": "Norman Rockwell",
+"ids": [
+1787890517096
+],
+"tossups": 8,
+"bonuses": 4,
+"with_maker": 2,
+"sample": [
+"Norman Rockwell [or Norman Percevel Rockwell] (The final two",
+"['Norman Perceval Rockwell', 'The Saturday Evening Post', 'F"
+]
+},
+{
+"name": "Untitled (Skull)",
+"creator": "Jean-Michel Basquiat",
+"ids": [
+1787890517104
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Gas",
+"creator": "Edward Hopper",
+"ids": [
+1787890517111
+],
+"tossups": 2830,
+"bonuses": 2273,
+"with_maker": 6,
+"sample": [
+"Dennis Hopper [or Dennis Lee Hopper]",
+"gas station [or filling station; or service station]",
+"Edward Hopper"
+]
+},
+{
+"name": "Harmony in Blue and Gold: The Peacock Room",
+"creator": "James McNeill Whistler (and Thomas Jeckyll)",
+"ids": [
+1787890517134
+],
+"tossups": 1,
+"bonuses": 4,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Annunciation",
+"creator": "Henry Ossawa Tanner",
+"ids": [
+1787890517145
+],
+"tossups": 71,
+"bonuses": 72,
+"with_maker": 8,
+"sample": [
+"Henry Ossawa Tanner",
+"Henry Ossawa Tanner",
+"['The Banjo Lesson (by Henry Ossawa Tanner)', 'the Annunciat"
+]
+},
+{
+"name": "Youth",
+"creator": "Thomas Cole",
+"ids": [
+1787890517182
+],
+"tossups": 1352,
+"bonuses": 963,
+"with_maker": 4,
+"sample": [
+"flag burning [or flag desecration; accept reasonable equival",
+"Open City",
+"['Young Lords Organization [or YLO; accept Young Lords Party"
+]
+},
+{
+"name": "Double Elvis",
+"creator": "Andy Warhol",
+"ids": [
+1787890517207
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Whaam!",
+"creator": "Roy Lichtenstein",
+"ids": [
+1787890517256
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Fourth of July",
+"creator": "Childe Hassam",
+"ids": [
+1787890517267
+],
+"tossups": 32,
+"bonuses": 32,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Old Plantation",
+"creator": "John Rose",
+"ids": [
+1787890517285
+],
+"tossups": 2,
+"bonuses": 1,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Gallery of the Louvre",
+"creator": "Samuel Morse",
+"ids": [
+1787890517298
+],
+"tossups": 2,
+"bonuses": 2,
+"with_maker": 2,
+"sample": [
+"['Samuel Morse', 'National Gallery of Art', 'Hercules [or He",
+"['The Apotheosis of George Washington', 'Mexico [or United M"
+]
+},
+{
+"name": "Elegy to the Spanish Republic No. 108",
+"creator": "Robert Motherwell",
+"ids": [
+1787890517299
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Central Park",
+"creator": "Maurice Prendergast",
+"ids": [
+1787890517313
+],
+"tossups": 222,
+"bonuses": 204,
+"with_maker": 2,
+"sample": [
+"['Central Park [prompt on New York (City) or NYC or Manhatta",
+"['Maurice Brazil Prendergast', 'The Eight [or the Ashcan Sch"
+]
+},
+{
+"name": "Along the Seine",
+"creator": "Maurice Prendergast",
+"ids": [
+1787890517314
+],
+"tossups": 16,
+"bonuses": 6,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Old Checkered House",
+"creator": "Grandma Moses",
+"ids": [
+1787890517315
+],
+"tossups": 0,
+"bonuses": 2,
+"with_maker": 2,
+"sample": [
+"['Sugaring Off', 'Grandma Moses or Anna Mary Robertson Moses",
+"[\"Georgia Totto O'Keeffe\", 'Grandma Moses', 'Mary Stevenson "
+]
+},
+{
+"name": "Queen Elizabeth II",
+"creator": "Lucian Freud",
+"ids": [
+1787890517370
+],
+"tossups": 38,
+"bonuses": 45,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "A Harlot's Progress [plate I]",
+"creator": "William Hogarth",
+"ids": [
+1787890517415
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Beer Street &amp; Gin Lane",
+"creator": "William Hogarth",
+"ids": [
+1787890517416
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Vision of Ezekiel",
+"creator": "David Bomberg",
+"ids": [
+1787890517445
+],
+"tossups": 4,
+"bonuses": 2,
+"with_maker": 1,
+"sample": [
+"['David Bomberg', 'Keith Haring', 'AIDS [or Acquired Immune "
+]
+},
+{
+"name": "North Shore, Lake Superior",
+"creator": "Lawren Harris",
+"ids": [
+1787890517447
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Mountain Forms",
+"creator": "Lawren Harris",
+"ids": [
+1787890517458
+],
+"tossups": 2,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Gods of the Modern World [Panel 17]",
+"creator": "José Clemente Orozco",
+"ids": [
+1787890517481
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Self-Portrait",
+"creator": "Peter Paul Rubens",
+"ids": [
+1787890517536
+],
+"tossups": 609,
+"bonuses": 419,
+"with_maker": 15,
+"sample": [
+"straw hats [chapeau de paille, strohoed; prompt on hats, hea",
+"Las Meninas [or The Ladies-in-waiting]",
+"Peter Paul Rubens"
+]
+},
+{
+"name": "Rape of the Daughters of Leucippus",
+"creator": "Peter Paul Rubens (and Jan Wildens)",
+"ids": [
+1787890517546
+],
+"tossups": 0,
+"bonuses": 2,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Large Bathers",
+"creator": "Paul Cézanne",
+"ids": [
+1787890517560
+],
+"tossups": 12,
+"bonuses": 13,
+"with_maker": 25,
+"sample": [
+"Paul Cezanne (say-ZAHN)",
+"Pierre-Auguste Renoir",
+"Paul Cezanne"
+]
+},
+{
+"name": "Self-Portrait",
+"creator": "Pierre-Auguste Renoir",
+"ids": [
+1787890517585
+],
+"tossups": 609,
+"bonuses": 419,
+"with_maker": 8,
+"sample": [
+"dogs [accept Dalmatians or foxhounds or pugs before mention;",
+"monkey",
+"Gustave Caillebotte"
+]
+},
+{
+"name": "Elegy to the Spanish Republic No. 110",
+"creator": "Robert Motherwell",
+"ids": [
+1787890517594
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Moonlight Sonata",
+"creator": "Ralph Albert Blakelock",
+"ids": [
+1787890517596
+],
+"tossups": 69,
+"bonuses": 59,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Painting",
+"creator": "Francis Bacon",
+"ids": [
+1787890517608
+],
+"tossups": 7063,
+"bonuses": 5239,
+"with_maker": 2,
+"sample": [
+"screaming [accept The Scream; accept synonyms such as yellin",
+"Francis Bacon"
+]
+},
+{
+"name": "The Boulevard Montmartre at Night",
+"creator": "Camille Pissarro",
+"ids": [
+1787890517616
+],
+"tossups": 1,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Bouquet of Flowers",
+"creator": "Odilon Redon",
+"ids": [
+1787890517652
+],
+"tossups": 48,
+"bonuses": 17,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Dream",
+"creator": "Henri Rousseau",
+"ids": [
+1787890517677
+],
+"tossups": 278,
+"bonuses": 248,
+"with_maker": 29,
+"sample": [
+"snake charming [accept snake charmers; accept serpent charmi",
+"Henri Rousseau [or Henri Julien Felix Rousseau]",
+"birds [accept goldfinch]"
+]
+},
+{
+"name": "The Waltz",
+"creator": "Camille Claudel",
+"ids": [
+1787890517691
+],
+"tossups": 62,
+"bonuses": 69,
+"with_maker": 24,
+"sample": [
+"Camille Claudel [or Camille Rosalie Claudel]",
+"dancing (accept waltzing or The Waltzbefore mentioned; accep",
+"(Francois) Auguste (Rene) Rodin (\"oh-GOOST roh-DAW\")"
+]
+},
+{
+"name": "The Birth of Venus",
+"creator": "William-Adolphe Bouguereau",
+"ids": [
+1787890517736
+],
+"tossups": 93,
+"bonuses": 78,
+"with_maker": 14,
+"sample": [
+"The Birth of Venus [accept La Nascita de Venere]",
+"The Birth of Venus",
+"academic art [or academicism]"
+]
+},
+{
+"name": "Self-Portrait",
+"creator": "Jacques-Louis David",
+"ids": [
+1787890517750
+],
+"tossups": 609,
+"bonuses": 419,
+"with_maker": 36,
+"sample": [
+"neoclassicism [or word forms like neoclassical; reject \"clas",
+"doctor [or surgeon or anatomist; accept any equivalent to a ",
+"TheNight Watch [accept De Nachtwacht or Militia Company of D"
+]
+},
+{
+"name": "The Dance",
+"creator": "André Derain",
+"ids": [
+1787890517774
+],
+"tossups": 338,
+"bonuses": 274,
+"with_maker": 28,
+"sample": [
+"Fauvism",
+"Henri Matisse [or Henri Emile Benoit Matisse]",
+"Fauvism [accept Fauvists]"
+]
+},
+{
+"name": "A Woman Reading",
+"creator": "Jean-Baptiste-Camille Corot",
+"ids": [
+1787890517801
+],
+"tossups": 9,
+"bonuses": 1,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Woman with a Parasol (or Opus 243, Portrait)",
+"creator": "Paul Signac",
+"ids": [
+1787890517804
+],
+"tossups": 12,
+"bonuses": 7,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Sleeping Muse II",
+"creator": "Constantin Brâncuși",
+"ids": [
+1787890517839
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Two Sisters",
+"creator": "Théodore Chassériau",
+"ids": [
+1787890517847
+],
+"tossups": 9,
+"bonuses": 3,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Book of Hours (or The Hours of Étienne Chevalier) [40 miniatures]",
+"creator": "Jean Fouquet",
+"ids": [
+1787890517867
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Danaë",
+"creator": "Rembrandt (van Rijn)",
+"ids": [
+1787890517911
+],
+"tossups": 70,
+"bonuses": 64,
+"with_maker": 6,
+"sample": [
+"Rembrandt Harmenszoon van Rijn [accept either underlined nam",
+"Rembrandt Harmenszoon van Rijn [accept either underlined por",
+"Rembrandt Harmenszoon van Rijn [accept either]"
+]
+},
+{
+"name": "The Conspiracy of the Batavians Under Claudius Civilis",
+"creator": "Rembrandt (van Rijn)",
+"ids": [
+1787890517931
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Garden of Earthly Delights; The Creation of the World (closed doors)",
+"creator": "Hieronymus Bosch",
+"ids": [
+1787890517968
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Tableau I: Lozenge with Four Lines and Gray",
+"creator": "Piet Mondrian",
+"ids": [
+1787890517989
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Infanta Margarita Teresa in a Blue Dress",
+"creator": "Diego Velázquez",
+"ids": [
+1787890518022
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "La Vie",
+"creator": "Pablo Picasso",
+"ids": [
+1787890518035
+],
+"tossups": 59,
+"bonuses": 49,
+"with_maker": 23,
+"sample": [
+"Pablo Picasso",
+"blue [accept shades of blue like cerulean or azure]",
+"Pablo Picasso"
+]
+},
+{
+"name": "Self-Portrait",
+"creator": "Pablo Picasso",
+"ids": [
+1787890518052
+],
+"tossups": 609,
+"bonuses": 419,
+"with_maker": 12,
+"sample": [
+"Diego Velazquez",
+"France",
+"Las Meninas [accept The Maids of Honor]"
+]
+},
+{
+"name": "The Second of May 1808: The Charge of the Mamelukes",
+"creator": "Francisco Goya",
+"ids": [
+1787890518082
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Adoration of the Shepherds",
+"creator": "Bartolomé Esteban Murillo",
+"ids": [
+1787890518101
+],
+"tossups": 7,
+"bonuses": 9,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Rape of Europa",
+"creator": "Francisco Goya",
+"ids": [
+1787890518105
+],
+"tossups": 17,
+"bonuses": 22,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Christ on the Cross",
+"creator": "Francisco de Zurbarán",
+"ids": [
+1787890518109
+],
+"tossups": 19,
+"bonuses": 10,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Self-Portrait",
+"creator": "Albrecht Dürer",
+"ids": [
+1787890518159
+],
+"tossups": 609,
+"bonuses": 419,
+"with_maker": 33,
+"sample": [
+"Adoration of the Magi [or Adoration of the Kings; accept Ado",
+"Albrecht Durer's Self-Portrait at Twenty-Eight [accept Albre",
+"Albrecht Durer"
+]
+},
+{
+"name": "A Rake's Progress [plate 1]",
+"creator": "William Hogarth",
+"ids": [
+1787890518198
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Woman with Large Hat",
+"creator": "Kees van Dongen",
+"ids": [
+1787890518211
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Woman with a Bag",
+"creator": "Karl Schmidt-Rottluff",
+"ids": [
+1787890518214
+],
+"tossups": 1,
+"bonuses": 1,
+"with_maker": 1,
+"sample": [
+"['Emil Nolde [or Emil Hansen]', 'Die Brucke [or The Bridge]'"
+]
+},
+{
+"name": "The Football Players",
+"creator": "Albert Gleizes",
+"ids": [
+1787890518229
+],
+"tossups": 5,
+"bonuses": 3,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Six Prayers",
+"creator": "Anni Albers",
+"ids": [
+1787890518256
+],
+"tossups": 1,
+"bonuses": 1,
+"with_maker": 1,
+"sample": [
+"['Anni Albers [prompt on just Albers]', 'Republic of Peru [o"
+]
+},
+{
+"name": "The Baptism of Christ",
+"creator": "Leonardo da Vinci (and Andrea del Verrocchio)",
+"ids": [
+1787890518288
+],
+"tossups": 8,
+"bonuses": 9,
+"with_maker": 8,
+"sample": [
+"Leonardodi Vinci [accept either underlined part]",
+"Leonardo da Vinci (accept either part)",
+"Leonardo da Vinci [accept either underlined portion]"
+]
+},
+{
+"name": "Lamentation (or The Mourning of Christ)",
+"creator": "Giotto (di Bondone)",
+"ids": [
+1787890518319
+],
+"tossups": 74,
+"bonuses": 68,
+"with_maker": 28,
+"sample": [
+"Giotto [or Giotto di Bondone] (The first sentence refers to ",
+"Giotto [or Giotto di Bondone; or Giottus]",
+"Giotto (\"JAW-toh\") [or Giotto di Bondone; prompt on di Bondo"
+]
+},
+{
+"name": "Assumption",
+"creator": "Titian",
+"ids": [
+1787890518343
+],
+"tossups": 345,
+"bonuses": 248,
+"with_maker": 21,
+"sample": [
+"The Assumption of the Virgin",
+"Mary [accept the Virgin Mary; accept Mary Magdalene; accept ",
+"Titian (accept Tiziano Vecelli)"
+]
+},
+{
+"name": "The Birth of Venus",
+"creator": "Sandro Botticelli",
+"ids": [
+1787890518355
+],
+"tossups": 93,
+"bonuses": 78,
+"with_maker": 142,
+"sample": [
+"The Birth of Venus",
+"The Birth of Venus [or Nascita di Venere]",
+"Sandro Botticelli (\"bot-ee-CHELL-ee\") [accept Alessandro di "
+]
+},
+{
+"name": "Lamentation of Christ (or The Dead Christ)",
+"creator": "Andrea Mantegna",
+"ids": [
+1787890518374
+],
+"tossups": 8,
+"bonuses": 14,
+"with_maker": 7,
+"sample": [
+"drawing in perspective [prompt on foreshortening before ment",
+"Andrea Mantegna",
+"['the Lamentation [accept The Lamentation of Christ; reject "
+]
+},
+{
+"name": "Ivan the Terrible and His Son Ivan on November 16, 1581",
+"creator": "Ilya Repin",
+"ids": [
+1787890518452
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Paolina Borghese Bonaparte as Venus Victrix",
+"creator": "Antonio Canova",
+"ids": [
+1787890518477
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Ashes",
+"creator": "Edvard Munch",
+"ids": [
+1787890518491
+],
+"tossups": 421,
+"bonuses": 203,
+"with_maker": 23,
+"sample": [
+"Edvard Munch(\"moonk\") (The second line is The Day After.)",
+"Kingdom of Norway [accept Kongeriket Norge (\"NOR-guh\") or Ko",
+"Edvard Munch (\"moonk\") (So Much Longing in So Little Space i"
+]
+},
+{
+"name": "The Gare Saint-Lazare: Arrival of a Train",
+"creator": "Claude Monet",
+"ids": [
+1787890518514
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Ray",
+"creator": "Jean-Baptiste-Siméon Chardin",
+"ids": [
+1787890518533
+],
+"tossups": 30,
+"bonuses": 26,
+"with_maker": 18,
+"sample": [
+"still lifes [accept Still Life and Street; antiprompt on bod",
+"Jean-Baptiste-Simeon Chardin (the critic in the leadin was D",
+"cats [accept synonyms like kitties or kittens]"
+]
+},
+{
+"name": "Portrait of a Man (in a Red Turban) (Self-Portrait?)",
+"creator": "Jan van Eyck",
+"ids": [
+1787890518564
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Dining Room in the Country",
+"creator": "Pierre Bonnard",
+"ids": [
+1787890518626
+],
+"tossups": 0,
+"bonuses": 4,
+"with_maker": 4,
+"sample": [
+"['Les Nabis', 'Pierre Bonnard', 'Henri de Toulouse-Lautrec']",
+"['Les Nabis', 'Paul Cezanne', 'symbolism [or symbolists]']",
+"['Pierre Bonnard', 'Henri de Toulouse Lautrec', 'Edouard Vui"
+]
+},
+{
+"name": "States of Mind I: The Farewells",
+"creator": "Umberto Boccioni",
+"ids": [
+1787890518644
+],
+"tossups": 0,
+"bonuses": 2,
+"with_maker": 2,
+"sample": [
+"['Umberto Boccioni', 'Futurism', 'Winged Victory of Samothra",
+"['Umberto Boccioni', 'Futurism [or Futurismo]', 'funerals [o"
+]
+},
+{
+"name": "Shoes",
+"creator": "Vincent van Gogh",
+"ids": [
+1787890518652
+],
+"tossups": 611,
+"bonuses": 359,
+"with_maker": 30,
+"sample": [
+"Martin Heidegger (The first two essays are \"The Question Con",
+"postmodernism [or word forms like postmodernity; accept The ",
+"Knut Hamsun [or Knud Pedersen ]"
+]
+},
+{
+"name": "Tête-à-Tête [plate 2]",
+"creator": "William Hogarth",
+"ids": [
+1787890518657
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Oval of Apparition",
+"creator": "Carlo Carrà",
+"ids": [
+1787890518670
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Composition VII: The Three Graces",
+"creator": "Theo van Doesburg",
+"ids": [
+1787890518671
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Untitled",
+"creator": "Agnes Martin",
+"ids": [
+1787890518722
+],
+"tossups": 107,
+"bonuses": 102,
+"with_maker": 4,
+"sample": [
+"Agnes Martin [or Agnes Bernice Martin] (Krauss's essay is \"G",
+"Kendrick Lamar Duckworth [accept either underlined portion]",
+"['minimalism', 'colors', 'Judy Chicago']"
+]
+},
+{
+"name": "Loving Love",
+"creator": "Agnes Martin",
+"ids": [
+1787890518723
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Among the Ruins",
+"creator": "Sir Lawrence Alma-Tadema",
+"ids": [
+1787890518731
+],
+"tossups": 18,
+"bonuses": 14,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Fishing by Torchlight in Kai Province",
+"creator": "Katsushika Hokusai",
+"ids": [
+1787890518737
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Maman",
+"creator": "Louise Bourgeois",
+"ids": [
+1787890518751
+],
+"tossups": 62,
+"bonuses": 55,
+"with_maker": 21,
+"sample": [
+"spiders [accept arachnids; accept TaranTula]",
+"Louise [accept LouiseNevelson; accept Louise Bourgeois]",
+"Louise Josephine Bourgeois (\"boor-ZHWA\")"
+]
+},
+{
+"name": "Cell (or Eyes and Mirrors)",
+"creator": "Louise Bourgeois",
+"ids": [
+1787890518754
+],
+"tossups": 2438,
+"bonuses": 2254,
+"with_maker": 1,
+"sample": [
+"['Maman', 'Cell series', 'She Lost It']"
+]
+},
+{
+"name": "Birth of Venus",
+"creator": "Alexandre Cabanel",
+"ids": [
+1787890518767
+],
+"tossups": 105,
+"bonuses": 90,
+"with_maker": 16,
+"sample": [
+"Gustave Courbet",
+"The Birth of Venus",
+"Venus (accept Aphrodite, though every single artwork is name"
+]
+},
+{
+"name": "The Dance",
+"creator": "Jean-Baptiste Carpeaux",
+"ids": [
+1787890518784
+],
+"tossups": 338,
+"bonuses": 274,
+"with_maker": 15,
+"sample": [
+"Marc Chagall",
+"opera houses [prompt on theater or auditorium; prompt on per",
+"ceiling of the Paris Opera [2]"
+]
+},
+{
+"name": "Hope (or The Art of the Sublime)",
+"creator": "George Frederick Watts",
+"ids": [
+1787890518792
+],
+"tossups": 1156,
+"bonuses": 674,
+"with_maker": 2,
+"sample": [
+"Jeremiah Alvesta Wright Jr.",
+"['Edward Burne-Jones', 'Hope', 'Pablo Ruiz y Picasso']"
+]
+},
+{
+"name": "Love and Life",
+"creator": "George Frederick Watts",
+"ids": [
+1787890518793
+],
+"tossups": 4,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Floating Figure",
+"creator": "Gaston Lachaise",
+"ids": [
+1787890518795
+],
+"tossups": 2,
+"bonuses": 1,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Archduke Leopold Wilhelm in His Painting Gallery in Brussels",
+"creator": "David Teniers the Younger",
+"ids": [
+1787890518801
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Trial",
+"creator": "Sidney Nolan",
+"ids": [
+1787890518821
+],
+"tossups": 391,
+"bonuses": 281,
+"with_maker": 3,
+"sample": [
+"Ned Kelly [or Edward Kelly ]",
+"Australia",
+"['Sir Sidney Nolan', 'Australia', 'impressionism']"
+]
+},
+{
+"name": "Autumn Day, Sokolniki",
+"creator": "Isaac Levitan",
+"ids": [
+1787890518825
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Over Eternal Peace",
+"creator": "Isaac Levitan",
+"ids": [
+1787890518826
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Samson and Delilah",
+"creator": "Jan Lievens",
+"ids": [
+1787890518852
+],
+"tossups": 19,
+"bonuses": 31,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Smallholders Playing Cards",
+"creator": "Adriaen Brouwer",
+"ids": [
+1787890518853
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Vega-Nor",
+"creator": "Victor Vasarely",
+"ids": [
+1787890518860
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Goblin Market",
+"creator": "Dante Gabriel Rossetti",
+"ids": [
+1787890518874
+],
+"tossups": 44,
+"bonuses": 57,
+"with_maker": 93,
+"sample": [
+"\"Goblin Market\"",
+"\"Goblin Market\"",
+"\"Goblin Market\""
+]
+},
+{
+"name": "Homage to Delacroix",
+"creator": "Henri Fantin-Latour",
+"ids": [
+1787890518880
+],
+"tossups": 0,
+"bonuses": 3,
+"with_maker": 3,
+"sample": [
+"['Burial at Ornans [or Un Enterrement a Ornans; accept Inter",
+"['Henri Fantin-Latour', 'Eduoard Manet', 'lithographs [or li",
+"['Henri Fantin-Latour', 'Walter Sickert', 'Paul Cezanne']"
+]
+},
+{
+"name": "The Last Judgement",
+"creator": "Giorgio Vasari (completed by Federico Zuccari)",
+"ids": [
+1787890518921
+],
+"tossups": 38,
+"bonuses": 26,
+"with_maker": 1,
+"sample": [
+"Florence Cathedral [or Duomo di Firenze or Cattedrale di San"
+]
+},
+{
+"name": "The Battle of Marciano in Val di Chiana",
+"creator": "Giorgio Vasari",
+"ids": [
+1787890518922
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Madonna and Child with Saint Anne",
+"creator": "Masaccio (and Masolino da Panicale)",
+"ids": [
+1787890518941
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Talisman: The Aven River at the Bois d'Amour",
+"creator": "Paul Sérusier",
+"ids": [
+1787890519011
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Landscape (or Paysage)",
+"creator": "Paul Sérusier",
+"ids": [
+1787890519012
+],
+"tossups": 911,
+"bonuses": 742,
+"with_maker": 2,
+"sample": [
+"['Les Nabis (\"lay nah-BEE\") (The artists are Maurice Denis a",
+"['Les Nabis', 'Pierre Bonnard', 'Henri de Toulouse-Lautrec']"
+]
+},
+{
+"name": "Madonna and Child",
+"creator": "Duccio",
+"ids": [
+1787890519030
+],
+"tossups": 48,
+"bonuses": 43,
+"with_maker": 13,
+"sample": [
+"Siena",
+"Siena",
+"Siena"
+]
+},
+{
+"name": "Baptism of Christ",
+"creator": "Parmigianino",
+"ids": [
+1787890519055
+],
+"tossups": 15,
+"bonuses": 14,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Diana and Actaeon",
+"creator": "Parmigianino",
+"ids": [
+1787890519060
+],
+"tossups": 10,
+"bonuses": 5,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Nativity of Mary; Nativity of Jesus",
+"creator": "Pietro Cavallini",
+"ids": [
+1787890519080
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Crucifixion",
+"creator": "Pietro Perugino (possibly with assistance by Luca Signorelli)",
+"ids": [
+1787890519204
+],
+"tossups": 425,
+"bonuses": 340,
+"with_maker": 1,
+"sample": [
+"Fra Angelico [or Guido di Petro; accept Fra Giovanni da Fies"
+]
+},
+{
+"name": "Judith with the Head of Holofernes",
+"creator": "Paolo Veronese",
+"ids": [
+1787890519259
+],
+"tossups": 4,
+"bonuses": 7,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Holy Family",
+"creator": "Paolo Veronese",
+"ids": [
+1787890519269
+],
+"tossups": 38,
+"bonuses": 25,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Assumption of the Virgin",
+"creator": "Nanni di Banco",
+"ids": [
+1787890519284
+],
+"tossups": 19,
+"bonuses": 26,
+"with_maker": 3,
+"sample": [
+"Florence Cathedral [or Cattedrale di Santa Maria del Fiore; ",
+"Nanni di Banco (accept \"Nanni\" or \"Banco\" - he's referred to",
+"['Lorenzo Ghiberti', 'The Rebellious Slave (or Captive)', \"N"
+]
+},
+{
+"name": "Death and the Maiden (or Death and Lust)",
+"creator": "Hans Baldung",
+"ids": [
+1787890519383
+],
+"tossups": 83,
+"bonuses": 82,
+"with_maker": 1,
+"sample": [
+"['Death and the Maiden', 'Gustav Klimt', 'Hans Baldung Grien"
+]
+},
+{
+"name": "Hercules and Cacus",
+"creator": "Baccio Bandinelli",
+"ids": [
+1787890519384
+],
+"tossups": 0,
+"bonuses": 2,
+"with_maker": 2,
+"sample": [
+"['Michelangelo [accept Michelangelo di Lodovico Buonarroti S",
+"['David (by Michelangelo)', 'Hercules [accept Hercules and C"
+]
+},
+{
+"name": "(Heinrich von) Werl Triptych",
+"creator": "[probably] Robert Campin",
+"ids": [
+1787890519415
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Garden of Eden with the Fall of Man",
+"creator": "Peter Paul Rubens (figures) and Jan Brueghel the Elder (flora and fauna)",
+"ids": [
+1787890519424
+],
+"tossups": 1,
+"bonuses": 1,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Sight and Hearing",
+"creator": "Peter Paul Rubens (figures) and Jan Brueghel the Elder (setting)",
+"ids": [
+1787890519427
+],
+"tossups": 0,
+"bonuses": 1,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Smell and Touch",
+"creator": "Peter Paul Rubens (figures) and Jan Brueghel the Elder (setting)",
+"ids": [
+1787890519428
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Tree of Life and Last Supper",
+"creator": "Taddeo Gaddi",
+"ids": [
+1787890519454
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Marriage Feast at Cana",
+"creator": "[probably] Hieronymus Bosch",
+"ids": [
+1787890519465
+],
+"tossups": 0,
+"bonuses": 2,
+"with_maker": 2,
+"sample": [
+"['Ship of Fools', 'Hieronymus Bosch (accept Jheronimus van A",
+"['The Garden of Earthly Delights [or The Millenium]', 'Hiero"
+]
+},
+{
+"name": "The Fall of Man",
+"creator": "Albrecht Dürer",
+"ids": [
+1787890519478
+],
+"tossups": 18,
+"bonuses": 14,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Adoration of the Kings",
+"creator": "Jan Gossaert (or Mabuse) (or Jennyn van Hennegouwe)",
+"ids": [
+1787890519495
+],
+"tossups": 1,
+"bonuses": 1,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Entombment of Christ",
+"creator": "(Michelangelo Merisi da) Caravaggio",
+"ids": [
+1787890519503
+],
+"tossups": 8,
+"bonuses": 5,
+"with_maker": 9,
+"sample": [
+"Jesus Christ [or Jesus Christ] (The paintings are The Taking",
+"Jean-Paul Marat [accept The Death of Marat; accept The Assas",
+"The Entombment of Christ [or The Burial of Christ; or really"
+]
+},
+{
+"name": "Death of the Virgin",
+"creator": "(Michelangelo Merisi da) Caravaggio",
+"ids": [
+1787890519508
+],
+"tossups": 8,
+"bonuses": 9,
+"with_maker": 12,
+"sample": [
+"the death of the Virgin [or the death of Mary]",
+"Caravaggio or Michelangelo Merisi",
+"Michelangelo Mersi Da Caravaggio"
+]
+},
+{
+"name": "David",
+"creator": "Gian Lorenzo Bernini",
+"ids": [
+1787890519578
+],
+"tossups": 4893,
+"bonuses": 4103,
+"with_maker": 1,
+"sample": [
+"['Michelangelo [accept Michelangelo di Lodovico Buonarroti S"
+]
+},
+{
+"name": "Black, White, and Gray",
+"creator": "Franz Kline",
+"ids": [
+1787890519632
+],
+"tossups": 2,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Abstract Painting No. 5",
+"creator": "Ad Reinhardt",
+"ids": [
+1787890519680
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Snail",
+"creator": "Henri Matisse",
+"ids": [
+1787890519823
+],
+"tossups": 27,
+"bonuses": 13,
+"with_maker": 18,
+"sample": [
+"Henri Matisse [or Henri Emile Benoit Matisse]",
+"paper [accept anything indicating printing, drawing, or tire",
+"Matisse"
+]
+},
+{
+"name": "Self Portrait (Man with a Pipe)",
+"creator": "Gustave Courbet",
+"ids": [
+1787890519891
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Nine Malic Moulds",
+"creator": "Marcel Duchamp",
+"ids": [
+1787890519987
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Untitled (Flag)",
+"creator": "Jean-Michel Basquiat",
+"ids": [
+1787890519995
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Great Red Dragon and the Beast from the Sea",
+"creator": "William Blake",
+"ids": [
+1787890520155
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Good Samaritan",
+"creator": "William Hogarth (and George Lambert)",
+"ids": [
+1787890520191
+],
+"tossups": 25,
+"bonuses": 27,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Peinture (or Painting)",
+"creator": "Joan Miró",
+"ids": [
+1787890520302
+],
+"tossups": 3,
+"bonuses": 7,
+"with_maker": 1,
+"sample": [
+"Joan Miro (The 1st clue refers to Miro's Peinture at the Gug"
+]
+},
+{
+"name": "Penitent Magdalene",
+"creator": "Bartolomé Esteban Murillo",
+"ids": [
+1787890520328
+],
+"tossups": 33,
+"bonuses": 36,
+"with_maker": 1,
+"sample": [
+"Penitent Magdalene [or equivalents]"
+]
+},
+{
+"name": "The Yellow House",
+"creator": "Gabriele Münter",
+"ids": [
+1787890520437
+],
+"tossups": 18,
+"bonuses": 18,
+"with_maker": 2,
+"sample": [
+"['Gabriele Munter', 'The Yellow House', 'glass [accept rever",
+"['Wassily Kandinsky', 'improvisations', 'Gabriele Munter']"
+]
+},
+{
+"name": "Cut with the Kitchen Knife Through the Beer-Belly of the Weimar Republic",
+"creator": "Hannah Höch",
+"ids": [
+1787890520439
+],
+"tossups": 0,
+"bonuses": 1,
+"with_maker": 1,
+"sample": [
+"['Francis Picabia', 'collage [or photomontage; prompt on \"de"
+]
+},
+{
+"name": "The Beautiful Girl",
+"creator": "Hannah Höch",
+"ids": [
+1787890520440
+],
+"tossups": 1,
+"bonuses": 3,
+"with_maker": 2,
+"sample": [
+"['Duchamp [accept Marcel Duchamp or Henri-Robert-Marcel Duch",
+"['Hannah Hoch [or Anna Therese Johanne Hoch]', 'Germany [or "
+]
+},
+{
+"name": "The Raising of the Cross",
+"creator": "Rembrandt (van Rijn)",
+"ids": [
+1787890520485
+],
+"tossups": 5,
+"bonuses": 7,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Banquet of the Officers of the Calivermen Civic Guard, Haarlem",
+"creator": "Frans Hals",
+"ids": [
+1787890520524
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Madonna (Loving Woman, Conception)",
+"creator": "Edvard Munch",
+"ids": [
+1787890520607
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "King of Kings",
+"creator": "Constantin Brâncuși",
+"ids": [
+1787890520860
+],
+"tossups": 58,
+"bonuses": 31,
+"with_maker": 10,
+"sample": [
+"Constantin Brancusi (\"brinn-KOOSH\")",
+"Constantin Brancusi",
+"Constantin Brancusi"
+]
+},
+{
+"name": "The Sleepwalking Lady Macbeth",
+"creator": "Henry Fuseli",
+"ids": [
+1787890520966
+],
+"tossups": 0,
+"bonuses": 1,
+"with_maker": 1,
+"sample": [
+"['sleepwalking [or The Sleepwalking Lady Macbeth]', 'Ellen T"
+]
+},
+{
+"name": "Lipstick (Ascending) on Caterpillar Tracks",
+"creator": "Claes Oldenburg",
+"ids": [
+1787890520980
+],
+"tossups": 3,
+"bonuses": 11,
+"with_maker": 14,
+"sample": [
+"lipstick [accept lipstick tubes; accept Lipstick (Ascending)",
+"Claes Oldenburg",
+"Claes Thure Oldenburg"
+]
+},
+{
+"name": "Joseph Hooker",
+"creator": "Daniel Chester French (and Edward C. Potter)",
+"ids": [
+1787890521001
+],
+"tossups": 36,
+"bonuses": 16,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Iconography",
+"creator": "Anthony van Dyck (completed by Jacques Neeffs)",
+"ids": [
+1787890521064
+],
+"tossups": 86,
+"bonuses": 54,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Samson and Delilah",
+"creator": "Anthony van Dyck",
+"ids": [
+1787890521075
+],
+"tossups": 19,
+"bonuses": 31,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Cupid and Psyche",
+"creator": "Anthony van Dyck",
+"ids": [
+1787890521081
+],
+"tossups": 25,
+"bonuses": 27,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Blood Relations",
+"creator": "Anish Kapoor (and Salman Rushdie)",
+"ids": [
+1787890521113
+],
+"tossups": 1,
+"bonuses": 3,
+"with_maker": 2,
+"sample": [
+"Anish Kapoor",
+"['wax [accept Dutch wax fabric] (The second Kapoor work is B"
+]
+},
+{
+"name": "Menstruation Bathroom",
+"creator": "Judy Chicago",
+"ids": [
+1787890521199
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "@Large (Alcatraz)",
+"creator": "Ai Weiwei",
+"ids": [
+1787890521244
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Shower on Nihonbashi Bridge",
+"creator": "Hiroshige",
+"ids": [
+1787890521275
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Holy Virgin Mary",
+"creator": "Chris Ofili",
+"ids": [
+1787890521304
+],
+"tossups": 6,
+"bonuses": 9,
+"with_maker": 13,
+"sample": [
+"Chris Ofili",
+"Chris Ofili [or Christopher Ofili]",
+"Chris Ofili"
+]
+},
+{
+"name": "Still Life with Flowers on a Marble Slab",
+"creator": "Rachel Ruysch",
+"ids": [
+1787890521322
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Untitled (billboard of an empty bed)",
+"creator": "Félix González-Torres",
+"ids": [
+1787890521337
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Untitled (Portrait of Ross in L.A.)",
+"creator": "Félix González-Torres",
+"ids": [
+1787890521338
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Untitled (Perfect Lovers)",
+"creator": "Félix González-Torres",
+"ids": [
+1787890521339
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Untitled (Monument)",
+"creator": "Félix González-Torres",
+"ids": [
+1787890521340
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Borghese Gladiator",
+"creator": "Agasias (son of Dositheus)",
+"ids": [
+1787890521363
+],
+"tossups": 18,
+"bonuses": 10,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Stalingrad",
+"creator": "Asger Jorn",
+"ids": [
+1787890521364
+],
+"tossups": 59,
+"bonuses": 53,
+"with_maker": 2,
+"sample": [
+"['the Mona Lisa [or La Joconde; or La Gioconda]', 'Marcel Du",
+"['(Kingdom of) Denmark', 'Stalingrad [or Volgograd]', 'ceram"
+]
+},
+{
+"name": "Knife Behind Back",
+"creator": "Yoshitomo Nara",
+"ids": [
+1787890521365
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Anthropométries de l'époque bleue",
+"creator": "Yves Klein",
+"ids": [
+1787890521373
+],
+"tossups": 0,
+"bonuses": 0,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "The Picture of Dorian Gray",
+"creator": "Ivan Albright",
+"ids": [
+1787890521409
+],
+"tossups": 74,
+"bonuses": 71,
+"with_maker": 5,
+"sample": [
+"Oscar Wilde [or Oscar Fingal O'Fflahertie Wills Wilde]",
+"['Ivan Albright', 'The Picture of Dorian Gray', 'self-portra",
+"['silverpoint [prompt on metalpoint]', 'Leonardo da Vinci [o"
+]
+},
+{
+"name": "Alexander Mosaic",
+"creator": "[unknown]",
+"ids": [
+1787890521460
+],
+"tossups": 9,
+"bonuses": 16,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Venus of Willendorf",
+"creator": "[unknown]",
+"ids": [
+1787890521461
+],
+"tossups": 8,
+"bonuses": 18,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Winter Landscape",
+"creator": "Sesshu Toyo",
+"ids": [
+1787890521483
+],
+"tossups": 11,
+"bonuses": 4,
+"with_maker": 0,
+"sample": []
+},
+{
+"name": "Bayeux Tapestry",
+"creator": "[unknown]",
+"ids": [
+1787890521500
+],
+"tossups": 88,
+"bonuses": 50,
+"with_maker": 2,
+"sample": [
+"['William the Conqueror [William I; or William the Bastard; ",
+"['Battle of Hastings', 'Harold Godwinson [or Harold II; or H"
+]
+},
+{
+"name": "Cornelia, Mother of the Gracchi, Pointing to Her Children as Her Treasures",
+"creator": "Angelica Kauffman",
+"ids": [
+1787890521522
+],
+"tossups": 0,
+"bonuses": 2,
+"with_maker": 2,
+"sample": [
+"['Emma, Lady Hamilton [or Amy Lyon; or Emma Hart]', 'Friedri",
+"['Angelica Kauffman', 'Cornelia, Mother of the Gracchi, Poin"
+]
+},
+{
+"name": "Troilus and Cressida",
+"creator": "Angelica Kauffman",
+"ids": [
+1787890521524
+],
+"tossups": 17,
+"bonuses": 31,
+"with_maker": 1,
+"sample": [
+"['Henry Fuseli(\"FUSE-lee\") [or Johann Heinrich Fussli]', 'Wi"
+]
+},
+{
+"name": "Book of Kells",
+"creator": "[unknown]",
+"ids": [
+1788489939741
+],
+"tossups": 16,
+"bonuses": 36,
+"with_maker": 0,
+"sample": []
+}
+]
+}
