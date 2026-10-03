@@ -29,8 +29,8 @@ IMAGES = {
                  "Metropolitan Museum of Art", "https://commons.wikimedia.org/wiki/File:Kano_Osanobu_-_Queen_Mother_of_the_West_-_36.100.99_-_Metropolitan_Museum_of_Art.jpg"),
     "cowherd": ("hist2-cowherd.jpg", "The Cowherd and the Weaver Girl with their children; painting in the Long Corridor, "
                 "Summer Palace", "https://commons.wikimedia.org/wiki/File:Niulang_and_Zhinv_(Long_Corridor).JPG"),
-    "kitchen_god": ("hist2-kitchen-god.jpg", "Zao Jun, the Kitchen God, with attendants; New Year print",
-                    "https://commons.wikimedia.org/wiki/File:Zao_Jun_-_The_Kitchen_God_-_-_Project_Gutenberg_eText_15250.jpg"),
+    "kitchen_god": ("hist2-kitchen-god.jpg", "Siming Zhenjun ('Master of Fate', the Kitchen God) enshrined at Songshan "
+                    "Fengtian Temple, Taipei", "https://commons.wikimedia.org/wiki/File:%E6%9D%BE%E5%B1%B1%E5%A5%89%E5%A4%A9%E5%AE%AE%E5%8F%B8%E5%91%BD%E7%9C%9F%E5%90%9B_20250124.jpg"),
     "mazu": ("hist2-mazu.jpg", "Mazu enthroned; carved and gilded wood, late Qing",
              "https://commons.wikimedia.org/wiki/File:Wood_Statue_of_Mazu_Late_19th_century_CE_Qing_Dynasty_(1644-1911_CE)_China.jpg"),
     "yu": ("hist2-yu.jpg", "Yu the Great; hanging scroll attributed to Ma Lin (Song), National Palace Museum",
