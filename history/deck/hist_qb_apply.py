@@ -4,6 +4,7 @@
     py -3.9 hist_qb_apply.py                 dry run: what would be created, added, updated, suspended
     py -3.9 hist_qb_apply.py --apply         create note types, upload pictures, add/update notes, order the new queue
     py -3.9 hist_qb_apply.py --apply --deck "History"      (default deck: History)
+    py -3.9 hist_qb_apply.py --apply --include prehistory   also the Prehistory/Xia cards (not yet verified by me)
     py -3.9 hist_qb_apply.py --supersede     list the old History Clue notes on the same topics (dry)
     py -3.9 hist_qb_apply.py --supersede --apply   suspend them and tag History::v1_superseded (reversible)
 
@@ -73,8 +74,10 @@ def build_fields(note, media_dir=os.path.join(HERE, "media"), preview=False):
 
 
 def load_notes():
-    out = []
-    for mod in DECK_FILES:
+    out, files = [], list(DECK_FILES)
+    if "--include" in sys.argv and "prehistory" in sys.argv[sys.argv.index("--include") + 1]:
+        files.append("cards_china_prehistory_xia")
+    for mod in files:
         out += __import__(mod).NOTES
     return out
 
