@@ -37,8 +37,8 @@ IMAGES = {
            "https://commons.wikimedia.org/wiki/File:King_Yu_of_Xia.jpg"),
     "four_symbols": ("hist2-four-symbols.jpg", "The Four Symbols on Han roof-tile ends: Black Tortoise, Azure Dragon "
                      "(top); White Tiger, Vermilion Bird (bottom)", "https://commons.wikimedia.org/wiki/File:Four_Symbols.svg"),
-    "peach_garden": ("hist2-peach-garden.jpg", "The Oath of the Peach Garden; woodblock illustration to <i>Romance of "
-                     "the Three Kingdoms</i> (Ming)", "https://commons.wikimedia.org/wiki/File:Peach_garden_ceremony.jpg"),
+    "peach_garden": ("hist2-peach-garden.jpg", "Liu Bei, Guan Yu, and Zhang Fei swear the Oath of the Peach Garden; painting in "
+                     "the Long Corridor, Summer Palace", "https://commons.wikimedia.org/wiki/File:Oath_of_the_Peach_Garden_at_Long_Corridor.JPG"),
     "zhuge": ("hist2-zhuge.jpg", "Zhuge Liang; Ming portrait (Nanxun Hall album)",
               "https://commons.wikimedia.org/wiki/File:%E6%98%8E%E4%BA%BA%E7%BB%98_%E3%80%8A%E8%AF%B8%E8%91%9B%E4%BA%AE%E5%83%8F%E3%80%8B%EF%BC%88%E5%8D%97%E8%96%B0%E6%AE%BF%E6%9C%AC%EF%BC%89.jpg"),
     "caocao": ("hist2-caocao.jpg", "Cao Cao; modern bronze bust in a museum display",
