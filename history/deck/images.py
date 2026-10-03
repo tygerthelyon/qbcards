@@ -43,7 +43,8 @@ IMAGES = {
               "https://commons.wikimedia.org/wiki/File:%E6%98%8E%E4%BA%BA%E7%BB%98_%E3%80%8A%E8%AF%B8%E8%91%9B%E4%BA%AE%E5%83%8F%E3%80%8B%EF%BC%88%E5%8D%97%E8%96%B0%E6%AE%BF%E6%9C%AC%EF%BC%89.jpg"),
     "caocao": ("hist2-caocao.jpg", "Cao Cao as 'Taizu of Wei'; Qing woodblock portrait",
                "https://commons.wikimedia.org/wiki/File:Cao_Cao_scth.jpg"),
-    "guanyu": ("hist2-guanyu.jpg", "Guan Yu; Qing woodblock portrait", "https://commons.wikimedia.org/wiki/File:Guanyu-1.jpg"),
+    "guanyu": ("hist2-guanyu.jpg", "Shang Xi, <i>Guan Yu Captures General Pang De</i> (Ming, early 15th century): Guan Yu, red-faced, "
+               "sits in green", "https://commons.wikimedia.org/wiki/File:Shang_Xi,_Guan_Yu_Captures_General_Pang_De2.JPG"),
     "red_cliffs": ("hist2-red-cliffs.jpg", "The cliff at Chibi, Hubei, carved with the characters 赤壁 ('Red Cliffs')",
                    "https://commons.wikimedia.org/wiki/File:Chibi.jpg"),
     "wusong": ("hist2-wusong.jpg", "Wu Song killing the tiger; painting in the Long Corridor, Summer Palace, Beijing",

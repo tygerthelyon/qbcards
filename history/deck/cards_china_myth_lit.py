@@ -345,7 +345,7 @@ Q("Zhuge Liang", 1, "give", "At Red Cliffs, this strategist sent straw-covered b
 Q("Lady Sun", 3, "lead", "Sun Quan tried to lure Liu Bei to Wu with a marriage to his sister, hoping to take Jing Province; "
   "Zhuge Liang foiled the plot. Name the sister.", "Lady <u>Sun</u>", "Sun Shangxiang")
 Q("Guan Yu", 1, "give", "Leaving Cao Cao's service to rejoin Liu Bei, this general 'crossed five passes and slew six generals'.",
-  "<u>Guan Yu</u>", "Guan Gong; Guandi; Yunchang", img="guanyu", pic="guanyu", picq="Who? (red face, long beard, halberd)")
+  "<u>Guan Yu</u>", "Guan Gong; Guandi; Yunchang", img="guanyu", pic="guanyu", picq="Who is the red-faced general seated in green?")
 Q("Guan Yu", 1, "give", "This general calmly played Go while the physician Hua Tuo scraped poison from his arm, wounded at Fan Castle.",
   "<u>Guan Yu</u>", "Guan Gong")
 Q("Hua Tuo", 2, "mid", "This physician scraped the poisoned flesh from Guan Yu's arm while Guan played Go.", "<u>Hua Tuo</u>", "")
