@@ -42,11 +42,7 @@ Optional:
 
 Then **sync**. The new note types are a schema change, so Anki will ask for a full upload. Say yes.
 
-## 4. Practise buzzing
-**China Buzzer Drill:** https://claude.ai/artifact/NhJ6vwwAPa8MBByw4rBk4p — 491 real qbreader tossups on
-these topics, read word by word. Buzz, judge yourself, and it tracks powers and buzz points.
-
-## 5. For the Classical Music descriptions
+## 4. For the Classical Music descriptions
 Run `py -3.9 export_for_cloud.py` (Anki open), then upload the `export` folder it makes to the repo
 (GitHub → Add file → Upload files → drag the folder). A cloud session can then write the missing
 descriptions as a script you apply the same way.

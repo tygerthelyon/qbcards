@@ -64,7 +64,6 @@ A two-page summary of where the collection stands, so new sessions don't have to
 - Three History v2 pictures are still under 1000 px (no larger free copy found yet): Hou Yi (Xiao Yuncong
   woodcut), the Red Cliffs inscription photo, and the Wu Song Long Corridor painting.
 - Bonus: `history/notes/03_shang_supplement_bonus.md` — the same qbreader gap sweep for the Shang.
-- Practice page: China Buzzer Drill, https://claude.ai/artifact/NhJ6vwwAPa8MBByw4rBk4p (491 qbreader tossups).
 
 ## Tools worth knowing (in `C:\QB\stockfisher`; only some are in the repo)
 `qb_tier_model.py` (tiers from qbreader), `qb_coverage_test.py` (what share of real answers the deck has),
