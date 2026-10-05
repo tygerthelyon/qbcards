@@ -1,0 +1,1608 @@
+{
+ "generated": "2026-10-05",
+ "method": "Item lists from the NAQT pages as indexed by web search (naqt.com itself is blocked here). Matched against export/ titles, alternate titles, and makers; \"active\" = at least one unsuspended card.",
+ "articles": [
+  {
+   "article": "20th-century-composers",
+   "url": "https://www.naqt.com/you-gotta-know/20th-century-composers.html",
+   "items": [
+    {
+     "item": "Igor Stravinsky",
+     "deck": "Classical Music",
+     "status": "covered by work cards (Classical Music has no composer FIGURE notes by design)",
+     "notes": [],
+     "works_active": 5,
+     "works_total": 11,
+     "gap": false
+    },
+    {
+     "item": "Arnold Schoenberg",
+     "deck": "Classical Music",
+     "status": "covered by work cards (Classical Music has no composer FIGURE notes by design)",
+     "notes": [],
+     "works_active": 2,
+     "works_total": 6,
+     "gap": false
+    },
+    {
+     "item": "Benjamin Britten",
+     "deck": "Classical Music",
+     "status": "covered by work cards (Classical Music has no composer FIGURE notes by design)",
+     "notes": [],
+     "works_active": 7,
+     "works_total": 11,
+     "gap": false
+    },
+    {
+     "item": "Aaron Copland",
+     "deck": "Classical Music",
+     "status": "covered by work cards (Classical Music has no composer FIGURE notes by design)",
+     "notes": [],
+     "works_active": 5,
+     "works_total": 7,
+     "gap": false
+    },
+    {
+     "item": "Sergei Prokofiev",
+     "deck": "Classical Music",
+     "status": "covered by work cards (Classical Music has no composer FIGURE notes by design)",
+     "notes": [],
+     "works_active": 5,
+     "works_total": 13,
+     "gap": false
+    },
+    {
+     "item": "Dmitri Shostakovich",
+     "deck": "Classical Music",
+     "status": "covered by work cards (Classical Music has no composer FIGURE notes by design)",
+     "notes": [],
+     "works_active": 3,
+     "works_total": 9,
+     "gap": false
+    },
+    {
+     "item": "Béla Bartók",
+     "deck": "Classical Music",
+     "status": "covered by work cards (Classical Music has no composer FIGURE notes by design)",
+     "notes": [],
+     "works_active": 3,
+     "works_total": 6,
+     "gap": false
+    },
+    {
+     "item": "Charles Ives",
+     "deck": "Classical Music",
+     "status": "covered by work cards (Classical Music has no composer FIGURE notes by design)",
+     "notes": [],
+     "works_active": 3,
+     "works_total": 4,
+     "gap": false
+    },
+    {
+     "item": "Maurice Ravel",
+     "deck": "Classical Music",
+     "status": "covered by work cards (Classical Music has no composer FIGURE notes by design)",
+     "notes": [],
+     "works_active": 8,
+     "works_total": 32,
+     "gap": false
+    },
+    {
+     "item": "George Gershwin",
+     "deck": "Performing Arts",
+     "status": "active",
+     "notes": [
+      "Performing Arts #1788621378023 George Gershwin"
+     ],
+     "works_active": 4,
+     "works_total": 6,
+     "gap": false
+    },
+    {
+     "item": "John Cage",
+     "deck": "Classical Music",
+     "status": "covered by work cards (Classical Music has no composer FIGURE notes by design)",
+     "notes": [],
+     "works_active": 2,
+     "works_total": 2,
+     "gap": false
+    },
+    {
+     "item": "Ralph Vaughan Williams",
+     "deck": "Classical Music",
+     "status": "covered by work cards (Classical Music has no composer FIGURE notes by design)",
+     "notes": [],
+     "works_active": 3,
+     "works_total": 7,
+     "gap": false
+    },
+    {
+     "item": "Sergei Rachmaninoff",
+     "deck": "Classical Music",
+     "status": "covered by work cards (Classical Music has no composer FIGURE notes by design)",
+     "notes": [],
+     "works_active": 2,
+     "works_total": 10,
+     "gap": false
+    }
+   ]
+  },
+  {
+   "article": "american-composers",
+   "url": "https://www.naqt.com/you-gotta-know/american-composers.html",
+   "items": [
+    {
+     "item": "George Gershwin",
+     "deck": "Performing Arts",
+     "status": "active",
+     "notes": [
+      "Performing Arts #1788621378023 George Gershwin"
+     ],
+     "works_active": 4,
+     "works_total": 6,
+     "gap": false
+    },
+    {
+     "item": "Aaron Copland",
+     "deck": "Classical Music",
+     "status": "covered by work cards (Classical Music has no composer FIGURE notes by design)",
+     "notes": [],
+     "works_active": 5,
+     "works_total": 7,
+     "gap": false
+    },
+    {
+     "item": "Leonard Bernstein",
+     "deck": "Performing Arts",
+     "status": "active",
+     "notes": [
+      "Performing Arts #1788621381878 Leonard Bernstein"
+     ],
+     "works_active": 3,
+     "works_total": 6,
+     "gap": false
+    },
+    {
+     "item": "Arnold Schoenberg",
+     "deck": "Classical Music",
+     "status": "covered by work cards (Classical Music has no composer FIGURE notes by design)",
+     "notes": [],
+     "works_active": 2,
+     "works_total": 6,
+     "gap": false
+    },
+    {
+     "item": "Philip Glass",
+     "deck": "Classical Music",
+     "status": "covered by work cards (Classical Music has no composer FIGURE notes by design)",
+     "notes": [],
+     "works_active": 3,
+     "works_total": 3,
+     "gap": false
+    },
+    {
+     "item": "Samuel Barber",
+     "deck": "Classical Music",
+     "status": "covered by work cards (Classical Music has no composer FIGURE notes by design)",
+     "notes": [],
+     "works_active": 3,
+     "works_total": 4,
+     "gap": false
+    },
+    {
+     "item": "Charles Ives",
+     "deck": "Classical Music",
+     "status": "covered by work cards (Classical Music has no composer FIGURE notes by design)",
+     "notes": [],
+     "works_active": 3,
+     "works_total": 4,
+     "gap": false
+    },
+    {
+     "item": "John Cage",
+     "deck": "Classical Music",
+     "status": "covered by work cards (Classical Music has no composer FIGURE notes by design)",
+     "notes": [],
+     "works_active": 2,
+     "works_total": 2,
+     "gap": false
+    },
+    {
+     "item": "John Adams",
+     "deck": "Classical Music",
+     "status": "covered by work cards (Classical Music has no composer FIGURE notes by design)",
+     "notes": [],
+     "works_active": 4,
+     "works_total": 7,
+     "gap": false
+    },
+    {
+     "item": "Stephen Sondheim",
+     "deck": "Performing Arts",
+     "status": "active",
+     "notes": [
+      "Performing Arts #1788490082158 Stephen Sondheim"
+     ],
+     "works_active": 3,
+     "works_total": 11,
+     "gap": false
+    }
+   ]
+  },
+  {
+   "article": "early-20th-century-european-composers",
+   "url": "https://www.naqt.com/you-gotta-know/early-20th-century-european-composers.html",
+   "items": [
+    {
+     "item": "Béla Bartók",
+     "deck": "Classical Music",
+     "status": "covered by work cards (Classical Music has no composer FIGURE notes by design)",
+     "notes": [],
+     "works_active": 3,
+     "works_total": 6,
+     "gap": false
+    },
+    {
+     "item": "Claude Debussy",
+     "deck": "Classical Music",
+     "status": "covered by work cards (Classical Music has no composer FIGURE notes by design)",
+     "notes": [],
+     "works_active": 9,
+     "works_total": 31,
+     "gap": false
+    },
+    {
+     "item": "Maurice Ravel",
+     "deck": "Classical Music",
+     "status": "covered by work cards (Classical Music has no composer FIGURE notes by design)",
+     "notes": [],
+     "works_active": 8,
+     "works_total": 32,
+     "gap": false
+    }
+   ]
+  },
+  {
+   "article": "jazz-musicians",
+   "url": "https://www.naqt.com/you-gotta-know/jazz-musicians.html",
+   "items": [
+    {
+     "item": "Miles Davis",
+     "deck": "Performing Arts",
+     "status": "active",
+     "notes": [
+      "Performing Arts #1788490082090 Miles Davis"
+     ],
+     "works_active": 3,
+     "works_total": 3,
+     "gap": false
+    },
+    {
+     "item": "John Coltrane",
+     "deck": "Performing Arts",
+     "status": "active",
+     "notes": [
+      "Performing Arts #1788490082092 John Coltrane"
+     ],
+     "works_active": 3,
+     "works_total": 4,
+     "gap": false
+    },
+    {
+     "item": "Louis Armstrong",
+     "deck": "Performing Arts",
+     "status": "active",
+     "notes": [
+      "Performing Arts #1788490082089 Louis Armstrong"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "Charlie Parker",
+     "deck": "Performing Arts",
+     "status": "active",
+     "notes": [
+      "Performing Arts #1788490082096 Charlie Parker"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "Duke Ellington",
+     "deck": "Performing Arts",
+     "status": "active",
+     "notes": [
+      "Performing Arts #1788490082091 Duke Ellington"
+     ],
+     "works_active": 0,
+     "works_total": 1,
+     "gap": false
+    },
+    {
+     "item": "Dave Brubeck",
+     "deck": "Performing Arts",
+     "status": "active",
+     "notes": [
+      "Performing Arts #1788490082094 Dave Brubeck"
+     ],
+     "works_active": 1,
+     "works_total": 1,
+     "gap": false
+    },
+    {
+     "item": "Benny Goodman",
+     "deck": "Performing Arts",
+     "status": "active",
+     "notes": [
+      "Performing Arts #1788490082105 Benny Goodman"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "Dizzy Gillespie",
+     "deck": "Performing Arts",
+     "status": "active",
+     "notes": [
+      "Performing Arts #1788490082093 Dizzy Gillespie"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "Charles Mingus",
+     "deck": "Performing Arts",
+     "status": "active",
+     "notes": [
+      "Performing Arts #1788490082097 Charles Mingus"
+     ],
+     "works_active": 1,
+     "works_total": 2,
+     "gap": false
+    },
+    {
+     "item": "Buddy Rich",
+     "deck": "Performing Arts",
+     "status": "none",
+     "notes": [],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": true
+    }
+   ]
+  },
+  {
+   "article": "operas",
+   "url": "https://www.naqt.com/you-gotta-know/operas.html",
+   "items": [
+    {
+     "item": "Aida",
+     "deck": "Classical Music",
+     "status": "active",
+     "notes": [
+      "Classical Music #1787711405192 Aida",
+      "Classical Music #1787711405762 Aida (S)",
+      "Classical Music #1787711405763 Aida (S)",
+      "Classical Music #1787711405764 Aida"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "Carmen",
+     "deck": "Classical Music",
+     "status": "active",
+     "notes": [
+      "Classical Music #1787711405027 Carmen",
+      "Classical Music #1787711405029 Carmen",
+      "Classical Music #1787711405030 Carmen (S)",
+      "Classical Music #1787711405847 Carmen Suite No. 1 (S)"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "The Marriage of Figaro",
+     "deck": "Classical Music",
+     "status": "active (under its original title)",
+     "notes": [],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "The Barber of Seville",
+     "deck": "Classical Music",
+     "status": "active (under its original title)",
+     "notes": [],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "William Tell",
+     "deck": "Classical Music",
+     "status": "active (under its original title)",
+     "notes": [],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "Don Giovanni",
+     "deck": "Classical Music",
+     "status": "active",
+     "notes": [
+      "Classical Music #1787711406019 Don Giovanni",
+      "Classical Music #1787711406020 Don Giovanni (S)",
+      "Classical Music #1787711406021 Don Giovanni"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "Salome",
+     "deck": "Classical Music",
+     "status": "active",
+     "notes": [
+      "Art #1787890518829 Salome",
+      "Art #1787890519123 Salome (S)",
+      "Art #1787890519722 Salome (No. 2)",
+      "Art #1787890521150 Salome Dancing Before Herod (S)"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "Boris Godunov",
+     "deck": "Classical Music",
+     "status": "active",
+     "notes": [
+      "Classical Music #1787711405867 Boris Godunov",
+      "Classical Music #1787711405868 Boris Godunov",
+      "Classical Music #1787711405869 Boris Godunov (S)"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "La bohème",
+     "deck": "Classical Music",
+     "status": "active",
+     "notes": [
+      "Classical Music #1787711405681 La bohème",
+      "Classical Music #1787711405682 La bohème",
+      "Classical Music #1787711405683 La bohème",
+      "Classical Music #1787711405684 La bohème"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "Madama Butterfly",
+     "deck": "Classical Music",
+     "status": "active",
+     "notes": [
+      "Classical Music #1787711405690 Madama Butterfly",
+      "Classical Music #1787711405691 Madama Butterfly",
+      "Classical Music #1787711405692 Madama Butterfly (S)"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    }
+   ]
+  },
+  {
+   "article": "architects",
+   "url": "https://www.naqt.com/you-gotta-know/architects.html",
+   "items": [
+    {
+     "item": "Frank Lloyd Wright",
+     "deck": "Architecture",
+     "status": "active",
+     "notes": [
+      "Architecture #1788620815010 Frank Lloyd Wright"
+     ],
+     "works_active": 10,
+     "works_total": 14,
+     "gap": false
+    },
+    {
+     "item": "Walter Gropius",
+     "deck": "Architecture",
+     "status": "active",
+     "notes": [
+      "Architecture #1788620819847 Walter Gropius"
+     ],
+     "works_active": 3,
+     "works_total": 3,
+     "gap": false
+    },
+    {
+     "item": "Ludwig Mies van der Rohe",
+     "deck": "Architecture",
+     "status": "active",
+     "notes": [
+      "Architecture #1788620822824 Ludwig Mies van der Rohe"
+     ],
+     "works_active": 5,
+     "works_total": 5,
+     "gap": false
+    },
+    {
+     "item": "I. M. Pei",
+     "deck": "Architecture",
+     "status": "active",
+     "notes": [
+      "Architecture #1788620917728 I. M. Pei"
+     ],
+     "works_active": 7,
+     "works_total": 8,
+     "gap": false
+    },
+    {
+     "item": "Christopher Wren",
+     "deck": "Architecture",
+     "status": "active",
+     "notes": [
+      "Architecture #1788620729189 Christopher Wren"
+     ],
+     "works_active": 2,
+     "works_total": 5,
+     "gap": false
+    },
+    {
+     "item": "Le Corbusier",
+     "deck": "Architecture",
+     "status": "active",
+     "notes": [
+      "Architecture #1788620817974 Le Corbusier"
+     ],
+     "works_active": 6,
+     "works_total": 8,
+     "gap": false
+    },
+    {
+     "item": "Louis Sullivan",
+     "deck": "Architecture",
+     "status": "active",
+     "notes": [
+      "Architecture #1788620804074 Louis Sullivan"
+     ],
+     "works_active": 5,
+     "works_total": 5,
+     "gap": false
+    },
+    {
+     "item": "Filippo Brunelleschi",
+     "deck": "Architecture",
+     "status": "active",
+     "notes": [
+      "Architecture #1788620707708 Filippo Brunelleschi"
+     ],
+     "works_active": 4,
+     "works_total": 6,
+     "gap": false
+    },
+    {
+     "item": "Frank Gehry",
+     "deck": "Architecture",
+     "status": "active",
+     "notes": [
+      "Architecture #1788620889589 Frank Gehry"
+     ],
+     "works_active": 7,
+     "works_total": 7,
+     "gap": false
+    },
+    {
+     "item": "Andrea Palladio",
+     "deck": "Architecture",
+     "status": "active",
+     "notes": [
+      "Architecture #1788620716299 Andrea Palladio"
+     ],
+     "works_active": 4,
+     "works_total": 5,
+     "gap": false
+    },
+    {
+     "item": "Eero Saarinen",
+     "deck": "Architecture",
+     "status": "active",
+     "notes": [
+      "Architecture #1788620834985 Eero Saarinen"
+     ],
+     "works_active": 7,
+     "works_total": 7,
+     "gap": false
+    },
+    {
+     "item": "Antoni Gaudí",
+     "deck": "Architecture",
+     "status": "active",
+     "notes": [
+      "Architecture #1788620781940 Antoni Gaudí"
+     ],
+     "works_active": 4,
+     "works_total": 5,
+     "gap": false
+    }
+   ]
+  },
+  {
+   "article": "baroque-painters",
+   "url": "https://www.naqt.com/you-gotta-know/baroque-painters.html",
+   "items": [
+    {
+     "item": "Caravaggio",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1790448603577 Caravaggio"
+     ],
+     "works_active": 3,
+     "works_total": 3,
+     "gap": false
+    },
+    {
+     "item": "Artemisia Gentileschi",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1790448609321 Artemisia Gentileschi"
+     ],
+     "works_active": 5,
+     "works_total": 20,
+     "gap": false
+    },
+    {
+     "item": "Frans Hals",
+     "deck": "Art",
+     "status": "works only",
+     "notes": [],
+     "works_active": 3,
+     "works_total": 20,
+     "gap": true
+    },
+    {
+     "item": "Judith Leyster",
+     "deck": "Art",
+     "status": "works only",
+     "notes": [],
+     "works_active": 2,
+     "works_total": 11,
+     "gap": true
+    },
+    {
+     "item": "Nicolas Poussin",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1790448609545 Nicolas Poussin"
+     ],
+     "works_active": 4,
+     "works_total": 25,
+     "gap": false
+    },
+    {
+     "item": "Rembrandt",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1790448604766 Rembrandt"
+     ],
+     "works_active": 2,
+     "works_total": 2,
+     "gap": false
+    },
+    {
+     "item": "Peter Paul Rubens",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1790448606022 Peter Paul Rubens"
+     ],
+     "works_active": 13,
+     "works_total": 42,
+     "gap": false
+    },
+    {
+     "item": "Anthony van Dyck",
+     "deck": "Art",
+     "status": "works only",
+     "notes": [],
+     "works_active": 1,
+     "works_total": 28,
+     "gap": true
+    },
+    {
+     "item": "Diego Velázquez",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1790448608008 Diego Velázquez"
+     ],
+     "works_active": 11,
+     "works_total": 27,
+     "gap": false
+    },
+    {
+     "item": "Johannes Vermeer",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1790448603760 Johannes Vermeer"
+     ],
+     "works_active": 14,
+     "works_total": 23,
+     "gap": false
+    }
+   ]
+  },
+  {
+   "article": "dutch-paintings",
+   "url": "https://www.naqt.com/you-gotta-know/dutch-paintings.html",
+   "items": [
+    {
+     "item": "The Night Watch",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1787890517908 The Night Watch (or The Militia Company of Captain Frans Banning Cocq)"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "The Anatomy Lesson of Dr. Nicolaes Tulp",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1787890517907 The Anatomy Lesson of Dr Nicolaes Tulp"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "Belshazzar's Feast",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1787890517910 Belshazzar's Feast",
+      "Classical Music #1788489953362 Belshazzar's Feast"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "The Music Lesson",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1787890517929 The Music Lesson",
+      "Art #1787890519815 The Music Lesson (S)"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "The Milkmaid",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1787890517918 The Milkmaid",
+      "Art #1787890520282 The Milkmaid of Bordeaux (S)"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "The Art of Painting",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1787890517920 The Art of Painting"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "The Laughing Cavalier",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1787890517958 The Laughing Cavalier"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "Landscape with the Fall of Icarus",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1787890517515 Landscape with the Fall of Icarus"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "Hunters in the Snow",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1787890517519 Hunters in the Snow"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "The Proposition",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1787890518001 The Proposition"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    }
+   ]
+  },
+  {
+   "article": "20th-century-paintings",
+   "url": "https://www.naqt.com/you-gotta-know/20th-century-paintings.html",
+   "items": [
+    {
+     "item": "Guernica",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1787890518040 Guernica"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "Nude Descending a Staircase, No. 2",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1787890517175 Nude Descending a Staircase, No. 2"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "The Persistence of Memory",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1787890518058 The Persistence of Memory"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "Les Demoiselles d'Avignon",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1787890518038 Les Demoiselles d'Avignon"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "Broadway Boogie Woogie",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1787890517982 Broadway Boogie Woogie"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "Campbell's Soup Cans",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1787890517088 Campbell's Soup Cans"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "Nighthawks",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1787890517110 Nighthawks"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "I and the Village",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1787890517705 I and the Village"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "Christina's World",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1787890517231 Christina's World"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "American Gothic",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1787890517295 American Gothic",
+      "Photography #1788489984233 American Gothic, Washington, D.C. (S)"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    }
+   ]
+  },
+  {
+   "article": "early-20th-century-art-movements",
+   "url": "https://www.naqt.com/you-gotta-know/early-20th-century-art-movements.html",
+   "items": [
+    {
+     "item": "Fauvism",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1788489939755 Fauvism"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "Expressionism",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1788489939759 Expressionism",
+      "Architecture #1788585241532 Expressionism (S)"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "Cubism",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1788489939757 Cubism"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "Futurism",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1788489939758 Futurism",
+      "Architecture #1790240143934 Futurism (S)"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "Metaphysical painting",
+     "deck": "Art",
+     "status": "suspended only",
+     "notes": [],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": true
+    },
+    {
+     "item": "Suprematism",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1788489939766 Suprematism"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "Dada",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1787890518856 Dada Head (S)",
+      "Art #1788489939754 Dada"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "De Stijl",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1788489939765 De Stijl",
+      "Architecture #1788585241153 De Stijl (S)"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "Surrealism",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1788489939749 Surrealism"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    }
+   ]
+  },
+  {
+   "article": "choreographers",
+   "url": "https://www.naqt.com/you-gotta-know/choreographers.html",
+   "items": [
+    {
+     "item": "Martha Graham",
+     "deck": "Performing Arts",
+     "status": "active",
+     "notes": [
+      "Performing Arts #1788490082023 Martha Graham"
+     ],
+     "works_active": 1,
+     "works_total": 1,
+     "gap": false
+    },
+    {
+     "item": "Michel Fokine",
+     "deck": "Performing Arts",
+     "status": "active",
+     "notes": [
+      "Performing Arts #1788490082033 Michel Fokine"
+     ],
+     "works_active": 4,
+     "works_total": 6,
+     "gap": false
+    },
+    {
+     "item": "Bob Fosse",
+     "deck": "Performing Arts",
+     "status": "active",
+     "notes": [
+      "Performing Arts #1788490082028 Bob Fosse"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    },
+    {
+     "item": "Jerome Robbins",
+     "deck": "Performing Arts",
+     "status": "active",
+     "notes": [
+      "Performing Arts #1788490082029 Jerome Robbins"
+     ],
+     "works_active": 1,
+     "works_total": 3,
+     "gap": false
+    },
+    {
+     "item": "George Balanchine",
+     "deck": "Performing Arts",
+     "status": "active",
+     "notes": [
+      "Performing Arts #1788490082024 George Balanchine"
+     ],
+     "works_active": 1,
+     "works_total": 7,
+     "gap": false
+    },
+    {
+     "item": "Vaslav Nijinsky",
+     "deck": "Performing Arts",
+     "status": "active",
+     "notes": [
+      "Performing Arts #1788490082026 Vaslav Nijinsky"
+     ],
+     "works_active": 2,
+     "works_total": 2,
+     "gap": false
+    },
+    {
+     "item": "Alvin Ailey",
+     "deck": "Performing Arts",
+     "status": "active",
+     "notes": [
+      "Performing Arts #1788490082027 Alvin Ailey"
+     ],
+     "works_active": 0,
+     "works_total": 1,
+     "gap": false
+    },
+    {
+     "item": "Pierre Beauchamp",
+     "deck": "Performing Arts",
+     "status": "none",
+     "notes": [],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": true
+    },
+    {
+     "item": "Agnes de Mille",
+     "deck": "Performing Arts",
+     "status": "active",
+     "notes": [
+      "Performing Arts #1788490082032 Agnes de Mille"
+     ],
+     "works_active": 1,
+     "works_total": 1,
+     "gap": false
+    },
+    {
+     "item": "Twyla Tharp",
+     "deck": "Performing Arts",
+     "status": "active",
+     "notes": [
+      "Performing Arts #1788490082034 Twyla Tharp"
+     ],
+     "works_active": 0,
+     "works_total": 0,
+     "gap": false
+    }
+   ]
+  },
+  {
+   "article": "sculptors",
+   "url": "https://www.naqt.com/you-gotta-know/sculptors.html",
+   "items": [
+    {
+     "item": "Michelangelo",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1790448603297 Michelangelo",
+      "Architecture #1790234779190 Michelangelo",
+      "Film #1790732034361 Michelangelo Antonioni"
+     ],
+     "works_active": 16,
+     "works_total": 27,
+     "gap": false
+    },
+    {
+     "item": "Auguste Rodin",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1790448605820 Auguste Rodin"
+     ],
+     "works_active": 11,
+     "works_total": 21,
+     "gap": false
+    },
+    {
+     "item": "Gian Lorenzo Bernini",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1790448603853 Gian Lorenzo Bernini",
+      "Architecture #1788620722218 Gian Lorenzo Bernini"
+     ],
+     "works_active": 10,
+     "works_total": 24,
+     "gap": false
+    },
+    {
+     "item": "Donatello",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1790448604048 Donatello"
+     ],
+     "works_active": 10,
+     "works_total": 18,
+     "gap": false
+    },
+    {
+     "item": "Lorenzo Ghiberti",
+     "deck": "Art",
+     "status": "works only",
+     "notes": [],
+     "works_active": 1,
+     "works_total": 2,
+     "gap": true
+    },
+    {
+     "item": "Gutzon Borglum",
+     "deck": "Art",
+     "status": "works only",
+     "notes": [],
+     "works_active": 2,
+     "works_total": 3,
+     "gap": true
+    },
+    {
+     "item": "Phidias",
+     "deck": "Art",
+     "status": "works only",
+     "notes": [],
+     "works_active": 2,
+     "works_total": 5,
+     "gap": true
+    },
+    {
+     "item": "Constantin Brâncuși",
+     "deck": "Art",
+     "status": "active",
+     "notes": [
+      "Art #1790448604140 Constantin Brâncuşi"
+     ],
+     "works_active": 9,
+     "works_total": 32,
+     "gap": false
+    },
+    {
+     "item": "Daniel Chester French",
+     "deck": "Art",
+     "status": "works only",
+     "notes": [],
+     "works_active": 2,
+     "works_total": 8,
+     "gap": true
+    },
+    {
+     "item": "Frédéric-Auguste Bartholdi",
+     "deck": "Art",
+     "status": "works only",
+     "notes": [],
+     "works_active": 2,
+     "works_total": 2,
+     "gap": true
+    }
+   ]
+  }
+ ],
+ "gaps": [
+  {
+   "item": "Buddy Rich",
+   "article": "jazz-musicians",
+   "deck": "Performing Arts",
+   "status": "none",
+   "facts": [
+    "Drummer and big-band leader famed for speed and technique (NAQT).",
+    "A child vaudeville star billed as \"Traps the Drum Wonder.\"",
+    "Played with Artie Shaw and Tommy Dorsey; led his own big band from 1966.",
+    "Never learned to read music.",
+    "Televised drum battles with Gene Krupa."
+   ],
+   "draft": {
+    "Title": "Buddy Rich",
+    "Kind": "Figure",
+    "Date": "1917–1987",
+    "Form": "Drummer",
+    "Discipline": "Jazz",
+    "Clue": "Big-band drummer of unmatched speed who never learned to read music.",
+    "Notes": "A child vaudeville star billed as “Traps the Drum Wonder,” he played with Artie Shaw and Tommy Dorsey and led his own big band from 1966; his drum battles with Gene Krupa were televised."
+   },
+   "sources": [
+    "https://www.naqt.com/you-gotta-know/jazz-musicians.html",
+    "https://en.wikipedia.org/wiki/Buddy_Rich"
+   ]
+  },
+  {
+   "item": "Pierre Beauchamp",
+   "article": "choreographers",
+   "deck": "Performing Arts",
+   "status": "none",
+   "facts": [
+    "Often credited with codifying the five positions of the feet (NAQT).",
+    "Louis XIV's dancing master and ballet master of the Académie Royale de Musique (Paris Opera).",
+    "Choreographed comédies-ballets with Molière and Lully, beginning with <i>Les Fâcheux</i> (1661).",
+    "His dance notation was published by Raoul-Auger Feuillet: Beauchamp–Feuillet notation."
+   ],
+   "draft": {
+    "Title": "Pierre Beauchamp",
+    "Kind": "Figure",
+    "Date": "1631–1705",
+    "Form": "Choreographer",
+    "Discipline": "Dance",
+    "Venue": "Paris Opera",
+    "Clue": "Louis XIV's ballet master, usually credited with codifying the five positions of the feet.",
+    "Notes": "He made the dances for Molière and Lully’s comédies-ballets, beginning with <i>Les Fâcheux</i>; the notation he devised was published by Raoul-Auger Feuillet."
+   },
+   "sources": [
+    "https://www.naqt.com/you-gotta-know/choreographers.html",
+    "https://en.wikipedia.org/wiki/Pierre_Beauchamp"
+   ]
+  },
+  {
+   "item": "Metaphysical painting",
+   "article": "early-20th-century-art-movements",
+   "deck": "Art",
+   "status": "suspended only",
+   "facts": [
+    "The movement note \"Metaphysical art\" (#1790236438367) exists but is suspended; 9 de Chirico works tagged with it are active.",
+    "Giorgio de Chirico and Carlo Carrà, Ferrara, 1917: empty piazzas, long shadows, arcades, and mannequins (NAQT: \"enigmatic scenes\")."
+   ],
+   "draft": null,
+   "action": "Unsuspend note 1790236438367 (Metaphysical art). No new fields needed.",
+   "sources": [
+    "https://www.naqt.com/you-gotta-know/early-20th-century-art-movements.html"
+   ]
+  },
+  {
+   "item": "Frans Hals",
+   "article": "baroque-painters",
+   "deck": "Art",
+   "status": "works only (3 of 20 active); no FIGURE note",
+   "facts": [
+    "Worked in Haarlem; some of the best-known portraits of the Dutch Baroque (NAQT).",
+    "Loose, rapid brushwork; <i>The Laughing Cavalier</i>, whose subject is not laughing.",
+    "Group portraits of civic guards and of the regents of the Haarlem almshouse."
+   ],
+   "draft": {
+    "Title": "Frans Hals",
+    "Kind": "Figure",
+    "Date": "c. 1582–1666",
+    "Nationality": "Dutch",
+    "Description": "Haarlem portraitist of loose, rapid brushwork, whose late group portraits of the governors of an old men’s almshouse are among the starkest of the Dutch Golden Age.",
+    "Notes": "Judith Leyster’s pictures were long sold as his; a museum in Haarlem bears his name.",
+    "Works": "<b><i>The Laughing Cavalier</i></b>; <i>Regentesses of the Old Men’s Almshouse</i>; <i>Malle Babbe</i>",
+    "FigureCard": "1"
+   },
+   "sources": [
+    "https://www.naqt.com/you-gotta-know/baroque-painters.html",
+    "https://en.wikipedia.org/wiki/Frans_Hals"
+   ]
+  },
+  {
+   "item": "Judith Leyster",
+   "article": "baroque-painters",
+   "deck": "Art",
+   "status": "works only (2 of 11 active); no FIGURE note",
+   "facts": [
+    "Dutch Golden Age painter of portraits and genre scenes (NAQT).",
+    "Her whole body of work was once attributed to Frans Hals (NAQT, Dutch paintings).",
+    "Identified in 1893 from her monogram, her initials with a star.",
+    "Married the painter Jan Miense Molenaer."
+   ],
+   "draft": {
+    "Title": "Judith Leyster",
+    "Kind": "Figure",
+    "Date": "1609–1660",
+    "Nationality": "Dutch",
+    "Description": "Haarlem painter of genre scenes whose work was attributed to Frans Hals until her star-shaped monogram was recognized in 1893.",
+    "Notes": "Her <i>Self-Portrait</i> shows her turning from her easel; she married the painter Jan Miense Molenaer.",
+    "Works": "<b><i>Self-Portrait</i></b>; <i>The Proposition</i>; <i>The Jolly Toper</i>",
+    "FigureCard": "1"
+   },
+   "sources": [
+    "https://www.naqt.com/you-gotta-know/baroque-painters.html",
+    "https://www.naqt.com/you-gotta-know/dutch-paintings.html",
+    "https://en.wikipedia.org/wiki/Judith_Leyster"
+   ]
+  },
+  {
+   "item": "Anthony van Dyck",
+   "article": "baroque-painters",
+   "deck": "Art",
+   "status": "works only (1 of 28 active); no FIGURE note",
+   "facts": [
+    "Flemish; did his most recognizable work in England (NAQT).",
+    "Rubens's leading assistant; court painter to Charles I, knighted 1632.",
+    "His triple portrait of Charles I was sent to Rome so that Bernini could carve a bust."
+   ],
+   "draft": {
+    "Title": "Anthony van Dyck",
+    "Kind": "Figure",
+    "Date": "1599–1641",
+    "Nationality": "Flemish",
+    "Description": "Rubens’s chief assistant, who became court painter to Charles I in London and set the pattern for English aristocratic portraits for a century.",
+    "Notes": "His triple portrait of the king was sent to Rome so that Gian Lorenzo Bernini could carve a bust from it.",
+    "Works": "<b><i>Charles I at the Hunt</i></b>; <i>Charles I in Three Positions</i>; <i>Equestrian Portrait of Charles I</i>",
+    "FigureCard": "1"
+   },
+   "sources": [
+    "https://www.naqt.com/you-gotta-know/baroque-painters.html",
+    "https://en.wikipedia.org/wiki/Anthony_van_Dyck"
+   ]
+  },
+  {
+   "item": "Lorenzo Ghiberti",
+   "article": "sculptors",
+   "deck": "Art",
+   "status": "works only (1 of 2 active); no FIGURE note",
+   "facts": [
+    "Won the 1401 competition for the Florence Baptistery doors, beating Filippo Brunelleschi.",
+    "His second pair of doors, ten gilded panels in perspective, were called the Gates of Paradise by Michelangelo.",
+    "His <i>Commentarii</i> contain the earliest surviving autobiography by an artist."
+   ],
+   "draft": {
+    "Title": "Lorenzo Ghiberti",
+    "Kind": "Figure",
+    "Date": "c. 1378–1455",
+    "Nationality": "Italian",
+    "Description": "Florentine who beat Filippo Brunelleschi in the 1401 competition for the Baptistery doors, and spent decades on a second pair Michelangelo called fit for Paradise.",
+    "Notes": "His <i>Commentarii</i> contain the earliest surviving autobiography by an artist.",
+    "Works": "<b><i>Gates of Paradise</i></b>; <i>The Sacrifice of Isaac</i> (competition panel); <i>Saint John the Baptist</i> (Orsanmichele)",
+    "FigureCard": "1"
+   },
+   "sources": [
+    "https://www.naqt.com/you-gotta-know/sculptors.html",
+    "https://en.wikipedia.org/wiki/Lorenzo_Ghiberti"
+   ]
+  },
+  {
+   "item": "Gutzon Borglum",
+   "article": "sculptors",
+   "deck": "Art",
+   "status": "works only (2 of 3 active); no FIGURE note",
+   "facts": [
+    "Carved Mount Rushmore (1927–1941); his son Lincoln Borglum finished it after his death.",
+    "Began the Confederate carving at Stone Mountain, Georgia, and was dismissed in 1925."
+   ],
+   "draft": {
+    "Title": "Gutzon Borglum",
+    "Kind": "Figure",
+    "Date": "1867–1941",
+    "Nationality": "American",
+    "Description": "Sculptor who carved four presidents into a mountainside in the Black Hills; his son Lincoln finished it after his death.",
+    "Notes": "He had begun the Confederate carving at Stone Mountain, Georgia, and was dismissed from it in 1925.",
+    "Works": "<b><i>Mount Rushmore National Memorial</i></b>; <i>Wars of America</i> (Newark)",
+    "FigureCard": "1"
+   },
+   "sources": [
+    "https://www.naqt.com/you-gotta-know/sculptors.html",
+    "https://en.wikipedia.org/wiki/Gutzon_Borglum"
+   ]
+  },
+  {
+   "item": "Phidias",
+   "article": "sculptors",
+   "deck": "Art",
+   "status": "works only (2 of 5 active); no FIGURE note",
+   "facts": [
+    "Oversaw the sculpture of Pericles's Parthenon.",
+    "Made the gold-and-ivory (chryselephantine) Athena Parthenos and the Statue of Zeus at Olympia, one of the Seven Wonders.",
+    "His workshop at Olympia, with a cup inscribed with his name, was excavated in the 1950s."
+   ],
+   "draft": {
+    "Title": "Phidias",
+    "Kind": "Figure",
+    "Date": "c. 480–430 BC",
+    "Nationality": "Greek",
+    "Description": "Athenian who made the gold-and-ivory cult statues of Athena in the Parthenon and of Zeus at Olympia, one of the Seven Wonders.",
+    "Notes": "He oversaw the Parthenon sculptures for Pericles; his workshop at Olympia was excavated in the 1950s.",
+    "Works": "<b><i>Statue of Zeus at Olympia</i></b>; <i>Athena Parthenos</i>; the Parthenon sculptures",
+    "FigureCard": "1"
+   },
+   "sources": [
+    "https://www.naqt.com/you-gotta-know/sculptors.html",
+    "https://en.wikipedia.org/wiki/Phidias"
+   ]
+  },
+  {
+   "item": "Daniel Chester French",
+   "article": "sculptors",
+   "deck": "Art",
+   "status": "works only (2 of 8 active); no FIGURE note",
+   "facts": [
+    "Sculpted the seated Abraham Lincoln in the Lincoln Memorial (carved by the Piccirilli brothers).",
+    "First major work: <i>The Minute Man</i> (1875), Concord.",
+    "<i>Alma Mater</i> at Columbia University; his studio, Chesterwood, is in Stockbridge, Massachusetts."
+   ],
+   "draft": {
+    "Title": "Daniel Chester French",
+    "Kind": "Figure",
+    "Date": "1850–1931",
+    "Nationality": "American",
+    "Description": "Sculptor of the seated president in the Lincoln Memorial, carved in marble by the Piccirilli brothers from his model.",
+    "Notes": "His first major work was <i>The Minute Man</i> in Concord; his studio, Chesterwood, is in Stockbridge, Massachusetts.",
+    "Works": "<b><i>Abraham Lincoln</i></b> (Lincoln Memorial); <i>The Minute Man</i>; <i>Alma Mater</i>",
+    "FigureCard": "1"
+   },
+   "sources": [
+    "https://www.naqt.com/you-gotta-know/sculptors.html",
+    "https://en.wikipedia.org/wiki/Daniel_Chester_French"
+   ]
+  },
+  {
+   "item": "Frédéric-Auguste Bartholdi",
+   "article": "sculptors",
+   "deck": "Art",
+   "status": "works only (2 of 2 active); no FIGURE note",
+   "facts": [
+    "Designed <i>Liberty Enlightening the World</i> (the Statue of Liberty), dedicated 1886; Gustave Eiffel engineered its iron frame.",
+    "Carved the <i>Lion of Belfort</i> to commemorate the siege of 1870–71."
+   ],
+   "draft": {
+    "Title": "Frédéric-Auguste Bartholdi",
+    "Kind": "Figure",
+    "Date": "1834–1904",
+    "Nationality": "French",
+    "Description": "Alsatian sculptor of a colossal copper woman in New York Harbor, whose iron frame was engineered by Gustave Eiffel.",
+    "Notes": "He also carved the <i>Lion of Belfort</i> into the rock below the citadel to commemorate the siege of 1870–71.",
+    "Works": "<b><i>Liberty Enlightening the World</i></b>; <i>Lion of Belfort</i>",
+    "FigureCard": "1"
+   },
+   "sources": [
+    "https://www.naqt.com/you-gotta-know/sculptors.html",
+    "https://en.wikipedia.org/wiki/Fr%C3%A9d%C3%A9ric_Auguste_Bartholdi"
+   ]
+  }
+ ],
+ "unavailable": [
+  {
+   "article": "pre-1700-composers",
+   "url": "https://www.naqt.com/you-gotta-know/pre-1700-composers.html",
+   "why": "naqt.com returns a Cloudflare 403 to this environment, and the article (Feb. 2026) is not yet in the search index; item list unknown."
+  },
+  {
+   "article": "romantic-era-composers",
+   "url": "https://www.naqt.com/you-gotta-know/romantic-era-composers.html",
+   "why": "Same: the page could not be read and the search index shows only its title and date."
+  },
+  {
+   "article": "early-20th-century-european-composers",
+   "url": "https://www.naqt.com/you-gotta-know/early-20th-century-european-composers.html",
+   "why": "Only partly readable (Bartók, Debussy, Ravel); the rest of the list could not be retrieved."
+  }
+ ]
+}

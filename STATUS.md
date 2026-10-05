@@ -29,6 +29,8 @@ A two-page summary of where the collection stands, so new sessions don't have to
   latest script.
 
 ## Open — needs Carter
+- **Cloud audit of 10-05** (`audit/SUMMARY.md`): run `py -3.9 audit\apply_audit.py` (dry run), then `--apply`;
+  read the 8 medium findings; optionally `--rewrites`. YGK gaps with draft fields are in `audit/ygk_more.md`.
 - **Tools > Empty Cards**, then sync. This clears the blank DESCRIPTION → WORK cards and the PA/Photo
   leftovers.
 - **8 suspended Photography notes** (`Photo::suspended_0929`): delete or keep.
