@@ -5,6 +5,7 @@
     py -3.9 audit\\apply_audit.py --apply         write the high-confidence findings
     py -3.9 audit\\apply_audit.py --rewrites      also take audit/lapsed_rewrites.jsonl (dry run)
     py -3.9 audit\\apply_audit.py --rewrites --apply
+    py -3.9 audit\\apply_audit.py --descriptions       also take audit/cm_descriptions.jsonl (dry run)
 
 Options:
     --deck "Film"        only findings for one note type (repeatable)
@@ -52,10 +53,12 @@ def arg_list(flag):
     return out
 
 
-def load_rows(rewrites):
+def load_rows(rewrites, descriptions=False):
     files = sorted(glob.glob(os.path.join(HERE, "*_findings.jsonl")))
     if rewrites:
         files.append(os.path.join(HERE, "lapsed_rewrites.jsonl"))
+    if descriptions:
+        files.append(os.path.join(HERE, "cm_descriptions.jsonl"))
     rows = []
     for fn in files:
         if not os.path.exists(fn):
@@ -82,7 +85,7 @@ def main():
     decks = set(arg_list("--deck"))
     only = set(arg_list("--only"))
 
-    rows = load_rows(rewrites)
+    rows = load_rows(rewrites, "--descriptions" in sys.argv)
     if decks:
         rows = [r for r in rows if r["model"] in decks]
     if only:

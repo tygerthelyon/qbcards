@@ -29,8 +29,8 @@ A two-page summary of where the collection stands, so new sessions don't have to
   latest script.
 
 ## Open — needs Carter
-- **Cloud audit of 10-05** (`audit/SUMMARY.md`): run `py -3.9 audit\apply_audit.py` (dry run), then `--apply`;
-  read the 8 medium findings; optionally `--rewrites`. YGK gaps with draft fields are in `audit/ygk_more.md`.
+- **Cloud audit of 10-05** (`audit/SUMMARY.md`, section Commands): `audit\apply_audit.py` (findings incl. Geography),
+  `--rewrites --descriptions` (lapsed-card rewrites, 454 Classical Music descriptions), and `audit\ygk_add.py` (10 YGK notes).
 - **Tools > Empty Cards**, then sync. This clears the blank DESCRIPTION → WORK cards and the PA/Photo
   leftovers.
 - **8 suspended Photography notes** (`Photo::suspended_0929`): delete or keep.
@@ -42,8 +42,7 @@ A two-page summary of where the collection stands, so new sessions don't have to
 ## Open — work for a session
 - **Pictures under 1000 px:** finish the sweep (`images_audit_1002.py` lists them). Ronchamp has no
   large photo yet, and Louis Le Vau has only one.
-- **Classical Music `Description` backlog:** the tier 3/4 works that are still blank. Blocked: a cloud
-  session needs `export/` from `export_for_cloud.py`.
+- **Classical Music `Description` backlog:** drafted for all 454 blanks in `audit/cm_descriptions.jsonl` (10-05); apply it.
 - **Music:** Mahler 1's funeral march, *The Sorcerer's Apprentice*, and the *Barcarolle* have no usable
   free recording. *La bohème*'s "Mimi 2" clip is unidentified.
 - **Coverage ideas from the audit:**
