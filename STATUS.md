@@ -34,7 +34,9 @@ A two-page summary of where the collection stands, so new sessions don't have to
   (99 missing Classical Music works, no audio yet). Findings now cover Art, Architecture, and Classical Music too.
 - **House style:** commas and full stops go *outside* closing quotes (Carter's preference, 10-05).
 - **Still open:** the NAQT *Pre-1700 composers* and *Romantic-era composers* lists (naqt.com blocks the cloud);
-  duplicate active Art notes 1787890518304/1787890519171 and 1787890517675/1790239802400; audio for the 99 gap notes.
+  audio for the 99 gap notes.
+- **Art cleanup** (10-05): `audit\art_cleanup.py --apply` deletes the duplicate *Disputa* and *Surprised!* notes
+  and drops *Vitruvian Man* from Northern Renaissance; then Tools > Check Media.
 - **Tools > Empty Cards**, then sync. This clears the blank DESCRIPTION → WORK cards and the PA/Photo
   leftovers.
 - **8 suspended Photography notes** (`Photo::suspended_0929`): delete or keep.
