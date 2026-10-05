@@ -33,6 +33,7 @@ CHECKLIST.md only for the history of one specific thing (grep it, don't read it 
 - Only tier-1 cards are normally active; the rest are suspended.
 - **Flash cards stay flash cards:** one thing to recall per card, one clue per card, as tossups give it.
 - Titles of works in *italics* (captions too); sung numbers in "quotes"; Canadian spelling; Oxford comma.
+- Commas and full stops go **outside** closing quotes (“Ode to Joy”, not “Ode to Joy,”).
 - Night mode uses `html:has(> body.night_mode) …` / `.night_mode …` — **never** `:root:not([data-theme])`.
 - After a schema change, Carter must do a **full sync / upload to AnkiWeb by hand**. Tell him.
 - After template changes that blank cards: tell Carter to run **Tools > Empty Cards**.
