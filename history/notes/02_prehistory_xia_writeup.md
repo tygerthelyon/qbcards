@@ -8,6 +8,9 @@ prehistory, the Neolithic cultures, the Bronze Age sites, and the Xia (300+ ques
 inside questions on **Peking Man / Homo erectus**, **jade**, **pottery**, the **Yellow River**, the
 **Shang**, and **oracle bones**. So the cards concentrate on the facts those questions lead with.*
 
+*Fact-checked 10-05: Zdansky (not Andersson) found the first Peking Man teeth; the* Bamboo Annals *were found in 279 AD;
+the Thera link is Kevin Pang's; Jinsha's mask is not "smiling"; Zhangzhung fell c. 644.*
+
 ### What changed from my notes
 - **Liangzhu** was in the **lower Yangtze** (around Lake Tai, Zhejiang), not the middle Yellow River.
 - **Longshan** is **late Neolithic** (c. 3000–1900 BC); **Yangshao** is the middle Neolithic.
@@ -30,7 +33,8 @@ inside questions on **Peking Man / Homo erectus**, **jade**, **pottery**, the **
 - ★ **Peking Man** (*Homo erectus pekinensis*; *Sinanthropus pekinensis*):
   - Lived about **780,000–400,000 years ago**, at ★ **Zhoukoudian** ("Dragon Bone Hill") southwest of
     Beijing.
-  - **Johan Gunnar Andersson** first found teeth there (1921). The 1920s–30s digs were under **Davidson
+  - **Johan Gunnar Andersson** found the site in 1921 and sent his assistant **Otto Zdansky**, who dug up the
+    first two teeth (1921, 1923); Andersson announced them in 1926. The 1920s–30s digs were under **Davidson
     Black**, who named it, with **Pei Wenzhong** (who found the first skull, 1929) and the Jesuit
     ★ **Pierre Teilhard de Chardin**.
   - **Franz Weidenreich** made the casts. The **original fossils vanished in 1941** while being
@@ -106,11 +110,11 @@ inside questions on **Peking Man / Homo erectus**, **jade**, **pottery**, the **
     had "protruding eyes."
   - **Sacrificial pits** hold **bronze masks with protruding, cylindrical eyes**, **gold-foil masks**, a
     **2.6 m standing figure**, a **bronze tree** about 4 m tall, and **elephant tusks**.
-  - It developed bronze **independently** of the Shang style and knew nothing of writing.
+  - It developed bronze **independently** of the Shang style and has left no writing.
   - Succeeded by **Jinsha** (Chengdu), with its **Golden Sun Bird** disc (the emblem of Chinese
-    heritage) and a **smiling gold mask**.
-- **Zhangzhung** (c. 500 BC–625 AD) — the kingdom of **western Tibet** (around Mount Kailash), cradle of the
-  ★ **Bon** religion; conquered by **Songtsen Gampo**, founder of the **Tibetan Empire**.
+    heritage) and a **gold mask**.
+- **Zhangzhung** (c. 500 BC–7th century AD) — the kingdom of **western Tibet** (around Mount Kailash), cradle of the
+  ★ **Bon** religion; conquered by **Songtsen Gampo** (c. 644), founder of the **Tibetan Empire**.
 
 ---
 
@@ -121,8 +125,8 @@ inside questions on **Peking Man / Homo erectus**, **jade**, **pottery**, the **
 - Contemporary with the Minoans, the Indus Valley Civilisation, Egypt's Middle Kingdom, and the writing
   of *Gilgamesh*.
 - Known only from much later texts — ★ **Sima Qian's *Shiji*** (*Records of the Grand Historian*) and the
-  ★ ***Bamboo Annals***. The *Bamboo Annals* were found in **281 AD** in the tomb of a Warring States king
-  of **Wei**. **No Xia writing has ever been found**, so many treat the dynasty as semi-legendary.
+  ★ ***Bamboo Annals***. The *Bamboo Annals* were found in **279 AD** (the Jizhong find; some sources say 281)
+  in the tomb of **King Xiang of Wei** (d. 296 BC). **No Xia writing has ever been found**, so many treat the dynasty as semi-legendary.
 - ★ The *Shiji*'s **Shang** king list was **confirmed by the Anyang oracle bones**, which is the main
   argument for taking its Xia list seriously too.
 - ★ **Erlitou culture** (c. 1900–1500 BC; Yanshi, near **Luoyang**, Henan) — the leading candidate for the
@@ -152,7 +156,7 @@ inside questions on **Peking Man / Homo erectus**, **jade**, **pottery**, the **
   - The Shang used Jie's fall as the **first case of losing Heaven's favour**, the template for the
     later **Mandate of Heaven** (a Zhou concept).
 - The *Bamboo Annals*' omens at the fall of the Xia (**a yellow fog, a dim sun, three suns, frost in
-  summer**) have been linked by Robert Ritner and others to the **Thera (Minoan) eruption** that buried
+  summer**) have been linked by the JPL scientist **Kevin Pang** and others to the **Thera (Minoan) eruption** that buried
   **Akrotiri**.
 - **Rammed earth (*hangtu*; pisé)** — layers of earth pounded in wooden frames. It built the Longshan
   and Erlitou walls and palaces, and later the Shang walls of Zhengzhou and the early Great Wall.

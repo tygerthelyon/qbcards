@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """cards_china_prehistory_xia.py -- History v2 cards for China: Prehistory and the Xia.
 
-From notes/02_prehistory_xia_writeup.md. I haven't verified this section yet, so the apply script leaves
-it out unless asked:  py -3.9 hist_qb_apply.py --include prehistory
+From notes/02_prehistory_xia_writeup.md. Fact-checked 10-05 (web sources; qbreader was unreachable, so tiers
+are unchanged). The apply script leaves it out unless asked:  py -3.9 hist_qb_apply.py --include prehistory
 src="notes" = in my original notes (corrected); src="qb" = added from the qbreader sweep.
 """
 import cards_china_myth_lit as base
@@ -58,13 +58,13 @@ Q("Jiahu", 3, "lead", "Residue in pots from this site is the oldest known fermen
   "<u>Jiahu</u>", "", kind="place", src="qb")
 Q("Damaidi", 4, "lead", "This site in Zhongwei, Ningxia has thousands of petroglyphs, some argued to be the origin of Chinese characters.",
   "<u>Damaidi</u>", "", kind="place")
-Q("rice", 2, "mid", "The earliest evidence of cultivating this crop comes from the Yangtze valley, about 8,000–9,000 years ago.",
+Q("rice", 2, "mid", "The earliest evidence of cultivating this crop comes from the Yangtze valley, about 9,000–10,000 years ago.",
   "<u>rice</u>", "", kind="thing")
 
 # ---- Neolithic cultures ----
 Q("Yangshao culture", 1, "give", "This painted-pottery culture of the middle Yellow River (c. 5000–3000 BC) has its type site at Banpo.",
   "<u>Yangshao</u> culture", "", kind="concept")
-Q("Johan Gunnar Andersson", 2, "mid", "This Swedish geologist discovered the Yangshao culture in 1921 and found the first teeth at Zhoukoudian.",
+Q("Johan Gunnar Andersson", 2, "mid", "This Swedish geologist discovered the Yangshao culture in 1921 and sent the first excavator to Zhoukoudian.",
   "Johan Gunnar <u>Andersson</u>", "", src="notes")
 Q("Banpo", 2, "mid", "This moated Yangshao village near Xi'an has round houses, pottery kilns, and children buried in urns.",
   "<u>Banpo</u>", "", kind="place", src="qb")
@@ -91,7 +91,7 @@ Q("Sanxingdui", 1, "give", "This 'Three Star Mound' site in Sichuan, tied to the
 Q("Shu", 2, "mid", "Sanxingdui and its successor Jinsha belonged to this ancient kingdom of the Chengdu plain, said to be founded by Cancong.",
   "<u>Shu</u>", "", kind="place", src="qb", conf="Shu Han of the Three Kingdoms (named after it)")
 Q("Jinsha", 3, "lead", "This site in Chengdu, successor to Sanxingdui, produced the Golden Sun Bird disc.", "<u>Jinsha</u>", "", kind="place", src="qb")
-Q("Zhangzhung", 3, "lead", "This ancient kingdom of western Tibet (c. 500 BC–625 AD), cradle of the Bon religion, was conquered by Songtsen Gampo.",
+Q("Zhangzhung", 3, "lead", "This ancient kingdom of western Tibet, cradle of the Bon religion, was conquered in the 7th century by Songtsen Gampo.",
   "<u>Zhangzhung</u>", "Zhang Zhung", kind="place")
 Q("Bon", 2, "mid", "This indigenous Tibetan religion, from the kingdom of Zhangzhung, influenced Tibetan Buddhism.", "<u>Bon</u>", "", kind="concept")
 L("Neolithic cultures", 2, "Neolithic culture — known for",
@@ -107,7 +107,7 @@ Q("Xia dynasty", 2, "mid", "This first dynasty in Sima Qian's <i>Records of the 
   "<u>Xia</u> dynasty", "", kind="concept")
 Q("Erlitou culture", 1, "give", "This Bronze Age site near the Luo River in Henan, with China's earliest ritual bronzes, is the main candidate for the Xia.",
   "<u>Erlitou</u> culture", "", kind="place")
-Q("Bamboo Annals", 2, "mid", "This chronicle, found in 281 AD in a Warring States tomb of Wei, is one of the two main sources on the Xia.",
+Q("Bamboo Annals", 2, "mid", "This chronicle, found in 279 AD in the tomb of a Warring States king of Wei, is one of the two main sources on the Xia.",
   "the <i><u>Bamboo Annals</u></i>", "<i>Zhushu Jinian</i>", kind="work", src="notes")
 Q("Records of the Grand Historian", 1, "give", "Sima Qian's history, whose Shang king list was confirmed by the oracle bones.",
   "<i><u>Records of the Grand Historian</u></i>", "<i>Shiji</i>", kind="work", src="qb")

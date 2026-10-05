@@ -4,7 +4,7 @@
     py -3.9 hist_qb_apply.py                 dry run: what would be created, added, updated, suspended
     py -3.9 hist_qb_apply.py --apply         create note types, upload pictures, add/update notes, order the new queue
     py -3.9 hist_qb_apply.py --apply --deck "History"      (default deck: History)
-    py -3.9 hist_qb_apply.py --apply --include prehistory,shang,zhou   also these sections (comma list; any subset)
+    py -3.9 hist_qb_apply.py --apply --include prehistory,shang,zhou,qinhan   also these sections (comma list; any subset)
     py -3.9 hist_qb_apply.py --supersede     list the old History Clue notes on the same topics (dry)
     py -3.9 hist_qb_apply.py --supersede --apply   suspend them and tag History::v1_superseded (reversible)
 
@@ -65,17 +65,18 @@ def build_fields(note, media_dir=os.path.join(HERE, "media"), preview=False):
     if note.get("pic"):
         f["Picture"] = img_tag(note["pic"], media_dir, preview)[0]
         f["PictureQuestion"] = note.get("picq", "")
-    f["Sources"] = "v2id:%s; %s" % (v2id(note), "my notes" if note["src"] == "notes" else "qbreader supplement")
+    f["Sources"] = "v2id:%s; %s" % (v2id(note), {"notes": "my notes", "web": "web-checked draft"}.get(note["src"], "qbreader supplement"))
     tags = ["History::v2", "History::country::china", "History::period::" + note["period"],
             "History::kind::" + note["kind"], "History::tier::" + TIERS[note["tier"]],
-            "History::source::" + ("notes" if note["src"] == "notes" else "qbreader"), "History::pos::" + note["pos"],
+            "History::source::" + {"notes": "notes", "web": "web"}.get(note["src"], "qbreader"), "History::pos::" + note["pos"],
             "History::entity::" + fold(note["entity"])[:40]]
     return f, tags
 
 
 def load_notes():
     out, files = [], list(DECK_FILES)
-    extra = {"prehistory": "cards_china_prehistory_xia", "shang": "cards_china_shang", "zhou": "cards_china_zhou"}
+    extra = {"prehistory": "cards_china_prehistory_xia", "shang": "cards_china_shang", "zhou": "cards_china_zhou",
+             "qinhan": "cards_china_qin_han"}
     if "--include" in sys.argv:
         for name in sys.argv[sys.argv.index("--include") + 1].split(","):
             files.append(extra[name.strip()])
