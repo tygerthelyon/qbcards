@@ -1,0 +1,1421 @@
+{
+"model": "List",
+"notes": [
+{
+"id": 1790171465551,
+"tags": [
+"Geo::kind::list"
+],
+"fields": {
+"Title": "World's Longest Rivers",
+"Kind": "geography",
+"Domain": "Geography",
+"Unit": "km",
+"Measure": "Ranked by length",
+"Source": "Approximate; rankings vary by source, especially for the Nile vs. Amazon (some measurements put the Amazon first)",
+"N1": "Nile",
+"S1": "6,650",
+"I1": "<img src=\"g4front-nile_kagera_river-ecc1baa7.png\">",
+"N2": "Amazon",
+"S2": "6,400",
+"I2": "<img src=\"g4front-amazon_ucayali_apurimac_river-c0aec115.png\">",
+"N3": "Yangtze",
+"S3": "6,300",
+"I3": "<img src=\"g4front-yangtze_chang_jiang_river-a9fdce49.png\">",
+"N4": "Mississippi",
+"S4": "5,971",
+"I4": "<img src=\"g4front-mississippi_missouri_river-8106bdda.png\">",
+"N5": "Yenisei-Angara-Selenge",
+"S5": "5,539",
+"I5": "<img src=\"g4front-yenisei_angara_selenge_river-c84e85bd.png\">",
+"N6": "Yellow River",
+"S6": "5,464",
+"I6": "<img src=\"g4front-yellow_river_huang_he_river-a2ef0e30.png\">",
+"N7": "Congo",
+"S7": "4,700",
+"I7": "<img src=\"g4front-congo_chambeshi_river-4ea8a161.png\">",
+"N8": "Amur",
+"S8": "4,444",
+"I8": "<img src=\"g4front-amur_argun_river-d9dbd72f.png\">",
+"N9": "Lena",
+"S9": "4,294",
+"I9": "<img src=\"g4front-lena_river-3327161e.png\">",
+"N10": "Irtysh",
+"S10": "4,248",
+"I10": "<img src=\"g4front-ob_irtysh_river-57934252.png\">"
+},
+"cards": [
+{
+"id": 1790171465551,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790171465552,
+"ord": 1,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790171465553,
+"ord": 2,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790171465554,
+"ord": 3,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790171465555,
+"ord": 4,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790171465556,
+"ord": 5,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790171465557,
+"ord": 6,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790171465558,
+"ord": 7,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790171465559,
+"ord": 8,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790171465560,
+"ord": 9,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1790173782804,
+"tags": [
+"Geo::kind::list"
+],
+"fields": {
+"Title": "World's Tallest Mountains",
+"Kind": "geography",
+"Domain": "Geography",
+"Unit": "m",
+"Measure": "Ranked by height above sea level",
+"Source": "By elevation above sea level; all ten are in the Himalaya or Karakoram.",
+"N1": "Mount Everest",
+"S1": "8,849",
+"I1": "<img src=\"g4front-mount_everest_peak-001d8a1e.png\">",
+"N2": "K2",
+"S2": "8,611",
+"I2": "<img src=\"g4front-k2_peak-6ac051fa.png\">",
+"N3": "Kangchenjunga",
+"S3": "8,586",
+"I3": "<img src=\"g4front-kangchenjunga_peak-505ed475.png\">",
+"N4": "Lhotse",
+"S4": "8,516",
+"I4": "<img src=\"g4front-lhotse_peak-a5f377aa.png\">",
+"N5": "Makalu",
+"S5": "8,485",
+"I5": "<img src=\"g4front-makalu_peak-5fced9cf.png\">",
+"N6": "Cho Oyu",
+"S6": "8,188",
+"I6": "<img src=\"hr-chooyu.jpg\">",
+"N7": "Dhaulagiri I",
+"S7": "8,167",
+"I7": "<img src=\"hr-dhaulagiri_view_from_aircraft.jpg\">",
+"N8": "Manaslu",
+"S8": "8,163",
+"I8": "<img src=\"hr-sunrise_manaslu.jpg\">",
+"N9": "Nanga Parbat",
+"S9": "8,126",
+"I9": "<img src=\"hr-fairy_meadows_and_the_view_of_nanga_parbat.jpg\">",
+"N10": "Annapurna I",
+"S10": "8,091",
+"I10": "<img src=\"hr-south_face_of_annapurna_i_main.jpg\">"
+},
+"cards": [
+{
+"id": 1790173782804,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790173782805,
+"ord": 1,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790173782806,
+"ord": 2,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790173782807,
+"ord": 3,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790173782808,
+"ord": 4,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790173782809,
+"ord": 5,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790173782810,
+"ord": 6,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790173782811,
+"ord": 7,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790173782812,
+"ord": 8,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790173782813,
+"ord": 9,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1790173934829,
+"tags": [
+"History::kind::list"
+],
+"fields": {
+"Title": "Early Chinese History",
+"Kind": "history",
+"Domain": "History",
+"Unit": "",
+"Measure": "In chronological order",
+"Source": "Approximate dates; the Xia is semi-legendary and its historicity is debated.",
+"N1": "Xia",
+"S1": "c. 2070–1600 BCE",
+"I1": "<img src=\"histim-hist_Erlitou.jpg\">",
+"N2": "Shang",
+"S2": "c. 1600–1046 BCE",
+"I2": "<img src=\"histim-hist_Shang.jpg\">",
+"N3": "Zhou (Western)",
+"S3": "1046–771 BCE",
+"I3": "<img src=\"histim-hist_ZhouMap.jpg\">",
+"N4": "Spring and Autumn",
+"S4": "770–476 BCE",
+"I4": "<img src=\"histim-hist_MapSpringAutumn.jpg\">",
+"N5": "Warring States",
+"S5": "475–221 BCE",
+"I5": "<img src=\"histim-hist_MapWarring.jpg\">",
+"N6": "",
+"S6": "",
+"I6": "",
+"N7": "",
+"S7": "",
+"I7": "",
+"N8": "",
+"S8": "",
+"I8": "",
+"N9": "",
+"S9": "",
+"I9": "",
+"N10": "",
+"S10": "",
+"I10": ""
+},
+"cards": [
+{
+"id": 1790173934829,
+"ord": 0,
+"deck": "History",
+"queue": 2,
+"ivl": 12,
+"reps": 3,
+"lapses": 0
+},
+{
+"id": 1790173934830,
+"ord": 1,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790173934831,
+"ord": 2,
+"deck": "History",
+"queue": 2,
+"ivl": 10,
+"reps": 5,
+"lapses": 0
+},
+{
+"id": 1790173934832,
+"ord": 3,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790173934833,
+"ord": 4,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1790173951106,
+"tags": [
+"History::kind::list"
+],
+"fields": {
+"Title": "Imperial China, Qin to Tang",
+"Kind": "history",
+"Domain": "History",
+"Unit": "",
+"Measure": "In chronological order",
+"Source": "Approximate dates for each dynasty’s conventional span.",
+"N1": "Qin",
+"S1": "221–206 BCE",
+"I1": "<img src=\"histim-hist_MapQin.jpg\">",
+"N2": "Han",
+"S2": "206 BCE–220 CE",
+"I2": "<img src=\"histim-hist_HanWall.jpg\">",
+"N3": "Three Kingdoms",
+"S3": "220–280",
+"I3": "<img src=\"histim-hist_MapThreeK.jpg\">",
+"N4": "Jin",
+"S4": "266–420",
+"I4": "<img src=\"histim-hist_MapJin.jpg\">",
+"N5": "Northern and Southern dynasties",
+"S5": "420–589",
+"I5": "<img src=\"histim-hist_Yungang.jpg\">",
+"N6": "Sui",
+"S6": "581–618",
+"I6": "<img src=\"histim-hist_MapSui.jpg\">",
+"N7": "Tang",
+"S7": "618–907",
+"I7": "<img src=\"histmap-tang_dynasty.png\">",
+"N8": "",
+"S8": "",
+"I8": "",
+"N9": "",
+"S9": "",
+"I9": "",
+"N10": "",
+"S10": "",
+"I10": ""
+},
+"cards": [
+{
+"id": 1790173951106,
+"ord": 0,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790173951107,
+"ord": 1,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790173951108,
+"ord": 2,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790173951109,
+"ord": 3,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790173951110,
+"ord": 4,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790173951111,
+"ord": 5,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790173951112,
+"ord": 6,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1790174051896,
+"tags": [
+"Geo::kind::list"
+],
+"fields": {
+"Title": "World's Largest Countries",
+"Kind": "geography",
+"Domain": "Geography",
+"Unit": "million km²",
+"Measure": "Ranked by total area",
+"Source": "By total area (land and water); figures rounded.",
+"N1": "Russia",
+"S1": "17.1",
+"I1": "<img src=\"g4front-russia_country-bc385c04.png\">",
+"N2": "Canada",
+"S2": "10.0",
+"I2": "<img src=\"g4front-canada_country-155e49a7.png\">",
+"N3": "United States",
+"S3": "9.8",
+"I3": "<img src=\"g4front-united_states_of_america_country-dcae6620.png\">",
+"N4": "China",
+"S4": "9.6",
+"I4": "<img src=\"g4front-china_country-44b7ecf9.png\">",
+"N5": "Brazil",
+"S5": "8.5",
+"I5": "<img src=\"g4front-brazil_country-42ab14fc.png\">",
+"N6": "Australia",
+"S6": "7.7",
+"I6": "<img src=\"g4front-australia_country-74f8ee4e.png\">",
+"N7": "India",
+"S7": "3.3",
+"I7": "<img src=\"g4front-india_country-2017e326.png\">",
+"N8": "Argentina",
+"S8": "2.8",
+"I8": "<img src=\"g4front-argentina_country-549f0516.png\">",
+"N9": "Kazakhstan",
+"S9": "2.7",
+"I9": "<img src=\"g4front-kazakhstan_country-cc08d9b8.png\">",
+"N10": "Algeria",
+"S10": "2.4",
+"I10": "<img src=\"g4front-algeria_country-831e979d.png\">"
+},
+"cards": [
+{
+"id": 1790174051896,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174051897,
+"ord": 1,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174051898,
+"ord": 2,
+"deck": "Geography",
+"queue": 2,
+"ivl": 5,
+"reps": 4,
+"lapses": 0
+},
+{
+"id": 1790174051899,
+"ord": 3,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174051900,
+"ord": 4,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174051901,
+"ord": 5,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174051902,
+"ord": 6,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174051903,
+"ord": 7,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174051904,
+"ord": 8,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174051905,
+"ord": 9,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1790174120381,
+"tags": [
+"Geo::kind::list"
+],
+"fields": {
+"Title": "World's Deepest Lakes",
+"Kind": "geography",
+"Domain": "Geography",
+"Unit": "m",
+"Measure": "Ranked by maximum depth",
+"Source": "By maximum depth; the Caspian Sea is technically a salt lake, and Lake Vostok is entirely subglacial.",
+"N1": "Lake Baikal",
+"S1": "1,642",
+"I1": "<img src=\"g4front-lake_baikal_lake-81059b82.png\">",
+"N2": "Lake Tanganyika",
+"S2": "1,470",
+"I2": "<img src=\"g4front-lake_tanganyika_lake-27c5ee8f.png\">",
+"N3": "Caspian Sea",
+"S3": "1,025",
+"I3": "<img src=\"g4front-caspian_sea_lake-e1eb3548.png\">",
+"N4": "Lake Vostok",
+"S4": "836",
+"I4": "<img src=\"g4front-lake_vostok_lake-06bca96f.png\">",
+"N5": "Lake Malawi",
+"S5": "706",
+"I5": "<img src=\"g4front-lake_malawi_lake-fe50eb5e.png\">",
+"N6": "Issyk-Kul",
+"S6": "668",
+"I6": "<img src=\"g4front-lake_issyk_kul_lake-eb50553e.png\">",
+"N7": "Great Slave Lake",
+"S7": "614",
+"I7": "<img src=\"g4front-great_slave_lake_lake-9e050846.png\">",
+"N8": "Crater Lake",
+"S8": "594",
+"I8": "<img src=\"g4front-crater_lake_lake-9881943d.png\">",
+"N9": "Lake Matano",
+"S9": "590",
+"I9": "<img src=\"g4front-lake_matano_lake-cea0799f.png\">",
+"N10": "",
+"S10": "",
+"I10": ""
+},
+"cards": [
+{
+"id": 1790174120381,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174120382,
+"ord": 1,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174120383,
+"ord": 2,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174120384,
+"ord": 3,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174120385,
+"ord": 4,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174120386,
+"ord": 5,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174120387,
+"ord": 6,
+"deck": "Geography",
+"queue": 2,
+"ivl": 4,
+"reps": 7,
+"lapses": 1
+},
+{
+"id": 1790174120388,
+"ord": 7,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174120389,
+"ord": 8,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1790174153199,
+"tags": [
+"History::kind::list"
+],
+"fields": {
+"Title": "Early Japan",
+"Kind": "history",
+"Domain": "History",
+"Unit": "",
+"Measure": "In chronological order",
+"Source": "Approximate dates; period boundaries (especially Jōmon–Yayoi) are debated among archaeologists.",
+"N1": "Jōmon",
+"S1": "c. 14,000–300 BCE",
+"I1": "<img src=\"histim-hist_Jomon.jpg\">",
+"N2": "Yayoi",
+"S2": "c. 300 BCE–300 CE",
+"I2": "<img src=\"histim-hist_Dotaku.jpg\">",
+"N3": "Kofun",
+"S3": "c. 300–538",
+"I3": "<img src=\"histim-hist_Daisen.jpg\">",
+"N4": "Asuka",
+"S4": "538–710",
+"I4": "<img src=\"histim-hist_AsukaDera.jpg\">",
+"N5": "Nara",
+"S5": "710–794",
+"I5": "<img src=\"histim-hist_Todaiji.jpg\">",
+"N6": "",
+"S6": "",
+"I6": "",
+"N7": "",
+"S7": "",
+"I7": "",
+"N8": "",
+"S8": "",
+"I8": "",
+"N9": "",
+"S9": "",
+"I9": "",
+"N10": "",
+"S10": "",
+"I10": ""
+},
+"cards": [
+{
+"id": 1790174153199,
+"ord": 0,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174153200,
+"ord": 1,
+"deck": "History",
+"queue": -1,
+"ivl": 4,
+"reps": 4,
+"lapses": 0
+},
+{
+"id": 1790174153201,
+"ord": 2,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174153202,
+"ord": 3,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174153203,
+"ord": 4,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1790174350824,
+"tags": [
+"Geo::kind::list"
+],
+"fields": {
+"Title": "World's Largest Islands",
+"Kind": "geography",
+"Domain": "Geography",
+"Unit": "thousand km²",
+"Measure": "Ranked by area",
+"Source": "By land area; Australia is usually classed as a continent, not an island, or it would rank first by a wide margin.",
+"N1": "Greenland",
+"S1": "2,166",
+"I1": "<img src=\"g4front-greenland_country-9c90cc47.png\">",
+"N2": "New Guinea",
+"S2": "786",
+"I2": "<img src=\"g4front-new_guinea_island-09ccd9c4.png\">",
+"N3": "Borneo",
+"S3": "748",
+"I3": "<img src=\"g4front-borneo_island-d499f42a.png\">",
+"N4": "Madagascar",
+"S4": "587",
+"I4": "<img src=\"g4front-madagascar_country-c8aa7938.png\">",
+"N5": "Baffin Island",
+"S5": "507",
+"I5": "<img src=\"g4front-baffin_island_island-6052f100.png\">",
+"N6": "Sumatra",
+"S6": "473",
+"I6": "<img src=\"g4front-sumatra_island-4c5cfd0b.png\">",
+"N7": "Honshu",
+"S7": "228",
+"I7": "<img src=\"hr-satellite_image_of_honshu_in_may_2003.png\">",
+"N8": "Victoria Island",
+"S8": "217",
+"I8": "<img src=\"hr-wfm_victoria_island.jpg\">",
+"N9": "Great Britain",
+"S9": "209",
+"I9": "<img src=\"hr-modis_great_britain_2012_06_04_during_heat_wave_cropped.jpg\">",
+"N10": "Ellesmere Island",
+"S10": "196",
+"I10": "<img src=\"hr-ellesmere_island_river_beauty.jpg\">"
+},
+"cards": [
+{
+"id": 1790174350825,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174350826,
+"ord": 1,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174350827,
+"ord": 2,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174350828,
+"ord": 3,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174350829,
+"ord": 4,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174350830,
+"ord": 5,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174350831,
+"ord": 6,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174350832,
+"ord": 7,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174350833,
+"ord": 8,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174350834,
+"ord": 9,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1790174398588,
+"tags": [
+"Geo::kind::list"
+],
+"fields": {
+"Title": "World's Largest Deserts",
+"Kind": "geography",
+"Domain": "Geography",
+"Unit": "million km²",
+"Measure": "Ranked by area",
+"Source": "A “desert” is defined by low precipitation, not sand — by that standard Antarctica and the Arctic are the two largest deserts on Earth, well ahead of the Sahara.",
+"N1": "Antarctic Desert",
+"S1": "14.2",
+"I1": "<img src=\"g4front-antarctica_continent-77551a26.png\">",
+"N2": "Arctic Desert",
+"S2": "13.9",
+"I2": "<img src=\"geofront-arctic_ocean_more2.png\">",
+"N3": "Sahara",
+"S3": "9.2",
+"I3": "<img src=\"g4front-sahara_desert-181e7d03.png\">",
+"N4": "Arabian Desert",
+"S4": "2.3",
+"I4": "<img src=\"g4front-arabian_desert_desert-9f0b766a.png\">",
+"N5": "Gobi Desert",
+"S5": "1.3",
+"I5": "<img src=\"g4front-gobi_desert_desert-67ef81a9.png\">",
+"N6": "Kalahari Desert",
+"S6": "0.9",
+"I6": "<img src=\"g4front-kalahari_desert_desert-99a5349a.png\">",
+"N7": "Patagonian Desert",
+"S7": "0.67",
+"I7": "<img src=\"g4front-patagonian_desert_desert-650cb0f7.png\">",
+"N8": "Great Victoria Desert",
+"S8": "0.65",
+"I8": "<img src=\"g4front-great_victoria_desert_desert-b6dba2a9.png\">",
+"N9": "Great Basin Desert",
+"S9": "0.49",
+"I9": "<img src=\"g4front-great_basin_desert_desert-3c6be15e.png\">",
+"N10": "",
+"S10": "",
+"I10": ""
+},
+"cards": [
+{
+"id": 1790174398588,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174398589,
+"ord": 1,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174398590,
+"ord": 2,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174398591,
+"ord": 3,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174398592,
+"ord": 4,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174398593,
+"ord": 5,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174398594,
+"ord": 6,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174398595,
+"ord": 7,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174398596,
+"ord": 8,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1790174451581,
+"tags": [
+"Geo::kind::list"
+],
+"fields": {
+"Title": "World's Most Powerful Rivers",
+"Kind": "geography",
+"Domain": "Geography",
+"Unit": "thousand m³/s",
+"Measure": "Ranked by average discharge",
+"Source": "By average discharge (water volume), not length — a very different ranking. The Amazon alone carries more water than the next seven rivers on this list combined.",
+"N1": "Amazon",
+"S1": "209",
+"I1": "<img src=\"g4front-amazon_ucayali_apurimac_river-c0aec115.png\">",
+"N2": "Congo",
+"S2": "41",
+"I2": "<img src=\"g4front-congo_chambeshi_river-4ea8a161.png\">",
+"N3": "Ganges-Brahmaputra",
+"S3": "38",
+"I3": "<img src=\"g4front-brahmaputra_yarlung_river-a556b992.png\">",
+"N4": "Orinoco",
+"S4": "37",
+"I4": "<img src=\"g4front-orinoco_river-fa68f9ba.png\">",
+"N5": "Madeira",
+"S5": "31",
+"I5": "<img src=\"g4front-madeira_mamore_grande_river-6d2a4d67.png\">",
+"N6": "Yangtze",
+"S6": "30",
+"I6": "<img src=\"g4front-yangtze_chang_jiang_river-a9fdce49.png\">",
+"N7": "Yenisei",
+"S7": "20",
+"I7": "<img src=\"g4front-yenisei_angara_selenge_river-c84e85bd.png\">",
+"N8": "Lena",
+"S8": "17",
+"I8": "<img src=\"g4front-lena_river-3327161e.png\">",
+"N9": "Mississippi",
+"S9": "17",
+"I9": "<img src=\"g4front-mississippi_missouri_river-8106bdda.png\">",
+"N10": "",
+"S10": "",
+"I10": ""
+},
+"cards": [
+{
+"id": 1790174451582,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174451583,
+"ord": 1,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174451584,
+"ord": 2,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174451585,
+"ord": 3,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174451586,
+"ord": 4,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174451587,
+"ord": 5,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174451588,
+"ord": 6,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174451589,
+"ord": 7,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174451590,
+"ord": 8,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1790174497982,
+"tags": [
+"Geo::kind::list"
+],
+"fields": {
+"Title": "Geological Periods: the Paleozoic",
+"Kind": "geology",
+"Domain": "Geography",
+"Unit": "Mya",
+"Measure": "Oldest first",
+"Source": "Mya = million years ago; each date is the period’s start. Maps show the continents’ approximate positions during that period.",
+"N1": "Cambrian",
+"S1": "541",
+"I1": "<img src=\"hr-mollweide_paleographic_map_of_earth_510_ma.png\">",
+"N2": "Ordovician",
+"S2": "485",
+"I2": "<img src=\"hr-mollweide_paleographic_map_of_earth_465_ma_darriwilian_age.png\">",
+"N3": "Silurian",
+"S3": "444",
+"I3": "<img src=\"hr-mollweide_paleographic_map_of_earth_430_ma_homerian_age.png\">",
+"N4": "Devonian",
+"S4": "419",
+"I4": "<img src=\"hr-mollweide_paleographic_map_of_earth_370_ma_famennian_age.png\">",
+"N5": "Carboniferous",
+"S5": "359",
+"I5": "<img src=\"hr-mollweide_paleographic_map_of_earth_330_ma_serpukhovian_age.png\">",
+"N6": "Permian",
+"S6": "299",
+"I6": "<img src=\"hr-mollweide_paleographic_map_of_earth_275_ma_kungurian_age.png\">",
+"N7": "",
+"S7": "",
+"I7": "",
+"N8": "",
+"S8": "",
+"I8": "",
+"N9": "",
+"S9": "",
+"I9": "",
+"N10": "",
+"S10": "",
+"I10": ""
+},
+"cards": [
+{
+"id": 1790174497982,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174497983,
+"ord": 1,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174497984,
+"ord": 2,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174497985,
+"ord": 3,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174497986,
+"ord": 4,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174497987,
+"ord": 5,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1790174512022,
+"tags": [
+"Geo::kind::list"
+],
+"fields": {
+"Title": "Geological Periods: Mesozoic and Cenozoic",
+"Kind": "geology",
+"Domain": "Geography",
+"Unit": "Mya",
+"Measure": "Oldest first",
+"Source": "Mya = million years ago; each date is the period’s start. Maps show the continents’ approximate positions during that period.",
+"N1": "Triassic",
+"S1": "252",
+"I1": "<img src=\"hr-mollweide_paleographic_map_of_earth_225_ma_norian_age.png\">",
+"N2": "Jurassic",
+"S2": "201",
+"I2": "<img src=\"hr-mollweide_paleographic_map_of_earth_170_ma_bajocian_age.png\">",
+"N3": "Cretaceous",
+"S3": "145",
+"I3": "<img src=\"hr-mollweide_paleographic_map_of_earth_105_ma_albian_age.png\">",
+"N4": "Paleogene",
+"S4": "66",
+"I4": "<img src=\"hr-mollweide_paleographic_map_of_earth_45_ma_lutetian_age.png\">",
+"N5": "Neogene",
+"S5": "23",
+"I5": "<img src=\"hr-mollweide_paleographic_map_of_earth_15_ma_langhian_age.png\">",
+"N6": "Quaternary",
+"S6": "2.6",
+"I6": "<img src=\"hr-mollweide.jpg\">",
+"N7": "",
+"S7": "",
+"I7": "",
+"N8": "",
+"S8": "",
+"I8": "",
+"N9": "",
+"S9": "",
+"I9": "",
+"N10": "",
+"S10": "",
+"I10": ""
+},
+"cards": [
+{
+"id": 1790174512022,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174512023,
+"ord": 1,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174512024,
+"ord": 2,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174512025,
+"ord": 3,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174512026,
+"ord": 4,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790174512027,
+"ord": 5,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+}
+]
+}

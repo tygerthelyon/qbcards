@@ -1,0 +1,2499 @@
+{
+"model": "Geology",
+"notes": [
+{
+"id": 1789926919610,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Endorheic basin",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Endorheic_basin-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Endorheic_basin-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Endorheic_basin-3.jpg\">",
+"Picture 4": "",
+"Description": "A drainage area with no outlet to the sea; its water leaves only by evaporation or seepage.",
+"Location": "[various locations]",
+"Date": "Hydrological",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "The Caspian Sea, the Great Basin of the western United States and Lake Eyre are examples.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "The endorheic basin that feeds Üüreg Lake, Mongolia",
+"Caption 2": "The endorheic Tarim Basin, China, from space",
+"Caption 3": "The endorheic Altiplano basin at La Paz and El Alto, Bolivia",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926919610,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926921980,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Cirque",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Cirque-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Cirque-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Cirque-3.jpg\">",
+"Picture 4": "",
+"Description": "An armchair-shaped hollow at the head of a valley, carved into a mountainside by a glacier.",
+"Location": "[various locations]",
+"Date": "Glacial",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Often holds a small lake called a <i>tarn once</i> the ice has gone.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Two cirques with snow patches near Abisko, Sweden",
+"Caption 2": "Maritsa cirque in the Rila Mountains, Bulgaria",
+"Caption 3": "Upper Thornton Lake cirque, North Cascades, Washington",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926921981,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926924188,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Caldera",
+"Alternate": "",
+"Picture 1": "<img src=\"hr-lake_toba_from_simalem_north_sumatra_fe8fd91a.jpg\">",
+"Picture 2": "<img src=\"geoel-Caldera-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Caldera-3.jpg\">",
+"Picture 4": "",
+"Description": "A large basin-shaped depression left when a volcano collapses after emptying its magma chamber.",
+"Location": "[various locations]",
+"Date": "Volcanic",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Crater Lake in Oregon fills one about 8 km wide, formed about 7,700 years ago.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Lake Toba, Sumatra, in a caldera 100 km long",
+"Caption 2": "Valles Caldera, New Mexico",
+"Caption 3": "The summit caldera of Fernandina, Galápagos",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926924188,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926927745,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Glacier",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Glacier-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Glacier-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Glacier-3.jpg\">",
+"Picture 4": "",
+"Description": "A large, persistent body of ice that forms on land from compacted snow and slowly flows downhill under its own weight.",
+"Location": "[various locations]",
+"Date": "Glacial",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "About a tenth of Earth's land is covered by ice of this kind, most of it in Antarctica and Greenland.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "The Baltoro Glacier, Pakistan",
+"Caption 2": "The Taschachferner in the Ötztal Alps, Austria",
+"Caption 3": "The Quelccaya Ice Cap, Peru",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926927745,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926929139,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Rift lake",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Rift_lake-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Rift_lake-2.jpg\">",
+"Picture 3": "<img src=\"hr-20170116_children_of_the_lake_lake_malawi_nkhata_bay_malawi_66e1372e.jpg\">",
+"Picture 4": "",
+"Description": "A body of water that fills a trough formed where the crust is pulling apart.",
+"Location": "[various locations]",
+"Date": "Tectonic",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Lake Baikal, the deepest lake on Earth, and Lake Tanganyika are the great examples.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Lake Baikal at the Svyatoy Nos peninsula, where the fault scarp shows active rifting",
+"Caption 2": "Rift lakes of the Albertine Rift, East Africa (rendering)",
+"Caption 3": "Children on the shore of Lake Malawi at Nkhata Bay",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926929139,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926931580,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Fjord",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Fjord-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Fjord-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Fjord-3.jpg\">",
+"Picture 4": "",
+"Description": "A long, narrow, steep-sided sea inlet cut by a glacier and later flooded by the ocean.",
+"Location": "[various locations]",
+"Date": "Glacial",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Norway, Chile, New Zealand, Greenland, and British Columbia have the most famous ones.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Geirangerfjord, Norway",
+"Caption 2": "Milford Sound, New Zealand",
+"Caption 3": "A glacier flowing through a fjord in eastern Greenland",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926931580,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926933528,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Arête",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Arête-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Arête-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Arête-3.jpg\">",
+"Picture 4": "",
+"Description": "A thin, knife-edged ridge left between two glacial valleys or hollows that have eroded toward each other.",
+"Location": "[various locations]",
+"Date": "Glacial",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Striding Edge in England's Lake District is a well-known example.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Crib Goch, Snowdonia, Wales",
+"Caption 2": "Clouds Rest, Yosemite National Park",
+"Caption 3": "The Garden Wall, Glacier National Park",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926933529,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926935612,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Pyramidal peak",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Pyramidal_peak-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Pyramidal_peak-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Pyramidal_peak-3.jpg\">",
+"Picture 4": "",
+"Description": "A sharp, steep-sided summit shaped by glaciers eroding several hollows back to back around it.",
+"Location": "[various locations]",
+"Date": "Glacial",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "The Matterhorn is the classic example.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "The Matterhorn, Switzerland, and Italy",
+"Caption 2": "Alpamayo, Peru",
+"Caption 3": "Artesonraju, Peru",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926935612,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926938201,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "U-shaped valley",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-U_shaped_valley-1.jpg\">",
+"Picture 2": "<img src=\"geoel-U_shaped_valley-2.jpg\">",
+"Picture 3": "<img src=\"geoel-U_shaped_valley-3.jpg\">",
+"Picture 4": "",
+"Description": "A steep-walled, flat-floored trough with a rounded cross-section, widened and deepened by a glacier.",
+"Location": "[various locations]",
+"Date": "Glacial",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "A river valley, by contrast, is V-shaped in cross-section.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "A glaciated valley in the Altai Mountains, Russia",
+"Caption 2": "Myklebustdalen, Nordfjord, Norway",
+"Caption 3": "Malyovitsa valley, Rila Mountains, Bulgaria",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926938201,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926939754,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Moraine",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Moraine-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Moraine-2.jpg\">",
+"Picture 3": "<img src=\"more-Moraine-3.jpg\">",
+"Picture 4": "",
+"Description": "A ridge or heap of rock and debris carried and dropped by a glacier.",
+"Location": "[various locations]",
+"Date": "Glacial",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Long Island, New York, is largely built of the moraines of the last ice sheet.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Lateral and terminal moraines around a lake near Manang, Nepal",
+"Caption 2": "Moraine of the Nanga Parbat north-face glacier, Pakistan",
+"Caption 3": "A glacier and its terminal moraine at Tinayrebukta, Svalbard",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926939754,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926941101,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Drumlin",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Drumlin-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Drumlin-2.jpg\">",
+"Picture 3": "<img src=\"more-Drumlin-3.jpg\">",
+"Picture 4": "",
+"Description": "A smooth, elongated hill of glacial deposits shaped like an inverted spoon, with its steeper end facing the ice's approach.",
+"Location": "[various locations]",
+"Date": "Glacial",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "They occur in swarms, sometimes by the thousand, as in Ireland's Clew Bay.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Forested drumlins south of Puerto Williams, Chile",
+"Caption 2": "Clew Bay, Ireland, a field of drowned drumlins",
+"Caption 3": "A farm on a drumlin",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926941101,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926943608,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Esker",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Esker-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Esker-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Esker-3.jpg\">",
+"Picture 4": "",
+"Description": "A long, winding ridge of sand and gravel laid down by a stream running through or beneath a glacier.",
+"Location": "[various locations]",
+"Date": "Glacial",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Some in Finland and Canada run for hundreds of kilometres.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "An esker at Fulufjället, Sweden",
+"Caption 2": "A partly drowned esker at Billudden, Sweden",
+"Caption 3": "Esker at Sims Corner, Washington",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926943608,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926946275,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Kettle lake",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Kettle_lake-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Kettle_lake-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Kettle_lake-3.jpg\">",
+"Picture 4": "",
+"Description": "A round, water-filled hollow left when a stranded block of glacier ice melted.",
+"Location": "[various locations]",
+"Date": "Glacial",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Cape Cod and Minnesota have thousands of them.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "A kettle in the Isunngua highland, Greenland",
+"Caption 2": "Kettle lakes on the Yamal Peninsula, Siberia",
+"Caption 3": "Kettle lakes beside the Denali Highway, Alaska",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926946275,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926948479,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Glacial erratic",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Glacial_erratic-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Glacial_erratic-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Glacial_erratic-3.jpg\">",
+"Picture 4": "",
+"Description": "A boulder carried far from its source by ice and left behind on rock of a different kind.",
+"Location": "[various locations]",
+"Date": "Glacial",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Big Rock in Alberta is a quartzite boulder that travelled hundreds of kilometres.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Erratics from Norway on Schokland, Netherlands",
+"Caption 2": "A glacial erratic in Snowdonia, Wales",
+"Caption 3": "Erratics on a terminal moraine in Washington State",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926948479,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926950904,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Hanging valley",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Hanging_valley-1.jpg\">",
+"Picture 2": "<img src=\"hr-gleann_gaorsaic_immediately_above_glomach_geograph_org_uk_19_3e0f839c.jpg\">",
+"Picture 3": "<img src=\"geoel-Hanging_valley-3.jpg\">",
+"Picture 4": "",
+"Description": "A side channel that ends high above the floor of the main trough it joins, often with a waterfall.",
+"Location": "[various locations]",
+"Date": "Glacial",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "It arises because the main valley was cut deeper by a larger glacier.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Muldalsfossen drops from the Muldalen hanging valley to Tafjorden, Norway",
+"Caption 2": "Gleann Gaorsaic, a hanging valley in Scotland",
+"Caption 3": "Hanging glacial valley of Kukaj, Albanian Alps",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926950904,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926952379,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Oxbow lake",
+"Alternate": "",
+"Picture 1": "<img src=\"hr-south_fork_of_koyukuk_river_0858e9b4.jpg\">",
+"Picture 2": "<img src=\"geoel-Oxbow_lake-2.jpg\">",
+"Picture 3": "<img src=\"more-Oxbow_lake-3.jpg\">",
+"Picture 4": "",
+"Description": "A curved body of water formed when a loop is cut off from the river's main channel.",
+"Location": "[various locations]",
+"Date": "Fluvial",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "The name comes from the U-shaped collar of an ox's yoke.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Oxbow lakes beside the South Fork of the Koyukuk River, Alaska",
+"Caption 2": "Oxbow lakes of the Taieri River, New Zealand",
+"Caption 3": "An oxbow lake in Hokkaido, Japan",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926952379,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926953567,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Meander",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Meander-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Meander-2.jpg\">",
+"Picture 3": "<img src=\"more-Meander-3.jpg\">",
+"Picture 4": "",
+"Description": "One of a series of sinuous loops in a river's course, caused by erosion on the outer bank and deposition on the inner.",
+"Location": "[various locations]",
+"Date": "Fluvial",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "The Mississippi has shifted its course by many kilometres through its meanders.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Meanders of the Río Cauto, Cuba",
+"Caption 2": "Meanders of the Uvac River, Serbia",
+"Caption 3": "An incised meander of the Shimanto River, Japan",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926953567,
+"ord": 0,
+"deck": "Geography",
+"queue": 2,
+"ivl": 9,
+"reps": 5,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926956284,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Delta",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Delta-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Delta-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Delta-3.jpg\">",
+"Picture 4": "",
+"Description": "A low, fan-shaped landform built where a stream drops its sediment on entering a sea or lake.",
+"Location": "[various locations]",
+"Date": "Fluvial",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Named after the Greek letter Δ, whose shape Herodotus saw in the triangular mouth of the Nile.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "The Nile Delta in false colour, from space",
+"Caption 2": "The Lena Delta, Russia",
+"Caption 3": "The Amazon Delta, from space",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926956284,
+"ord": 0,
+"deck": "Geography",
+"queue": 2,
+"ivl": 11,
+"reps": 5,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926958420,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Alluvial fan",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Alluvial_fan-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Alluvial_fan-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Alluvial_fan-3.jpg\">",
+"Picture 4": "",
+"Description": "A cone-shaped deposit of gravel and sand spread where a mountain stream emerges onto a plain.",
+"Location": "[various locations]",
+"Date": "Fluvial",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Death Valley has many.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "An alluvial fan in the French Pyrenees",
+"Caption 2": "A large alluvial fan in Death Valley",
+"Caption 3": "An alluvial fan in the Taklamakan Desert, Xinjiang",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926958420,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926960905,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Floodplain",
+"Alternate": "",
+"Picture 1": "<img src=\"hr-iss_30_parana_river_floodplain_along_the_mato_grosso_sao_pau_d8f40338.jpg\">",
+"Picture 2": "<img src=\"hr-flooded_floodplain_river_eden_geograph_org_uk_7707405_91f9bc0f.jpg\">",
+"Picture 3": "<img src=\"hr-site_of_ft_john_laramie_river_p7180335_9943de6e.jpg\">",
+"Picture 4": "",
+"Description": "The flat land beside a river that is covered by water when the river overflows.",
+"Location": "[various locations]",
+"Date": "Fluvial",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Its rich silt has made such land the site of ancient agriculture along the Nile, Tigris, and Euphrates.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "The Paraná River floodplain",
+"Caption 2": "The River Eden's floodplain under water, England",
+"Caption 3": "The Laramie River at the site of Fort John, Wyoming",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926960905,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926962930,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Estuary",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Estuary-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Estuary-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Estuary-3.jpg\">",
+"Picture 4": "",
+"Description": "A partly enclosed coastal water body where fresh river water meets and mixes with the salt water of the sea.",
+"Location": "[various locations]",
+"Date": "Coastal",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Chesapeake Bay is the largest in the United States.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "The Río de la Plata estuary",
+"Caption 2": "The New York–New Jersey Harbor estuary",
+"Caption 3": "An estuary mouth at Darwin, Australia",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926962930,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926966778,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Canyon",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Canyon-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Canyon-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Canyon-3.jpg\">",
+"Picture 4": "",
+"Description": "A deep, steep-sided valley cut through rock, usually by a river.",
+"Location": "[various locations]",
+"Date": "Fluvial",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "The Grand Canyon is about 446 km long and up to 1.8 km deep.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Sumidero Canyon, Mexico",
+"Caption 2": "Snake River Canyon, Idaho",
+"Caption 3": "The Grand Canyon, at the Little Colorado River confluence",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926966778,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926969084,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Mesa",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Mesa-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Mesa-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Mesa-3.jpg\">",
+"Picture 4": "",
+"Description": "A flat-topped, steep-sided landform wider than it is tall, left when erosion strips away the surrounding rock.",
+"Location": "[various locations]",
+"Date": "Erosional",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "The word is Spanish for table.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Mesas in Monument Valley, on the Colorado Plateau",
+"Caption 2": "Mount Garfield, a mesa in Colorado",
+"Caption 3": "Har Qatum, a mesa beside Makhtesh Ramon, Israel",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926969084,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926970290,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Butte",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Butte-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Butte-2.jpg\">",
+"Picture 3": "<img src=\"more-Butte-3.jpg\">",
+"Picture 4": "",
+"Description": "An isolated, steep-sided hill with a small flat top, taller than it is wide.",
+"Location": "[various locations]",
+"Date": "Erosional",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Monument Valley in Arizona and Utah is dotted with them.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "The Mittens and Merrick Butte, Monument Valley",
+"Caption 2": "Devils Tower, Wyoming",
+"Caption 3": "Courthouse Butte, Sedona, Arizona",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926970290,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926972218,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Plateau",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Plateau-1.jpg\">",
+"Picture 2": "<img src=\"hr-clinton_p_anderson_overlook_53a79502.jpg\">",
+"Picture 3": "<img src=\"geoel-Plateau-3.jpg\">",
+"Picture 4": "",
+"Description": "An extensive area of high, relatively flat land that is bounded by steep slopes on at least one side.",
+"Location": "[various locations]",
+"Date": "Tectonic",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "The Tibetan Plateau, at over 4,500 m average height, is the highest in the world.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "The Tibetan Plateau from space",
+"Caption 2": "The Pajarito Plateau from the Clinton P. Anderson overlook, Los Alamos",
+"Caption 3": "The Chajnantor Plateau in the Atacama, Chile",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926972218,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926979418,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Escarpment",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-escarpment-bruce-peninsula.jpg\">",
+"Picture 2": "<img src=\"geoel-Escarpment-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Escarpment-3.jpg\">",
+"Picture 4": "",
+"Description": "A long, steep slope or cliff that separates two level areas of different height.",
+"Location": "[various locations]",
+"Date": "Erosional",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "The Niagara Escarpment runs from New York State through Ontario to Wisconsin.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Cliffs of the Niagara Escarpment on Georgian Bay, Bruce Peninsula",
+"Caption 2": "The Niagara Escarpment in winter",
+"Caption 3": "The Great Escarpment of southern Africa",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926979418,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926981545,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Inselberg",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Inselberg-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Inselberg-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Inselberg-3.jpg\">",
+"Picture 4": "",
+"Description": "An isolated rock hill or small mountain rising sharply from a surrounding plain.",
+"Location": "[various locations]",
+"Date": "Erosional",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Uluru in central Australia is the most famous example.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Uluru, Australia",
+"Caption 2": "Pietra di Bismantova, Italy",
+"Caption 3": "Cono de Arita, Argentina",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926981545,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926984231,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Yardang",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Yardang-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Yardang-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Yardang-3.jpg\">",
+"Picture 4": "",
+"Description": "A streamlined, wind-sculpted ridge of rock, aligned with the prevailing wind.",
+"Location": "[various locations]",
+"Date": "Aeolian",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "The Lut Desert in Iran has some of the largest in the world.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Kaluts, or yardangs, in the Lut Desert, Iran",
+"Caption 2": "Yardangs at Dunhuang, China",
+"Caption 3": "Yardangs in Qinghai, China",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926984231,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926986525,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Dune",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Dune-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Dune-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Dune-3.jpg\">",
+"Picture 4": "",
+"Description": "A mound or ridge of loose sand heaped by the wind.",
+"Location": "[various locations]",
+"Date": "Aeolian",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Those of the Namib Desert reach over 300 m high.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Dunes of Maspalomas, Gran Canaria",
+"Caption 2": "Star dunes in Great Sand Dunes National Park, Colorado",
+"Caption 3": "Dunes of the Rub' al Khali, from space",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926986526,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926989085,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Playa",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Playa-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Playa-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Playa-3.jpg\">",
+"Picture 4": "",
+"Description": "A flat, dry lakebed in a desert basin that fills with shallow water after rain.",
+"Location": "[various locations]",
+"Date": "Aeolian",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Bonneville Salt Flats in Utah is a well-known example.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Racetrack Playa, Death Valley",
+"Caption 2": "Black Rock Desert playa, Nevada",
+"Caption 3": "The Alvord Desert playa, Oregon",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926989085,
+"ord": 0,
+"deck": "Geography",
+"queue": 2,
+"ivl": 13,
+"reps": 5,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926991410,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Karst",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Karst-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Karst-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Karst-3.jpg\">",
+"Picture 4": "",
+"Description": "A landscape formed by the dissolving of soluble rock such as limestone, marked by sinkholes, caves, and underground streams.",
+"Location": "[various locations]",
+"Date": "Dissolution",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "The name comes from the Kras plateau of Slovenia and Italy.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Cone karst on the Li River, Guilin, China",
+"Caption 2": "Karst terrain of the Dinaric Alps, Croatia",
+"Caption 3": "Karst formation in the Serra de Tramuntana, Mallorca",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926991410,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926993641,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Sinkhole",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Sinkhole-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Sinkhole-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Sinkhole-3.jpg\">",
+"Picture 4": "",
+"Description": "A hollow in the ground caused when the surface collapses into a void formed by dissolved rock below.",
+"Location": "[various locations]",
+"Date": "Dissolution",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "The Great Blue Hole off Belize is a marine one, over 300 m across.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "The Red Lake sinkhole, Imotski, Croatia",
+"Caption 2": "Sinkholes near the Dead Sea",
+"Caption 3": "A collapse sinkhole in Chinchón, Spain",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926993641,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926994959,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Stalactite",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Stalactite-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Stalactite-2.jpg\">",
+"Picture 3": "<img src=\"more-Stalactite-3.jpg\">",
+"Picture 4": "",
+"Description": "A mineral formation hanging from the roof of a cave, formed by dripping water that deposits calcite.",
+"Location": "[various locations]",
+"Date": "Dissolution",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "A way to remember it: it holds tight to the ceiling.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Cave formations, with stalactites hanging from the roof",
+"Caption 2": "Shark-tooth stalactites",
+"Caption 3": "Stalactites in the Bear Cave, Kletno, Poland",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926994959,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926996701,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Stalagmite",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Stalagmite-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Stalagmite-2.jpg\">",
+"Picture 3": "<img src=\"more-Stalagmite-3.jpg\">",
+"Picture 4": "",
+"Description": "A mound that rises from the floor of a cave, built up from mineral left by water dripping from above.",
+"Location": "[various locations]",
+"Date": "Dissolution",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "It may join the one overhead to form a column.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "The Witch's Finger, Carlsbad Caverns, New Mexico",
+"Caption 2": "Stalagmites in the Coves d'Artà, Mallorca",
+"Caption 3": "Stalagmites in Għar Dalam cave, Malta",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926996701,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789926998197,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Geyser",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Geyser-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Geyser-2.jpg\">",
+"Picture 3": "<img src=\"more-Geyser-3.jpg\">",
+"Picture 4": "",
+"Description": "A hot spring that periodically erupts a column of water and steam.",
+"Location": "[various locations]",
+"Date": "Volcanic",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Old Faithful in Yellowstone erupts about every 90 minutes.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Old Faithful erupting, Yellowstone",
+"Caption 2": "Steamboat Geyser, Yellowstone",
+"Caption 3": "Strokkur erupting, Iceland",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789926998197,
+"ord": 0,
+"deck": "Geography",
+"queue": 2,
+"ivl": 14,
+"reps": 4,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789927000417,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Shield volcano",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Shield_volcano-1b.jpg\">",
+"Picture 2": "<img src=\"geoel-Shield_volcano-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Shield_volcano-3.jpg\">",
+"Picture 4": "",
+"Description": "A broad, gently sloping mountain built up by runny lava flows.",
+"Location": "[various locations]",
+"Date": "Volcanic",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Mauna Loa in Hawaii is the largest active volcano on Earth by volume.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Mauna Loa's broad shield on the island of Hawaiʻi, from space",
+"Caption 2": "Skjaldbreiður, Iceland",
+"Caption 3": "The lava lake of Erta Ale, Ethiopia",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789927000417,
+"ord": 0,
+"deck": "Geography",
+"queue": 2,
+"ivl": 6,
+"reps": 4,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789927002166,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Stratovolcano",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Stratovolcano-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Stratovolcano-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Stratovolcano-3.jpg\">",
+"Picture 4": "",
+"Description": "A steep, conical volcano built of alternating layers of lava, ash, and rock fragments.",
+"Location": "[various locations]",
+"Date": "Volcanic",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Mount Fuji, Vesuvius, and Mount St Helens are all of this type.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Mount Fuji, Japan",
+"Caption 2": "Mount Rainier, Washington",
+"Caption 3": "Mount Etna, Sicily",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789927002166,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789927003856,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Cinder cone",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Cinder_cone-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Cinder_cone-2.jpg\">",
+"Picture 3": "<img src=\"hr-paricutin_d01aa781.jpg\">",
+"Picture 4": "",
+"Description": "A small, steep volcano built from fragments of lava thrown out around a single vent.",
+"Location": "[various locations]",
+"Date": "Volcanic",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Parícutin in Mexico appeared in a farmer's cornfield in 1943 and grew to over 300 m in its first year.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Sunset Crater, Arizona",
+"Caption 2": "Parícutin, Mexico",
+"Caption 3": "Parícutin, Michoacán, Mexico",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789927003856,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789927005856,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Lava dome",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Lava_dome-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Lava_dome-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Lava_dome-3.jpg\">",
+"Picture 4": "",
+"Description": "A rounded mass of thick, sticky molten rock that piles up around a volcanic vent instead of flowing away.",
+"Location": "[various locations]",
+"Date": "Volcanic",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "One grew inside the crater of Mount St Helens between 2004 and 2008.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Lava domes in the crater of Mount St Helens",
+"Caption 2": "The rhyolitic lava dome of Chaitén volcano, Chile",
+"Caption 3": "One of the Inyo Craters, a rhyolite dome, California",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789927005856,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789927008777,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Volcanic plug",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Volcanic_plug-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Volcanic_plug-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Volcanic_plug-3.jpg\">",
+"Picture 4": "",
+"Description": "A mass of hardened magma that fills the neck of a volcano and, when the cone around it erodes, stands out as a tower.",
+"Location": "[various locations]",
+"Date": "Volcanic",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Shiprock in New Mexico is a famous example.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "The chapel of Saint-Michel d'Aiguilhe on a volcanic plug, Le Puy-en-Velay",
+"Caption 2": "A volcanic plug near Rhumsiki, Cameroon",
+"Caption 3": "Gros Piton and Petit Piton, Saint Lucia",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789927008777,
+"ord": 0,
+"deck": "Geography",
+"queue": 2,
+"ivl": 14,
+"reps": 6,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789927010775,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Batholith",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Batholith-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Batholith-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Batholith-3.jpg\">",
+"Picture 4": "",
+"Description": "A huge mass of intrusive igneous rock, more than 100 square kilometres in extent, that has cooled deep in the crust.",
+"Location": "[various locations]",
+"Date": "Igneous",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Yosemite's granite cliffs are part of the Sierra Nevada one.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "The Sierra Nevada Batholith",
+"Caption 2": "North Dome and Basket Dome, Yosemite",
+"Caption 3": "Half Dome, Yosemite",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789927010776,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789927013167,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Dike",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Dike-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Dike-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Dike-3.jpg\">",
+"Picture 4": "",
+"Description": "A sheet of igneous rock that cuts across the layers of the rock it intrudes.",
+"Location": "[various locations]",
+"Date": "Igneous",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "When it is harder than its surroundings, erosion leaves it standing as a wall.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "A dike cutting horizontal rock layers, Makhtesh Ramon, Israel",
+"Caption 2": "A dike beside Shiprock, New Mexico",
+"Caption 3": "A composite dike in Orkney, Scotland",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789927013167,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789927014447,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Sill",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Sill-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Sill-2.jpg\">",
+"Picture 3": "<img src=\"more-Sill-3.jpg\">",
+"Picture 4": "",
+"Description": "A sheet of igneous rock that has been squeezed between layers of older rock and runs parallel to them.",
+"Location": "[various locations]",
+"Date": "Igneous",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "The Whin Sill of northern England carries much of Hadrian's Wall.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Salisbury Crags, Edinburgh, a dolerite sill",
+"Caption 2": "A dolerite sill at Horton Bluff, Nova Scotia",
+"Caption 3": "High Force waterfall, which drops over the Whin Sill, England",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789927014447,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789927018772,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Horst",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Horst-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Horst-2.jpg\">",
+"Picture 3": "<img src=\"thin-Horst-3b.jpg\">",
+"Picture 4": "",
+"Description": "A block of the crust that stands raised between two faults with lower ground on either side.",
+"Location": "[various locations]",
+"Date": "Tectonic",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "The Black Forest and the Vosges are the horsts flanking the Rhine Graben.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Horst and graben in the Basin and Range, western United States",
+"Caption 2": "The Black Forest rising above the Rhine plain",
+"Caption 3": "Kiger Gorge on Steens Mountain, Oregon, a tilted fault-block range",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789927018772,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789927023179,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Graben",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Graben-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Graben-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Graben-3.jpg\">",
+"Picture 4": "",
+"Description": "A block of the crust that has dropped between two roughly parallel faults.",
+"Location": "[various locations]",
+"Date": "Tectonic",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "The Rhine Graben, between the Vosges and the Black Forest, is one.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Death Valley, a graben, below the Panamint Range",
+"Caption 2": "Deep Springs Valley, California",
+"Caption 3": "The Rhine Graben seen from the Black Forest",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789927023179,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789927025378,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Rift valley",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Rift_valley-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Rift_valley-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Rift_valley-3.jpg\">",
+"Picture 4": "",
+"Description": "A long, low trough formed where the crust is being pulled apart, with steep walls along its edges.",
+"Location": "[various locations]",
+"Date": "Tectonic",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "The East African Rift is splitting the continent and will one day form a new ocean.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "The Great Rift Valley in Kenya",
+"Caption 2": "The Manda-Hararo rift, Afar, Ethiopia",
+"Caption 3": "Lakes of the African Rift Valley, from space",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789927025378,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789927027098,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Atoll",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Atoll-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Atoll-2.jpg\">",
+"Picture 3": "<img src=\"more-Atoll-3.jpg\">",
+"Picture 4": "",
+"Description": "A ring-shaped coral reef, or chain of coral islets, that encloses a central lagoon.",
+"Location": "[various locations]",
+"Date": "Marine",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Darwin proposed that it forms as a volcanic island sinks and the reef around it keeps growing upward.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Tetiʻaroa atoll, French Polynesia",
+"Caption 2": "Penrhyn atoll, Cook Islands",
+"Caption 3": "Rangiroa atoll, French Polynesia",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789927027098,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789927028470,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Barrier island",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Barrier_island-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Barrier_island-2.jpg\">",
+"Picture 3": "<img src=\"more-Barrier_island-3.jpg\">",
+"Picture 4": "",
+"Description": "A long, narrow sandy landmass that lies parallel to a coast and is separated from it by a lagoon or bay.",
+"Location": "[various locations]",
+"Date": "Coastal",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Padre Island in Texas is the longest in the world.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Mantoloking, New Jersey, on a barrier island",
+"Caption 2": "North Stradbroke Island, Queensland, from space",
+"Caption 3": "South Padre Island, Texas",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789927028470,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789927030385,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Tombolo",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Tombolo-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Tombolo-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Tombolo-3.jpg\">",
+"Picture 4": "",
+"Description": "A sand or gravel bar that joins an island to the mainland or to another island.",
+"Location": "[various locations]",
+"Date": "Coastal",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Monte Argentario in Italy is joined to the mainland by three of them.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "The tombolo joining St Ninian's Isle to Shetland",
+"Caption 2": "A tombolo near Karystos, Euboea, Greece",
+"Caption 3": "The tombolo linking Ap Lei Pai to Ap Lei Chau, Hong Kong",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789927030385,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789927032737,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Spit",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Spit-1.jpg\">",
+"Picture 2": "<img src=\"hr-curonian_spit_np_05_2017_img17_aerial_view_at_epha_dune_ac21fb73.jpg\">",
+"Picture 3": "<img src=\"geoel-Spit-3.jpg\">",
+"Picture 4": "",
+"Description": "A narrow strip of sand or shingle joined to the land at one end and pointing out into open water at the other.",
+"Location": "[various locations]",
+"Date": "Coastal",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Spurn Head in England and the Hel Peninsula in Poland are well-known ones.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Farewell Spit, South Island, New Zealand",
+"Caption 2": "The Curonian Spit from the air",
+"Caption 3": "The Curonian Spit from the air",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789927032737,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789927034010,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Sea stack",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Sea_stack-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Sea_stack-2.jpg\">",
+"Picture 3": "<img src=\"hr-the_old_man_of_hoy_geograph_org_uk_6300895_f9756e4b.jpg\">",
+"Picture 4": "",
+"Description": "A steep column of rock standing in the sea, left when the waves erode a headland.",
+"Location": "[various locations]",
+"Date": "Coastal",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "The Twelve Apostles in Victoria, Australia, are among the most famous.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "The Twelve Apostles, Victoria, Australia",
+"Caption 2": "Dún Briste sea stack, County Mayo, Ireland",
+"Caption 3": "The Old Man of Hoy, Orkney",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789927034010,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789927036123,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Natural arch",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Natural_arch-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Natural_arch-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Natural_arch-3.jpg\">",
+"Picture 4": "",
+"Description": "A rock span formed by erosion, with an opening beneath it.",
+"Location": "[various locations]",
+"Date": "Erosional",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Arches National Park in Utah holds more than 2,000 of them.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Delicate Arch, Utah",
+"Caption 2": "The Azure Window, Malta, before its collapse in 2017",
+"Caption 3": "The Great Arch, Tabuk Province, Saudi Arabia",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789927036123,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789927038162,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Tor",
+"Alternate": "",
+"Picture 1": "<img src=\"hr-haytor_may_2011_2_96dfb2b7.jpg\">",
+"Picture 2": "<img src=\"hr-combestone_tor_dartmoor_33644121203_5c2edf14.jpg\">",
+"Picture 3": "<img src=\"hr-cuckoo_rock_57bbe63f.jpg\">",
+"Picture 4": "",
+"Description": "A freestanding pile of weathered rock crowning a hill or ridge.",
+"Location": "[various locations]",
+"Date": "Erosional",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Dartmoor in England is dotted with them.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Haytor, Dartmoor, England",
+"Caption 2": "Combestone Tor, Dartmoor",
+"Caption 3": "Cuckoo Rock, Dartmoor",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789927038162,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789927040211,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Hoodoo",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Hoodoo-1.jpg\">",
+"Picture 2": "<img src=\"geoel-Hoodoo-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Hoodoo-3.jpg\">",
+"Picture 4": "",
+"Description": "A tall, thin spire of rock, often capped by a harder stone, left when softer rock has weathered away.",
+"Location": "[various locations]",
+"Date": "Erosional",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Bryce Canyon in Utah has the largest collection.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Hoodoos in Bryce Canyon, Utah",
+"Caption 2": "Goblin Valley State Park, Utah",
+"Caption 3": "Fairy chimneys near Çavuşin, Cappadocia, Turkey",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789927040212,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789927041445,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Seamount",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Seamount-1.jpg\">",
+"Picture 2": "<img src=\"more-Seamount-2.jpg\">",
+"Picture 3": "<img src=\"hr-erastosthenes_seamount_bathymetry_cfedcc2c.jpg\">",
+"Picture 4": "",
+"Description": "A mountain rising from the ocean floor without reaching the surface.",
+"Location": "[various locations]",
+"Date": "Marine",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Most are extinct volcanoes.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "Axial Seamount, off Oregon (bathymetry)",
+"Caption 2": "Davidson Seamount, off California (bathymetry)",
+"Caption 3": "The Eratosthenes Seamount in a bathymetric image",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789927041445,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789927044383,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Mid-ocean ridge",
+"Alternate": "",
+"Picture 1": "<img src=\"hr-oceanic_crust_sphere_map1_9a95c975.jpg\">",
+"Picture 2": "<img src=\"geoel-Mid_ocean_ridge-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Mid_ocean_ridge-3.jpg\">",
+"Picture 4": "",
+"Description": "An underwater mountain chain where new sea-floor crust is formed as two tectonic plates pull apart.",
+"Location": "[various locations]",
+"Date": "Marine",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Iceland is a part of the Mid-Atlantic one that has risen above the sea.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "The age of the ocean floor: the youngest crust, in red, runs along the Mid-Atlantic Ridge",
+"Caption 2": "The Mid-Atlantic Ridge in the South Atlantic",
+"Caption 3": "The rift of the Mid-Atlantic Ridge on land at Þingvellir, Iceland",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789927044383,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789927046584,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Ocean trench",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Ocean_trench-1.png\">",
+"Picture 2": "<img src=\"geoel-Ocean_trench-2.jpg\">",
+"Picture 3": "<img src=\"geoel-Ocean_trench-3.jpg\">",
+"Picture 4": "",
+"Description": "A long, narrow, very deep depression in the deep-sea floor, formed where one tectonic plate dives beneath another.",
+"Location": "[various locations]",
+"Date": "Marine",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "The Mariana Trench holds the deepest known point, Challenger Deep, at nearly 11 km.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "The Mariana Trench (bathymetry)",
+"Caption 2": "The Peru–Chile Trench (bathymetry)",
+"Caption 3": "The Puerto Rico Trench",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789927046584,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1789927047923,
+"tags": [
+"Geo::kind::landform"
+],
+"fields": {
+"Name": "Continental shelf",
+"Alternate": "",
+"Picture 1": "<img src=\"geoel-Continental_shelf-1.png\">",
+"Picture 2": "<img src=\"geoel-Continental_shelf-2.jpg\">",
+"Picture 3": "<img src=\"thin-Continental_shelf-3.jpg\">",
+"Picture 4": "",
+"Description": "The gently sloping, shallow seabed that fringes a continent before dropping away steeply.",
+"Location": "[various locations]",
+"Date": "Marine",
+"Style": "",
+"Main style": "",
+"Architect": "",
+"Notes": "Most of the world's fisheries lie above it.",
+"Kind": "Landform",
+"NameTells": "",
+"Foreign": "",
+"Works": "",
+"Caption 1": "The shelf, slope, and a trench beyond it (schematic)",
+"Caption 2": "Fishing on a continental shelf",
+"Caption 3": "The Gulf of Mexico shelf and slope in bathymetry",
+"Caption 4": "",
+"ArchitectTells": "",
+"ArchitectUnknown": "",
+"StyleCard": ""
+},
+"cards": [
+{
+"id": 1789927047923,
+"ord": 0,
+"deck": "Geography",
+"queue": 0,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+}
+]
+}

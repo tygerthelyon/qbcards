@@ -1,0 +1,773 @@
+{
+"model": "History",
+"notes": [
+{
+"id": 1790045050915,
+"tags": [
+"History::cat::political",
+"History::country::china",
+"History::kind::dynasty",
+"History::period::tang",
+"History::reference",
+"History::tier::tier1-core"
+],
+"fields": {
+"Name": "Tang dynasty",
+"Alternate": "T'ang dynasty",
+"Pronunciation": "",
+"Kind": "dynasty",
+"Country": "China",
+"Period": "Tang",
+"Dates": "618–907",
+"Clue": "Founded when a Sui general seized Chang'an during the collapse that followed the failed invasions of Korea, this dynasty reached its height under an emperor whose Kaiyuan era ended in a rebellion led by his own frontier commander. Its poets are the ones anthologized in a famous collection of three hundred.",
+"Info": "<ul><li>Founded by the Sui general Li Yuan (Emperor Gaozu), who took the capital Chang'an in 618; his son Li Shimin killed his brothers at the Xuanwu Gate and took the throne as Taizong, whose Zhenguan era became the model of good government for later dynasties.</li><li>Chang'an grew into probably the largest city in the world, the eastern terminus of the Silk Road, with a foreign quarter, Nestorian Christians, Zoroastrians, and Manichaeans; Japan copied its grid plan at Heijō-kyō (Nara) and Heian-kyō (Kyoto).</li><li>Government ran on the Three Departments and Six Ministries, the equal-field system of land allotment, and the <i>fubing</i> militia; the imperial examinations, begun under the Sui, became a real route into office here.</li><li>The An Lushan Rebellion (755–763) broke it: the census fell catastrophically, the equal-field and <i>fubing</i> systems collapsed, and the frontier <i>jiedushi</i> commanders hardened into autonomous <i>fanzhen</i> provinces the court never recovered from.</li><li>Remembered above all as the golden age of Chinese poetry — Li Bai, Du Fu, and Wang Wei all lived through the rebellion — and ended in 907 when the warlord Zhu Wen deposed Emperor Ai, opening the Five Dynasties and Ten Kingdoms.</li></ul>",
+"Image": "",
+"Caption": "",
+"Map": "<img src=\"histmap-tang_dynasty.png\">",
+"Map Caption": "Tang territory c. 800, after the western losses that followed the An Lushan Rebellion — not the dynasty at its height",
+"Related": "",
+"Sources": "Wikipedia; Britannica"
+},
+"cards": [
+{
+"id": 1790045050915,
+"ord": 0,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790045050916,
+"ord": 1,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1790045050948,
+"tags": [
+"History::cat::political",
+"History::country::china",
+"History::kind::ruler",
+"History::period::tang",
+"History::reference",
+"History::tier::tier2-solid"
+],
+"fields": {
+"Name": "Emperor Taizong",
+"Alternate": "Li Shimin; T'ai-tsung",
+"Pronunciation": "",
+"Kind": "ruler",
+"Country": "China",
+"Period": "Tang",
+"Dates": "r. 626–649",
+"Clue": "This ruler came to power by killing his two brothers in an ambush at a palace gate and forcing his father to abdicate, then spent his reign cultivating a reputation for accepting criticism from the blunt official Wei Zheng.",
+"Info": "<ul><li>Born Li Shimin, he did most of the fighting that won his father the empire, then killed his elder and younger brothers at the <b>Xuanwu Gate Incident</b> in 626 and pushed Gaozu into abdicating.</li><li>His <b>Zhenguan</b> era became the standard by which later reigns were judged: he kept the outspoken minister <b>Wei Zheng</b> at court specifically to be contradicted, and the exchange was written up as a manual of good rule.</li><li>Destroyed the Eastern Turkic Khaganate in 630 and was acclaimed <b>Tian Kehan</b> (“Heavenly Khan”) by the steppe peoples, extending Tang control deep into Central Asia; his campaigns against Goguryeo, however, failed as the Sui's had.</li><li>Sent the monk <b>Xuanzang</b>'s translations imperial backing on his return from India, and received a Nestorian Christian mission at Chang'an in 635.</li></ul>",
+"Image": "<img src=\"histim-hist_Taizong.jpg\">",
+"Caption": "A later imperial portrait of Taizong; no likeness from his own lifetime survives",
+"Map": "",
+"Map Caption": "",
+"Related": "Emperor Taizong of Song; Emperor Xuanzong",
+"Sources": "Wikipedia; Britannica"
+},
+"cards": [
+{
+"id": 1790045050948,
+"ord": 0,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790045050949,
+"ord": 1,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1790045050976,
+"tags": [
+"History::cat::political",
+"History::country::china",
+"History::kind::ruler",
+"History::period::tang",
+"History::reference",
+"History::tier::tier1-core"
+],
+"fields": {
+"Name": "Wu Zetian",
+"Alternate": "Wu Zhao; Wu Hou; Wu Chao; Tian Hou; Empress Wu",
+"Pronunciation": "",
+"Kind": "ruler",
+"Country": "China",
+"Period": "Tang",
+"Dates": "r. 690–705",
+"Clue": "Originally a concubine of one emperor and then consort of his son, this person founded a short-lived dynasty that reused the name of a much older one, and had a sutra circulated declaring her the incarnation of Maitreya.",
+"Info": "<ul><li>The only woman to rule China as emperor in her own right. She entered the palace as a junior concubine of <b>Taizong</b>, and after his death became the consort of his son <b>Gaozong</b>, running the government during his illness.</li><li>In 690 she declared her own <b>Zhou</b> dynasty — named for the ancient Zhou, not a continuation of it — interrupting the Tang for fifteen years. Her supporters circulated the <i>Great Cloud Sutra</i>, which was read as prophesying a woman ruler and identified her with the future Buddha Maitreya.</li><li>Promoted Buddhism over Daoism, funded colossal carving at the <b>Longmen Grottoes</b> near Luoyang — the great Vairocana there is traditionally said to wear her features — and expanded the examinations to recruit officials outside the old aristocratic families.</li><li>Ran a secret police and encouraged anonymous denunciation; later Confucian historians loathed her, so nearly every hostile anecdote about her comes from writers with a reason to invent one. Deposed in 705 and succeeded by the Tang restoration.</li></ul>",
+"Image": "<img src=\"histim-hist_WuZetian.jpg\">",
+"Caption": "A traditional portrait of Wu Zetian, painted centuries after her reign",
+"Map": "",
+"Map Caption": "",
+"Related": "the Zhou dynasty (1046–256 BCE)",
+"Sources": "Wikipedia; Britannica"
+},
+"cards": [
+{
+"id": 1790045050977,
+"ord": 0,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790045050978,
+"ord": 1,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1790045051015,
+"tags": [
+"History::cat::political",
+"History::country::china",
+"History::kind::ruler",
+"History::period::tang",
+"History::reference",
+"History::tier::tier2-solid"
+],
+"fields": {
+"Name": "Emperor Xuanzong",
+"Alternate": "Li Longji; Hsüan-tsung; Emperor Minghuang",
+"Pronunciation": "",
+"Kind": "ruler",
+"Country": "China",
+"Period": "Tang",
+"Dates": "r. 712–756",
+"Clue": "This emperor's early era name became shorthand for the Tang at its height, but he is remembered just as much for an infatuation with a former daughter-in-law and for fleeing his capital when a favoured general revolted.",
+"Info": "<ul><li>His <b>Kaiyuan</b> era (713–741) is the conventional high point of the Tang: a stable treasury, a flourishing court, and Li Bai, Du Fu, and Wang Wei all active in his lifetime. He founded the <b>Pear Garden</b> troupe, which is why Chinese opera performers are still called “disciples of the Pear Garden.”</li><li>Took <b>Yang Guifei</b> — previously the wife of his own son — as his consort, and let her cousin <b>Yang Guozhong</b> become chancellor. Yang Guozhong's feud with the frontier commander <b>An Lushan</b> triggered the rebellion of 755.</li><li>Fled Chang'an toward Sichuan; at the <b>Mawei Post Station</b> his own escort mutinied and demanded the deaths of Yang Guozhong and Yang Guifei, and he was forced to have her strangled. He abdicated to his son Suzong.</li><li>Bai Juyi's <i>Song of Everlasting Sorrow</i> made the affair and its ending the most retold love story in Chinese literature.</li><li><b>Not the monk.</b> Emperor Xuanzong (玄宗) and the pilgrim Xuanzang (玄奘) are different people with near-identical English spellings, and both are Tang.</li></ul>",
+"Image": "<img src=\"histim-hist_Xuanzong.jpg\">",
+"Caption": "A later portrait of Xuanzong",
+"Map": "",
+"Map Caption": "",
+"Related": "Xuanzang, the pilgrim monk",
+"Sources": "Wikipedia; Britannica"
+},
+"cards": [
+{
+"id": 1790045051015,
+"ord": 0,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790045051016,
+"ord": 1,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1790045051048,
+"tags": [
+"History::cat::cultural",
+"History::country::china",
+"History::kind::figure",
+"History::period::tang",
+"History::reference",
+"History::tier::tier1-core"
+],
+"fields": {
+"Name": "Li Bai",
+"Alternate": "Li Po; Li Bo; Li Taibai; Rihaku; Qinglian Jushi",
+"Pronunciation": "lee BYE",
+"Kind": "figure",
+"Country": "China",
+"Period": "Tang",
+"Dates": "c. 701–762",
+"Clue": "Ezra Pound knew this poet by a Japanese reading of his name and made him the voice of a merchant's wife whose hair was “still cut straight across” her forehead. Legend has him drowning while drunk, reaching for something he could not hold.",
+"Info": "<ul><li>The most famous poet of the Tang, called the <b>“Banished Immortal”</b> by the poet He Zhizhang — a genius who did not belong on earth. His twenty-character “Quiet Night Thought” has the speaker mistake moonlight on the floor for frost, then bow his head and think of home; it is probably the most memorized poem in Chinese.</li><li>Wine and the moon run through everything: in “Drinking Alone by Moonlight” he toasts the moon and his own shadow to make a party of three, and “Bring in the Wine” urges drowning “the woes of ten thousand generations.”</li>“The Hard Road to Shu” calls the mountain road into Sichuan “as difficult as climbing to the blue sky,” a line quizbowl leads with constantly.</li><li>Ezra Pound's <i>Cathay</i> (1915) turned “Changgan xing” into “The River-Merchant's Wife: A Letter.” Pound worked from Ernest Fenollosa's notebooks, which used Japanese readings, so <i>Cathay</i> credits the poems to <b>Rihaku</b>.</li><li>Legend says he drowned in the Yangtze trying to embrace the moon's reflection from a boat while drunk. It is a later story and the real cause of his death is unknown — but it is the clue packets use.</li></ul>",
+"Image": "<img src=\"histim-hist_LiBai.jpg\">",
+"Caption": "Liang Kai's <i>Li Bai Strolling</i>, a Song-dynasty ink sketch made some four centuries after the poet's death",
+"Map": "",
+"Map Caption": "",
+"Related": "",
+"Sources": "Wikipedia; Britannica"
+},
+"cards": [
+{
+"id": 1790045051048,
+"ord": 0,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790045051049,
+"ord": 1,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1790045051079,
+"tags": [
+"History::cat::cultural",
+"History::country::china",
+"History::kind::figure",
+"History::period::tang",
+"History::reference",
+"History::tier::tier1-core"
+],
+"fields": {
+"Name": "Du Fu",
+"Alternate": "Tu Fu; Du Shaoling; Du Gongbu",
+"Pronunciation": "doo FOO",
+"Kind": "figure",
+"Country": "China",
+"Period": "Tang",
+"Dates": "712–770",
+"Clue": "Called the “poet-historian” because his verse tracks a rebellion's damage to ordinary people, this poet described conscripts' carts rumbling out of the capital and a state broken while its hills and rivers remained.",
+"Info": "<ul><li>Traditionally paired with Li Bai as the other pole of Tang poetry: where Li Bai is wine, moonlight, and escape, Du Fu is conscription, famine, and the state — hence the title <b>“poet-historian”</b> (<i>shishi</i>) and “poet-sage.”</li>“Ballad of the Army Carts” (also translated “Song of the Wagons”) opens with wagons rumbling and horses neighing as conscripts are marched off.</li>“Spring View”, written under An Lushan's occupation of Chang'an, begins with the state shattered while mountains and rivers remain — the survival of the landscape over the dynasty. His late <i>Autumn Meditations</i> were written in poverty in Kuizhou.</li><li>Failed the imperial examination, never held significant office, and died poor and ill on a boat. His reputation as China's greatest poet is largely posthumous — he was not much read in his own lifetime.</li><li>Vikram Seth's <i>Three Chinese Poets</i> translates him alongside Li Bai and Wang Wei; Matsuo Bashō carried his poems and quotes him in <i>The Narrow Road to the Deep North</i>.</li></ul>",
+"Image": "<img src=\"histim-hist_DuFu.jpg\">",
+"Caption": "A traditional portrait of Du Fu; no contemporary likeness exists",
+"Map": "",
+"Map Caption": "",
+"Related": "",
+"Sources": "Wikipedia; Britannica"
+},
+"cards": [
+{
+"id": 1790045051079,
+"ord": 0,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790045051080,
+"ord": 1,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1790045051116,
+"tags": [
+"History::cat::cultural",
+"History::country::china",
+"History::kind::figure",
+"History::period::tang",
+"History::reference",
+"History::tier::tier2-solid"
+],
+"fields": {
+"Name": "Wang Wei",
+"Alternate": "Wang Youcheng; Mojie",
+"Pronunciation": "",
+"Kind": "figure",
+"Country": "China",
+"Period": "Tang",
+"Dates": "699–761",
+"Clue": "A devout Buddhist who painted as well as he wrote, this poet built an estate whose twenty views he and a friend answered each other's quatrains about. One of them describes sunlight returning to the moss in an empty hill.",
+"Info": "<ul><li>The third of the great High Tang poets with Li Bai and Du Fu, and the one associated with Buddhism and quiet: his style name Mojie comes from Vimalakīrti, and he is the “Poet Buddha” to Li Bai's Immortal and Du Fu's Sage.</li><li>His <b>Wang River</b> estate produced the <i>Wangchuan ji</i>, twenty quatrains each answered by his friend Pei Di. The best known is “Deer Park” — an empty hill, voices heard but nobody seen, and late sunlight falling back on the green moss.</li><li>Also a painter, credited by later critics as a founder of the monochrome landscape tradition; Su Shi's line that there is painting in his poetry and poetry in his painting is the standard quotation.</li><li>Captured and forced to serve An Lushan's rebel regime, he was nearly punished for it after the restoration and was spared partly because of a poem he had written lamenting the rebels.</li></ul>",
+"Image": "<img src=\"histim-hist_WangWei.jpg\">",
+"Caption": "A painting traditionally identified as Wang Wei",
+"Map": "",
+"Map Caption": "",
+"Related": "Wang Wei, the Xin dynasty general",
+"Sources": "Wikipedia; Britannica"
+},
+"cards": [
+{
+"id": 1790045051116,
+"ord": 0,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790045051117,
+"ord": 1,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1790045051132,
+"tags": [
+"History::cat::cultural",
+"History::country::china",
+"History::kind::figure",
+"History::period::tang",
+"History::reference",
+"History::tier::tier2-solid"
+],
+"fields": {
+"Name": "Yang Guifei",
+"Alternate": "Yang Yuhuan; Yang Kuei-fei",
+"Pronunciation": "",
+"Kind": "figure",
+"Country": "China",
+"Period": "Tang",
+"Dates": "719–756",
+"Clue": "One of the Four Beauties of ancient China, this consort was taken from the emperor's own son, and died at a post station when the imperial guard refused to go any further until she did.",
+"Info": "<ul><li>Consort of Emperor Xuanzong, and one of the <b>Four Beauties</b> of Chinese tradition — the one said to “shame the flowers.” She had first been married to Xuanzong's son before he took her himself.</li><li>Her family rose with her: her cousin <b>Yang Guozhong</b> became chancellor, and his rivalry with <b>An Lushan</b> — whom she had adopted as a son, despite his being older than her — helped precipitate the 755 rebellion.</li><li>Fleeing Chang'an, the imperial escort mutinied at the <b>Mawei Post Station</b>, killed Yang Guozhong, and refused to move until Xuanzong had her strangled. He complied.</li><li>Bai Juyi's <i>Song of Everlasting Sorrow</i> ends with a Daoist medium finding her spirit on an island of immortals; the story became opera, painting and, in Japan, a recurring allusion in the <i>Tale of Genji</i>.</li><li>Traditionally blamed for the rebellion as a “disaster-bringing beauty,” a framing later historians impose on many falls; the structural causes were the <i>jiedushi</i> system and court factionalism.</li></ul>",
+"Image": "",
+"Caption": "",
+"Map": "",
+"Map Caption": "",
+"Related": "",
+"Sources": "Wikipedia; Britannica"
+},
+"cards": [
+{
+"id": 1790045051132,
+"ord": 0,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790045051133,
+"ord": 1,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1790045051164,
+"tags": [
+"History::cat::military",
+"History::country::china",
+"History::kind::figure",
+"History::period::tang",
+"History::reference",
+"History::tier::tier1-core"
+],
+"fields": {
+"Name": "An Lushan",
+"Alternate": "Aluoshan; Xiongwu",
+"Pronunciation": "",
+"Kind": "figure",
+"Country": "China",
+"Period": "Tang",
+"Dates": "c. 703–757",
+"Clue": "A general of Sogdian and Turkic parentage who held three frontier commands at once, this man declared himself emperor of a dynasty named Yan and was killed by his own son two years into his revolt.",
+"Info": "<ul><li>Of Sogdian and Göktürk parentage, he rose through the frontier armies to hold three <i>jiedushi</i> commands simultaneously — an extraordinary concentration of troops that the court allowed because he cultivated Xuanzong and Yang Guifei, who formally adopted him as a son.</li><li>Revolted in 755, nominally against the chancellor Yang Guozhong, took Luoyang and then Chang'an, and proclaimed himself emperor of the <b>Yan</b> dynasty.</li><li>Enormously fat in the sources, and going blind and ill by 757, when he was murdered by his own son <b>An Qingxu</b>. The revolt outlived him under <b>Shi Siming</b> and Shi's son, lasting until 763.</li><li>The rebellion is also called the <b>Tianbao Rebellion</b> or An–Shi Disturbance, after the era name and after An and Shi together.</li></ul>",
+"Image": "<img src=\"histim-hist_AnLushan.jpg\">",
+"Caption": "A later depiction of An Lushan",
+"Map": "",
+"Map Caption": "",
+"Related": "",
+"Sources": "Wikipedia; Britannica"
+},
+"cards": [
+{
+"id": 1790045051164,
+"ord": 0,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790045051165,
+"ord": 1,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1790045051197,
+"tags": [
+"History::cat::religious",
+"History::country::china",
+"History::kind::figure",
+"History::period::tang",
+"History::reference",
+"History::tier::tier2-solid"
+],
+"fields": {
+"Name": "Xuanzang",
+"Alternate": "Hsüan-tsang; Tripitaka; Tang Sanzang",
+"Pronunciation": "",
+"Kind": "figure",
+"Country": "China",
+"Period": "Tang",
+"Dates": "602–664",
+"Clue": "This monk left China illegally, spent years at Nalanda, and came back with hundreds of manuscripts; a Ming novel turned the journey into a comic epic with a monkey for a bodyguard.",
+"Info": "<ul><li>A Buddhist monk who went to India overland to resolve contradictions in the Chinese scriptures, leaving in 629 <b>against an imperial travel ban</b> and returning in 645 with hundreds of manuscripts and relics.</li><li>Studied at the great monastic university of <b>Nalanda</b>; his <i>Great Tang Records on the Western Regions</i> is a primary source for 7th-century India and Central Asia, used by archaeologists to locate lost sites.</li><li>Taizong backed his translation bureau on his return, and the <b>Giant Wild Goose Pagoda</b> was built at Chang'an to house what he brought back. He founded the Faxiang (Yogācāra) school in China.</li><li>Fictionalized centuries later as the monk Tripitaka in the Ming novel <i>Journey to the West</i>, escorted by Sun Wukong the Monkey King.</li><li><b>Not the emperor.</b> Xuanzang (玄奘) the monk and Emperor Xuanzong (玄宗) are different Tang figures whose names differ by one letter in English.</li></ul>",
+"Image": "<img src=\"histim-hist_Xuanzang.jpg\">",
+"Caption": "Xuanzang depicted as a travelling monk, a much-copied image",
+"Map": "",
+"Map Caption": "",
+"Related": "Emperor Xuanzong",
+"Sources": "Wikipedia; Britannica"
+},
+"cards": [
+{
+"id": 1790045051197,
+"ord": 0,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790045051198,
+"ord": 1,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1790045051230,
+"tags": [
+"History::cat::military",
+"History::country::china",
+"History::kind::event",
+"History::period::tang",
+"History::reference",
+"History::tier::tier1-core"
+],
+"fields": {
+"Name": "An Lushan Rebellion",
+"Alternate": "An–Shi Rebellion; Tianbao Rebellion",
+"Pronunciation": "",
+"Kind": "event",
+"Country": "China",
+"Period": "Tang",
+"Dates": "755–763",
+"Clue": "Census figures after this eight-year revolt record tens of millions fewer people, though much of that is administrative collapse rather than deaths. It drove one emperor into Sichuan and produced the bleakest poems of the era.",
+"Info": "<ul><li>Began in 755 when the frontier commander An Lushan marched on the capital, nominally against the chancellor Yang Guozhong. Luoyang and then Chang'an fell; Xuanzong fled toward Sichuan and abdicated after the mutiny at Mawei that killed Yang Guifei.</li><li>Outlasted its founder — An Lushan was murdered by his son in 757, and the revolt continued under <b>Shi Siming</b> until 763, which is why it is also the <b>An–Shi</b> Rebellion.</li><li>The Tang only won by borrowing <b>Uyghur</b> cavalry, who were paid in plunder of the recaptured cities, and by conceding real autonomy to the commanders who had stayed loyal.</li><li>The registered population drops from roughly 53 million to under 17 million between the censuses. That figure is quoted as a death toll, but most historians read the bulk of it as the collapse of the registration system, not mortality — the loss was still catastrophic.</li><li>Structurally the hinge of the dynasty: the equal-field and <i>fubing</i> systems never recovered, the <i>jiedushi</i> hardened into hereditary <i>fanzhen</i> warlords, and the court fell increasingly under eunuch control. Du Fu's war poetry is written out of it.</li></ul>",
+"Image": "",
+"Caption": "",
+"Map": "<img src=\"histim-hist_AnLushanRebellion.jpg\">",
+"Map Caption": "Campaign map of the rebellion: rebel advances, the Tang court's flight, and the Uyghur and Tibetan powers on the flanks",
+"Related": "",
+"Sources": "Wikipedia; Britannica"
+},
+"cards": [
+{
+"id": 1790045051230,
+"ord": 0,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790045051231,
+"ord": 1,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1790045051265,
+"tags": [
+"History::cat::military",
+"History::country::china",
+"History::kind::event",
+"History::period::tang",
+"History::reference",
+"History::tier::tier2-solid"
+],
+"fields": {
+"Name": "Battle of Talas",
+"Alternate": "Battle of the Talas River; Artlakh",
+"Pronunciation": "",
+"Kind": "event",
+"Country": "China",
+"Period": "Tang",
+"Dates": "751",
+"Clue": "Fought near the Syr Darya between a Tang army and the Abbasids, this defeat was sealed when mercenaries changed sides mid-battle. A famous story about what Chinese prisoners taught their captors is probably not true.",
+"Info": "<ul><li>In 751 a Tang army under the Goguryeo-descended general <b>Gao Xianzhi</b> met an <b>Abbasid</b> force under Ziyad ibn Salih near the Talas River, in present-day Kyrgyzstan, contesting the lands around the Syr Darya.</li><li>The Tang lost when their <b>Karluk</b> auxiliaries switched to the Abbasid side mid-battle — sources disagree on whether this was a defection or whether the Karluks had been Abbasid allies from the start.</li><li>It ended Tang expansion west of the Pamirs. Its long-term effect is usually overstated in isolation: the <b>An Lushan Rebellion</b> four years later is what actually forced the Tang out of Central Asia.</li><li>The famous claim that Chinese prisoners taught <b>papermaking</b> to Samarkand and so to the Islamic world comes from the 11th-century writer al-Thaʿālibī and is <b>doubted by modern scholars</b>: paper fragments in Central Asia predate the battle, and no Chinese or contemporary Arabic source records the transfer. Packets still clue it, so know the story and the doubt.</li></ul>",
+"Image": "",
+"Caption": "",
+"Map": "<img src=\"histim-hist_Talas.jpg\">",
+"Map Caption": "Central Asia in 751: the Tang protectorates meeting the Abbasid Caliphate, with the Karluks between them",
+"Related": "",
+"Sources": "Wikipedia (Battle of Talas, with Bloom cited on papermaking); Britannica"
+},
+"cards": [
+{
+"id": 1790045051265,
+"ord": 0,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790045051266,
+"ord": 1,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1790045051288,
+"tags": [
+"History::cat::cultural",
+"History::country::china",
+"History::kind::text",
+"History::period::tang",
+"History::reference",
+"History::tier::tier2-solid"
+],
+"fields": {
+"Name": "“Quiet Night Thought”",
+"Alternate": "“Jing Ye Si”; “Thoughts on a Quiet Night”",
+"Pronunciation": "",
+"Kind": "text",
+"Country": "China",
+"Period": "Tang",
+"Dates": "8th century",
+"Clue": "Twenty characters long and learned by nearly every Chinese schoolchild, this poem moves from a misperception on the floor to a bowed head in four lines.",
+"Info": "<ul><li>A twenty-character quatrain by <b>Li Bai</b>, and probably the single most memorized poem in the Chinese language.</li><li>The speaker sees brightness before his bed and takes it for frost on the ground; he raises his head to the bright moon, lowers it, and thinks of home. The whole poem is that one gesture.</li><li>Its power is in what it withholds — no statement of feeling, only the motion of the head — which is why it survives translation badly and is nonetheless translated constantly.</li></ul>",
+"Image": "",
+"Caption": "",
+"Map": "",
+"Map Caption": "",
+"Related": "",
+"Sources": "Wikipedia; Britannica"
+},
+"cards": [
+{
+"id": 1790045051288,
+"ord": 0,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790045051289,
+"ord": 1,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1790045051330,
+"tags": [
+"History::cat::cultural",
+"History::country::china",
+"History::kind::text",
+"History::period::tang",
+"History::reference",
+"History::tier::tier3-deepcut"
+],
+"fields": {
+"Name": "<i>Cathay</i>",
+"Alternate": "",
+"Pronunciation": "",
+"Kind": "text",
+"Country": "China",
+"Period": "Tang",
+"Dates": "1915",
+"Clue": "Built from a dead scholar's notebooks rather than from the original language, this slim 1915 collection gave English readers Tang poetry filtered through Japanese readings, and T. S. Eliot called its author the inventor of Chinese poetry for our time.",
+"Info": "<ul><li><b>Ezra Pound</b>'s 1915 collection of Chinese poems in English, most of them by <b>Li Bai</b>. Pound read no Chinese: he worked from the notebooks of the late American orientalist <b>Ernest Fenollosa</b>.</li><li>Because Fenollosa's notes came through Japanese teachers, the poets appear under Japanese readings — Li Bai is <b>Rihaku</b>. This is a stock quizbowl clue.</li><li>Its best-known piece is “The River-Merchant's Wife: A Letter,” from Li Bai's “Changgan xing,” which opens “While my hair was still cut straight across my forehead.” “The Seafarer,” an Old English translation, sits in the same volume.</li><li>T. S. Eliot called Pound “the inventor of Chinese poetry for our time” — a compliment with an edge, since the versions are loose. They shaped Anglophone modernism's idea of the image regardless.</li></ul>",
+"Image": "<img src=\"histim-hist_Cathay.jpg\">",
+"Caption": "The 1915 title page, which credits the poems to “Rihaku” and to Ernest Fenollosa's notes",
+"Map": "",
+"Map Caption": "",
+"Related": "",
+"Sources": "Wikipedia; Britannica"
+},
+"cards": [
+{
+"id": 1790045051330,
+"ord": 0,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790045051331,
+"ord": 1,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1790045051363,
+"tags": [
+"History::cat::economic",
+"History::country::china",
+"History::kind::concept",
+"History::period::tang",
+"History::reference",
+"History::tier::tier3-deepcut"
+],
+"fields": {
+"Name": "Equal-field system",
+"Alternate": "juntian; land-equalization system",
+"Pronunciation": "",
+"Kind": "concept",
+"Country": "China",
+"Period": "Tang",
+"Dates": "c. 485–c. 780",
+"Clue": "Begun under the Northern Wei and inherited by the Tang, this arrangement gave peasants an allotment for life in return for grain, cloth, and labour, and its breakdown forced a switch to taxing land twice a year instead.",
+"Info": "<ul><li>A land-allotment system introduced around 485 under <b>Emperor Xiaowen of Northern Wei</b>, carried through the Sui, and central to the early Tang: the state claimed ownership of land and assigned households a holding, most of it returned to the state at death.</li><li>It underwrote the <b>zu-yong-diao</b> tax — grain, cloth, and corvée labour levied per adult male rather than on land — and the <i>fubing</i> militia, whose soldier-farmers served in rotation from their allotments.</li><li>Population growth, estate-building by monasteries and aristocrats, and the dislocation of the An Lushan Rebellion made the registers fiction. It was abandoned for the <b>Two-Tax System</b> (<i>liangshui fa</i>) in 780, which taxed actual property twice a year and conceded that land was privately held.</li><li>Distinguish from the ancient and probably idealized <b>well-field system</b> of the Zhou, the nine-square scheme reformers kept invoking.</li></ul>",
+"Image": "",
+"Caption": "",
+"Map": "",
+"Map Caption": "",
+"Related": "the well-field system of the Zhou",
+"Sources": "Wikipedia; Britannica"
+},
+"cards": [
+{
+"id": 1790045051364,
+"ord": 0,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790045051365,
+"ord": 1,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+},
+{
+"id": 1790045051388,
+"tags": [
+"History::cat::cultural",
+"History::country::china",
+"History::kind::site",
+"History::period::tang",
+"History::reference",
+"History::tier::tier2-solid"
+],
+"fields": {
+"Name": "Chang'an",
+"Alternate": "Xi'an; Sian; Daxing (Sui name)",
+"Pronunciation": "",
+"Kind": "site",
+"Country": "China",
+"Period": "Tang",
+"Dates": "Tang capital 618–904",
+"Clue": "Laid out on a grid inside walls enclosing some eighty square kilometres, this city was the eastern end of the Silk Road and the model for the capitals the Japanese built at Nara and Kyoto.",
+"Info": "<ul><li>The Tang capital, on the site of modern <b>Xi'an</b> in Shaanxi, built on the Sui foundation of Daxing. Probably the largest city in the world at its height, on a strict north–south grid of walled wards locked at night.</li><li>The eastern terminus of the <b>Silk Road</b>, with a substantial foreign merchant population and, at various points, Nestorian Christian, Zoroastrian, and Manichaean communities — the Nestorian Stele of 781 records the Christian mission.</li><li>Its plan was copied by Japan at <b>Heijō-kyō</b> (Nara) and <b>Heian-kyō</b> (Kyoto) and by Silla at Gyeongju — the clearest single piece of evidence for Tang cultural export.</li><li>Holds the <b>Giant Wild Goose Pagoda</b>, built to house the scriptures Xuanzang brought from India. Sacked during the Huang Chao Rebellion and abandoned as a capital in 904; the later Ming walls are what tourists see today.</li></ul>",
+"Image": "",
+"Caption": "",
+"Map": "",
+"Map Caption": "",
+"Related": "",
+"Sources": "Wikipedia; Britannica"
+},
+"cards": [
+{
+"id": 1790045051388,
+"ord": 0,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+},
+{
+"id": 1790045051389,
+"ord": 1,
+"deck": "History",
+"queue": -1,
+"ivl": 0,
+"reps": 0,
+"lapses": 0
+}
+]
+}
+]
+}
