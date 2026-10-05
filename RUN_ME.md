@@ -37,7 +37,9 @@ That run:
 Re-running it is safe: it updates the same notes instead of adding duplicates.
 
 Optional:
-- `--include prehistory` also adds the 49 Prehistory/Xia cards (check the write-up first).
+- `--include prehistory,shang,zhou` (any subset) also adds the 49 Prehistory/Xia, 27 Shang, and 55 Zhou
+  cards. The Shang and Zhou cards add only clues your old History Clue notes don't already have; 33 go into
+  the queue, the other 49 (tier 3–4) are added suspended. Don't use `--supersede` for them.
 - `--supersede` lists your old History Clue cards on the same topics; `--supersede --apply` suspends
   them and tags them `History::v1_superseded`, which you can undo.
 

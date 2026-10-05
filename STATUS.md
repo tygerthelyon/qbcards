@@ -56,7 +56,8 @@ A two-page summary of where the collection stands, so new sessions don't have to
   part of my notes (Mythology → Classics).
 - `history/notes/02_prehistory_xia_writeup.md` — a rewrite of Prehistory and the Xia (not yet verified).
 - `history/deck/` — design (`DESIGN.md`), the note types QB Clue / QB List / QB Tossup, 230
-  mythology/literature cards plus 49 prehistory/Xia, pictures, and `hist_qb_apply.py` (dry run by default).
+  mythology/literature cards plus 49 prehistory/Xia, 27 Shang and 55 Zhou (from the 03/04 supplements, only
+  clues the old notes lack), pictures, and `hist_qb_apply.py` (dry run by default).
 - To apply:
   - copy `history\` into `C:\QB\stockfisher\history\`;
   - run `py -3.9 history\deck\hist_qb_apply.py`, then `--apply`;
