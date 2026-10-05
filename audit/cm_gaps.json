@@ -1,0 +1,2080 @@
+{
+ "note": "Classical Music gap notes drafted 2026-10-05 from a check of ~450 commonly asked works; no audio yet.",
+ "notes": [
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Christmas Oratorio</i>",
+    "Composer": "Johann Sebastian Bach",
+    "Composer Dates": "1685–1750",
+    "Nationality": "German",
+    "Catalogue": "BWV 248",
+    "Date": "1734",
+    "Period": "Baroque",
+    "Genre": "Oratorio",
+    "Hint": "Period=Baroque|Genre=Oratorio|Composed=1734",
+    "Clue": "Six cantatas for the feast days from 25 December to Epiphany, first heard in Leipzig over the 1734–35 season; much of the music is reworked from secular birthday cantatas, and Part I opens with timpani on “Jauchzet, frohlocket!”",
+    "Description": "Six cantatas for the feast days of the season, first performed in Leipzig in 1734–35; Bach reworked much of the music from secular cantatas, and Part I opens with timpani."
+   },
+   "tags": [
+    "Music::genre::sacred",
+    "Music::period::baroque",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Judas Maccabaeus</i>",
+    "Composer": "George Frideric Handel",
+    "Composer Dates": "1685–1759",
+    "Nationality": "German-English",
+    "Catalogue": "HWV 63",
+    "Date": "1746",
+    "Period": "Baroque",
+    "Genre": "Oratorio",
+    "Hint": "Period=Baroque|Genre=Oratorio|Composed=1746",
+    "Clue": "An oratorio celebrating the Duke of Cumberland's victory at Culloden through the Jewish revolt against the Seleucids; its chorus “See, the conqu'ring hero comes!” became a ceremonial staple, and Beethoven wrote cello variations on it.",
+    "Description": "Written after the Duke of Cumberland's victory at Culloden; its chorus “See, the conqu'ring hero comes!” became a ceremonial staple."
+   },
+   "tags": [
+    "Music::genre::sacred",
+    "Music::period::baroque",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>King Arthur</i>",
+    "Composer": "Henry Purcell",
+    "Composer Dates": "1659–1695",
+    "Nationality": "English",
+    "Catalogue": "Z. 628",
+    "Date": "1691",
+    "Period": "Baroque",
+    "Genre": "Opera",
+    "Hint": "Period=Baroque|Genre=Opera|Composed=1691",
+    "Clue": "A semi-opera with a libretto by John Dryden on the Britons' wars with the Saxons; in its Frost Scene the Cold Genius sings “What power art thou” to shivering string tremolos, and it ends with the song “Fairest isle”.",
+    "Description": "A semi-opera of spoken drama and masques to a text by John Dryden; the shivering Frost Scene and “Fairest isle” are its famous numbers."
+   },
+   "tags": [
+    "Music::genre::opera",
+    "Music::period::baroque",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 1,
+   "fields": {
+    "Work": "<i>Piano Concerto No. 20</i>",
+    "Composer": "Wolfgang Amadeus Mozart",
+    "Composer Dates": "1756–1791",
+    "Nationality": "Austrian",
+    "Catalogue": "K. 466",
+    "Key": "D minor",
+    "Date": "1785",
+    "Period": "Classical",
+    "Genre": "Piano concerto",
+    "Hint": "Period=Classical|Genre=Piano concerto|Composed=1785",
+    "Clue": "Mozart's first keyboard concerto in a minor key, premiered in Vienna in February 1785 with his father in the audience; its slow movement is a <i>Romance</i>, and Beethoven played it and wrote the cadenzas still often used.",
+    "Description": "Mozart's first minor-key piano concerto, premiered in Vienna in February 1785; Beethoven admired it and wrote cadenzas for it."
+   },
+   "tags": [
+    "Music::genre::concerto",
+    "Music::period::classical",
+    "Music::tier::tier1-core"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Sinfonia concertante for Violin and Viola</i>",
+    "Composer": "Wolfgang Amadeus Mozart",
+    "Composer Dates": "1756–1791",
+    "Nationality": "Austrian",
+    "Catalogue": "K. 364",
+    "Key": "E-flat major",
+    "Date": "1779",
+    "Period": "Classical",
+    "Genre": "Sinfonia concertante",
+    "Hint": "Period=Classical|Genre=Sinfonia concertante|Composed=1779",
+    "Clue": "A double concerto written in Salzburg in 1779 in which the lower of its two bowed soloists is tuned a semitone high to sound brighter; its C-minor <i>Andante</i> is a dialogue between them.",
+    "Description": "A double concerto from Mozart's last Salzburg years; the viola part is written in D and tuned a semitone high (<i>scordatura</i>) to match the violin's brilliance."
+   },
+   "tags": [
+    "Music::genre::concerto",
+    "Music::period::classical",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Exsultate, jubilate</i>",
+    "Composer": "Wolfgang Amadeus Mozart",
+    "Composer Dates": "1756–1791",
+    "Nationality": "Austrian",
+    "Catalogue": "K. 165",
+    "Key": "F major",
+    "Date": "1773",
+    "Period": "Classical",
+    "Genre": "Sacred",
+    "Hint": "Period=Classical|Genre=Sacred|Composed=1773",
+    "Clue": "A solo motet written in Milan in 1773, when its composer was seventeen, for the castrato Venanzio Rauzzini; it ends with a brilliant <i>Alleluia</i> often sung on its own.",
+    "Description": "A motet for solo soprano and orchestra, written in Milan for the castrato Venanzio Rauzzini; its closing <i>Alleluia</i> is a coloratura showpiece."
+   },
+   "tags": [
+    "Music::genre::sacred",
+    "Music::period::classical",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Ave verum corpus</i>",
+    "Composer": "Wolfgang Amadeus Mozart",
+    "Composer Dates": "1756–1791",
+    "Nationality": "Austrian",
+    "Catalogue": "K. 618",
+    "Key": "D major",
+    "Date": "1791",
+    "Period": "Classical",
+    "Genre": "Sacred",
+    "Hint": "Period=Classical|Genre=Sacred|Composed=1791",
+    "Clue": "A forty-six-bar motet for choir, strings, and organ, written in June 1791 for Anton Stoll, the choirmaster at Baden near Vienna, where Constanze was taking the waters.",
+    "Description": "A short, hushed motet of 1791 for the feast of Corpus Christi, written for the choirmaster Anton Stoll at Baden."
+   },
+   "tags": [
+    "Music::genre::sacred",
+    "Music::period::classical",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Piano Sonata No. 17</i>",
+    "Composer": "Ludwig van Beethoven",
+    "Composer Dates": "1770–1827",
+    "Nationality": "German",
+    "Catalogue": "Op. 31 No. 2",
+    "Key": "D minor",
+    "Nickname": "“Tempest”",
+    "Date": "1802",
+    "Period": "Classical",
+    "Genre": "Sonata",
+    "Hint": "Period=Classical|Genre=Sonata|Composed=1802",
+    "Clue": "Its first movement alternates slow rolled chords with agitated <i>Allegro</i> passages and recitative-like lines; Anton Schindler claimed its composer told him to read a Shakespeare play to understand it, which gave it its nickname.",
+    "Description": "Written in 1802, the year of the Heiligenstadt Testament; the nickname comes from Anton Schindler's dubious story that Beethoven pointed him to Shakespeare."
+   },
+   "tags": [
+    "Music::genre::sonata",
+    "Music::period::classical",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 3,
+   "fields": {
+    "Work": "<i>Piano Trio No. 5</i>",
+    "Composer": "Ludwig van Beethoven",
+    "Composer Dates": "1770–1827",
+    "Nationality": "German",
+    "Catalogue": "Op. 70 No. 1",
+    "Key": "D major",
+    "Nickname": "“Ghost”",
+    "Date": "1808",
+    "Period": "Classical",
+    "Genre": "Chamber",
+    "Hint": "Period=Classical|Genre=Chamber|Composed=1808",
+    "Clue": "A trio of 1808 for keyboard, violin, and cello dedicated to Countess Anna Marie Erdődy; its eerie D-minor <i>Largo</i>, full of tremolos, may come from sketches for a <i>Macbeth</i> opera and gives it its nickname.",
+    "Description": "Dedicated to Countess Erdődy, in whose house Beethoven was then living; the nickname comes from the shuddering slow movement."
+   },
+   "tags": [
+    "Music::genre::chamber",
+    "Music::period::classical",
+    "Music::tier::tier3-deepcut"
+   ]
+  },
+  {
+   "tier": 1,
+   "fields": {
+    "Work": "<i>String Quintet</i>",
+    "Composer": "Franz Schubert",
+    "Composer Dates": "1797–1828",
+    "Nationality": "Austrian",
+    "Catalogue": "D. 956",
+    "Key": "C major",
+    "Date": "1828",
+    "Period": "Romantic",
+    "Genre": "Chamber",
+    "Hint": "Period=Romantic|Genre=Chamber|Composed=1828",
+    "Clue": "Written in its composer's last months for two violins, viola, and two cellos; its <i>Adagio</i> sets a still melody in the inner parts against plucked notes in the second cello, and it was not performed until 1850.",
+    "Description": "Schubert's last chamber work, finished weeks before his death, with a second cello instead of the usual second viola; it waited over twenty years for a performance."
+   },
+   "tags": [
+    "Music::genre::chamber",
+    "Music::period::romantic",
+    "Music::tier::tier1-core"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Arpeggione Sonata</i>",
+    "Composer": "Franz Schubert",
+    "Composer Dates": "1797–1828",
+    "Nationality": "Austrian",
+    "Catalogue": "D. 821",
+    "Key": "A minor",
+    "Date": "1824",
+    "Period": "Romantic",
+    "Genre": "Sonata",
+    "Hint": "Period=Romantic|Genre=Sonata|Composed=1824",
+    "Clue": "Written in 1824 for a short-lived bowed instrument shaped like a guitar and played like a cello, invented by Johann Georg Stauffer; it is now played on the cello or viola.",
+    "Description": "Written for the arpeggione, a six-string bowed guitar that vanished soon after; the sonata survives on the cello and viola."
+   },
+   "tags": [
+    "Music::genre::sonata",
+    "Music::period::romantic",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Symphony No. 5</i>",
+    "Composer": "Felix Mendelssohn",
+    "Composer Dates": "1809–1847",
+    "Nationality": "German",
+    "Catalogue": "Op. 107",
+    "Key": "D minor",
+    "Nickname": "“Reformation”",
+    "Date": "1830",
+    "Period": "Romantic",
+    "Genre": "Symphony",
+    "Hint": "Period=Romantic|Genre=Symphony|Composed=1830",
+    "Clue": "Written for the 300th anniversary of the Augsburg Confession, it quotes the Dresden Amen in its first movement and ends with variations on Luther's chorale “Ein feste Burg”; it was published only after its composer's death, though it was his second symphony.",
+    "Description": "Written for the tercentenary of the Augsburg Confession in 1830 and numbered fifth only because it was published last."
+   },
+   "tags": [
+    "Music::genre::symphony",
+    "Music::period::romantic",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Berceuse</i>",
+    "Composer": "Frédéric Chopin",
+    "Composer Dates": "1810–1849",
+    "Nationality": "Polish",
+    "Catalogue": "Op. 57",
+    "Key": "D-flat major",
+    "Date": "1844",
+    "Period": "Romantic",
+    "Genre": "Solo piano",
+    "Hint": "Period=Romantic|Genre=Solo piano|Composed=1844",
+    "Clue": "A cradle song of 1844 whose left hand rocks the same tonic–dominant figure in every bar while the right hand spins ever finer variations above it.",
+    "Description": "A lullaby built on one unchanging left-hand figure, with the right hand varying its tune in finer and finer ornament."
+   },
+   "tags": [
+    "Music::genre::piano-miniature",
+    "Music::period::romantic",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Polonaise-Fantaisie</i>",
+    "Composer": "Frédéric Chopin",
+    "Composer Dates": "1810–1849",
+    "Nationality": "Polish",
+    "Catalogue": "Op. 61",
+    "Key": "A-flat major",
+    "Date": "1846",
+    "Period": "Romantic",
+    "Genre": "Solo piano",
+    "Hint": "Period=Romantic|Genre=Solo piano|Composed=1846",
+    "Clue": "One of Chopin's last large works, published in 1846: a free, improvisatory piece that moves in and out of the rhythm of the Polish national dance and was long thought incoherent.",
+    "Description": "A late work that merges the national dance with a free fantasy; Liszt thought it the product of a sick mind, and later pianists made it a summit of the repertoire."
+   },
+   "tags": [
+    "Music::genre::piano-miniature",
+    "Music::period::romantic",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 1,
+   "fields": {
+    "Work": "<i>Les Préludes</i>",
+    "Composer": "Franz Liszt",
+    "Composer Dates": "1811–1886",
+    "Nationality": "Hungarian",
+    "Catalogue": "S. 97",
+    "Key": "C major",
+    "Date": "1854",
+    "Period": "Romantic",
+    "Genre": "Tone poem",
+    "Hint": "Period=Romantic|Genre=Tone poem|Composed=1854",
+    "Clue": "Liszt's best-known symphonic poem, premiered in Weimar in 1854 and published with a preface after Alphonse de Lamartine that calls life a series of introductions to death's song; its fanfare later introduced Nazi newsreels.",
+    "Description": "The most performed of Liszt's symphonic poems, built by thematic transformation from a three-note figure; its preface cites Lamartine's <i>Méditations poétiques</i>."
+   },
+   "tags": [
+    "Music::genre::tone-poem",
+    "Music::period::romantic",
+    "Music::tier::tier1-core"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Variations and Fugue on a Theme by Handel</i>",
+    "Composer": "Johannes Brahms",
+    "Composer Dates": "1833–1897",
+    "Nationality": "German",
+    "Catalogue": "Op. 24",
+    "Key": "B-flat major",
+    "Date": "1861",
+    "Period": "Romantic",
+    "Genre": "Solo piano",
+    "Hint": "Period=Romantic|Genre=Solo piano|Composed=1861",
+    "Clue": "Twenty-five treatments of an air from a Baroque harpsichord suite, crowned by a contrapuntal finale, written in 1861 as a birthday present for Clara Schumann; even Wagner grudgingly praised it.",
+    "Description": "Brahms's largest set of piano variations, a birthday present for Clara Schumann, closing with a long fugue."
+   },
+   "tags": [
+    "Music::genre::piano-miniature",
+    "Music::period::romantic",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 1,
+   "fields": {
+    "Work": "<i>Siegfried Idyll</i>",
+    "Composer": "Richard Wagner",
+    "Composer Dates": "1813–1883",
+    "Nationality": "German",
+    "Catalogue": "WWV 103",
+    "Key": "E major",
+    "Date": "1870",
+    "Period": "Romantic",
+    "Genre": "Orchestral",
+    "Hint": "Period=Romantic|Genre=Orchestral|Composed=1870",
+    "Clue": "Written as a birthday present for Cosima and first played by a small orchestra on the staircase of Tribschen, their house on Lake Lucerne, on Christmas morning 1870; it shares themes with the third opera of the <i>Ring</i> and is named for their son.",
+    "Description": "A birthday serenade for Cosima Wagner, played on the stairs of their villa at Tribschen; Wagner later sold it out of need."
+   },
+   "tags": [
+    "Music::genre::orchestral",
+    "Music::period::romantic",
+    "Music::tier::tier1-core"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Wesendonck Lieder</i>",
+    "Composer": "Richard Wagner",
+    "Composer Dates": "1813–1883",
+    "Nationality": "German",
+    "Catalogue": "WWV 91",
+    "Date": "1858",
+    "Period": "Romantic",
+    "Genre": "Song",
+    "Hint": "Period=Romantic|Genre=Song|Composed=1858",
+    "Clue": "Five songs to poems by the wife of Wagner's patron Otto, with whom he was in love in Zurich; two of them, “Im Treibhaus” and “Träume”, he marked as studies for <i>Tristan und Isolde</i>.",
+    "Description": "Five songs on poems by Mathilde Wesendonck, written while Wagner was in love with her; two are studies for <i>Tristan</i>."
+   },
+   "tags": [
+    "Music::genre::song",
+    "Music::period::romantic",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 3,
+   "fields": {
+    "Work": "<i>Stabat Mater</i>",
+    "Composer": "Gioachino Rossini",
+    "Composer Dates": "1792–1868",
+    "Nationality": "Italian",
+    "Date": "1841",
+    "Period": "Romantic",
+    "Genre": "Sacred",
+    "Hint": "Period=Romantic|Genre=Sacred|Composed=1841",
+    "Clue": "Begun in 1831 for a Spanish prelate and finished ten years later, long after its composer had stopped writing operas; its tenor aria “Cujus animam” moves in march rhythm, and it premiered in Paris in 1842.",
+    "Description": "Rossini's largest sacred work, criticized as too operatic; the tenor's “Cujus animam” is its famous number."
+   },
+   "tags": [
+    "Music::genre::sacred",
+    "Music::period::romantic",
+    "Music::tier::tier3-deepcut"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Introduction and Rondo Capriccioso</i>",
+    "Composer": "Camille Saint-Saëns",
+    "Composer Dates": "1835–1921",
+    "Nationality": "French",
+    "Catalogue": "Op. 28",
+    "Key": "A minor",
+    "Date": "1863",
+    "Period": "Romantic",
+    "Genre": "Violin concerto",
+    "Hint": "Period=Romantic|Genre=Violin concerto|Composed=1863",
+    "Clue": "A violin showpiece written in 1863 for Pablo de Sarasate: a melancholy slow opening in A minor, then a fast Spanish-flavoured dance whose theme keeps returning.",
+    "Description": "A virtuoso piece for violin and orchestra written for Pablo de Sarasate, with a Spanish lilt."
+   },
+   "tags": [
+    "Music::genre::concerto",
+    "Music::period::romantic",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Cello Concerto No. 1</i>",
+    "Composer": "Camille Saint-Saëns",
+    "Composer Dates": "1835–1921",
+    "Nationality": "French",
+    "Catalogue": "Op. 33",
+    "Key": "A minor",
+    "Date": "1872",
+    "Period": "Romantic",
+    "Genre": "Cello concerto",
+    "Hint": "Period=Romantic|Genre=Cello concerto|Composed=1872",
+    "Clue": "A concerto of 1872 for a bass-clef string soloist that runs as one continuous movement, the soloist launching straight in after a single orchestral chord; Rachmaninoff and Pablo Casals admired it.",
+    "Description": "A concerto in one continuous span, opening with the soloist after a single chord."
+   },
+   "tags": [
+    "Music::genre::concerto",
+    "Music::period::romantic",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>In the Steppes of Central Asia</i>",
+    "Composer": "Alexander Borodin",
+    "Composer Dates": "1833–1887",
+    "Nationality": "Russian",
+    "Date": "1880",
+    "Period": "Romantic",
+    "Genre": "Tone poem",
+    "Hint": "Period=Romantic|Genre=Tone poem|Composed=1880",
+    "Clue": "An “orchestral picture” written in 1880 for the silver jubilee of Tsar Alexander II's reign: a Russian tune and an oriental melody, first heard separately, are combined in counterpoint as a caravan crosses the desert under escort.",
+    "Description": "A short tone poem of a caravan crossing the desert, combining a Russian song and an eastern melody."
+   },
+   "tags": [
+    "Music::genre::tone-poem",
+    "Music::period::romantic",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Islamey</i>",
+    "Composer": "Mily Balakirev",
+    "Composer Dates": "1837–1910",
+    "Nationality": "Russian",
+    "Date": "1869",
+    "Period": "Romantic",
+    "Genre": "Solo piano",
+    "Hint": "Period=Romantic|Genre=Solo piano|Composed=1869",
+    "Clue": "An “oriental fantasy” for piano of 1869, built on a Kabardian dance tune heard in the Caucasus; long thought the hardest piece in the repertoire, it was the work Ravel set out to outdo with <i>Scarbo</i>.",
+    "Description": "A famously difficult piano fantasy by the leader of the Mighty Handful, on dance tunes from the Caucasus."
+   },
+   "tags": [
+    "Music::genre::piano-miniature",
+    "Music::period::romantic",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Symphonic Dances</i>",
+    "Composer": "Sergei Rachmaninoff",
+    "Composer Dates": "1873–1943",
+    "Nationality": "Russian",
+    "Catalogue": "Op. 45",
+    "Date": "1940",
+    "Period": "Modern",
+    "Genre": "Orchestral",
+    "Hint": "Period=Modern|Genre=Orchestral|Composed=1940",
+    "Clue": "Its composer's last work, written on Long Island in 1940 for Eugene Ormandy's Philadelphia Orchestra; its first movement features an alto saxophone and ends quoting the theme of his own work whose 1897 premiere failed, and the finale sets the Dies irae against a chant from his Vespers.",
+    "Description": "Rachmaninoff's last composition, three dances for orchestra full of self-quotation, including the Dies irae."
+   },
+   "tags": [
+    "Music::genre::orchestral",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Vocalise</i>",
+    "Composer": "Sergei Rachmaninoff",
+    "Composer Dates": "1873–1943",
+    "Nationality": "Russian",
+    "Catalogue": "Op. 34 No. 14",
+    "Date": "1915",
+    "Period": "Romantic",
+    "Genre": "Song",
+    "Hint": "Period=Romantic|Genre=Song|Composed=1915",
+    "Clue": "The last of a set of fourteen songs, published in 1915 and dedicated to the soprano Antonina Nezhdanova: a song without words, sung on a single vowel of the singer's choice.",
+    "Description": "A wordless song for high voice and piano, now played on almost every instrument."
+   },
+   "tags": [
+    "Music::genre::song",
+    "Music::period::romantic",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 3,
+   "fields": {
+    "Work": "<i>The Bells</i>",
+    "Composer": "Sergei Rachmaninoff",
+    "Composer Dates": "1873–1943",
+    "Nationality": "Russian",
+    "Catalogue": "Op. 35",
+    "Date": "1913",
+    "Period": "Romantic",
+    "Genre": "Symphony",
+    "Hint": "Period=Romantic|Genre=Symphony|Composed=1913",
+    "Clue": "A choral symphony of 1913 on Konstantin Balmont's Russian version of Edgar Allan Poe's poem, its four movements moving through silver, golden, brazen, and iron peals: a sleigh ride, a wedding, an alarm, and mourning.",
+    "Description": "A choral symphony after Poe in four movements, from youth to death; Rachmaninoff counted it among his favourites."
+   },
+   "tags": [
+    "Music::genre::symphony",
+    "Music::period::romantic",
+    "Music::tier::tier3-deepcut"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Variations on a Rococo Theme</i>",
+    "Composer": "Pyotr Ilyich Tchaikovsky",
+    "Composer Dates": "1840–1893",
+    "Nationality": "Russian",
+    "Catalogue": "Op. 33",
+    "Key": "A major",
+    "Date": "1877",
+    "Period": "Romantic",
+    "Genre": "Cello concerto",
+    "Hint": "Period=Romantic|Genre=Cello concerto|Composed=1877",
+    "Clue": "A set of variants for solo cellist and orchestra written in 1877 for Wilhelm Fitzenhagen, who cut and reordered them for publication; the tune is its composer's own pastiche of 18th-century grace.",
+    "Description": "Tchaikovsky's tribute to Mozart's era, written for the cellist Wilhelm Fitzenhagen, whose rearranged version is the one usually played."
+   },
+   "tags": [
+    "Music::genre::concerto",
+    "Music::period::romantic",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Manfred Symphony</i>",
+    "Composer": "Pyotr Ilyich Tchaikovsky",
+    "Composer Dates": "1840–1893",
+    "Nationality": "Russian",
+    "Catalogue": "Op. 58",
+    "Key": "B minor",
+    "Date": "1885",
+    "Period": "Romantic",
+    "Genre": "Symphony",
+    "Hint": "Period=Romantic|Genre=Symphony|Composed=1885",
+    "Clue": "An unnumbered programme symphony of 1885 after Byron's dramatic poem about a guilt-haunted wanderer in the Alps, on a plan proposed by Mily Balakirev; its finale brings in an organ.",
+    "Description": "A four-movement programme symphony after Byron, written between Tchaikovsky's Fourth and Fifth."
+   },
+   "tags": [
+    "Music::genre::symphony",
+    "Music::period::romantic",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Francesca da Rimini</i>",
+    "Composer": "Pyotr Ilyich Tchaikovsky",
+    "Composer Dates": "1840–1893",
+    "Nationality": "Russian",
+    "Catalogue": "Op. 32",
+    "Key": "E minor",
+    "Date": "1876",
+    "Period": "Romantic",
+    "Genre": "Tone poem",
+    "Hint": "Period=Romantic|Genre=Tone poem|Composed=1876",
+    "Clue": "A symphonic fantasia of 1876 after Canto V of Dante's <i>Inferno</i>: the whirlwind of the lustful frames the tale of the lovers, sung first by a solo clarinet.",
+    "Description": "A symphonic fantasia after Dante's <i>Inferno</i>: a central love story framed by the storms of hell."
+   },
+   "tags": [
+    "Music::genre::tone-poem",
+    "Music::period::romantic",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 1,
+   "fields": {
+    "Work": "<i>Symphony No. 8</i>",
+    "Composer": "Antonín Dvořák",
+    "Composer Dates": "1841–1904",
+    "Nationality": "Czech",
+    "Catalogue": "Op. 88",
+    "Key": "G major",
+    "Date": "1889",
+    "Period": "Romantic",
+    "Genre": "Symphony",
+    "Hint": "Period=Romantic|Genre=Symphony|Composed=1889",
+    "Clue": "Dvořák's G-major symphony of 1889, published in London by Novello after a quarrel with Simrock, hence its old nickname “English”; its finale opens with a trumpet fanfare and its slow movement with birdlike flutes.",
+    "Description": "Written at Dvořák's country house at Vysoká; its sunny, folk-like character sets it apart from the darker Seventh."
+   },
+   "tags": [
+    "Music::genre::symphony",
+    "Music::period::romantic",
+    "Music::tier::tier1-core"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Stabat Mater</i>",
+    "Composer": "Antonín Dvořák",
+    "Composer Dates": "1841–1904",
+    "Nationality": "Czech",
+    "Catalogue": "Op. 58",
+    "Date": "1877",
+    "Period": "Romantic",
+    "Genre": "Sacred",
+    "Hint": "Period=Romantic|Genre=Sacred|Composed=1877",
+    "Clue": "Begun in 1876 after the death of its composer's baby daughter and finished the next year after two more of his children died, this ten-movement setting of the medieval sequence on the grieving Virgin made his name in England.",
+    "Description": "Dvořák's response to the deaths of three of his children; its London performance in 1883 began his English fame."
+   },
+   "tags": [
+    "Music::genre::sacred",
+    "Music::period::romantic",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Serenade for Strings</i>",
+    "Composer": "Antonín Dvořák",
+    "Composer Dates": "1841–1904",
+    "Nationality": "Czech",
+    "Catalogue": "Op. 22",
+    "Key": "E major",
+    "Date": "1875",
+    "Period": "Romantic",
+    "Genre": "Orchestral",
+    "Hint": "Period=Romantic|Genre=Orchestral|Composed=1875",
+    "Clue": "Written in about eleven days in May 1875, a five-movement work for violins, violas, cellos, and basses whose themes return in its finale; it dates from the happy year after its composer won an Austrian state stipend.",
+    "Description": "A five-movement work for string orchestra from 1875, the year of Dvořák's first Austrian state stipend."
+   },
+   "tags": [
+    "Music::genre::orchestral",
+    "Music::period::romantic",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 1,
+   "fields": {
+    "Work": "<i>Symphony No. 5</i>",
+    "Composer": "Sergei Prokofiev",
+    "Composer Dates": "1891–1953",
+    "Nationality": "Russian",
+    "Catalogue": "Op. 100",
+    "Key": "B-flat major",
+    "Date": "1944",
+    "Period": "Modern",
+    "Genre": "Symphony",
+    "Hint": "Period=Modern|Genre=Symphony|Composed=1944",
+    "Clue": "Written in 1944 and described by its composer as a hymn to free and happy man; as he raised his baton at the January 1945 Moscow premiere, artillery salvos marked the Red Army's crossing of the Vistula.",
+    "Description": "Prokofiev's wartime symphony, his first in fourteen years, which he called a symphony on the greatness of the human spirit."
+   },
+   "tags": [
+    "Music::genre::symphony",
+    "Music::period::modern",
+    "Music::tier::tier1-core"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Symphony No. 13</i>",
+    "Composer": "Dmitri Shostakovich",
+    "Composer Dates": "1906–1975",
+    "Nationality": "Russian",
+    "Catalogue": "Op. 113",
+    "Key": "B-flat minor",
+    "Nickname": "“Babi Yar”",
+    "Date": "1962",
+    "Period": "Modern",
+    "Genre": "Symphony",
+    "Hint": "Period=Modern|Genre=Symphony|Composed=1962",
+    "Clue": "Its first movement sets Yevgeny Yevtushenko's poem on the 1941 massacre of Kyiv's Jews in a ravine, for bass soloist and men's chorus; Soviet authorities forced changes to the text after the 1962 premiere.",
+    "Description": "A choral symphony on five poems by Yevgeny Yevtushenko, the first on the massacre at Babi Yar; the censors forced the poet to change it."
+   },
+   "tags": [
+    "Music::genre::symphony",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Cello Concerto No. 1</i>",
+    "Composer": "Dmitri Shostakovich",
+    "Composer Dates": "1906–1975",
+    "Nationality": "Russian",
+    "Catalogue": "Op. 107",
+    "Key": "E-flat major",
+    "Date": "1959",
+    "Period": "Modern",
+    "Genre": "Cello concerto",
+    "Hint": "Period=Modern|Genre=Cello concerto|Composed=1959",
+    "Clue": "Written in 1959 for Mstislav Rostropovich, who learned it in four days; its solo horn is almost a second soloist, its opening motto is built from the composer's DSCH signature, and the finale slips in Stalin's favourite song, “Suliko”.",
+    "Description": "Written for Mstislav Rostropovich, with a prominent solo horn and a long unaccompanied cadenza as its third movement."
+   },
+   "tags": [
+    "Music::genre::concerto",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>24 Preludes and Fugues</i>",
+    "Composer": "Dmitri Shostakovich",
+    "Composer Dates": "1906–1975",
+    "Nationality": "Russian",
+    "Catalogue": "Op. 87",
+    "Date": "1951",
+    "Period": "Modern",
+    "Genre": "Solo piano",
+    "Hint": "Period=Modern|Genre=Solo piano|Composed=1951",
+    "Clue": "Written after its composer judged the 1950 Bach bicentenary competition in Leipzig, where he heard Tatiana Nikolayeva play: a cycle for piano through all twenty-four keys, ordered by the circle of fifths.",
+    "Description": "A Bach homage through all twenty-four keys, premiered by Tatiana Nikolayeva in 1952."
+   },
+   "tags": [
+    "Music::genre::piano-miniature",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Les Noces</i>",
+    "Composer": "Igor Stravinsky",
+    "Composer Dates": "1882–1971",
+    "Nationality": "Russian",
+    "Date": "1923",
+    "Period": "Modern",
+    "Genre": "Ballet",
+    "Hint": "Period=Modern|Genre=Ballet|Composed=1923",
+    "Clue": "A ballet-cantata of 1923 for chorus, four soloists, four pianos, and percussion, staging Russian village marriage rites; Bronislava Nijinska choreographed it for the Ballets Russes.",
+    "Description": "Stravinsky's stark ballet-cantata, which he rescored several times before settling on four pianos and percussion."
+   },
+   "tags": [
+    "Music::genre::ballet",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 3,
+   "fields": {
+    "Work": "<i>Agon</i>",
+    "Composer": "Igor Stravinsky",
+    "Composer Dates": "1882–1971",
+    "Nationality": "Russian",
+    "Date": "1957",
+    "Period": "Modern",
+    "Genre": "Ballet",
+    "Hint": "Period=Modern|Genre=Ballet|Composed=1957",
+    "Clue": "A plotless ballet for twelve dancers choreographed by George Balanchine in 1957, based on a 17th-century French dance manual and moving from tonal writing into twelve-tone technique.",
+    "Description": "A Balanchine ballet for twelve dancers in which Stravinsky first used serial technique on a large scale."
+   },
+   "tags": [
+    "Music::genre::ballet",
+    "Music::period::modern",
+    "Music::tier::tier3-deepcut"
+   ]
+  },
+  {
+   "tier": 3,
+   "fields": {
+    "Work": "<i>Ebony Concerto</i>",
+    "Composer": "Igor Stravinsky",
+    "Composer Dates": "1882–1971",
+    "Nationality": "Russian",
+    "Date": "1945",
+    "Period": "Modern",
+    "Genre": "Clarinet concerto",
+    "Hint": "Period=Modern|Genre=Clarinet concerto|Composed=1945",
+    "Clue": "Written in 1945 for Woody Herman and his big band, with the bandleader as clarinet soloist; its title refers to the clarinet itself.",
+    "Description": "A short concerto for clarinet and jazz band, written for Woody Herman's Herd."
+   },
+   "tags": [
+    "Music::genre::concerto",
+    "Music::period::modern",
+    "Music::tier::tier3-deepcut"
+   ]
+  },
+  {
+   "tier": 3,
+   "fields": {
+    "Work": "<i>Symphony in Three Movements</i>",
+    "Composer": "Igor Stravinsky",
+    "Composer Dates": "1882–1971",
+    "Nationality": "Russian",
+    "Date": "1945",
+    "Period": "Modern",
+    "Genre": "Symphony",
+    "Hint": "Period=Modern|Genre=Symphony|Composed=1945",
+    "Clue": "A symphony of 1945 whose composer linked its fast outer sections to wartime newsreels, among them goose-stepping soldiers; its slow centre grew from music for a film of Franz Werfel's <i>The Song of Bernadette</i>.",
+    "Description": "Stravinsky's war symphony, with a prominent piano in the first movement and a harp in the second."
+   },
+   "tags": [
+    "Music::genre::symphony",
+    "Music::period::modern",
+    "Music::tier::tier3-deepcut"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>The Miraculous Mandarin</i>",
+    "Composer": "Béla Bartók",
+    "Composer Dates": "1881–1945",
+    "Nationality": "Hungarian",
+    "Catalogue": "Sz. 73",
+    "Date": "1924",
+    "Period": "Modern",
+    "Genre": "Ballet",
+    "Hint": "Period=Modern|Genre=Ballet|Composed=1924",
+    "Clue": "A pantomime-ballet in which three thugs make a girl lure men into their room to rob them; their third victim, a wealthy Chinese man, cannot die until she embraces him. Its 1926 Cologne premiere was banned after one night.",
+    "Description": "A violent one-act pantomime; the mayor of Cologne, Konrad Adenauer, banned it after its 1926 premiere."
+   },
+   "tags": [
+    "Music::genre::ballet",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 3,
+   "fields": {
+    "Work": "<i>Allegro barbaro</i>",
+    "Composer": "Béla Bartók",
+    "Composer Dates": "1881–1945",
+    "Nationality": "Hungarian",
+    "Catalogue": "Sz. 49",
+    "Date": "1911",
+    "Period": "Modern",
+    "Genre": "Solo piano",
+    "Hint": "Period=Modern|Genre=Solo piano|Composed=1911",
+    "Clue": "A percussive solo piano piece of 1911 that hammers out folk-like tunes over relentless F-sharp-minor chords, answering critics who called Bartók and Kodály barbarians.",
+    "Description": "A short, pounding piano piece that became a calling card of Bartók's percussive style."
+   },
+   "tags": [
+    "Music::genre::piano-miniature",
+    "Music::period::modern",
+    "Music::tier::tier3-deepcut"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Sonata for Two Pianos and Percussion</i>",
+    "Composer": "Béla Bartók",
+    "Composer Dates": "1881–1945",
+    "Nationality": "Hungarian",
+    "Catalogue": "Sz. 110",
+    "Date": "1937",
+    "Period": "Modern",
+    "Genre": "Chamber",
+    "Hint": "Period=Modern|Genre=Chamber|Composed=1937",
+    "Clue": "Written in 1937 for the International Society for Contemporary Music in Basel and premiered there by Bartók and his wife Ditta with two drummers; it later became a concerto.",
+    "Description": "Bartók and his wife Ditta premiered it in Basel in 1938; he later arranged it as a concerto for two pianos."
+   },
+   "tags": [
+    "Music::genre::chamber",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Psalmus Hungaricus</i>",
+    "Composer": "Zoltán Kodály",
+    "Composer Dates": "1882–1967",
+    "Nationality": "Hungarian",
+    "Catalogue": "Op. 13",
+    "Date": "1923",
+    "Period": "Modern",
+    "Genre": "Sacred",
+    "Hint": "Period=Modern|Genre=Sacred|Composed=1923",
+    "Clue": "Written for the fiftieth anniversary of the union of Buda, Pest, and Óbuda in 1923, it sets Mihály Kecskeméti Vég's 16th-century verse paraphrase of a lament of King David for tenor, chorus, and orchestra, and premiered beside Bartók's Dance Suite.",
+    "Description": "Kodály's choral breakthrough, a psalm setting for the 1923 jubilee of Budapest."
+   },
+   "tags": [
+    "Music::genre::sacred",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>String Quartet No. 1</i>",
+    "Composer": "Leoš Janáček",
+    "Composer Dates": "1854–1928",
+    "Nationality": "Czech",
+    "Nickname": "(<i>Kreutzer Sonata</i>)",
+    "Date": "1923",
+    "Period": "Modern",
+    "Genre": "String quartet",
+    "Hint": "Period=Modern|Genre=String quartet|Composed=1923",
+    "Clue": "A work for two violins, viola, and cello of 1923 after Tolstoy's novella about a jealous husband who kills his wife, the pianist partner of a violinist in a Beethoven sonata.",
+    "Description": "Janáček's quartet after Tolstoy's novella about jealousy and murder."
+   },
+   "tags": [
+    "Music::genre::quartet",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Symphony No. 7</i>",
+    "Composer": "Jean Sibelius",
+    "Composer Dates": "1865–1957",
+    "Nationality": "Finnish",
+    "Catalogue": "Op. 105",
+    "Key": "C major",
+    "Date": "1924",
+    "Period": "Modern",
+    "Genre": "Symphony",
+    "Hint": "Period=Modern|Genre=Symphony|Composed=1924",
+    "Clue": "Its composer's last published symphony, of 1924: a single continuous movement in C major, three times crowned by a solemn trombone theme; it was first performed as a <i>Fantasia sinfonica</i>.",
+    "Description": "Sibelius's last published symphony, in one movement, after which he wrote only <i>Tapiola</i> and some incidental music."
+   },
+   "tags": [
+    "Music::genre::symphony",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Tapiola</i>",
+    "Composer": "Jean Sibelius",
+    "Composer Dates": "1865–1957",
+    "Nationality": "Finnish",
+    "Catalogue": "Op. 112",
+    "Date": "1926",
+    "Period": "Modern",
+    "Genre": "Tone poem",
+    "Hint": "Period=Modern|Genre=Tone poem|Composed=1926",
+    "Clue": "A tone poem of 1926 on the brooding god of the Finnish forest, commissioned by Walter Damrosch for New York; it was its composer's last major work before thirty years of silence.",
+    "Description": "Sibelius's last major work, a tone poem of the northern forest built almost entirely from one theme."
+   },
+   "tags": [
+    "Music::genre::tone-poem",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Kullervo</i>",
+    "Composer": "Jean Sibelius",
+    "Composer Dates": "1865–1957",
+    "Nationality": "Finnish",
+    "Catalogue": "Op. 7",
+    "Date": "1892",
+    "Period": "Romantic",
+    "Genre": "Symphony",
+    "Hint": "Period=Romantic|Genre=Symphony|Composed=1892",
+    "Clue": "A five-movement symphony of 1892 for soloists, male chorus, and orchestra on the <i>Kalevala</i> tale of a slave who unknowingly seduces his own sister and then kills himself; its premiere made its composer's name, then he withdrew it.",
+    "Description": "Sibelius's early choral symphony on the <i>Kalevala</i>, withdrawn after a few performances and not heard complete again until after his death."
+   },
+   "tags": [
+    "Music::genre::symphony",
+    "Music::period::romantic",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>St Paul's Suite</i>",
+    "Composer": "Gustav Holst",
+    "Composer Dates": "1874–1934",
+    "Nationality": "English",
+    "Catalogue": "Op. 29 No. 2",
+    "Key": "C major",
+    "Date": "1913",
+    "Period": "Modern",
+    "Genre": "Suite",
+    "Hint": "Period=Modern|Genre=Suite|Composed=1913",
+    "Clue": "Written for the girls' school in Hammersmith where its composer was director of music; its finale combines the folk tune “Dargason” with “Greensleeves”.",
+    "Description": "A suite for string orchestra written for St Paul's Girls' School, where Holst taught for nearly thirty years."
+   },
+   "tags": [
+    "Music::genre::suite",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>On Hearing the First Cuckoo in Spring</i>",
+    "Composer": "Frederick Delius",
+    "Composer Dates": "1862–1934",
+    "Nationality": "English",
+    "Date": "1912",
+    "Period": "Modern",
+    "Genre": "Orchestral",
+    "Hint": "Period=Modern|Genre=Orchestral|Composed=1912",
+    "Clue": "A short orchestral idyll of 1912 by an English composer living in France, built on the Norwegian folk song “In Ola Valley”, with a clarinet imitating a bird.",
+    "Description": "A short tone picture for small orchestra; the clarinet sounds the bird's call."
+   },
+   "tags": [
+    "Music::genre::orchestral",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Serenade for Tenor, Horn and Strings</i>",
+    "Composer": "Benjamin Britten",
+    "Composer Dates": "1913–1976",
+    "Nationality": "English",
+    "Catalogue": "Op. 31",
+    "Date": "1943",
+    "Period": "Modern",
+    "Genre": "Song",
+    "Hint": "Period=Modern|Genre=Song|Composed=1943",
+    "Clue": "Written in 1943 for Peter Pears and Dennis Brain, it sets English poems of evening and night, from Tennyson's “The splendour falls” and Blake's “O Rose, thou art sick” to the “Lyke-Wake Dirge”, framed by solos on natural harmonics, the last played offstage.",
+    "Description": "Six settings of English poems about night, framed by a prologue and epilogue for natural horn."
+   },
+   "tags": [
+    "Music::genre::song",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Simple Symphony</i>",
+    "Composer": "Benjamin Britten",
+    "Composer Dates": "1913–1976",
+    "Nationality": "English",
+    "Catalogue": "Op. 4",
+    "Date": "1934",
+    "Period": "Modern",
+    "Genre": "Orchestral",
+    "Hint": "Period=Modern|Genre=Orchestral|Composed=1934",
+    "Clue": "A work for string orchestra of 1934 built on tunes its composer wrote as a boy, in four movements with alliterative titles: Boisterous Bourrée, Playful Pizzicato, Sentimental Saraband, and Frolicsome Finale.",
+    "Description": "Britten reworked childhood pieces into this light four-movement work for strings at twenty."
+   },
+   "tags": [
+    "Music::genre::orchestral",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 1,
+   "fields": {
+    "Work": "<i>Symphony No. 6</i>",
+    "Composer": "Gustav Mahler",
+    "Composer Dates": "1860–1911",
+    "Nationality": "Austrian",
+    "Key": "A minor",
+    "Nickname": "“Tragic”",
+    "Date": "1904",
+    "Period": "Romantic",
+    "Genre": "Symphony",
+    "Hint": "Period=Romantic|Genre=Symphony|Composed=1904",
+    "Clue": "Mahler's A-minor symphony of 1904, whose finale is struck by blows of a hammer, the third of which he later removed; it uses offstage cowbells, and Alma said its soaring second theme was her portrait.",
+    "Description": "Mahler's only symphony to end in despair, with hammer blows in the finale; the order of its middle movements is still disputed."
+   },
+   "tags": [
+    "Music::genre::symphony",
+    "Music::period::romantic",
+    "Music::tier::tier1-core"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Symphony No. 3</i>",
+    "Composer": "Gustav Mahler",
+    "Composer Dates": "1860–1911",
+    "Nationality": "Austrian",
+    "Key": "D minor",
+    "Date": "1896",
+    "Period": "Romantic",
+    "Genre": "Symphony",
+    "Hint": "Period=Romantic|Genre=Symphony|Composed=1896",
+    "Clue": "The longest symphony in the standard repertoire, in six movements; an alto sings Nietzsche's “O Mensch! Gib Acht!”, a boys' choir imitates bells in a <i>Wunderhorn</i> song, and it ends with a long slow movement its composer once titled “What love tells me”.",
+    "Description": "Mahler's longest symphony, once given titles moving from rocks and flowers through animals and humankind to love."
+   },
+   "tags": [
+    "Music::genre::symphony",
+    "Music::period::romantic",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Symphony No. 9</i>",
+    "Composer": "Anton Bruckner",
+    "Composer Dates": "1824–1896",
+    "Nationality": "Austrian",
+    "Catalogue": "WAB 109",
+    "Key": "D minor",
+    "Date": "1896",
+    "Period": "Romantic",
+    "Genre": "Symphony",
+    "Hint": "Period=Romantic|Genre=Symphony|Composed=1896",
+    "Clue": "Left unfinished at its composer's death in 1896 with three movements complete, it is dedicated “to the beloved God”; its Adagio ends with a quotation from his earlier symphonies.",
+    "Description": "Bruckner's last symphony, unfinished at his death; its three completed movements end with a valedictory Adagio."
+   },
+   "tags": [
+    "Music::genre::symphony",
+    "Music::period::romantic",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>An Alpine Symphony</i>",
+    "Composer": "Richard Strauss",
+    "Composer Dates": "1864–1949",
+    "Nationality": "German",
+    "Catalogue": "Op. 64",
+    "Date": "1915",
+    "Period": "Romantic",
+    "Genre": "Tone poem",
+    "Hint": "Period=Romantic|Genre=Tone poem|Composed=1915",
+    "Clue": "A tone poem of 1915 following a day's climb in the Bavarian mountains in twenty-two sections, from night through sunrise, a waterfall, and a storm on the descent back to night, using a wind machine, a thunder sheet, and cowbells.",
+    "Description": "Strauss's last tone poem, a mountain climb from dawn to dusk for an orchestra of over a hundred players."
+   },
+   "tags": [
+    "Music::genre::tone-poem",
+    "Music::period::romantic",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Metamorphosen</i>",
+    "Composer": "Richard Strauss",
+    "Composer Dates": "1864–1949",
+    "Nationality": "German",
+    "Date": "1945",
+    "Period": "Romantic",
+    "Genre": "Orchestral",
+    "Hint": "Period=Romantic|Genre=Orchestral|Composed=1945",
+    "Clue": "A study for twenty-three solo strings written in the last months of the Second World War, mourning the bombed opera houses of Germany; its final bars quote the funeral march of Beethoven's “Eroica” over the words “In Memoriam!”.",
+    "Description": "Strauss's elegy for German culture in 1945, for twenty-three solo strings."
+   },
+   "tags": [
+    "Music::genre::orchestral",
+    "Music::period::romantic",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Five Pieces for Orchestra</i>",
+    "Composer": "Arnold Schoenberg",
+    "Composer Dates": "1874–1951",
+    "Nationality": "Austrian",
+    "Catalogue": "Op. 16",
+    "Date": "1909",
+    "Period": "Modern",
+    "Genre": "Orchestral",
+    "Hint": "Period=Modern|Genre=Orchestral|Composed=1909",
+    "Clue": "A set of five atonal works of 1909 for large ensemble; the third, “Farben” (“Colours”), shifts one slowly changing chord between instruments, the technique its composer called <i>Klangfarbenmelodie</i>.",
+    "Description": "Schoenberg's first atonal orchestral work; its publisher made him add titles to the movements."
+   },
+   "tags": [
+    "Music::genre::orchestral",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Lyric Suite</i>",
+    "Composer": "Alban Berg",
+    "Composer Dates": "1885–1935",
+    "Nationality": "Austrian",
+    "Date": "1926",
+    "Period": "Modern",
+    "Genre": "String quartet",
+    "Hint": "Period=Modern|Genre=String quartet|Composed=1926",
+    "Clue": "A six-movement string quartet of 1926 whose secret programme, found in an annotated score in 1977, records its composer's love for Hanna Fuchs-Robettin; the finale quotes the opening of <i>Tristan und Isolde</i>.",
+    "Description": "Partly twelve-tone, partly free; George Perle and Douglas Green uncovered its hidden love story in 1977."
+   },
+   "tags": [
+    "Music::genre::quartet",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 3,
+   "fields": {
+    "Work": "<i>Symphony</i>",
+    "Composer": "Anton Webern",
+    "Composer Dates": "1883–1945",
+    "Nationality": "Austrian",
+    "Catalogue": "Op. 21",
+    "Date": "1928",
+    "Period": "Modern",
+    "Genre": "Symphony",
+    "Hint": "Period=Modern|Genre=Symphony|Composed=1928",
+    "Clue": "A two-movement twelve-tone work of 1928 for chamber orchestra, built from canons and a palindromic row, and lasting about ten minutes.",
+    "Description": "Webern's compressed, palindromic symphony, a model for the post-war serialists."
+   },
+   "tags": [
+    "Music::genre::symphony",
+    "Music::period::modern",
+    "Music::tier::tier3-deepcut"
+   ]
+  },
+  {
+   "tier": 3,
+   "fields": {
+    "Work": "<i>Central Park in the Dark</i>",
+    "Composer": "Charles Ives",
+    "Composer Dates": "1874–1954",
+    "Nationality": "American",
+    "Date": "1906",
+    "Period": "Modern",
+    "Genre": "Orchestral",
+    "Hint": "Period=Modern|Genre=Orchestral|Composed=1906",
+    "Clue": "A companion piece to <i>The Unanswered Question</i> from 1906: hushed strings for the night sounds of a park, overtaken by ragtime, a street band, and a runaway horse before quiet returns.",
+    "Description": "One of Ives's “contemplations”, layering night stillness and city noise."
+   },
+   "tags": [
+    "Music::genre::orchestral",
+    "Music::period::modern",
+    "Music::tier::tier3-deepcut"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Symphony No. 3</i>",
+    "Composer": "Aaron Copland",
+    "Composer Dates": "1900–1990",
+    "Nationality": "American",
+    "Date": "1946",
+    "Period": "Modern",
+    "Genre": "Symphony",
+    "Hint": "Period=Modern|Genre=Symphony|Composed=1946",
+    "Clue": "Commissioned by Serge Koussevitzky and premiered in Boston in 1946, it brings its composer's brass-and-percussion fanfare of 1942 into its finale.",
+    "Description": "Copland's largest symphony, which absorbs his <i>Fanfare for the Common Man</i> into its finale."
+   },
+   "tags": [
+    "Music::genre::symphony",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Mass</i>",
+    "Composer": "Leonard Bernstein",
+    "Composer Dates": "1918–1990",
+    "Nationality": "American",
+    "Date": "1971",
+    "Period": "Modern",
+    "Genre": "Sacred",
+    "Hint": "Period=Modern|Genre=Sacred|Composed=1971",
+    "Clue": "A “theatre piece for singers, players, and dancers” written for the opening of the Kennedy Center in 1971, in which a Celebrant's faith breaks down amid rock, blues, and street-chorus interruptions of the liturgy.",
+    "Description": "Bernstein's theatre piece on the Catholic liturgy, commissioned by Jacqueline Kennedy for the Kennedy Center."
+   },
+   "tags": [
+    "Music::genre::sacred",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Different Trains</i>",
+    "Composer": "Steve Reich",
+    "Composer Dates": "b. 1936",
+    "Nationality": "American",
+    "Date": "1988",
+    "Period": "Contemporary",
+    "Genre": "String quartet",
+    "Hint": "Period=Contemporary|Genre=String quartet|Composed=1988",
+    "Clue": "For the Kronos Quartet and tape, written in 1988: recorded speech of a Pullman porter and Holocaust survivors is doubled by the instruments, setting its composer's childhood rail journeys across the US against the deportations to the camps.",
+    "Description": "Reich's piece for string quartet and recorded speech, built on the melodies of people talking about trains."
+   },
+   "tags": [
+    "Music::genre::quartet",
+    "Music::period::contemporary",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Clapping Music</i>",
+    "Composer": "Steve Reich",
+    "Composer Dates": "b. 1936",
+    "Nationality": "American",
+    "Date": "1972",
+    "Period": "Contemporary",
+    "Genre": "Experimental",
+    "Hint": "Period=Contemporary|Genre=Experimental|Composed=1972",
+    "Clue": "A piece of 1972 for two performers using only their hands, on one twelve-beat pattern; one holds it steady while the other shifts it one beat each section until they line up again.",
+    "Description": "Phasing reduced to two pairs of hands."
+   },
+   "tags": [
+    "Music::genre::other",
+    "Music::period::contemporary",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Piano Phase</i>",
+    "Composer": "Steve Reich",
+    "Composer Dates": "b. 1936",
+    "Nationality": "American",
+    "Date": "1967",
+    "Period": "Contemporary",
+    "Genre": "Experimental",
+    "Hint": "Period=Contemporary|Genre=Experimental|Composed=1967",
+    "Clue": "Two pianists play the same twelve-note figure, and one gradually speeds up until it is a note ahead, then holds; its composer first tried the process with tape loops.",
+    "Description": "A live version of the phasing technique Reich had found with tape loops."
+   },
+   "tags": [
+    "Music::genre::other",
+    "Music::period::contemporary",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 3,
+   "fields": {
+    "Work": "<i>It's Gonna Rain</i>",
+    "Composer": "Steve Reich",
+    "Composer Dates": "b. 1936",
+    "Nationality": "American",
+    "Date": "1965",
+    "Period": "Contemporary",
+    "Genre": "Electronic",
+    "Hint": "Period=Contemporary|Genre=Electronic|Composed=1965",
+    "Clue": "A tape piece of 1965 made from a recording of the Pentecostal preacher Brother Walter in San Francisco's Union Square: two identical loops drift out of sync, the first use of phasing.",
+    "Description": "Reich's first phasing piece, on a preacher's sermon about the Flood."
+   },
+   "tags": [
+    "Music::genre::electronic",
+    "Music::period::contemporary",
+    "Music::tier::tier3-deepcut"
+   ]
+  },
+  {
+   "tier": 3,
+   "fields": {
+    "Work": "<i>Shaker Loops</i>",
+    "Composer": "John Adams",
+    "Composer Dates": "b. 1947",
+    "Nationality": "American",
+    "Date": "1978",
+    "Period": "Contemporary",
+    "Genre": "Orchestral",
+    "Hint": "Period=Contemporary|Genre=Orchestral|Composed=1978",
+    "Clue": "A minimalist work for seven strings, later string orchestra, of 1978, whose title puns on string tremolos and on an ecstatic American religious sect.",
+    "Description": "Adams's early minimalist string piece, built on repeated tremolos and shakes."
+   },
+   "tags": [
+    "Music::genre::orchestral",
+    "Music::period::contemporary",
+    "Music::tier::tier3-deepcut"
+   ]
+  },
+  {
+   "tier": 3,
+   "fields": {
+    "Work": "<i>Imaginary Landscape No. 1</i>",
+    "Composer": "John Cage",
+    "Composer Dates": "1912–1992",
+    "Nationality": "American",
+    "Date": "1939",
+    "Period": "Modern",
+    "Genre": "Experimental",
+    "Hint": "Period=Modern|Genre=Experimental|Composed=1939",
+    "Clue": "A piece of 1939 for two variable-speed turntables playing test-tone records, a muted piano, and a cymbal, among the first works to use electronic sound.",
+    "Description": "An early electro-acoustic work using test records on turntables."
+   },
+   "tags": [
+    "Music::genre::other",
+    "Music::period::modern",
+    "Music::tier::tier3-deepcut"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Poème électronique</i>",
+    "Composer": "Edgard Varèse",
+    "Composer Dates": "1883–1965",
+    "Nationality": "French-American",
+    "Date": "1958",
+    "Period": "Modern",
+    "Genre": "Electronic",
+    "Hint": "Period=Modern|Genre=Electronic|Composed=1958",
+    "Clue": "An eight-minute tape piece made for the Philips Pavilion at the 1958 Brussels World's Fair, designed by Le Corbusier and Iannis Xenakis, and played through about 425 loudspeakers.",
+    "Description": "Varèse's tape piece for the Philips Pavilion at Expo 58."
+   },
+   "tags": [
+    "Music::genre::electronic",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 1,
+   "fields": {
+    "Work": "<i>Turangalîla-Symphonie</i>",
+    "Composer": "Olivier Messiaen",
+    "Composer Dates": "1908–1992",
+    "Nationality": "French",
+    "Date": "1948",
+    "Period": "Modern",
+    "Genre": "Symphony",
+    "Hint": "Period=Modern|Genre=Symphony|Composed=1948",
+    "Clue": "A ten-movement symphony of love and joy commissioned by Serge Koussevitzky and premiered in Boston in 1949 under Leonard Bernstein, with solo piano and ondes Martenot; its title combines Sanskrit words.",
+    "Description": "Messiaen's huge symphony with piano and ondes Martenot, the middle part of his Tristan trilogy."
+   },
+   "tags": [
+    "Music::genre::symphony",
+    "Music::period::modern",
+    "Music::tier::tier1-core"
+   ]
+  },
+  {
+   "tier": 3,
+   "fields": {
+    "Work": "<i>Kontakte</i>",
+    "Composer": "Karlheinz Stockhausen",
+    "Composer Dates": "1928–2007",
+    "Nationality": "German",
+    "Date": "1960",
+    "Period": "Modern",
+    "Genre": "Electronic",
+    "Hint": "Period=Modern|Genre=Electronic|Composed=1960",
+    "Clue": "A work of 1960 for electronic sounds alone, or with piano and percussion, exploring the contact between electronic and instrumental sound and between pitch and rhythm.",
+    "Description": "An electronic landmark from the WDR studio in Cologne."
+   },
+   "tags": [
+    "Music::genre::electronic",
+    "Music::period::modern",
+    "Music::tier::tier3-deepcut"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Helikopter-Streichquartett</i>",
+    "Composer": "Karlheinz Stockhausen",
+    "Composer Dates": "1928–2007",
+    "Nationality": "German",
+    "Date": "1993",
+    "Period": "Contemporary",
+    "Genre": "String quartet",
+    "Hint": "Period=Contemporary|Genre=String quartet|Composed=1993",
+    "Clue": "Part of the opera cycle <i>Licht</i>, a string quartet of 1993 whose four players each fly in a separate helicopter, their sound and images relayed to an audience on the ground.",
+    "Description": "Stockhausen's string quartet played from four helicopters."
+   },
+   "tags": [
+    "Music::genre::quartet",
+    "Music::period::contemporary",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Poème symphonique</i>",
+    "Composer": "György Ligeti",
+    "Composer Dates": "1923–2006",
+    "Nationality": "Hungarian",
+    "Date": "1962",
+    "Period": "Modern",
+    "Genre": "Experimental",
+    "Hint": "Period=Modern|Genre=Experimental|Composed=1962",
+    "Clue": "A piece of 1962 for one hundred mechanical metronomes, wound up and set going at once, and left to tick until the last one stops.",
+    "Description": "Ligeti's Fluxus-era piece for a hundred metronomes."
+   },
+   "tags": [
+    "Music::genre::other",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 3,
+   "fields": {
+    "Work": "<i>Lontano</i>",
+    "Composer": "György Ligeti",
+    "Composer Dates": "1923–2006",
+    "Nationality": "Hungarian",
+    "Date": "1967",
+    "Period": "Modern",
+    "Genre": "Orchestral",
+    "Hint": "Period=Modern|Genre=Orchestral|Composed=1967",
+    "Clue": "An orchestral work of 1967 in slowly shifting micropolyphonic clouds, whose title means “far away”; Stanley Kubrick used it in <i>The Shining</i>.",
+    "Description": "A shimmering orchestral piece in Ligeti's micropolyphonic style."
+   },
+   "tags": [
+    "Music::genre::orchestral",
+    "Music::period::modern",
+    "Music::tier::tier3-deepcut"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Sequenza</i>",
+    "Composer": "Luciano Berio",
+    "Composer Dates": "1925–2003",
+    "Nationality": "Italian",
+    "Date": "1958–2002",
+    "Period": "Modern",
+    "Genre": "Experimental",
+    "Hint": "Period=Modern|Genre=Experimental|Composed=1958–2002",
+    "Clue": "Fourteen virtuoso solo pieces written between 1958 and 2002, one each for flute, harp, voice, piano, trombone, and others; the third, for Cathy Berberian, makes laughter and murmurs into music.",
+    "Description": "Berio's series of solo showpieces, each probing one instrument's possibilities."
+   },
+   "tags": [
+    "Music::genre::other",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Metastaseis</i>",
+    "Composer": "Iannis Xenakis",
+    "Composer Dates": "1922–2001",
+    "Nationality": "Greek-French",
+    "Date": "1954",
+    "Period": "Modern",
+    "Genre": "Orchestral",
+    "Hint": "Period=Modern|Genre=Orchestral|Composed=1954",
+    "Clue": "An orchestral work of 1954 for sixty-one players each with an individual part, whose massed string glissandi trace ruled surfaces later used for the Philips Pavilion; its composer was then working as an architect for Le Corbusier.",
+    "Description": "Xenakis's first major work, premiered at Donaueschingen in 1955."
+   },
+   "tags": [
+    "Music::genre::orchestral",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Cantus in Memoriam Benjamin Britten</i>",
+    "Composer": "Arvo Pärt",
+    "Composer Dates": "b. 1935",
+    "Nationality": "Estonian",
+    "Key": "A minor",
+    "Date": "1977",
+    "Period": "Contemporary",
+    "Genre": "Orchestral",
+    "Hint": "Period=Contemporary|Genre=Orchestral|Composed=1977",
+    "Clue": "For string orchestra and a single tolling bell, written in 1977 as a lament for an English composer whom its author had just come to admire; descending A-minor scales sound in canon at several speeds.",
+    "Description": "A short tintinnabuli lament for strings and bell."
+   },
+   "tags": [
+    "Music::genre::orchestral",
+    "Music::period::contemporary",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 1,
+   "fields": {
+    "Work": "<i>Miserere</i>",
+    "Composer": "Gregorio Allegri",
+    "Composer Dates": "1582–1652",
+    "Nationality": "Italian",
+    "Date": "c. 1638",
+    "Period": "Baroque",
+    "Genre": "Sacred",
+    "Hint": "Period=Baroque|Genre=Sacred|Composed=c. 1638",
+    "Clue": "A setting of Psalm 51 for two choirs, sung in the Sistine Chapel during Holy Week; the Vatican forbade copying it, but the fourteen-year-old Mozart wrote it down from memory in 1770, and its famous top C comes from a transcription error.",
+    "Description": "A Holy Week psalm setting guarded by the papal choir; its soaring top C is a later accident of transmission."
+   },
+   "tags": [
+    "Music::genre::sacred",
+    "Music::period::baroque",
+    "Music::tier::tier1-core"
+   ]
+  },
+  {
+   "tier": 1,
+   "fields": {
+    "Work": "<i>Stabat Mater</i>",
+    "Composer": "Giovanni Battista Pergolesi",
+    "Composer Dates": "1710–1736",
+    "Nationality": "Italian",
+    "Key": "F minor",
+    "Date": "1736",
+    "Period": "Baroque",
+    "Genre": "Sacred",
+    "Hint": "Period=Baroque|Genre=Sacred|Composed=1736",
+    "Clue": "Written in its composer's last weeks at Pozzuoli in 1736, when he was twenty-six, for soprano, alto, and strings; it was the most printed music of the 18th century, and Bach reworked it as “Tilge, Höchster, meine Sünden”.",
+    "Description": "Pergolesi's last work, a setting of the medieval sequence for two voices and strings."
+   },
+   "tags": [
+    "Music::genre::sacred",
+    "Music::period::baroque",
+    "Music::tier::tier1-core"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Ave Maria … virgo serena</i>",
+    "Composer": "Josquin des Prez",
+    "Composer Dates": "c. 1450–1521",
+    "Nationality": "Franco-Flemish",
+    "Date": "c. 1485",
+    "Period": "Renaissance",
+    "Genre": "Sacred",
+    "Hint": "Period=Renaissance|Genre=Sacred|Composed=c. 1485",
+    "Clue": "A four-voice motet of about 1485 that passes each phrase of its hymn to the Virgin down through the voices in imitation, ending in a block-chord prayer; it opened Petrucci's first printed motet book in 1502.",
+    "Description": "Josquin's most famous motet, a model of imitative counterpoint."
+   },
+   "tags": [
+    "Music::genre::sacred",
+    "Music::period::renaissance",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Nuper rosarum flores</i>",
+    "Composer": "Guillaume Du Fay",
+    "Composer Dates": "c. 1397–1474",
+    "Nationality": "Franco-Flemish",
+    "Date": "1436",
+    "Period": "Renaissance",
+    "Genre": "Sacred",
+    "Hint": "Period=Renaissance|Genre=Sacred|Composed=1436",
+    "Clue": "An isorhythmic motet written for the consecration of the cathedral under Brunelleschi's dome in March 1436; its proportions have been read as those of the Temple of Solomon.",
+    "Description": "Du Fay's motet for the dedication of Florence Cathedral in 1436."
+   },
+   "tags": [
+    "Music::genre::sacred",
+    "Music::period::renaissance",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Viderunt omnes</i>",
+    "Composer": "Pérotin",
+    "Composer Dates": "fl. c. 1200",
+    "Nationality": "French",
+    "Date": "1198",
+    "Period": "Medieval",
+    "Genre": "Sacred",
+    "Hint": "Period=Medieval|Genre=Sacred|Composed=1198",
+    "Clue": "A four-voice organum for Christmas, among the first music written for four parts, sung at Notre-Dame in Paris after the bishop ordered such settings in 1198; its upper voices weave over hugely drawn-out notes of the chant.",
+    "Description": "Pérotin's organum quadruplum, a peak of the Notre-Dame school."
+   },
+   "tags": [
+    "Music::genre::sacred",
+    "Music::period::medieval",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Moro, lasso, al mio duolo</i>",
+    "Composer": "Carlo Gesualdo",
+    "Composer Dates": "1566–1613",
+    "Nationality": "Italian",
+    "Date": "1611",
+    "Period": "Renaissance",
+    "Genre": "Song",
+    "Hint": "Period=Renaissance|Genre=Song|Composed=1611",
+    "Clue": "A five-voice madrigal from its composer's sixth book of 1611, whose wrenching chromatic harmony was centuries ahead of its time; its composer, Prince of Venosa, had murdered his wife and her lover in 1590.",
+    "Description": "The most famous madrigal of the chromatic prince who murdered his wife and her lover."
+   },
+   "tags": [
+    "Music::genre::song",
+    "Music::period::renaissance",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Rosary Sonatas</i>",
+    "Composer": "Heinrich Ignaz Franz Biber",
+    "Composer Dates": "1644–1704",
+    "Nationality": "Bohemian-Austrian",
+    "Nickname": "(<i>Mystery Sonatas</i>)",
+    "Date": "c. 1676",
+    "Period": "Baroque",
+    "Genre": "Chamber",
+    "Hint": "Period=Baroque|Genre=Chamber|Composed=c. 1676",
+    "Clue": "Fifteen works for violin and continuo on the fifteen meditations of a Catholic prayer cycle, plus a closing passacaglia for unaccompanied violin; nearly every one uses a different scordatura, and in the Resurrection piece the middle strings are crossed.",
+    "Description": "Biber's cycle on the life of Christ and the Virgin, a landmark of violin scordatura."
+   },
+   "tags": [
+    "Music::genre::chamber",
+    "Music::period::baroque",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Te Deum</i>",
+    "Composer": "Marc-Antoine Charpentier",
+    "Composer Dates": "1643–1704",
+    "Nationality": "French",
+    "Catalogue": "H. 146",
+    "Key": "D major",
+    "Date": "c. 1690",
+    "Period": "Baroque",
+    "Genre": "Sacred",
+    "Hint": "Period=Baroque|Genre=Sacred|Composed=c. 1690",
+    "Clue": "A festive setting of the hymn of thanksgiving for soloists, chorus, trumpets, and drums; its opening <i>Prélude</i>, a march-like rondeau, became the signature tune of the Eurovision broadcasting union.",
+    "Description": "Charpentier's grand hymn of thanksgiving; its trumpet prelude is the Eurovision theme."
+   },
+   "tags": [
+    "Music::genre::sacred",
+    "Music::period::baroque",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 1,
+   "fields": {
+    "Work": "<i>Maple Leaf Rag</i>",
+    "Composer": "Scott Joplin",
+    "Composer Dates": "c. 1868–1917",
+    "Nationality": "American",
+    "Key": "A-flat major",
+    "Date": "1899",
+    "Period": "Modern",
+    "Genre": "Solo piano",
+    "Hint": "Period=Modern|Genre=Solo piano|Composed=1899",
+    "Clue": "Published by John Stark in Sedalia, Missouri, in 1899 and named for a local social club; it became the model for classic piano ragtime and is said to have sold a million copies.",
+    "Description": "The most famous piano rag, which made Joplin “the King of Ragtime”."
+   },
+   "tags": [
+    "Music::genre::piano-miniature",
+    "Music::period::modern",
+    "Music::tier::tier1-core"
+   ]
+  },
+  {
+   "tier": 1,
+   "fields": {
+    "Work": "<i>Radetzky March</i>",
+    "Composer": "Johann Strauss I",
+    "Composer Dates": "1804–1849",
+    "Nationality": "Austrian",
+    "Catalogue": "Op. 228",
+    "Key": "D major",
+    "Date": "1848",
+    "Period": "Romantic",
+    "Genre": "March",
+    "Hint": "Period=Romantic|Genre=March|Composed=1848",
+    "Clue": "Written in 1848 to celebrate an Austrian field marshal's victory at Custoza; the Vienna New Year's Concert always ends with it, the audience clapping along.",
+    "Description": "The elder Strauss's most famous work, the traditional encore of the Vienna New Year's Concert."
+   },
+   "tags": [
+    "Music::genre::march",
+    "Music::period::romantic",
+    "Music::tier::tier1-core"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Das Jahr</i>",
+    "Composer": "Fanny Mendelssohn Hensel",
+    "Composer Dates": "1805–1847",
+    "Nationality": "German",
+    "Date": "1841",
+    "Period": "Romantic",
+    "Genre": "Solo piano",
+    "Hint": "Period=Romantic|Genre=Solo piano|Composed=1841",
+    "Clue": "Twelve piano pieces for the months plus a postlude, written in 1841 after a year in Italy and copied onto paper of a different colour for each month, with vignettes by her husband, the painter Wilhelm Hensel.",
+    "Description": "Fanny Hensel's piano cycle of the year, the largest of her works."
+   },
+   "tags": [
+    "Music::genre::piano-miniature",
+    "Music::period::romantic",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 3,
+   "fields": {
+    "Work": "<i>Piano Trio</i>",
+    "Composer": "Clara Schumann",
+    "Composer Dates": "1819–1896",
+    "Nationality": "German",
+    "Catalogue": "Op. 17",
+    "Key": "G minor",
+    "Date": "1846",
+    "Period": "Romantic",
+    "Genre": "Chamber",
+    "Hint": "Period=Romantic|Genre=Chamber|Composed=1846",
+    "Clue": "Written in Dresden in 1846 by a leading virtuoso, her only work for keyboard, violin, and cello; its finale includes a strict fugato.",
+    "Description": "Clara Schumann's most ambitious chamber work."
+   },
+   "tags": [
+    "Music::genre::chamber",
+    "Music::period::romantic",
+    "Music::tier::tier3-deepcut"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Introduction and Allegro</i>",
+    "Composer": "Edward Elgar",
+    "Composer Dates": "1857–1934",
+    "Nationality": "English",
+    "Catalogue": "Op. 47",
+    "Date": "1905",
+    "Period": "Romantic",
+    "Genre": "Orchestral",
+    "Hint": "Period=Romantic|Genre=Orchestral|Composed=1905",
+    "Clue": "A work of 1905 for string quartet and string orchestra, partly inspired by a Welsh tune its composer heard sung on the Cardiganshire coast; it ends with a fugue its composer called “a devil of a fugue”.",
+    "Description": "Elgar's showpiece for strings, contrasting a solo quartet with the full string orchestra."
+   },
+   "tags": [
+    "Music::genre::orchestral",
+    "Music::period::romantic",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>A London Symphony</i>",
+    "Composer": "Ralph Vaughan Williams",
+    "Composer Dates": "1872–1958",
+    "Nationality": "English",
+    "Date": "1913",
+    "Period": "Modern",
+    "Genre": "Symphony",
+    "Hint": "Period=Modern|Genre=Symphony|Composed=1913",
+    "Clue": "Its composer's second symphony, of 1913, evokes the city from dawn on the Thames to the Westminster chimes; the score sent to Germany was lost in the First World War and had to be reconstructed, and it was dedicated to George Butterworth.",
+    "Description": "Vaughan Williams's portrait of the city, framed by the river and Big Ben's chimes."
+   },
+   "tags": [
+    "Music::genre::symphony",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 3,
+   "fields": {
+    "Work": "<i>Five Variants of Dives and Lazarus</i>",
+    "Composer": "Ralph Vaughan Williams",
+    "Composer Dates": "1872–1958",
+    "Nationality": "English",
+    "Date": "1939",
+    "Period": "Modern",
+    "Genre": "Orchestral",
+    "Hint": "Period=Modern|Genre=Orchestral|Composed=1939",
+    "Clue": "Written for strings and harp for the 1939 New York World's Fair, it varies an English folk tune on the parable of the rich man and the beggar.",
+    "Description": "Folk-song variations for strings and harp, played at Vaughan Williams's funeral."
+   },
+   "tags": [
+    "Music::genre::orchestral",
+    "Music::period::modern",
+    "Music::tier::tier3-deepcut"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Rapsodie espagnole</i>",
+    "Composer": "Maurice Ravel",
+    "Composer Dates": "1875–1937",
+    "Nationality": "French",
+    "Date": "1908",
+    "Period": "Modern",
+    "Genre": "Orchestral",
+    "Hint": "Period=Modern|Genre=Orchestral|Composed=1908",
+    "Clue": "Ravel's first large orchestral work, of 1908, in four movements: a hushed <i>Prélude à la nuit</i> on a falling four-note figure, a <i>Malagueña</i>, a <i>Habanera</i> first written for two pianos in 1895, and a festive <i>Feria</i>.",
+    "Description": "Four Spanish-flavoured movements by Ravel, whose mother was Basque."
+   },
+   "tags": [
+    "Music::genre::orchestral",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>Miroirs</i>",
+    "Composer": "Maurice Ravel",
+    "Composer Dates": "1875–1937",
+    "Nationality": "French",
+    "Date": "1905",
+    "Period": "Modern",
+    "Genre": "Solo piano",
+    "Hint": "Period=Modern|Genre=Solo piano|Composed=1905",
+    "Clue": "Five piano pieces of 1905, each dedicated to a member of the Apaches circle: moths, sad birds, a boat on the ocean, the jester's <i>Alborada del gracioso</i>, and a valley of bells.",
+    "Description": "Ravel's set of five pictorial piano pieces, two of which he orchestrated."
+   },
+   "tags": [
+    "Music::genre::piano-miniature",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>España</i>",
+    "Composer": "Emmanuel Chabrier",
+    "Composer Dates": "1841–1894",
+    "Nationality": "French",
+    "Key": "F major",
+    "Date": "1883",
+    "Period": "Romantic",
+    "Genre": "Orchestral",
+    "Hint": "Period=Romantic|Genre=Orchestral|Composed=1883",
+    "Clue": "A rhapsody for orchestra of 1883 written after a trip through Spain, built on a jota and a malagueña; Émile Waldteufel turned it into a waltz.",
+    "Description": "Chabrier's orchestral souvenir of Spain, his one big popular success."
+   },
+   "tags": [
+    "Music::genre::orchestral",
+    "Music::period::romantic",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 2,
+   "fields": {
+    "Work": "<i>El amor brujo</i>",
+    "Composer": "Manuel de Falla",
+    "Composer Dates": "1876–1946",
+    "Nationality": "Spanish",
+    "Date": "1915",
+    "Period": "Modern",
+    "Genre": "Ballet",
+    "Hint": "Period=Modern|Genre=Ballet|Composed=1915",
+    "Clue": "A gitanería of 1915 in which the Andalusian Gypsy Candela is haunted by the ghost of her dead lover; its <i>Ritual Fire Dance</i>, meant to drive him away, became a piano favourite.",
+    "Description": "Falla's Andalusian ballet with song, containing the <i>Ritual Fire Dance</i>."
+   },
+   "tags": [
+    "Music::genre::ballet",
+    "Music::period::modern",
+    "Music::tier::tier2-solid"
+   ]
+  },
+  {
+   "tier": 3,
+   "fields": {
+    "Work": "<i>Cockaigne</i>",
+    "Composer": "Edward Elgar",
+    "Composer Dates": "1857–1934",
+    "Nationality": "English",
+    "Catalogue": "Op. 40",
+    "Date": "1901",
+    "Period": "Romantic",
+    "Genre": "Overture",
+    "Hint": "Period=Romantic|Genre=Overture|Composed=1901",
+    "Clue": "A concert overture of 1901, subtitled <i>In London Town</i>, depicting the bustle of the city with a military band, a church organ, and a pair of lovers.",
+    "Description": "Elgar's affectionate portrait of London."
+   },
+   "tags": [
+    "Music::genre::overture",
+    "Music::period::romantic",
+    "Music::tier::tier3-deepcut"
+   ]
+  },
+  {
+   "tier": 3,
+   "fields": {
+    "Work": "<i>Light Cavalry</i>",
+    "Composer": "Franz von Suppé",
+    "Composer Dates": "1819–1895",
+    "Nationality": "Austrian",
+    "Date": "1866",
+    "Period": "Romantic",
+    "Genre": "Overture",
+    "Hint": "Period=Romantic|Genre=Overture|Composed=1866",
+    "Clue": "The overture to a Viennese operetta of 1866, opening with a trumpet fanfare and moving into a galloping horseback theme much used in cartoons.",
+    "Description": "Suppé's best-known overture, from an otherwise forgotten operetta."
+   },
+   "tags": [
+    "Music::genre::overture",
+    "Music::period::romantic",
+    "Music::tier::tier3-deepcut"
+   ]
+  }
+ ]
+}
