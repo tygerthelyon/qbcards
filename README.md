@@ -64,7 +64,7 @@ The collection had 11,921 notes and 34,848 cards in November 2026. These example
 | Ranked list: front | Ranked list: back |
 | ![Ranked list card front](docs/images/cards-v2/list-front.png) | ![Ranked list card back](docs/images/cards-v2/list-back.png) |
 | Geography: front | Geography: back |
-| ![Qing dynasty map card front](docs/images/cards-v2/geography-front.png) | ![Qing dynasty map card back](docs/images/cards-v2/geography-back.png) |
+| ![Sichuan map card front](docs/images/cards-v2/geography-sichuan-front.png) | ![Sichuan map card back](docs/images/cards-v2/geography-sichuan-back.png) |
 
 [See the full gallery](docs/card-gallery.md) for examples of all 11 populated note types, including biology and physics cards.
 

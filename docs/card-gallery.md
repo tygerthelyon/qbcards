@@ -38,12 +38,6 @@ Examples from the collection, shown as front and back pairs. These are static pr
 | --- | --- |
 | ![Photography: image to title front](images/cards-v2/photography-front.png) | ![Photography: image to title back](images/cards-v2/photography-back.png) |
 
-## Geography: historical state
-
-| Front | Back |
-| --- | --- |
-| ![Qing dynasty map card front](images/cards-v2/geography-front.png) | ![Qing dynasty map card back](images/cards-v2/geography-back.png) |
-
 ## Geography: province
 
 | Front | Back |
