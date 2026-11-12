@@ -35,7 +35,7 @@ COLS = ("u.uid, u.qid, u.part, u.kind, u.text, u.lead, u.answer, u.main, u.akey,
 CLUE = "{text lead}: "
 
 
-# ------------------------------------------------------------------------------------------------- filters
+# Filters
 def _cat(token, facets):
     want = ALIAS.get(token.lower().replace(" ", ""), token).lower()
     for col in ("category", "subcategory", "alt"):
@@ -99,7 +99,7 @@ def where(cat=None, diff=None, year=None, sets=None, kind=None):
     return (" AND " + " AND ".join(sql) if sql else ""), args
 
 
-# ------------------------------------------------------------------------------------------ query language
+# Query language
 _RAW = re.compile(r'"|\b(?:AND|OR|NOT)\b|NEAR\(|\*|(?i:\b(?:ans|answer|clue|text|lead)):\S|(?:^|\s)-\w')
 _TOK = re.compile(r'"[^"]*"\*?|NEAR\(|\(|\)|,|[^\s(),"]+')
 _COLUMN = {"ans": "accepts: ", "answer": "accepts: ", "clue": CLUE, "text": CLUE, "lead": "lead: "}
@@ -172,7 +172,7 @@ def _best(row, words, phrase=None, k=2):
     return [s for h, _, s in scored if h == top][:k]
 
 
-# ----------------------------------------------------------------------------------------- answer variants
+# Answer variants
 def merge(groups):
     """Fold answer-line variants together. groups: akey -> dict with n, rkey and anything else; returns the same
     dicts with `also` listing what was merged in. Two keys merge only when they share the required (underlined) part
@@ -227,7 +227,7 @@ def _tally(rows):
     return sorted(out.values(), key=lambda d: -d["n"])
 
 
-# ------------------------------------------------------------------------------------------------ searches
+# Searches
 def search(query, cat=None, diff=None, year=None, sets=None, kind=None, scope="clue", mode="auto", regex=False,
            sort="auto", n=10, offset=0):
     """Search clue text (scope "clue"), answer lines ("answer") or both ("all").
@@ -455,7 +455,7 @@ def like(text, cat=None, diff=None, year=None, sets=None, kind=None, n=10):
     return out[:n]
 
 
-# ---------------------------------------------------------------------------------------- sets and questions
+# Sets and questions
 def sets(pattern=None, year=None, diff=None):
     """the sets in the mirror, newest first: dicts with name, year, difficulty, tossups, bonuses"""
     sql, args = "SELECT * FROM sets WHERE 1", []

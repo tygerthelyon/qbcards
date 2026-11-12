@@ -47,7 +47,7 @@ def no_guides(s):
     return _GUIDE.sub("", s or "")
 
 
-# ------------------------------------------------------------------------------------------------ sentences
+# Sentences
 _ABBR = frozenset("mr mrs ms dr st ste jr sr prof gen col lt sgt capt cmdr rev fr gov sen rep pres vs etc no nos op ca cf "
                   "vol pp mt ft inc ltd co corp bros mme mlle viz".split())
 _BOUND = re.compile(r'([.?!]+)(["”’\')\]]*)\s+(?=["“‘(\[]?[A-Z0-9])')
@@ -88,7 +88,7 @@ def where(pos, give=False):
     return "giveaway" if give else "lead-in" if pos < 0.2 else "early" if pos < 0.45 else "middle" if pos < 0.7 else "late"
 
 
-# ---------------------------------------------------------------------------------------------- answer lines
+# Answer lines
 _DIRECTIVE = re.compile(r"\b(?:do\s+not|don'?t|reject|anti-?prompt|prompt|also\s+accept|accept)\b", re.I)
 _CONTINUES = re.compile(r"\b(?:do\s+not|don'?t|not|never|or|nor|and|but)\s*$", re.I)
 # a clause with no directive of its own that says when the next one applies: 'before "X" is read,', 'for the first clue,'
@@ -262,7 +262,7 @@ def takes(accepts, want):
     return False
 
 
-# --------------------------------------------------------------------------------------------- named things
+# Named things
 _STOP = frozenset("""a an the of in on at to for from by with as and or but nor so yet if then than that this these those
 it its he him his she her they them their we our you your i me my who whom whose which what when where why how is are
 was were be been being am do does did has have had having can could may might must shall should will would not no also

@@ -103,7 +103,7 @@ def body(con, qid):
     return json.loads(zlib.decompress(r[0]).decode("utf-8")) if r and r[0] else {}
 
 
-# ------------------------------------------------------------------------------------------------- writing
+# Writing
 def _fetch_set(name):
     return name, list(api.pages(setName=name))
 

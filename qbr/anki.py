@@ -163,10 +163,7 @@ def brief_notes(deck, tier=None, pattern=None, cat=None, top=12):
         ntext = " " + _note_fold(" ".join(v for _, v in vals)) + " "
         creators = [v for k, v in vals if k.lower().strip() in _CREATOR_FIELDS and v]
         have_clues = {k: v for k, v in vals if v and (k.startswith("Clue") or k in ("Notes", "Description"))}
-        # Work notes expose their composer/creator as part of the answer side. Require
-        # an exact work answerline so an unrelated answer that merely accepts the title
-        # as an alternate cannot flood the profile (e.g. Gluck's Orfeo ed Euridice for
-        # Jacopo Peri's Euridice).
+        # Require an exact work title to avoid matches to unrelated works with similar titles.
         p = profile(title, cat=cat, top=top + (max(8, 3 * len(creators)) if creators else 0),
                     exact=bool(creators))
         stock = []

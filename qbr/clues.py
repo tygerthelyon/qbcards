@@ -4,17 +4,15 @@
     p = qbr.profile("Kazimir Malevich")
     for t in p["things"]: print(t["n"], t["thing"], t["where"], t["example"])
 
-How it works. Take every unit the name answers (find.answered) and every other unit that mentions it. Propose
-candidates from them: titles in italics or quotes, runs of capitalised words, recurring word n-grams. Then let the
-index count each candidate properly:
+Candidates come from questions answered by or mentioning the name. They include quoted or italicised titles,
+capitalised names, and recurring phrases. The index counts each candidate:
     n     distinct questions on this answer that hold it
     m     distinct other questions that hold it in a sentence about this answer
     all   units in the whole mirror that hold it
     tied  the share of `all` that involve this answer at all -- 100% means the clue is unique to it
     lift  how many times more often it turns up here than across the mirror
-Candidates that are not over-represented go, and of two that overlap the one that says more stays. Nothing is merged
-by similarity of meaning, so a famous clue cannot be averaged away (StockFisher 1.0 chained 31 of 55 Malevich
-sentences into one group and kept a sentence without Black Square).
+The profile filters out common candidates and combines overlapping forms. It does not merge clues by semantic
+similarity, which can group unrelated clues together.
 
 A name that is never an answer line (Tilman Riemenschneider) still gets a profile, built from the questions that
 mention it.
@@ -46,9 +44,7 @@ church structure designed built architect man woman figure character title titul
 describes argued argues claimed claims stated wrote said says published first second third later earlier also used
 uses using include includes including one another name names identify performed conducted discovered invented
 observed demonstrated proposed developed formulated introduced showed found studied won award awarded received""".split())
-# Common n-gram boundaries that usually mean the phrase was cut off before its head
-# noun or after its framing clause. Keep meaningful compounds such as "black hole" and
-# "electric field"; this set only rejects them when they sit at an edge.
+# Reject phrases cut off at a framing word, while allowing words such as "black" inside a phrase.
 _GRAM_EDGE = _OPEN | _FRAME | frozenset("""according cannot cant greater greatest equal equals less least standard quantum electric black
 study studies store storing states stating""".split())
 _BOILER = frozenset(("points", "point", "this", "these", "ftp"))
@@ -129,9 +125,7 @@ def profile(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=Fa
     """
     con = store.db()
     A = find.answered(name, cat, diff, year, sets, kind, exact, exclude)
-    # Quizbowl work answerlines often append an opus number that is metadata rather than
-    # part of the title ("Christmas Concerto, Op. 6"). Retry the title without it only
-    # when the full query found no answerline.
+    # Retry work titles without an opus number if the full title has no matches.
     lookup_name = _without_catalogue_suffix(name)
     if not A and lookup_name and lookup_name != name:
         A = find.answered(lookup_name, cat, diff, year, sets, kind, exact, exclude)
@@ -156,7 +150,7 @@ def profile(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=Fa
         guess = find.search(name, cat, diff, year, sets, kind, scope="answer", mode="any", n=0)["answers"][:8]
         return {"found": False, "name": name, "suggest": [(g["answer"], g["n"]) for g in guess]}
 
-    # ---- candidates from the answer's own questions
+    # Candidates from questions answered by this name.
     bodies = {q: store.body(con, q) for q in a_qids}
     cand = defaultdict(lambda: {"shown": Counter(), "title": 0, "mid": 0, "q": set(), "mq": set()})
 
@@ -183,7 +177,7 @@ def profile(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=Fa
             propose(kind_, shown, r["qid"], "q")
         for s in sentences(r["lead"]) + sentences(r["text"]):
             a_sents.append((" %s " % fold(s["s"]), s, r))
-    # ---- and from the sentences that mention it in other questions
+    # Candidates from sentences mentioning the name in other questions.
     m_sents = []
     for r in M:
         for s in sentences(r["lead"]) + sentences(r["text"]):
@@ -193,12 +187,11 @@ def profile(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=Fa
                 for kind_, shown in things(s["s"]):
                     if _key(shown) != r["akey"]:
                         propose(kind_, shown, r["qid"], "mq")
-    # A 1-word candidate that only ever appeared capitalised as the first word of a sentence (mid == 0, e.g. "Light",
-    # "Electrons", "Poems") is an ordinary sentence opener, not a proper name.
+    # Single words capitalised only at the start of a sentence are not necessarily names.
     named = sorted(((k, c) for k, c in cand.items()
                     if len(c["q"]) + len(c["mq"]) >= (1 if thin else 2) and (c["mid"] > 0 or " " in k)),
                    key=lambda kc: -(len(kc[1]["q"]) + 0.5 * len(kc[1]["mq"])))[:CAP_NAMED]
-    # ---- recurring wording that is not a name
+    # Recurring phrases that are not names.
     gq = defaultdict(set)
     gq_quoted = defaultdict(list)
     for f, s, r in a_sents:
@@ -313,19 +306,14 @@ def profile(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=Fa
         return bool(x & y) or any(len(w) >= 7 and len(v) >= 7 and w[:7] == v[:7] for w in x for v in y)
 
     main = {k: t for k, t in kept.items() if strong(t)}
-    # Of two candidates where one holds the other and they sit in mostly the same questions, one is the thing and the
-    # other is a piece of it or it with a stray word. The thing is whichever the text more often presents as a whole
-    # run: "Critique of Pure Reason" over "of Pure Reason", "Anthemius of Tralles" over "Designed by Anthemius of
-    # Tralles". Two bare wordings tie, and the longer says more. A short one mostly covered by several longer ones
-    # ("Critique" under the three Critiques, "Square" under "Black Square") goes the same way.
+    # Combine overlapping candidates when they occur in mostly the same questions.
+    # Prefer the form more often presented as a complete span.
     for k in sorted(main, key=lambda k: len(k.split())):
         for o in [o for o in main if o != k and _in(k, " %s " % o)]:
             if k not in main:
                 break
             a, b = main[k], main[o]                           # a is inside b
-            # When `a` is the surname/nested short form of a unique person/entity `b` in `main` ("einstein" inside
-            # "albert einstein", "millikan" inside "robert millikan"), fold `a`'s questions into `b` so the full
-            # name carries the full count instead of listing both or dropping the first name.
+            # Combine an unambiguous short name with its full form, preserving its question count.
             if a["kind"] == "name" and b["kind"] == "name" and nested(k, o) and \
                not any(w in o.split() for w in ("on", "in", "with", "over", "for", "to", "at", "from", "by", "after", "before", "under", "into", "as")) and \
                len([x for x in main if x != k and main[x]["kind"] == "name" and nested(k, x)
@@ -413,7 +401,7 @@ def profile(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=Fa
     for t in other:
         place(t, m_sents)
 
-    # ---- confusable foils: other answer lines that share this answer's discriminative stock clues
+    # Related answer lines that share the answer's distinctive clues.
     foil_clues = defaultdict(set)
     foil_u = {}
     for t in ranked[:20]:
