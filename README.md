@@ -54,17 +54,17 @@ Run the cell in the notebook. If you already have an index elsewhere, enter its 
 
 ## Anki cards
 
-The collection had 11,921 notes and 34,848 cards in November 2026. These examples were rendered from cards in the collection; the first seven images show the question side, and the last shows an answer side.
+The collection had 11,921 notes and 34,848 cards in November 2026. These examples show the front and back of cards from the collection. Audio controls in the images are static.
 
-| Biology ? cloze | Physics ? cloze |
+| Art: front | Art: back |
 | --- | --- |
-| ![Biology cloze card about an organelle](docs/images/cards/biology.png) | ![Physics cloze card about Boltzmann's formula](docs/images/cards/physics.png) |
-| Music ? clue to work | Art ? image to title |
-| ![Classical music clue card](docs/images/cards/music.png) | ![Visual art identification card](docs/images/cards/art.png) |
-| Geography ? name to capital | Architecture ? work to architect |
-| ![Geography capital card](docs/images/cards/geography.png) | ![Architecture card asking for the architects of Hagia Sophia](docs/images/cards/architecture.png) |
-| Poetry ? question | Poetry ? answer |
-| ![Poetry card asking for the poet of The Raven](docs/images/cards/poetry-front.png) | ![Answer side of the poetry card](docs/images/cards/poetry.png) |
+| ![Art card front](docs/images/cards-v2/art-front.png) | ![Art card back](docs/images/cards-v2/art-back.png) |
+| Classical music: front | Classical music: back |
+| ![Classical music card front](docs/images/cards-v2/music-front.png) | ![Classical music card back](docs/images/cards-v2/music-back.png) |
+| Ranked list: front | Ranked list: back |
+| ![Ranked list card front](docs/images/cards-v2/list-front.png) | ![Ranked list card back](docs/images/cards-v2/list-back.png) |
+
+[See the full gallery](docs/card-gallery.md) for examples of all 11 populated note types, including biology and physics cards.
 
 The repository includes [sample notes](samples/), [note-type definitions](templates/models.json), and [collection utilities](scripts/). The full collection, media, and importable deck packages are not included.
 
