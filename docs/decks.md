@@ -6,12 +6,7 @@ The [deck release](https://github.com/tygerthelyon/qbcards/releases/tag/decks-20
 | --- | --- |
 | `AFA.apkg` | Classical music |
 | `Geography.apkg` | Geography |
-| `History.apkg` | History |
-| `Literature.apkg` | Literature and poetry |
-| `OAFA.apkg` | Opera, musicals, jazz, and world and folk music |
 | `OVFA-1.apkg`, `OVFA-2.apkg`, `OVFA-3.apkg` | Architecture, dance, design, film, and photography |
-| `Philosophy.apkg` | Philosophy |
-| `Science.apkg` | Biology and physics |
 | `VFA-1.apkg`, `VFA-2.apkg`, `VFA-3.apkg` | Visual fine arts |
 
 The OVFA and VFA collections are divided by note across three packages each to keep downloads manageable. Import all three parts to get the full subject. The packages include cards that were suspended in the original collection; review the imported cards and suspend any you do not want to study.
