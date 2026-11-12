@@ -178,14 +178,15 @@ def _settle(con):
         pass                                    # someone is mid-read; the next write will settle it
 
 
-def _finish(con, changed, log):
+def _finish(con, changed, log, complete=True):
     facets = {}
     for col in ("category", "subcategory", "alt"):
         facets[col] = [r[0] for r in con.execute("SELECT DISTINCT %s FROM u WHERE %s IS NOT NULL ORDER BY 1" % (col, col))]
     t, b = (con.execute("SELECT count(*) FROM q WHERE kind=?", (k,)).fetchone()[0] for k in "TB")
     put = lambda k, v: con.execute("INSERT OR REPLACE INTO meta VALUES(?,?)", (k, json.dumps(v)))
     put("facets", facets)
-    put("synced", time.time())
+    if complete:
+        put("synced", time.time())
     put("counts", {"tossups": t, "bonuses": b})
     con.commit()
     if changed > 50:
@@ -255,11 +256,14 @@ def sync(full=False, years=1, workers=4, only=None, log=print):
             log("dropped (no longer on qbreader): %s" % n)
         log("%d sets on qbreader, %d in the mirror, %d to fetch" % (len(names), len(have) - len(gone), len(todo)))
         t0, done, tot = time.time(), 0, {"T": 0, "B": 0}
-        for fut in as_completed([pool.submit(_fetch_set, n) for n in todo]):
+        failed = []
+        futures = {pool.submit(_fetch_set, n): n for n in todo}
+        for fut in as_completed(futures):
             try:
                 name, rows = fut.result()
             except Exception as e:
-                log("   FAILED a set (%s); run sync again to retry it" % e)
+                failed.append(futures[fut])
+                log("   FAILED %s (%s)" % (futures[fut], e))
                 continue
             n = _put_set(con, name, rows)
             tot["T"] += n["T"]
@@ -268,6 +272,8 @@ def sync(full=False, years=1, workers=4, only=None, log=print):
             if done % 20 == 0 or done == len(todo):
                 con.commit()
                 log("   %d/%d sets, %d tossups, %d bonuses, %.0fs" % (done, len(todo), tot["T"], tot["B"], time.time() - t0))
-    _finish(con, done + len(gone), log)
+    _finish(con, done + len(gone), log, complete=not failed)
     con.close()
+    if failed:
+        raise RuntimeError("sync incomplete: %d set(s) failed; run sync --full to retry" % len(failed))
     return done

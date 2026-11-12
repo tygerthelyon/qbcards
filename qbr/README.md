@@ -99,6 +99,8 @@ returning incomplete results or broadening the filters.
 `sync` fetches sets the mirror lacks, drops sets qbreader no longer lists, and re-fetches sets from the last year
 whose question count changed. `sync --full` re-fetches everything. `sync --reparse` re-derives
 the answer columns after a change to `text.parse_answer`, with no download.
+If a set fails to download, sync reports an error and keeps the previous successful sync time. Run `sync --full`
+to retry, including older sets.
 
 ## Anki
 

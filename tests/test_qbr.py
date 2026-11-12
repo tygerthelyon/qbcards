@@ -55,6 +55,48 @@ class MirrorTests(unittest.TestCase):
             self.assertIn("python -m qbr sync", result.stderr)
             self.assertFalse(Path(env["QBR_DB"]).exists())
 
+    def test_failed_sync_preserves_last_success_and_can_be_retried(self):
+        with tempfile.TemporaryDirectory(prefix="qbr-test-") as tmp:
+            path = str(Path(tmp) / "mirror.sqlite")
+            with mock.patch.object(store, "PATH", path), \
+                 mock.patch.object(store.api, "set_list", return_value=["Example Set"]), \
+                 mock.patch.object(store.api, "counts", return_value=(0, 0)), \
+                 mock.patch.object(store, "_fetch_set", side_effect=OSError("unavailable")):
+                con = store.connect(write=True)
+                con.execute("INSERT INTO meta VALUES ('synced', '12345')")
+                con.commit()
+                con.close()
+                with self.assertRaisesRegex(RuntimeError, "sync incomplete"):
+                    store.sync(full=True, log=lambda message: None)
+                con = store.connect()
+                try:
+                    self.assertEqual(store.meta("synced", con=con), 12345)
+                finally:
+                    con.close()
+                with mock.patch.object(store, "_fetch_set", return_value=("Example Set", [])):
+                    self.assertEqual(store.sync(full=True, log=lambda message: None), 1)
+                con = store.connect()
+                try:
+                    self.assertGreater(store.meta("synced", con=con), 12345)
+                finally:
+                    con.close()
+
+    def test_status_after_first_sync_fails(self):
+        with tempfile.TemporaryDirectory(prefix="qbr-test-") as tmp:
+            path = str(Path(tmp) / "mirror.sqlite")
+            with mock.patch.object(store, "PATH", path), \
+                 mock.patch.object(store.api, "set_list", return_value=["Example Set"]), \
+                 mock.patch.object(store.api, "counts", return_value=(0, 0)), \
+                 mock.patch.object(store, "_fetch_set", side_effect=OSError("unavailable")):
+                with self.assertRaisesRegex(RuntimeError, "sync incomplete"):
+                    store.sync(log=lambda message: None)
+            env = os.environ.copy()
+            env["QBR_DB"] = path
+            result = subprocess.run([sys.executable, "-m", "qbr", "status"],
+                                    capture_output=True, text=True, env=env, check=False)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertIn("never completed", result.stdout)
+
     def test_relative_database_path_with_uri_characters(self):
         with tempfile.TemporaryDirectory(prefix="qbr-test-") as tmp:
             old_cwd = os.getcwd()

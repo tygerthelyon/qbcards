@@ -240,11 +240,13 @@ def cmd_status(a):
          "units": con.execute("SELECT count(*) FROM u").fetchone()[0],
          "sets": con.execute("SELECT count(*) FROM sets").fetchone()[0],
          "newest": [x[0] for x in con.execute("SELECT name FROM sets ORDER BY synced DESC, year DESC LIMIT 5")],
-         "synced": time.strftime("%Y-%m-%d %H:%M", time.localtime(when)), "days": (time.time() - when) / 86400}
+         "synced": time.strftime("%Y-%m-%d %H:%M", time.localtime(when)) if when else None,
+         "days": (time.time() - when) / 86400 if when else None}
     if a.json:
         return r
-    print("%s\n%d tossups, %d bonuses, %d units, %d sets; last synced %s (%.0f days ago)" % (
-        r["path"], r["tossups"], r["bonuses"], r["units"], r["sets"], r["synced"], r["days"]))
+    synced = "%s (%.0f days ago)" % (r["synced"], r["days"]) if when else "never completed"
+    print("%s\n%d tossups, %d bonuses, %d units, %d sets; last synced %s" % (
+        r["path"], r["tossups"], r["bonuses"], r["units"], r["sets"], synced))
 
 
 def cmd_sql(a):
