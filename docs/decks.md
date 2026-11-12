@@ -5,7 +5,7 @@ The [deck release](https://github.com/tygerthelyon/qbcards/releases/tag/decks-20
 | Download | Subject |
 | --- | --- |
 | `AFA.apkg` | Classical music |
-| `Geography.apkg` | Geography |
+| `geography.apkg` | Geography |
 | `OVFA-1.apkg`, `OVFA-2.apkg`, `OVFA-3.apkg` | Architecture, dance, design, film, and photography |
 | `VFA-1.apkg`, `VFA-2.apkg`, `VFA-3.apkg` | Visual fine arts |
 
