@@ -39,6 +39,7 @@ qbr/data/qbreader.sqlite
 qbr/data/anki_index.json
 archive/
 backups/
+export/
 renders/
 crash_dumps/
 audio_inbox/
@@ -49,21 +50,13 @@ audio_inbox/
 *.zip
 
 # ==========================================
-# Internal Bot Logs, Prompts & Local State
+# Local notes, scratch files, and workspace state
 # ==========================================
 *.log
-.agents/
-.claude/
-.history-memo/
-CLAUDE.md
-GEMINI.md
-CHECKLIST.md
-STATUS.md
-RUN_ME.md
-AUDIT_*.md
-copilot_*
-fact_audit*
+/.*/
+!/.github/
+/[A-Z]*.md
+!/README.md
+/*_audit*
 prompts/
-.stockfisher_cache/
-.ipynb_checkpoints/
 audit/

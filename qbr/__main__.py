@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-"""The command line: py -3.9 -m qbr <command> ...   (run from C:\\QB\\stockfisher)
+"""The command line: python -m qbr <command> ...   (run from the repository root)
 
     profile "Kazimir Malevich"          the stock clues for an answer, counted
     search "zero of form" -c vfa        clue text; also "a b" AND/OR/NOT, supremat*, NEAR(a b, 10), ans:malevich, --re
     who "zero of form"                  which answers a clue points to (is it unique?)
     top -c architecture -n 100          the frequency list for a category; --rising for what is trending
-    fact "Bury St. Edmunds|eel"         fact check: sentences holding the keyword in questions holding the phrase
+    fact "Bury St. Edmunds|eel"         sentences holding the keyword in questions holding the phrase
     like "a white fish obscures ..."    clues worded like this one
     sets "ACF Nationals"                sets in the mirror;  set "2026 ACF Nationals" -c vfa  lists its questions
     show <id>                           one whole question
@@ -285,7 +285,7 @@ def cmd_brief(a):
 
 def main(argv=None):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-    ap = argparse.ArgumentParser(prog="py -3.9 -m qbr", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap = argparse.ArgumentParser(prog="python -m qbr", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd")
 
     p = sub.add_parser("search", help="search clue text")
@@ -330,7 +330,7 @@ def main(argv=None):
     _filters(p)
     p.set_defaults(fn=cmd_top)
 
-    p = sub.add_parser("fact", help="fact check: 'phrase|keyword'")
+    p = sub.add_parser("fact", help="find passages containing 'phrase|keyword'")
     p.add_argument("checks", nargs="+")
     p.add_argument("-n", type=int, default=6)
     _filters(p)
@@ -382,7 +382,7 @@ def main(argv=None):
     p.add_argument("--json", action="store_true")
     p.set_defaults(fn=cmd_sql)
 
-    p = sub.add_parser("brief", help="agent clue briefing for an Anki deck (read-only)")
+    p = sub.add_parser("brief", help="compare clues with an Anki deck (read-only)")
     p.add_argument("deck", help="Anki deck name, e.g. OVFA::Dance or VFA")
     p.add_argument("-t", "--tier", type=int, choices=[1, 2, 3, 4], help="tier 1-4")
     p.add_argument("--title", help="regex filter on note Title/Work")
@@ -399,7 +399,7 @@ def main(argv=None):
         if a.cmd not in ("sync", "status"):
             when = store.meta("synced")
             if when and time.time() - when > 21 * 86400:
-                print("(mirror last synced %.0f days ago; `py -3.9 -m qbr sync` updates it)" % ((time.time() - when) / 86400),
+                print("(mirror last synced %.0f days ago; `python -m qbr sync` updates it)" % ((time.time() - when) / 86400),
                       file=sys.stderr)
         out = a.fn(a)
     except (FileNotFoundError, ValueError, RuntimeError) as e:

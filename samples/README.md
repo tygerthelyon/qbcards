@@ -1,49 +1,24 @@
-# Curated Quizbowl Sample Datasets
+# Study-note samples
 
-This directory contains representative, curated sample datasets formatted for spaced-repetition study and knowledge testing across three academic domains:
+These files show a small cross-section of the larger Anki collection:
 
-1. **`sample_fine_arts.json` (Visual Fine Arts Tier 1)**:
-   * 30 world-famous artworks across Western and East Asian art history.
-   * Fields: `title`, `artist`, `date`, `style`, `location`, `clue`, `notes`, and difficulty tags.
-   * Demonstrates the multi-card model mapping artwork imagery to artist, title, and movement.
+| File | Records | Contents |
+| --- | ---: | --- |
+| [sample_fine_arts.json](sample_fine_arts.json) | 27 | Works, artists, dates, locations, and selected clues |
+| [sample_philosophy.json](sample_philosophy.json) | 30 | Short cloze notes on early Greek philosophy |
+| [sample_history.json](sample_history.json) | 30 | History and literature prompts with answer and context fields |
 
-2. **`sample_philosophy.json` (Classical Philosophy)**:
-   * 30 structured cloze flashcard notes covering Presocratics (Thales, Anaximander, Heraclitus, Parmenides) and Plato's dialogues.
-   * Features progressive disclosure with `{{c1::...}}` cloze tossup blanks and `{{c2::...}}` bonus-level concept blanks.
+For example, a philosophy record contains an answerline and cloze-formatted text:
 
-3. **`sample_history.json` (World History Clues)**:
-   * 30 atomic prompt-and-answer clues covering key historical figures, treaties, and dynasties.
-   * Metadata includes period, country, entity classification, and contextual extra information.
-
-## Schema Specification
-
-### Fine Arts
-```json
-{
-  "id": 1787890520242,
-  "model": "Art",
-  "title": "The Starry Night",
-  "artist": "Vincent van Gogh",
-  "date": "1889",
-  "style": "Post-Impressionism; Oil on canvas",
-  "location": "Museum of Modern Art, New York City",
-  "clue": "A cypress tree looms in the foreground before a swirling night sky over Saint-Rémy-de-Provence.",
-  "tags": ["Art::tier::tier1-core", "Art::nationality::dutch"]
-}
-```
-
-### Philosophy Cloze
 ```json
 {
   "model": "QB Cloze",
   "answerline": "Thales",
   "set": "Presocratics",
-  "text": "{{c1::Thales::this thinker}} held that {{c2::water}} is the arche, the first principle of all things.",
+  "text": "{{c1::Thales::this thinker}} held that {{c2::water}} is the arche, the first principle of all things",
   "source": "HoP 1",
   "tags": ["Philosophy::Classical", "Classical::Presocratics"]
 }
 ```
 
-## Importing into Anki
-
-These JSON files can be imported directly into Anki using AnkiConnect (`addNotes` action) or converted to standard CSV/TSV format for the Anki Desktop file importer (`File > Import`).
+These are illustrative JSON records, not Anki deck packages. Importing them requires a matching note type and a conversion or import script that maps each record's fields. The [model definitions](../templates/models.json) are provided as a reference; they are not directly importable as an `.apkg`. Images, audio, and the full collection are not included.

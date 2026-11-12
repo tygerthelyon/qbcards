@@ -20,6 +20,7 @@ import time
 import zlib
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from functools import lru_cache
+from pathlib import Path
 
 from . import api
 from .text import SEP, parse_answer
@@ -56,9 +57,9 @@ def _rx(p):
 def connect(write=False):
     """The mirror. Read-only unless write=True; raises FileNotFoundError before the first sync."""
     if not write and not os.path.exists(PATH):
-        raise FileNotFoundError("no mirror yet at %s -- run: py -3.9 -m qbr sync" % PATH)
+        raise FileNotFoundError("no mirror yet at %s -- run: python -m qbr sync" % PATH)
     if write:
-        os.makedirs(os.path.dirname(PATH), exist_ok=True)
+        os.makedirs(os.path.dirname(os.path.abspath(PATH)), exist_ok=True)
         con = sqlite3.connect(PATH, timeout=120)
         # Write-ahead logging, switched on once and left on: a search running in another session reads the last
         # committed state and never waits on a sync. The switch itself needs the file to itself, so it is retried,
@@ -73,7 +74,7 @@ def connect(write=False):
         con.execute("PRAGMA synchronous=NORMAL")
         con.executescript(SCHEMA)
     else:
-        con = sqlite3.connect("file:%s?mode=ro" % PATH.replace("\\", "/"), uri=True, timeout=60)
+        con = sqlite3.connect(Path(PATH).resolve().as_uri() + "?mode=ro", uri=True, timeout=60)
     con.row_factory = sqlite3.Row
     con.execute("PRAGMA cache_size=-200000")
     con.create_function("regexp", 2, lambda p, s: 1 if s and _rx(p).search(s) else 0, deterministic=True)

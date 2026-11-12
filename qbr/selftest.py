@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Independent sanity checks for the QBReader mirror and its search layer.
 
-Run from C:\QB\stockfisher with ``py -3.9 -m qbr.selftest``. The checks compare
+Run from the repository root with ``python -m qbr.selftest``. The checks compare
 the local copy with the live API and write only to a temporary scratch database;
 they never write to the production mirror or Anki.
 """

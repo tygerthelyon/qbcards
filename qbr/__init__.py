@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """qbr -- a local mirror of qbreader with a searcher on top.
 
-    py -3.9 -m qbr profile "Kazimir Malevich"       (run from C:\\QB\\stockfisher; --help lists the commands)
+    python -m qbr profile "Kazimir Malevich"  (run from the repository root)
 
 From a script in this folder:
 
@@ -15,8 +15,8 @@ From a script in this folder:
 
 README.md has the rest.
 """
-from .anki import brief_notes                                                                             # noqa: F401
-from .clues import profile, verify_clue                                                                   # noqa: F401
-from .find import   answered, fact, like, packet, rows, search, sets, show, top, who                      # noqa: F401
-from .store import db, reparse, sync                                                                      # noqa: F401
-from .text import fold, near, parse_answer, plain, sentences, takes, things                               # noqa: F401
+from .anki import brief_notes
+from .clues import profile, verify_clue
+from .find import answered, fact, like, packet, rows, search, sets, show, top, who
+from .store import db, reparse, sync
+from .text import fold, near, parse_answer, plain, sentences, takes, things

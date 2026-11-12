@@ -1,3 +1,7 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
 <title>Buzz Drill</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,6 +45,7 @@
   --series-1: #3987e5; --grid: #262a31; color-scheme: dark;
 }
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 body {
   background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.5;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
@@ -113,6 +118,8 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
 @media (max-width: 480px) { .tossup { font-size: 1.06rem; } .panel { padding: 16px; } }
 @media (prefers-reduced-motion: no-preference) { .bar .fill { transition: width 0.15s linear; } }
 </style>
+</head>
+<body>
 
 <div class="wrap">
   <header class="top">
@@ -125,7 +132,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
 
   <section id="view-drill" class="wrap" style="gap:20px">
     <div id="setup" class="panel">
-      <p class="note">Real tossups whose answers are cards you have already studied. Buzz the moment you know it. Your buzz point over the weeks shows whether the cards carry over to matches.</p>
+      <p class="note">Practice tossups selected from the study collection. Buzz when you know the answer, then score yourself and track your progress.</p>
       <div class="row" style="gap:6px"><span class="label">Categories</span></div>
       <div id="groups" class="row"></div>
       <div class="row" style="gap:24px">
@@ -214,7 +221,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     S.groups.forEach(function (x) { S.chosen[x.g] = prev ? !!prev[x.g] : true; });
     renderSetup();
   }).catch(function () {
-    $("poolinfo").textContent = "The tossup set did not load. Reload the page to try again.";
+    $("poolinfo").textContent = "Could not load tossups.json. Start a local web server as described in the README.";
     $("start").disabled = true;
   });
 
@@ -525,3 +532,5 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
   }
 })();
 </script>
+</body>
+</html>

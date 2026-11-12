@@ -1,175 +1,61 @@
 # QBCards & StockFisher
 
-The tools here provide a software to process, index, and learn academic tournament material for the purpose of improving at quizbowl and more generally, learning facts more effectively. It is not an adequate substitution for "real learning" but nonetheless may occasionally prove useful for tournament play.
+Tools for studying and practicing quizbowl: a searchable question mirror, a buzzer drill, and the card models behind a large Anki collection.
 
-* **StockFisher Engine (`qbr`)**: offline SQLite FTS5 search and clue frequency pipeline indexing public quizbowl question database. Profiles "stock" (recurring) clues, and their frequency and difficulty in under 3 seconds per query.
-* **Tossup Simulator (`drill/`)**: web application simulating live question-reading with configurable reading speeds, keyboard buzzer interrupts, and session performance telemetry.
-* **Anki Card Architecture (`templates/`, `samples/`)**: Anki flashcard models with responsive WebKit-compliant layouts.
+| Project | What it does |
+| --- | --- |
+| [StockFisher](qbr/) | Indexes QBReader questions in SQLite and finds recurring clues, shared answers, and gaps in an Anki collection. |
+| [Buzz Drill](drill/) | Streams tossups word by word, tracks buzz position, and saves self-scored practice sessions in the browser. |
+| [Anki models and samples](samples/) | Shows how the collection is organized, from visual arts cards to philosophy and history notes. |
 
----
+![Buzz Drill setup screen, showing categories, session length, and reading speed](docs/images/buzz-drill.png)
 
-## Architecture
+## StockFisher
 
-```
-                                  [ Quizbowl Canon / Question Corpus ]
-                                                    │
-                                                    ▼
-   ┌─────────────────────────────────────────────────────────────────────────────────────────────────┐
-   │                                  StockFisher 2.0 Engine (qbr)                                   │
-   │                                                                                                 │
-   │  ┌───────────────────────┐      ┌─────────────────────────────┐      ┌───────────────────────┐  │
-   │  │   Text & NLP Parser   │ ───► │      SQLite WAL + FTS5      │ ───► │    Clue Profiler      │  │
-   │  │ Answerline directives │      │ 670k units · 700+ sets      │      │ Stock score, pyramid  │  │
-   │  │ Compound surnames     │      │ Fast full-text search       │      │ position & uniqueness │  │
-   │  └───────────────────────┘      └─────────────────────────────┘      └───────────────────────┘  │
-   └────────────────────────────────────────────────┬────────────────────────────────────────────────┘
-                                                    │
-                                                    ▼
-   ┌────────────────────────────────────────────────┴────────────────────────────────────────────────┐
-   │                                     Applications & Practice                                     │
-   │                                                                                                 │
-   │  ┌────────────────────────────────────────────────────────┐  ┌───────────────────────────────┐  │
-   │  │                 Interactive Buzz Drill                 │  │       Anki Spaced Repetition  │  │
-   │  │ Real-time tossup streamer · Keyboard interrupt buzzer  │  │ Responsive card models (CSS)  │  │
-   │  │ Session metrics · Accuracy by category · Misses log    │  │ Dynamic mosaic layout engine  │  │
-   │  └────────────────────────────────────────────────────────┘  └───────────────────────────────┘  │
-   └─────────────────────────────────────────────────────────────────────────────────────────────────┘
-```
+Quizbowl questions are pyramidal: harder clues come first, with more familiar clues later. StockFisher searches a local [QBReader](https://www.qbreader.org/) mirror for recurring clues and reports how often they occur, how widely they are shared, and where they tend to appear in a tossup. Answerline parsing handles accepted alternatives and moderator instructions. Optional AnkiConnect integration compares results with existing notes; it reads the collection without changing it.
 
----
-
-## Core Components
-
-### 1. StockFisher 2.0 (`qbr`)
-
-The `qbr` package provides offline search, clue extraction, and canon profiling. It replaces external API roundtrips with an indexed local mirror.
-
-#### Key Features:
-* **FTS5 Full-Text Search**: Optimized queries across question text, lead-ins, and answer lines.
-* **Robust Answerline Normalization**: Custom parsing for complex tournament rubrics (`[accept any answer mentioning...]`, `[prompt on...]`, `_WHEN`, `_VAGUE`, `_UNDERLINED_META`, and hyphenated/Catalan/Spanish compound surnames like *Antoni Gaudí i Cornet*).
-* **Clue Uniqueness (`who` & `profile --spec`)**: Quantifies whether a clue uniquely identifies a single subject or is shared across multiple canonical answers.
-* **Pyramid Positioning**: Tracks where clues appear within tossups—from early power lead-ins to late giveaways.
-
-#### CLI Usage:
+The November 2026 mirror contained **671,413 answerable units from 716 sets**. The database is built locally and is not included in this repository. Counts depend on the last sync, and suggested clues need human review: a frequent association is not by itself proof of a fact or a unique answer.
 
 ```bash
-# Profile stock clues for an answer line with pyramid positioning
-py -3.9 -m qbr profile "Kazimir Malevich" --spec --pyramid
+git clone https://github.com/tygerthelyon/qbcards.git
+cd qbcards
 
-# Check clue uniqueness across the entire canon
-py -3.9 -m qbr who "zero of form"
+# Download and index the QBReader corpus; the first sync is large.
+python -m qbr sync
 
-# Filtered search by category and difficulty
-py -3.9 -m qbr search "pendentives" -c architecture -d 7-9
-
-# Frequency ranking for top answers in a category
-py -3.9 -m qbr top -c vfa -n 50 --rising
-
-# Fact check two terms co-occurring in questions
-py -3.9 -m qbr fact "Bury St. Edmunds|eel"
+python -m qbr profile "photoelectric effect" -c physics --spec
+python -m qbr search "pendentives" -c architecture -d 7-9
+python -m qbr who "zero of form"
 ```
 
-#### Python API:
+Python 3.9+ and SQLite with FTS5 are required. The first sync needs internet access and extra disk space while the database is built; the resulting mirror is roughly 900 MB. Later searches run against the local mirror. See the [StockFisher guide](qbr/README.md) for filters, Python usage, Anki integration, and limitations.
 
-```python
-import qbr
+## Buzz Drill
 
-# Extract ranked stock clues
-profile = qbr.profile("Hagia Sophia")
-for item in profile["things"][:5]:
-    print(f"{item['n']:2d} hits | {item['tied']}% unique: {item['text']}")
+The included practice pool contains 1,864 tossups selected for the study collection. Choose categories and a reading speed, buzz with **Space**, then reveal the answer and score yourself. Session history stays in browser storage.
 
-# Search question units with structured filters
-results = qbr.search("pendentive", cat="Architecture", diff="7-9")
-print(f"Total hits: {results['total']}")
+Serve the repository locally so the browser can load the question data:
 
-# Direct connection to the SQLite database
-with qbr.db() as conn:
-    cursor = conn.cursor()
-    cursor.execute("SELECT count(*) FROM u")
-    print(f"Total units indexed: {cursor.fetchone()[0]}")
+```bash
+python -m http.server 8000
 ```
 
----
+Open <http://localhost:8000/drill/buzz-drill.html>. The drill does not require the StockFisher mirror or Anki.
 
-### 2. Interactive Buzz Drill (`drill/`)
+## The collection
 
-A client-side practice application designed to build buzzer reflexes on learned tossup material.
+The personal Anki collection spans physics, biology, fine arts, geography, history, philosophy, and other subjects. A November 2026 audit counted **11,921 notes and 34,848 cards**; many cards are deliberately suspended until earlier material has been studied. The repository contains [small JSON samples](samples/) and [note-type definitions](templates/models.json), not the full collection, its media, or ready-to-import deck packages. Collection-specific [backup and maintenance utilities](scripts/) are included too.
 
-* **Word-by-Word Streaming**: Simulates realistic tournament reading speeds (configurable from 3 to 7 words per second).
-* **Keyboard Buzzer Interrupts**: Hit `Space` to buzz, freezing the reader and opening the answer entry prompt.
-* **Offline Telemetry**: Uses browser `localStorage` for session history, recording accuracy, power buzzes, and a persistent list of missed clues.
-* **Zero Dependencies**: Pure HTML/CSS/JavaScript with responsive layout for desktop and mobile.
+## Tests
 
-To use: open `drill/buzz-drill.html` directly in any modern browser.
+Run the offline parser and temporary-database tests with:
 
----
-
-### 3. Knowledge Architecture & Anki Models (`templates/`, `samples/`)
-
-The repository includes custom Anki note types engineered for academic knowledge retention:
-
-* **Visual Fine Arts & Architecture**: Multi-image figure cards with dynamic JavaScript mosaic layouts, caption management, and image zoom modals.
-* **Classical Philosophy**: Structured cloze models supporting thinker-level answerlines (`c1`), bonus-level concepts (`c2`), and complete contextual lecture backs.
-* **World History Cloze**: Cloze cards with bolded primary entities and detailed historical chronologies.
-* **Night Mode Compliance**: Full support for Anki desktop and mobile night mode using CSS variables and WebKit-tested contrast ratios.
-
----
-
-## Directory Structure
-
-```text
-qbcards/
-├── qbr/                # StockFisher 2.0 query and profiling package
-│   ├── clues.py        # Stock clue extraction algorithms
-│   ├── find.py         # Fast FTS5 search queries
-│   ├── text.py         # NLP folding, normalization, and answerline parser
-│   ├── store.py        # SQLite mirror schema and sync operations
-│   ├── api.py          # HTTP API client for upstream question databases
-│   └── selftest.py     # Regression test suite
-├── drill/              # Tossup buzzer simulator
-│   ├── buzz-drill.html # Standalone drill web application
-│   └── tossups.json    # Sample practice dataset
-├── templates/          # Production Anki card models and CSS templates
-│   └── models.json     # Card schemas, fields, templates, and styles
-├── samples/            # Curated academic trivia datasets
-│   ├── sample_fine_arts.json
-│   ├── sample_philosophy.json
-│   ├── sample_history.json
-│   └── README.md       # Dataset schema documentation
-├── scripts/            # Pipeline automation and verification tools
-├── .gitignore          # Keeps large databases (>900MB), media, and local caches untracked
-└── README.md
+```bash
+python -m unittest discover -s tests -v
 ```
 
----
+The larger `python -m qbr.selftest` compares a synced mirror against the live QBReader API. It needs both the local database and a network connection.
 
-## Getting Started
+## Question sources
 
-### Prerequisites
-
-* Python 3.9+
-* SQLite 3.35+ (with FTS5 enabled)
-* Anki with [AnkiConnect](https://foosoft.net/projects/anki-connect/) (optional, for direct card synchronization)
-
-### Quick Setup
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/tygerthelyon/qbcards.git
-   cd qbcards
-   ```
-
-2. **Verify the environment:**
-   ```bash
-   py -3.9 -m qbr.selftest
-   ```
-
-3. **Launch the Buzz Drill:**
-   Open `drill/buzz-drill.html` in your browser to start a practice session.
-
----
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+The drill pool and StockFisher mirror draw on questions made available through QBReader. Question text remains the work of its writers and tournament hosts; see [QBReader's description of its question sources and non-commercial use](https://github.com/qbreader#questions). The mirror is not bundled here.

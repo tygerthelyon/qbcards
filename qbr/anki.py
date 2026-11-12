@@ -138,8 +138,10 @@ def have(idx, key, also=(), target_names=()):
 
 
 def brief_notes(deck, tier=None, pattern=None, cat=None, top=12):
-    """Read-only agent briefing for an Anki deck (and optional tier 1-4): for each note, returns its existing Clue/Notes
-    fields alongside its top qbreader stock clues and which ones are already `on-note` vs missing."""
+    """Compare a deck's fields with recurring clues, marking those already on the target note.
+
+    This reads the collection through AnkiConnect and does not write to it.
+    """
     from .clues import profile
     tiers = {1: "tier1-core", 2: "tier2-solid", 3: "tier3-deepcut", 4: "tier4-rare"}
     q = '"deck:%s"' % deck + (" tag:*::tier::%s" % tiers[int(tier)] if tier else "")

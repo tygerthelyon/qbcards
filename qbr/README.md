@@ -1,27 +1,28 @@
 # qbr
 
-A local copy of every qbreader question, with a searcher on top. It replaces StockFisher 1.0 and the hand-written
-`urllib` fetches in the dated scripts. It does not replace qbreader.org for ordinary searching; it does what the site
-cannot: count, compare, and answer in milliseconds without the network.
+A local SQLite mirror of the QBReader question database, with tools for searching questions and comparing recurring clues.
+It supports offline queries after the initial sync and can compare results with an Anki collection.
 
-Run everything from `C:\QB\stockfisher` with `py -3.9`.
+Run commands from the repository root with Python 3.9 or later. The database is not included: run
+`python -m qbr sync` first. The initial download is large and requires internet access; the resulting database is
+about 900 MB. Set `QBR_DB` to use a different database path. AnkiConnect is needed only for Anki comparisons.
 
 ## Commands
 
 ```
-py -3.9 -m qbr profile "Kazimir Malevich"         the stock clues for an answer (--spec, --pyramid)
-py -3.9 -m qbr profile "John Adams" -c afa --anki  the composer only, marked against the Anki collection
-py -3.9 -m qbr search "zero of form" -c vfa -d 7-9
-py -3.9 -m qbr who "zero of form"                 which answers a clue points to
-py -3.9 -m qbr top -c architecture -n 100         frequency list; --rising, --anki, --missing
-py -3.9 -m qbr fact "Bury St. Edmunds|eel"        fact check
-py -3.9 -m qbr like "a white fish obscures the image of a tuxedoed man"
-py -3.9 -m qbr sets "ACF Nationals"               sets in the mirror
-py -3.9 -m qbr set "2026 ACF Nationals" -c vfa    one set's questions, in packet order
-py -3.9 -m qbr show <id or uid>                   one whole question; --html keeps the italics
-py -3.9 -m qbr brief "OVFA::Dance" -t 1 -c fa     agent briefing: notes' existing clues + missing stock clues
-py -3.9 -m qbr sql "SELECT ..."                   read-only SQL
-py -3.9 -m qbr sync                               update the mirror;  status  says how fresh it is
+python -m qbr profile "Kazimir Malevich"         the stock clues for an answer (--spec, --pyramid)
+python -m qbr profile "John Adams" -c afa --anki  the composer only, marked against the Anki collection
+python -m qbr search "zero of form" -c vfa -d 7-9
+python -m qbr who "zero of form"                 which answers a clue points to
+python -m qbr top -c architecture -n 100         frequency list; --rising, --anki, --missing
+python -m qbr fact "Bury St. Edmunds|eel"        find passages containing both terms
+python -m qbr like "a white fish obscures the image of a tuxedoed man"
+python -m qbr sets "ACF Nationals"               sets in the mirror
+python -m qbr set "2026 ACF Nationals" -c vfa    one set's questions, in packet order
+python -m qbr show <id or uid>                   one whole question; --html keeps the italics
+python -m qbr brief "OVFA::Dance" -t 1 -c fa     compare existing clues with recurring clues
+python -m qbr sql "SELECT ..."                   read-only SQL
+python -m qbr sync                               update the mirror;  status  says how fresh it is
 ```
 
 Filters, on most commands: `-c` category (`vfa`, `phil`, `architecture`, `"Other Fine Arts"`, several with commas),
@@ -91,7 +92,7 @@ split that gets past qbreader's 10,000-row paging ceiling) for anything not yet 
 - `f`: the full-text index over `u.text`, `u.lead`, `u.accepts`. `sets`: one row per set.
 
 `sync` fetches sets the mirror lacks, drops sets qbreader no longer lists, and re-fetches sets from the last year
-whose question count changed. `sync --full` re-fetches everything (about eight minutes). `sync --reparse` re-derives
+whose question count changed. `sync --full` re-fetches everything. `sync --reparse` re-derives
 the answer columns after a change to `text.parse_answer`, with no download.
 
 ## Anki
@@ -120,4 +121,4 @@ still need an explicit alternate or a separate related-answer lookup.
 
 `text.py` folding, answer lines, sentences, named things · `api.py` live client · `store.py` mirror and sync ·
 `find.py` the searches · `clues.py` stock clues (`qbr.profile`) · `anki.py` the read-only Anki index · `__main__.py` command line ·
-`selftest.py` regression checks (`py -3.9 -m qbr.selftest`)
+`selftest.py` regression checks (`python -m qbr.selftest`)
