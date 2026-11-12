@@ -1,12 +1,12 @@
 # QBCards & StockFisher
 
-Tools for studying and practicing quizbowl: a searchable question mirror, a buzzer drill, and the card models behind a large Anki collection.
+Tools for studying and practicing quizbowl: a clue retriever, a buzzer drill, and the card models behind Anki flashcard decks for various categories.
 
 | Project | What it does |
 | --- | --- |
-| [StockFisher](qbr/) | Indexes QBReader questions in SQLite and finds recurring clues, shared answers, and gaps in an Anki collection. |
+| [StockFisher](qbr/) | Indexes QBReader questions in SQLite and finds recurring clues, shared answers, and gaps in a notes collection. |
 | [Buzz Drill](drill/) | Streams tossups word by word, tracks buzz position, and saves self-scored practice sessions in the browser. |
-| [Anki models and samples](samples/) | Shows how the collection is organized, from visual arts cards to philosophy and history notes. |
+| [Anki models and samples](samples/) | Shows how the collection is organized across various category types. |
 
 ![Buzz Drill setup screen, showing categories, session length, and reading speed](docs/images/buzz-drill.png)
 
@@ -14,7 +14,7 @@ Tools for studying and practicing quizbowl: a searchable question mirror, a buzz
 
 Quizbowl questions are pyramidal: harder clues come first, with more familiar clues later. StockFisher searches a local [QBReader](https://www.qbreader.org/) mirror for recurring clues and reports how often they occur, how widely they are shared, and where they tend to appear in a tossup. Answerline parsing handles accepted alternatives and moderator instructions. Optional AnkiConnect integration compares results with existing notes; it reads the collection without changing it.
 
-The November 2026 mirror contained **671,413 answerable units from 716 sets**. The database is built locally and is not included in this repository. Counts depend on the last sync, and suggested clues need human review: a frequent association is not by itself proof of a fact or a unique answer.
+The November 2026 mirror contained 671,413 answerable units from 716 sets. The database is built locally and is not included in this repository. Note that counts depend on the last sync, and suggested clues need human review: a frequent association is not by itself proof of a fact or a unique answer.
 
 ```bash
 git clone https://github.com/tygerthelyon/qbcards.git
@@ -44,7 +44,7 @@ Open <http://localhost:8000/drill/buzz-drill.html>. The drill does not require t
 
 ## The collection
 
-The personal Anki collection spans physics, biology, fine arts, geography, history, philosophy, and other subjects. A November 2026 audit counted **11,921 notes and 34,848 cards**; many cards are deliberately suspended until earlier material has been studied. The repository contains [small JSON samples](samples/) and [note-type definitions](templates/models.json), not the full collection, its media, or ready-to-import deck packages. Collection-specific [backup and maintenance utilities](scripts/) are included too.
+The personal Anki collection spans physics, biology, fine arts, geography, history, philosophy, and other subjects. A November 2026 audit counted 11,921 notes and 34,848 cards; many cards are deliberately suspended until earlier material has been studied. The repository contains [small JSON samples](samples/) and [note-type definitions](templates/models.json), not the full collection, its media, or ready-to-import deck packages. Collection-specific [backup and maintenance utilities](scripts/) are included too.
 
 ## Tests
 
@@ -58,4 +58,4 @@ The larger `python -m qbr.selftest` compares a synced mirror against the live QB
 
 ## Question sources
 
-The drill pool and StockFisher mirror draw on questions made available through QBReader. Question text remains the work of its writers and tournament hosts; see [QBReader's description of its question sources and non-commercial use](https://github.com/qbreader#questions). The mirror is not bundled here.
+The drill pool and StockFisher mirror draw on questions made available through QBReader. Question text remains the work of its writers and tournament hosts; see [QBReader's description of its question sources and non-commercial use](https://github.com/qbreader#questions). The mirror is not attached here.
