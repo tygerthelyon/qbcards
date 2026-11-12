@@ -1,0 +1,409 @@
+[
+  {
+    "id": 1787890518277,
+    "model": "Art",
+    "title": "Mona Lisa (or La Gioconda)",
+    "artist": "Leonardo da Vinci",
+    "date": "1503–1509",
+    "style": "High Renaissance; Oil on panel",
+    "location": "Louvre, Paris",
+    "clue": "",
+    "notes": "",
+    "tags": [
+      "Art::nationality::italian",
+      "Art::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1787890518007,
+    "model": "Art",
+    "title": "Las Meninas",
+    "artist": "Diego Velázquez",
+    "date": "1656",
+    "style": "Baroque; Oil on canvas",
+    "location": "Museo del Prado, Madrid",
+    "clue": "A young princess in a wide dress stands amid attendants and a dog in a large room, where a painter at a huge canvas looks out at the viewer and a mirror on the back wall reflects a royal couple.",
+    "notes": "",
+    "tags": [
+      "Art::nationality::spanish",
+      "Art::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1787890518040,
+    "model": "Art",
+    "title": "Guernica",
+    "artist": "Pablo Picasso",
+    "date": "1937",
+    "style": "Cubism, Surrealism; Oil on canvas",
+    "location": "Museo Nacional Centro de Arte Reina Sofía, Madrid",
+    "clue": "",
+    "notes": "",
+    "tags": [
+      "Art::nationality::spanish",
+      "Art::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1787890517908,
+    "model": "Art",
+    "title": "The Night Watch (or The Militia Company of Captain Frans Banning Cocq)",
+    "artist": "Rembrandt (van Rijn)",
+    "date": "1642",
+    "style": "Baroque, Tenebrism; Oil on canvas",
+    "location": "Rijksmuseum, Amsterdam",
+    "clue": "",
+    "notes": "",
+    "tags": [
+      "Art::nationality::dutch",
+      "Art::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1787890518355,
+    "model": "Art",
+    "title": "The Birth of Venus",
+    "artist": "Sandro Botticelli",
+    "date": "1483–1485",
+    "style": "Early Renaissance; Tempera on canvas",
+    "location": "Uffizi Gallery, Florence",
+    "clue": "",
+    "notes": "",
+    "tags": [
+      "Art::nationality::italian",
+      "Art::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1787890518058,
+    "model": "Art",
+    "title": "The Persistence of Memory",
+    "artist": "Salvador Dalí",
+    "date": "1931",
+    "style": "Surrealism; Oil on canvas",
+    "location": "Museum of Modern Art, New York City",
+    "clue": "On a barren shoreline, limp pocket watches drape over a tree branch, a ledge, and a strange sleeping fleshy form, while ants swarm one closed watch.",
+    "notes": "",
+    "tags": [
+      "Art::nationality::spanish",
+      "Art::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1787890518489,
+    "model": "Art",
+    "title": "The Scream",
+    "artist": "Edvard Munch",
+    "date": "1893",
+    "style": "Expressionism; Oil, pastel, tempera on cardboard",
+    "location": "National Gallery of Norway, Oslo",
+    "clue": "A figure with a skull-like face holds its head in its hands on a bridge, mouth open, under a swirling orange-red sky, while two figures walk away behind.",
+    "notes": "",
+    "tags": [
+      "Art::nationality::nordic",
+      "Art::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1787890517295,
+    "model": "Art",
+    "title": "American Gothic",
+    "artist": "Grant Wood",
+    "date": "1930",
+    "style": "Regionalism; Oil on panel",
+    "location": "Art Institute of Chicago, Chicago",
+    "clue": "A stern farmer holding a pitchfork stands beside a woman in a colonial-style apron in front of a white farmhouse with a pointed-arch window.",
+    "notes": "",
+    "tags": [
+      "Art::nationality::american",
+      "Art::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1787890517110,
+    "model": "Art",
+    "title": "Nighthawks",
+    "artist": "Edward Hopper",
+    "date": "1942",
+    "style": "American Realism; Oil on canvas",
+    "location": "Art Institute of Chicago, Chicago",
+    "clue": "Three customers and a counterman in a corner diner at night, seen through a curved window from an empty street. Painted in 1942.",
+    "notes": "",
+    "tags": [
+      "Art::nationality::american",
+      "Art::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1787890517547,
+    "model": "Art",
+    "title": "Impression, Sunrise",
+    "artist": "Claude Monet",
+    "date": "1872",
+    "style": "Impressionism; Oil on canvas",
+    "location": "Musée Marmottan Monet, Paris",
+    "clue": "",
+    "notes": "",
+    "tags": [
+      "Art::nationality::french",
+      "Art::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1787890518301,
+    "model": "Art",
+    "title": "The School of Athens",
+    "artist": "Raphael",
+    "date": "1511",
+    "style": "High Renaissance; Fresco",
+    "location": "Vatican Museums, Vatican City (Rome)",
+    "clue": "",
+    "notes": "",
+    "tags": [
+      "Art::nationality::italian",
+      "Art::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1787890517500,
+    "model": "Art",
+    "title": "The Arnolfini Portrait",
+    "artist": "Jan van Eyck",
+    "date": "1434",
+    "style": "Northern Renaissance; Oil on panel",
+    "location": "National Gallery, London",
+    "clue": "A richly dressed couple hold hands in a Flemish bedroom with a small dog at their feet and a single lit candle in the chandelier, while a convex mirror on the back wall reflects two more figures.",
+    "notes": "",
+    "tags": [
+      "Art::nationality::flemish",
+      "Art::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1787890518735,
+    "model": "Art",
+    "title": "The Great Wave off Kanagawa",
+    "artist": "Katsushika Hokusai",
+    "date": "1831",
+    "style": "Ukiyo-e; Woodcut on paper",
+    "location": "Metropolitan Museum of Art, New York City",
+    "clue": "A breaking swell with claw-shaped crests curls over three boats of rowers, with snow-capped Mount Fuji small in the distance. A woodblock print from the Thirty-six Views series.",
+    "notes": "",
+    "tags": [
+      "Art::nationality::japanese",
+      "Art::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1787890517698,
+    "model": "Art",
+    "title": "Liberty Leading the People",
+    "artist": "Eugène Delacroix",
+    "date": "1830",
+    "style": "Romanticism; Oil on canvas",
+    "location": "Louvre, Paris",
+    "clue": "A bare-breasted woman in a Phrygian cap raises a tricolour flag and a bayoneted musket as she leads armed men across a barricade strewn with the dead, a boy with pistols running beside her.",
+    "notes": "",
+    "tags": [
+      "Art::nationality::french",
+      "Art::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1787890517809,
+    "model": "Art",
+    "title": "The Raft of the Medusa",
+    "artist": "Théodore Géricault",
+    "date": "c. 1818",
+    "style": "Romanticism; Oil on canvas",
+    "location": "Louvre, Paris",
+    "clue": "Survivors and corpses are heaped on a makeshift raft adrift at sea, the strongest waving a cloth at a tiny ship on the horizon. Based on a French frigate wrecked off West Africa in 1816.",
+    "notes": "",
+    "tags": [
+      "Art::nationality::french",
+      "Art::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1787890517730,
+    "model": "Art",
+    "title": "The Swing",
+    "artist": "Jean-Honoré Fragonard",
+    "date": "1767",
+    "style": "Rococo; Oil on canvas",
+    "location": "Wallace Collection, London",
+    "clue": "",
+    "notes": "",
+    "tags": [
+      "Art::nationality::french",
+      "Art::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1787890517917,
+    "model": "Art",
+    "title": "Girl with a Pearl Earring",
+    "artist": "Johannes Vermeer",
+    "date": "c. 1665",
+    "style": "Baroque; Oil on canvas",
+    "location": "Mauritshuis, The Hague",
+    "clue": "",
+    "notes": "",
+    "tags": [
+      "Art::nationality::dutch",
+      "Art::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1787890518483,
+    "model": "Art",
+    "title": "The Kiss",
+    "artist": "Gustav Klimt",
+    "date": "c. 1907",
+    "style": "Art Nouveau; Oil on canvas",
+    "location": "Belvedere, Vienna",
+    "clue": "",
+    "notes": "",
+    "tags": [
+      "Art::nationality::austrian",
+      "Art::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1787890517968,
+    "model": "Art",
+    "title": "The Garden of Earthly Delights",
+    "artist": "Hieronymus Bosch",
+    "date": "1510–1515",
+    "style": "Northern Renaissance; Oil on panel",
+    "location": "Museo del Prado, Madrid",
+    "clue": "A three-panel altarpiece: a calm paradise landscape with a man, woman, and their creator on the left, a teeming pastel field of nude figures with oversized fruit and birds in the centre, and a dark, fiery hell where musical instruments torment sinners on the right.",
+    "notes": "Closed, its wings show <i>The Creation of the World</i> in grisaille.",
+    "tags": [
+      "Art::nationality::dutch",
+      "Art::retier_2026-09-26",
+      "Art::retier_2026-09-27",
+      "Art::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1787890517559,
+    "model": "Art",
+    "title": "Water Lilies",
+    "artist": "Claude Monet",
+    "date": "1914–1926",
+    "style": "Impressionism; Oil on canvas",
+    "location": "Museum of Modern Art, New York City",
+    "clue": "",
+    "notes": "",
+    "tags": [
+      "Art::nationality::french",
+      "Art::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1787890518038,
+    "model": "Art",
+    "title": "Les Demoiselles d'Avignon",
+    "artist": "Pablo Picasso",
+    "date": "1907",
+    "style": "Cubism; Oil on canvas",
+    "location": "Museum of Modern Art, New York City",
+    "clue": "",
+    "notes": "",
+    "tags": [
+      "Art::nationality::spanish",
+      "Art::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1787890517491,
+    "model": "Art",
+    "title": "The Treachery of Images (or This is Not a Pipe)",
+    "artist": "René Magritte",
+    "date": "1929",
+    "style": "Surrealism; Oil on canvas",
+    "location": "Los Angeles County Museum of Art, Los Angeles",
+    "clue": "A carefully painted smoking pipe floats above a line of French text stating that it is not what it plainly appears to be.",
+    "notes": "",
+    "tags": [
+      "Art::nationality::belgian",
+      "Art::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1787890518127,
+    "model": "Art",
+    "title": "Wanderer Above the Sea of Fog",
+    "artist": "Caspar David Friedrich",
+    "date": "1818",
+    "style": "Romanticism; Oil on canvas",
+    "location": "Kunsthalle Hamburg, Hamburg",
+    "clue": "A man in a dark coat, seen from behind, stands on a rocky crag and gazes over a sea of fog toward distant peaks.",
+    "notes": "",
+    "tags": [
+      "Art::nationality::german",
+      "Art::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1787890517566,
+    "model": "Art",
+    "title": "Olympia",
+    "artist": "Édouard Manet",
+    "date": "1863",
+    "style": "Realism; Oil on canvas",
+    "location": "Musée d'Orsay, Paris",
+    "clue": "",
+    "notes": "",
+    "tags": [
+      "Art::nationality::french",
+      "Art::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1787890517567,
+    "model": "Art",
+    "title": "A Bar at the Folies-Bergère",
+    "artist": "Édouard Manet",
+    "date": "1882",
+    "style": "Impressionism; Oil on canvas",
+    "location": "Courtauld Institute of Art, London",
+    "clue": "A barmaid stares out with a detached expression behind a marble counter of bottles and oranges, while a mirror behind her shows a crowded music hall and her own figure turned toward a top-hatted man.",
+    "notes": "",
+    "tags": [
+      "Art::nationality::french",
+      "Art::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1787890517745,
+    "model": "Art",
+    "title": "The Death of Marat",
+    "artist": "Jacques-Louis David",
+    "date": "1793",
+    "style": "Neoclassicism; Oil on canvas",
+    "location": "Royal Museum of Fine Arts, Antwerp",
+    "clue": "A dead man slumps in a bathtub, one arm hanging out with a quill still in his hand and a letter clutched in the other, a knife on the floor beside a wooden crate used as a desk.",
+    "notes": "",
+    "tags": [
+      "Art::nationality::french",
+      "Art::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1787890517087,
+    "model": "Art",
+    "title": "Marilyn Diptych",
+    "artist": "Andy Warhol",
+    "date": "1962",
+    "style": "Pop Art; Silkscreen ink and acrylic on canvas",
+    "location": "Tate Modern, London",
+    "clue": "Fifty copies of one publicity photograph of an actress, silkscreened across two panels: brightly coloured on the left, black and white and fading on the right. Made weeks after her death in 1962.",
+    "notes": "",
+    "tags": [
+      "Art::nationality::american",
+      "Art::tier::tier1-core"
+    ]
+  }
+]

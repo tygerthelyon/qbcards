@@ -1,0 +1,332 @@
+[
+  {
+    "model": "QB Cloze",
+    "answerline": "Thales",
+    "set": "Presocratics",
+    "text": "{{c1::Thales::this thinker}} held that {{c2::water}} is the arche, the first principle of all things",
+    "source": "HoP 1",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Thales",
+    "set": "Presocratics",
+    "text": "{{c1::Thales::this thinker}} of {{c2::Miletus}} is traditionally called the first Greek philosopher",
+    "source": "HoP 1",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Thales",
+    "set": "Presocratics",
+    "text": "{{c1::Thales::this thinker}} held that the earth floats on water, like a log, as Aristotle reports",
+    "source": "HoP 1",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Thales",
+    "set": "Presocratics",
+    "text": "Herodotus credits {{c1::Thales::this thinker}} with predicting the solar eclipse of 585 BC",
+    "source": "HoP 1",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Thales",
+    "set": "Presocratics",
+    "text": "The eclipse predicted by {{c1::Thales::this thinker}} halted a battle between the Lydians and the Medes",
+    "source": "HoP 1",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Thales",
+    "set": "Presocratics",
+    "text": "{{c1::Thales::this thinker}} is said to have diverted the Halys River so that Croesus’s army could cross it",
+    "source": "HoP 1",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Thales",
+    "set": "Presocratics",
+    "text": "{{c1::Thales::this thinker}} was counted among the Seven Sages of Greece",
+    "source": "HoP 1",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Thales",
+    "set": "Presocratics",
+    "text": "{{c1::Thales::this thinker}} is said to have brought geometry to Greece after visiting Egypt",
+    "source": "HoP 1",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Thales",
+    "set": "Presocratics",
+    "text": "{{c1::Thales::this thinker}} said that “all things are full of gods”",
+    "source": "HoP 1",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Thales",
+    "set": "Presocratics",
+    "text": "{{c1::Thales::this thinker}} predicted a bumper olive harvest from the stars and cornered the market in olive presses, showing that philosophy can make money",
+    "source": "HoP 1",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Thales",
+    "set": "Presocratics",
+    "text": "{{c1::Thales::this thinker}} fell into a well while gazing at the stars, and a Thracian servant girl laughed at him, in Plato’s *Theaetetus*",
+    "source": "HoP 1",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Thales",
+    "set": "Presocratics",
+    "text": "Diogenes Laertius credits {{c1::Thales::this thinker}} with the maxim “Know thyself”",
+    "source": "HoP 1",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Thales",
+    "set": "Presocratics",
+    "text": "{{c1::Thales::this thinker}}’s theorem states that an angle inscribed in a semicircle is a right angle",
+    "source": "HoP 1",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Thales",
+    "set": "Presocratics",
+    "text": "{{c1::Thales::this thinker}} is said to have measured the height of the pyramids from their shadows",
+    "source": "HoP 1",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Thales",
+    "set": "Presocratics",
+    "text": "{{c1::Thales::this thinker}} held that magnets have souls, since they can move iron",
+    "source": "HoP 1",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Anaximander",
+    "set": "Presocratics",
+    "text": "{{c1::Anaximander::this thinker}} held that the first principle is the {{c2::apeiron}}, the boundless or indefinite",
+    "source": "HoP 2",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Anaximander",
+    "set": "Presocratics",
+    "text": "{{c1::Anaximander::this thinker}} of Miletus was a student and successor of {{c2::Thales}}",
+    "source": "HoP 2",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Anaximander",
+    "set": "Presocratics",
+    "text": "{{c1::Anaximander::this thinker}} held that pairs of opposites, such as hot and cold or wet and dry, separate out of the boundless",
+    "source": "HoP 2",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Anaximander",
+    "set": "Presocratics",
+    "text": "{{c1::Anaximander::this thinker}}’s one surviving fragment says that things pay penalty to one another for their injustice, according to the ordering of time",
+    "source": "HoP 2",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Anaximander",
+    "set": "Presocratics",
+    "text": "Heidegger wrote an essay on the “saying” of {{c1::Anaximander::this thinker}}",
+    "source": "HoP 2",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Anaximander",
+    "set": "Presocratics",
+    "text": "{{c1::Anaximander::this thinker}} wrote the earliest known prose work titled *On Nature*",
+    "source": "HoP 2",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Anaximander",
+    "set": "Presocratics",
+    "text": "{{c1::Anaximander::this thinker}} is credited with bringing the gnomon, a kind of sundial, to Greece",
+    "source": "HoP 2",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Anaximander",
+    "set": "Presocratics",
+    "text": "{{c1::Anaximander::this thinker}} drew the first map of the world",
+    "source": "HoP 2",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Anaximander",
+    "set": "Presocratics",
+    "text": "{{c1::Anaximander::this thinker}} held that the earth is a squat cylinder, like a drum, and we live on its flat top",
+    "source": "HoP 2",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Anaximander",
+    "set": "Presocratics",
+    "text": "{{c1::Anaximander::this thinker}} argued that the earth stays at the centre of the cosmos because it has no reason to move in one direction rather than another",
+    "source": "HoP 2",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Anaximenes",
+    "set": "Presocratics",
+    "text": "{{c1::Anaximenes::this thinker}} held that the first principle is {{c2::air}}",
+    "source": "HoP 2",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Anaximenes",
+    "set": "Presocratics",
+    "text": "{{c1::Anaximenes::this thinker}} was the third and last thinker of the {{c2::Milesian school}}, and a student of Anaximander",
+    "source": "HoP 2",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Anaximenes",
+    "set": "Presocratics",
+    "text": "{{c1::Anaximenes::this thinker}} held that air condenses into wind, cloud, water, earth, and stone, and rarefies into fire",
+    "source": "HoP 2",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Anaximenes",
+    "set": "Presocratics",
+    "text": "{{c1::Anaximenes::this thinker}} held that the earth is a flat disk riding on air",
+    "source": "HoP 2",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  },
+  {
+    "model": "QB Cloze",
+    "answerline": "Anaximenes",
+    "set": "Presocratics",
+    "text": "{{c1::Anaximenes::this thinker}} argued that just as our soul, being air, holds us together, breath and air encompass the whole world",
+    "source": "HoP 2",
+    "tags": [
+      "Philosophy::Classical",
+      "Classical::Presocratics"
+    ]
+  }
+]

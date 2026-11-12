@@ -1,0 +1,542 @@
+[
+  {
+    "id": 1790049055183,
+    "model": "History Clue",
+    "prompt": "A twenty-character poem whose speaker mistakes moonlight on the floor for frost, raises his head to the moon, then lowers it, and thinks of home.",
+    "answer": "“Quiet Night Thought”",
+    "extra": "By Li Bai. Probably the most memorized poem in the Chinese language.",
+    "entity": "Li Bai",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::cultural",
+      "History::country::china",
+      "History::entity::li_bai",
+      "History::kind::text",
+      "History::period::tang",
+      "History::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1790049055215,
+    "model": "History Clue",
+    "prompt": "The Tang poet of “Quiet Night Thought” and “Drinking Alone by Moonlight.”",
+    "answer": "Li Bai",
+    "extra": "Li Po in Wade-Giles, which packets use constantly.",
+    "entity": "Li Bai",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::cultural",
+      "History::country::china",
+      "History::entity::li_bai",
+      "History::kind::figure",
+      "History::period::tang",
+      "History::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1790049055244,
+    "model": "History Clue",
+    "prompt": "In this Li Bai poem he toasts the moon and his own shadow to make a party of three.",
+    "answer": "“Drinking Alone by Moonlight”",
+    "extra": "The three are the poet, the moon, and his own shadow — and the moon, he complains, does not know how to drink.",
+    "entity": "Li Bai",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::cultural",
+      "History::country::china",
+      "History::entity::li_bai",
+      "History::kind::text",
+      "History::period::tang",
+      "History::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1790049055280,
+    "model": "History Clue",
+    "prompt": "Li Bai poem calling the road into Sichuan “as difficult as climbing to the blue sky.”",
+    "answer": "“The Hard Road to Shu”",
+    "extra": "On reading it, the poet He Zhizhang is said to have called Li Bai a banished immortal.",
+    "entity": "Li Bai",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::cultural",
+      "History::country::china",
+      "History::entity::li_bai",
+      "History::kind::text",
+      "History::period::tang",
+      "History::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1790049055305,
+    "model": "History Clue",
+    "prompt": "The epithet the poet He Zhizhang gave Li Bai.",
+    "answer": "the “Banished Immortal”",
+    "extra": "Also rendered “Immortal Exiled from Heaven.”",
+    "entity": "Li Bai",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::cultural",
+      "History::country::china",
+      "History::entity::li_bai",
+      "History::kind::figure",
+      "History::period::tang",
+      "History::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1790049055341,
+    "model": "History Clue",
+    "prompt": "The name under which Ezra Pound's <i>Cathay</i> credits Li Bai's poems.",
+    "answer": "Rihaku",
+    "extra": "Pound worked from Fenollosa's notes, which used Japanese readings.",
+    "entity": "Li Bai",
+    "country": "China",
+    "period": "Modern",
+    "tags": [
+      "History::cat::cultural",
+      "History::country::china",
+      "History::entity::li_bai",
+      "History::kind::figure",
+      "History::period::modern",
+      "History::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1790049055375,
+    "model": "History Clue",
+    "prompt": "Pound's version of Li Bai's “Changgan xing,” beginning “While my hair was still cut straight across my forehead.”",
+    "answer": "“The River-Merchant's Wife: A Letter”",
+    "extra": "In <i>Cathay</i> (1915).",
+    "entity": "Li Bai",
+    "country": "China",
+    "period": "Modern",
+    "tags": [
+      "History::cat::cultural",
+      "History::country::china",
+      "History::entity::li_bai",
+      "History::kind::text",
+      "History::period::modern",
+      "History::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1790049055400,
+    "model": "History Clue",
+    "prompt": "Legend has this poet drowning in the Yangtze while drunk, reaching for the moon's reflection.",
+    "answer": "Li Bai",
+    "extra": "A later story; the real cause of his death is unknown.",
+    "entity": "Li Bai",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::cultural",
+      "History::country::china",
+      "History::entity::li_bai",
+      "History::kind::figure",
+      "History::period::tang",
+      "History::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1790049055430,
+    "model": "History Clue",
+    "prompt": "Li Bai's name in Wade-Giles.",
+    "answer": "Li Po",
+    "extra": "Also Li Bo, Li Taibai, Qinglian Jushi.",
+    "entity": "Li Bai",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::cultural",
+      "History::country::china",
+      "History::entity::li_bai",
+      "History::kind::figure",
+      "History::period::tang",
+      "History::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1790049055476,
+    "model": "History Clue",
+    "prompt": "Tang poet called the “poet-historian” because his verse tracks a rebellion's cost to ordinary people.",
+    "answer": "Du Fu",
+    "extra": "Tu Fu in Wade-Giles. Also the “poet-sage.”",
+    "entity": "Du Fu",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::cultural",
+      "History::country::china",
+      "History::entity::du_fu",
+      "History::kind::figure",
+      "History::period::tang",
+      "History::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1790049055493,
+    "model": "History Clue",
+    "prompt": "Du Fu poem that opens with wagons rumbling and horses neighing as conscripts are marched off.",
+    "answer": "“Ballad of the Army Carts”",
+    "extra": "Also translated “Song of the Wagons.”",
+    "entity": "Du Fu",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::cultural",
+      "History::country::china",
+      "History::entity::du_fu",
+      "History::kind::text",
+      "History::period::tang",
+      "History::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1790049055524,
+    "model": "History Clue",
+    "prompt": "Du Fu poem written under rebel occupation, beginning with the state shattered though its mountains and rivers remain.",
+    "answer": "“Spring View”",
+    "extra": "Written while he was trapped in Chang'an during the rebellion.",
+    "entity": "Du Fu",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::cultural",
+      "History::country::china",
+      "History::entity::du_fu",
+      "History::kind::text",
+      "History::period::tang",
+      "History::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1790049055592,
+    "model": "History Clue",
+    "prompt": "Du Fu's late sequence of eight poems, written in poverty at Kuizhou.",
+    "answer": "<i>Autumn Meditations</i>",
+    "extra": "Eight linked poems looking back at Chang'an from exile downriver.",
+    "entity": "Du Fu",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::cultural",
+      "History::country::china",
+      "History::entity::du_fu",
+      "History::kind::text",
+      "History::period::tang",
+      "History::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1790049055617,
+    "model": "History Clue",
+    "prompt": "The two poets conventionally paired as the twin peaks of Tang poetry.",
+    "answer": "Li Bai and Du Fu",
+    "extra": "Wine and escape against conscription and the state.",
+    "entity": "Du Fu",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::cultural",
+      "History::country::china",
+      "History::entity::du_fu",
+      "History::kind::figure",
+      "History::period::tang",
+      "History::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1790049055682,
+    "model": "History Clue",
+    "prompt": "The “Poet Buddha” of the High Tang, also claimed as a founder of monochrome landscape painting.",
+    "answer": "Wang Wei",
+    "extra": "A devout Buddhist. Su Shi said there was painting in his poems and poetry in his paintings.",
+    "entity": "Wang Wei",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::cultural",
+      "History::country::china",
+      "History::entity::wang_wei",
+      "History::kind::figure",
+      "History::period::tang",
+      "History::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1790049055720,
+    "model": "History Clue",
+    "prompt": "Wang Wei poem: an empty hill, voices heard but nobody seen, late sun falling back on the moss.",
+    "answer": "“Deer Park”",
+    "extra": "From the Wang River sequence.",
+    "entity": "Wang Wei",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::cultural",
+      "History::country::china",
+      "History::entity::wang_wei",
+      "History::kind::text",
+      "History::period::tang",
+      "History::tier::tier2-solid"
+    ]
+  },
+  {
+    "id": 1790049055742,
+    "model": "History Clue",
+    "prompt": "Wang Wei's country estate, whose twenty views he and Pei Di answered each other's quatrains about.",
+    "answer": "the Wang River estate",
+    "extra": "The sequence is the <i>Wangchuan ji</i>.",
+    "entity": "Wang Wei",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::cultural",
+      "History::country::china",
+      "History::entity::wang_wei",
+      "History::kind::site",
+      "History::period::tang",
+      "History::tier::tier2-solid"
+    ]
+  },
+  {
+    "id": 1790049055787,
+    "model": "History Clue",
+    "prompt": "Wang Wei's style name, taken from the layman Vimalakīrti.",
+    "answer": "Mojie",
+    "extra": "Wang Wei plus Mojie reads as Weimojie, the Chinese name for Vimalakīrti — his name and style name together spell the sutra's hero.",
+    "entity": "Wang Wei",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::cultural",
+      "History::country::china",
+      "History::entity::wang_wei",
+      "History::kind::figure",
+      "History::period::tang",
+      "History::tier::tier2-solid"
+    ]
+  },
+  {
+    "id": 1790049055809,
+    "model": "History Clue",
+    "prompt": "With Li Bai and Du Fu, this poet completes the trio conventionally called the three great poets of the High Tang.",
+    "answer": "Wang Wei",
+    "extra": "The three Vikram Seth chose for <i>Three Chinese Poets</i>.",
+    "entity": "Wang Wei",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::cultural",
+      "History::country::china",
+      "History::entity::wang_wei",
+      "History::kind::figure",
+      "History::period::tang",
+      "History::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1790049055840,
+    "model": "History Clue",
+    "prompt": "The only woman to rule China as emperor in her own right.",
+    "answer": "Wu Zetian",
+    "extra": "Also Wu Zhao, Wu Hou, Empress Wu.",
+    "entity": "Wu Zetian",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::political",
+      "History::country::china",
+      "History::entity::wu_zetian",
+      "History::kind::ruler",
+      "History::period::tang",
+      "History::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1790049055873,
+    "model": "History Clue",
+    "prompt": "The dynasty Wu Zetian declared in 690, interrupting the Tang for fifteen years.",
+    "answer": "the Zhou",
+    "extra": "Named for the ancient Zhou, not a continuation of it.",
+    "entity": "Wu Zetian",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::political",
+      "History::country::china",
+      "History::entity::wu_zetian",
+      "History::kind::dynasty",
+      "History::period::tang",
+      "History::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1790049055903,
+    "model": "History Clue",
+    "prompt": "Text circulated to legitimize Wu Zetian, read as prophesying a woman ruler and identifying her with Maitreya.",
+    "answer": "the <i>Great Cloud Sutra</i>",
+    "extra": "Distributed to every prefecture, with monasteries founded to house copies.",
+    "entity": "Wu Zetian",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::religious",
+      "History::country::china",
+      "History::entity::wu_zetian",
+      "History::kind::text",
+      "History::period::tang",
+      "History::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1790049055943,
+    "model": "History Clue",
+    "prompt": "Wu Zetian entered the palace as a junior concubine of this emperor.",
+    "answer": "Emperor Taizong",
+    "extra": "After his death she became consort to his son Gaozong.",
+    "entity": "Wu Zetian",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::political",
+      "History::country::china",
+      "History::entity::wu_zetian",
+      "History::kind::ruler",
+      "History::period::tang",
+      "History::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1790049055964,
+    "model": "History Clue",
+    "prompt": "Wu Zetian's husband, whose illness left her running the government.",
+    "answer": "Emperor Gaozong",
+    "extra": "She had been his father's concubine first; their own sons were pushed aside one after another as she took power.",
+    "entity": "Wu Zetian",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::political",
+      "History::country::china",
+      "History::entity::wu_zetian",
+      "History::kind::ruler",
+      "History::period::tang",
+      "History::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1790049056003,
+    "model": "History Clue",
+    "prompt": "Buddhist cave complex near Luoyang whose colossal Vairocana Wu Zetian funded.",
+    "answer": "the Longmen Grottoes",
+    "extra": "The Vairocana is traditionally said to wear her features.",
+    "entity": "Wu Zetian",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::religious",
+      "History::country::china",
+      "History::entity::wu_zetian",
+      "History::kind::site",
+      "History::period::tang",
+      "History::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1790049056029,
+    "model": "History Clue",
+    "prompt": "Years Wu Zetian reigned as emperor in her own name.",
+    "answer": "690–705",
+    "extra": "Fifteen years. She was deposed at around eighty and died within months.",
+    "entity": "Wu Zetian",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::political",
+      "History::country::china",
+      "History::entity::wu_zetian",
+      "History::kind::ruler",
+      "History::period::tang",
+      "History::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1790049056057,
+    "model": "History Clue",
+    "prompt": "General of Sogdian and Turkic parentage who held three frontier commands at once and revolted in 755.",
+    "answer": "An Lushan",
+    "extra": "Sources dwell on his enormous bulk, and on his dancing the Sogdian whirl for the court.",
+    "entity": "An Lushan Rebellion",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::military",
+      "History::country::china",
+      "History::entity::an_lushan_rebellion",
+      "History::kind::figure",
+      "History::period::tang",
+      "History::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1790049056101,
+    "model": "History Clue",
+    "prompt": "The dynasty An Lushan proclaimed after taking Luoyang.",
+    "answer": "Yan",
+    "extra": "Named for the old northeastern state, the region his commands were based in — not the Warring States Yan.",
+    "entity": "An Lushan Rebellion",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::political",
+      "History::country::china",
+      "History::entity::an_lushan_rebellion",
+      "History::kind::dynasty",
+      "History::period::tang",
+      "History::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1790049056120,
+    "model": "History Clue",
+    "prompt": "An Lushan, going blind and ill, was murdered in 757 by this person.",
+    "answer": "his son An Qingxu",
+    "extra": "Patricide ran through the revolt: Shi Siming was later killed by his son too.",
+    "entity": "An Lushan Rebellion",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::military",
+      "History::country::china",
+      "History::entity::an_lushan_rebellion",
+      "History::kind::figure",
+      "History::period::tang",
+      "History::tier::tier1-core"
+    ]
+  },
+  {
+    "id": 1790049056163,
+    "model": "History Clue",
+    "prompt": "The rebel who carried on the revolt after An Lushan's death, giving it its alternative name.",
+    "answer": "Shi Siming",
+    "extra": "Hence the An–Shi Rebellion.",
+    "entity": "An Lushan Rebellion",
+    "country": "China",
+    "period": "Tang",
+    "tags": [
+      "History::cat::military",
+      "History::country::china",
+      "History::entity::an_lushan_rebellion",
+      "History::kind::figure",
+      "History::period::tang",
+      "History::tier::tier1-core"
+    ]
+  }
+]

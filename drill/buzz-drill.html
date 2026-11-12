@@ -1,0 +1,527 @@
+<title>Buzz Drill</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+/* Layout: a moderator's packet on a desk. One column; the tossup is the page, the buzzer sits under it. */
+:root {
+  --paper: #f6f7f9;
+  --card: #ffffff;
+  --ink: #15181d;
+  --ink-2: #4a505a;
+  --ink-3: #7b828d;
+  --rule: #e1e4e9;
+  --accent: #2547c7;
+  --accent-ink: #ffffff;
+  --lamp: #e3a008;
+  --lamp-soft: #fdf3d6;
+  --good: #1b7f45;
+  --good-soft: #e3f4ea;
+  --bad: #b3261e;
+  --bad-soft: #fbe7e5;
+  --series-1: #2a78d6;
+  --grid: #e7e9ed;
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #121418; --card: #1a1d22; --ink: #eceef1; --ink-2: #b6bcc6; --ink-3: #868d98; --rule: #2b3038;
+    --accent: #7d97ff; --accent-ink: #0d1020; --lamp: #f2b52e; --lamp-soft: #3a2f12;
+    --good: #5fd08e; --good-soft: #15301f; --bad: #ff8a80; --bad-soft: #3a1a18;
+    --series-1: #3987e5; --grid: #262a31; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #121418; --card: #1a1d22; --ink: #eceef1; --ink-2: #b6bcc6; --ink-3: #868d98; --rule: #2b3038;
+  --accent: #7d97ff; --accent-ink: #0d1020; --lamp: #f2b52e; --lamp-soft: #3a2f12;
+  --good: #5fd08e; --good-soft: #15301f; --bad: #ff8a80; --bad-soft: #3a1a18;
+  --series-1: #3987e5; --grid: #262a31; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 20px 48px;
+}
+.wrap { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+header.top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+h1 { font-family: var(--serif); font-weight: 600; font-size: 1.75rem; margin: 0; letter-spacing: -0.01em; }
+h1 small { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-3); font-weight: 400; margin-left: 8px; letter-spacing: 0; }
+h2 { font-size: 1rem; margin: 0; text-wrap: balance; }
+.tabs { display: flex; gap: 4px; background: var(--rule); padding: 3px; border-radius: 999px; }
+.tabs button { border: 0; background: transparent; color: var(--ink-2); font: 600 0.9rem var(--sans); padding: 6px 16px; border-radius: 999px; cursor: pointer; }
+.tabs button[aria-selected="true"] { background: var(--card); color: var(--ink); }
+.panel { background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.label { font: 600 0.72rem var(--sans); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.chip { border: 1px solid var(--rule); background: var(--paper); color: var(--ink-2); border-radius: 999px; padding: 6px 12px; font: 0.9rem var(--sans); cursor: pointer; display: inline-flex; gap: 6px; align-items: baseline; }
+.chip .n { font-family: var(--mono); font-size: 0.75rem; color: var(--ink-3); }
+.chip[aria-pressed="true"] { border-color: var(--accent); color: var(--ink); background: var(--card); box-shadow: inset 0 0 0 1px var(--accent); }
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; }
+.seg button { border: 0; border-right: 1px solid var(--rule); background: var(--paper); color: var(--ink-2); font: 600 0.9rem var(--mono); padding: 6px 14px; cursor: pointer; }
+.seg button:last-child { border-right: 0; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+input[type=range] { accent-color: var(--accent); width: min(260px, 100%); }
+.btn { border: 0; border-radius: 8px; padding: 10px 18px; font: 700 1rem var(--sans); cursor: pointer; background: var(--accent); color: var(--accent-ink); }
+.btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--rule); }
+.btn.good { background: var(--good); color: var(--card); }
+.btn.bad { background: var(--bad); color: var(--card); }
+.btn:disabled { opacity: 0.45; cursor: default; }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.note { color: var(--ink-2); font-size: 0.92rem; margin: 0; max-width: 65ch; }
+.meta { font: 0.78rem var(--mono); color: var(--ink-3); display: flex; gap: 12px; flex-wrap: wrap; }
+.meta b { color: var(--ink-2); font-weight: 600; }
+.tossup { font-family: var(--serif); font-size: 1.18rem; line-height: 1.62; min-height: 9.5em; overflow-wrap: anywhere; }
+.tossup .ahead { color: transparent; }
+.tossup .star { font-family: var(--mono); font-size: 0.8em; color: var(--lamp); }
+.tossup .bz { display: inline-block; font: 700 0.7rem var(--mono); color: var(--card); background: var(--lamp); border-radius: 4px; padding: 0 5px; margin: 0 4px; vertical-align: 0.15em; }
+.bar { position: relative; height: 6px; background: var(--rule); border-radius: 3px; }
+.bar .fill { position: absolute; inset: 0 auto 0 0; background: var(--accent); border-radius: 3px; width: 0; }
+.bar .pm { position: absolute; top: -4px; width: 2px; height: 14px; background: var(--lamp); }
+.buzzer { width: 100%; padding: 22px; font: 700 1.3rem var(--sans); letter-spacing: 0.04em; border-radius: 14px; border: 0; cursor: pointer; background: var(--bad); color: var(--card); }
+.buzzer:disabled { background: var(--rule); color: var(--ink-3); cursor: default; }
+.lamp { display: inline-flex; align-items: center; gap: 8px; font: 700 0.9rem var(--sans); color: var(--ink); background: var(--lamp-soft); border-radius: 999px; padding: 4px 12px 4px 8px; }
+.lamp::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--lamp); }
+.answer { border-top: 1px solid var(--rule); padding-top: 14px; display: flex; flex-direction: column; gap: 6px; }
+.answer .a { font-family: var(--serif); font-size: 1.12rem; }
+.answer .card { font-size: 0.9rem; color: var(--ink-2); }
+.verdict { display: inline-flex; gap: 8px; align-items: center; font: 700 0.9rem var(--sans); padding: 4px 10px; border-radius: 6px; }
+.verdict.good { background: var(--good-soft); color: var(--good); }
+.verdict.bad { background: var(--bad-soft); color: var(--bad); }
+.verdict.none { background: var(--rule); color: var(--ink-2); }
+.keys { font: 0.75rem var(--mono); color: var(--ink-3); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+.tile { border: 1px solid var(--rule); border-radius: 8px; padding: 12px 14px; background: var(--card); }
+.tile .v { font: 600 1.6rem var(--mono); font-variant-numeric: tabular-nums; }
+.tile .k { font-size: 0.82rem; color: var(--ink-2); }
+.chart { position: relative; }
+.chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+.tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--paper); font: 0.8rem var(--sans); padding: 6px 8px; border-radius: 6px; white-space: nowrap; transform: translate(-50%, -110%); }
+.tablewrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+th { font: 600 0.72rem var(--sans); text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3); }
+td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: right; }
+th.num { text-align: right; }
+ul.misses { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+ul.misses li { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--rule); padding-bottom: 8px; min-width: 0; }
+ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
+.empty { color: var(--ink-2); font-size: 0.95rem; margin: 0; }
+@media (max-width: 480px) { .tossup { font-size: 1.06rem; } .panel { padding: 16px; } }
+@media (prefers-reduced-motion: no-preference) { .bar .fill { transition: width 0.15s linear; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <h1>Buzz Drill <small id="built"></small></h1>
+    <div class="tabs" role="tablist">
+      <button id="tab-drill" role="tab" aria-selected="true">Drill</button>
+      <button id="tab-progress" role="tab" aria-selected="false">Progress</button>
+    </div>
+  </header>
+
+  <section id="view-drill" class="wrap" style="gap:20px">
+    <div id="setup" class="panel">
+      <p class="note">Real tossups whose answers are cards you have already studied. Buzz the moment you know it. Your buzz point over the weeks shows whether the cards carry over to matches.</p>
+      <div class="row" style="gap:6px"><span class="label">Categories</span></div>
+      <div id="groups" class="row"></div>
+      <div class="row" style="gap:24px">
+        <div class="row"><span class="label">Tossups</span>
+          <div class="seg" id="len">
+            <button data-n="5" aria-pressed="false">5</button><button data-n="10" aria-pressed="true">10</button><button data-n="20" aria-pressed="false">20</button>
+          </div>
+        </div>
+        <div class="row"><label class="label" for="speed">Reading speed</label>
+          <input id="speed" type="range" min="2" max="8" step="0.5" value="4">
+          <span id="speedv" class="meta"></span>
+        </div>
+      </div>
+      <div class="row"><button id="start" class="btn">Start session</button><span id="poolinfo" class="meta"></span></div>
+      <p id="savenote" class="note" hidden>History isn't being saved in this view, so this session won't count toward Progress.</p>
+    </div>
+
+    <div id="play" class="panel" hidden>
+      <div class="meta"><span id="pos"></span><span id="cat"></span><span id="setname"></span><span id="score"></span></div>
+      <div class="bar" aria-hidden="true"><div class="fill" id="fill"></div><div class="pm" id="pm"></div></div>
+      <div id="text" class="tossup" aria-live="off"></div>
+      <div id="state" class="row"></div>
+      <button id="buzz" class="buzzer">BUZZ</button>
+      <div id="judge" class="row" hidden>
+        <button id="reveal" class="btn ghost">Show answer</button>
+        <button id="right" class="btn good" hidden>I had it</button>
+        <button id="wrong" class="btn bad" hidden>I missed it</button>
+        <button id="next" class="btn" hidden>Next tossup</button>
+      </div>
+      <div id="ans" class="answer" hidden><div class="label">Answer</div><div class="a" id="atext"></div><div class="card" id="acard"></div></div>
+      <div class="keys">Space buzz · Enter show answer / next · 1 had it · 2 missed it</div>
+    </div>
+
+    <div id="summary" class="panel" hidden>
+      <h2 id="sumh"></h2>
+      <div class="tiles" id="sumtiles"></div>
+      <div class="tablewrap"><table><thead><tr><th>Answer</th><th>Card deck</th><th class="num">Heard</th><th>Result</th></tr></thead><tbody id="sumrows"></tbody></table></div>
+      <div class="row"><button id="again" class="btn">New session</button></div>
+    </div>
+  </section>
+
+  <section id="view-progress" class="wrap" style="gap:20px" hidden>
+    <div class="tiles" id="ptiles"></div>
+    <div class="panel">
+      <h2>Where you buzz on tossups you get right</h2>
+      <p class="note">Share of the question read before your buzz, averaged per session. Lower is earlier.</p>
+      <div class="chart" id="c-buzz"></div>
+    </div>
+    <div class="panel">
+      <h2>Tossups answered correctly</h2>
+      <p class="note">Per session, out of every tossup heard.</p>
+      <div class="chart" id="c-acc"></div>
+    </div>
+    <div class="panel">
+      <h2>By category</h2>
+      <div class="tablewrap"><table><thead><tr><th>Category</th><th class="num">Heard</th><th class="num">Correct</th><th class="num">Powers</th><th class="num">Avg buzz</th></tr></thead><tbody id="gt"></tbody></table></div>
+    </div>
+    <div class="panel">
+      <h2>Recent misses</h2>
+      <p class="note">Answers you missed or buzzed incorrectly on during recent sessions.</p>
+      <ul class="misses" id="misses"></ul>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  var S = { items: [], groups: [], chosen: {}, len: 10, wps: 4, sessions: [], view: "drill",
+            sess: null, cur: null, timer: null };
+
+  function store(k, v) { try { if (v === undefined) return JSON.parse(localStorage.getItem(k)); localStorage.setItem(k, JSON.stringify(v)); } catch (e) { return null; } }
+  var saved = store("bd-prefs") || {};
+  if (saved.wps) S.wps = saved.wps;
+  if (saved.len) S.len = saved.len;
+
+  // ---------- data ----------
+  fetch("tossups.json").then(function (r) { return r.json(); }).then(function (j) {
+    S.items = j.items || [];
+    $("built").textContent = "set built " + (j.built || "");
+    var c = {};
+    S.items.forEach(function (t) { c[t.g] = (c[t.g] || 0) + 1; });
+    S.groups = Object.keys(c).sort(function (a, b) { return c[b] - c[a]; }).map(function (g) { return { g: g, n: c[g] }; });
+    var prev = saved.chosen || null;
+    S.groups.forEach(function (x) { S.chosen[x.g] = prev ? !!prev[x.g] : true; });
+    renderSetup();
+  }).catch(function () {
+    $("poolinfo").textContent = "The tossup set did not load. Reload the page to try again.";
+    $("start").disabled = true;
+  });
+
+  // ---------- history (local storage) ----------
+  function loadSessions() {
+    try {
+      var raw = localStorage.getItem("bd-sessions");
+      S.sessions = raw ? JSON.parse(raw) : [];
+    } catch (e) {
+      S.sessions = [];
+    }
+    renderSetupInfo();
+    if (S.view === "progress") renderProgress();
+  }
+  loadSessions();
+
+  function heardRecently() {
+    var cut = Date.now() - 30 * 864e5, ids = {}, keys = {};
+    S.sessions.forEach(function (s) { (s.items || []).forEach(function (it) {
+      if ((s.startedAt || 0) > cut) ids[it.id] = 1;
+      keys[it.g + "|" + it.k] = Math.max(keys[it.g + "|" + it.k] || 0, s.startedAt || 0);
+    }); });
+    return { ids: ids, keys: keys };
+  }
+
+  // ---------- setup ----------
+  function renderSetup() {
+    var box = $("groups"); box.textContent = "";
+    S.groups.forEach(function (x) {
+      var b = document.createElement("button");
+      b.className = "chip"; b.type = "button"; b.setAttribute("aria-pressed", S.chosen[x.g] ? "true" : "false");
+      var t = document.createElement("span"); t.textContent = x.g;
+      var n = document.createElement("span"); n.className = "n"; n.textContent = x.n;
+      b.appendChild(t); b.appendChild(n);
+      b.onclick = function () { S.chosen[x.g] = !S.chosen[x.g]; b.setAttribute("aria-pressed", S.chosen[x.g] ? "true" : "false"); savePrefs(); renderSetupInfo(); };
+      box.appendChild(b);
+    });
+    Array.prototype.forEach.call($("len").children, function (b) {
+      b.setAttribute("aria-pressed", +b.dataset.n === S.len ? "true" : "false");
+      b.onclick = function () { S.len = +b.dataset.n; Array.prototype.forEach.call($("len").children, function (c) { c.setAttribute("aria-pressed", c === b ? "true" : "false"); }); savePrefs(); };
+    });
+    $("speed").value = S.wps; $("speedv").textContent = S.wps + " words/s";
+    $("speed").oninput = function () { S.wps = +this.value; $("speedv").textContent = S.wps + " words/s"; savePrefs(); };
+    renderSetupInfo();
+  }
+  function savePrefs() { store("bd-prefs", { wps: S.wps, len: S.len, chosen: S.chosen }); }
+  function renderSetupInfo() {
+    if (!S.items.length) return;
+    var pool = S.items.filter(function (t) { return S.chosen[t.g]; });
+    var keys = {}; pool.forEach(function (t) { keys[t.g + "|" + t.k] = 1; });
+    var h = heardRecently(), fresh = pool.filter(function (t) { return !h.ids[t.id]; }).length;
+    $("poolinfo").textContent = Object.keys(keys).length + " answers · " + fresh + " tossups not heard in 30 days";
+    $("start").disabled = !pool.length;
+  }
+
+  function pick() {
+    var h = heardRecently(), byKey = {};
+    S.items.forEach(function (t) { if (S.chosen[t.g]) (byKey[t.g + "|" + t.k] = byKey[t.g + "|" + t.k] || []).push(t); });
+    var keys = Object.keys(byKey).map(function (k) { return { k: k, last: h.keys[k] || 0, r: Math.random() }; });
+    keys.sort(function (a, b) { return (a.last - b.last) || (a.r - b.r); });   // never drilled first, then least recent
+    var out = [];
+    for (var i = 0; i < keys.length && out.length < S.len; i++) {
+      var ts = byKey[keys[i].k].filter(function (t) { return !h.ids[t.id]; });
+      if (!ts.length) ts = byKey[keys[i].k];
+      out.push(ts[Math.floor(Math.random() * ts.length)]);
+    }
+    for (var j = out.length - 1; j > 0; j--) { var r = Math.floor(Math.random() * (j + 1)), x = out[j]; out[j] = out[r]; out[r] = x; }
+    return out;
+  }
+
+  // ---------- play ----------
+  function show(id) { ["setup", "play", "summary"].forEach(function (x) { $(x).hidden = x !== id; }); }
+  $("start").onclick = startSession;
+  $("again").onclick = function () { show("setup"); renderSetupInfo(); };
+
+  function startSession() {
+    var q = pick(); if (!q.length) return;
+    S.sess = { id: "s" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), startedAt: Date.now(), queue: q, i: 0, items: [], points: 0 };
+    show("play"); loadTossup();
+  }
+  function words(t) { return t.q.split(/\s+/).filter(Boolean); }
+  function loadTossup() {
+    var t = S.sess.queue[S.sess.i], w = words(t);
+    var star = w.indexOf("(*)");
+    S.cur = { t: t, w: w, n: w.length, star: star, pos: 0, buzz: null, stage: "reading" };
+    $("pos").innerHTML = "<b>Tossup " + (S.sess.i + 1) + "</b> of " + S.sess.queue.length;
+    $("cat").textContent = t.g; $("setname").textContent = t.s + (t.d ? " · difficulty " + t.d : "");
+    $("score").textContent = S.sess.points + " pts";
+    $("pm").style.left = star >= 0 ? (100 * star / w.length) + "%" : "-10px";
+    $("pm").hidden = star < 0;
+    $("ans").hidden = true; $("judge").hidden = true; $("buzz").hidden = false; $("buzz").disabled = false;
+    $("state").textContent = "";
+    paint(); run();
+  }
+  function run() {
+    clearInterval(S.timer);
+    S.timer = setInterval(function () {
+      var c = S.cur; if (!c || c.stage !== "reading") return clearInterval(S.timer);
+      c.pos++; paint();
+      if (c.pos >= c.n) { clearInterval(S.timer); deadEnd(); }
+    }, 1000 / S.wps);
+  }
+  function paint() {
+    var c = S.cur, el = $("text"); el.textContent = "";
+    var showAll = c.stage === "revealed" || c.stage === "judged";
+    c.w.forEach(function (word, i) {
+      if (c.buzz !== null && i === c.buzz) { var bz = document.createElement("span"); bz.className = "bz"; bz.textContent = "BUZZ"; el.appendChild(bz); }
+      var s = document.createElement("span");
+      if (word === "(*)") s.className = "star";
+      if (i >= c.pos && !showAll) s.className = (s.className + " ahead").trim();
+      s.textContent = word + " ";
+      el.appendChild(s);
+    });
+    $("fill").style.width = (100 * Math.min(c.pos, c.n) / c.n) + "%";
+  }
+  function buzz() {
+    var c = S.cur; if (!c || c.stage !== "reading" && c.stage !== "dead") return;
+    clearInterval(S.timer);
+    c.buzz = Math.min(c.pos, c.n); c.stage = "buzzed";
+    $("buzz").disabled = true;
+    $("state").innerHTML = ""; var l = document.createElement("span"); l.className = "lamp"; l.textContent = "Buzzed at word " + c.buzz + " of " + c.n + " · say your answer"; $("state").appendChild(l);
+    paint(); judgeMode();
+  }
+  function deadEnd() {
+    var c = S.cur; c.stage = "dead";
+    $("state").textContent = ""; var l = document.createElement("span"); l.className = "verdict none"; l.textContent = "Question read in full. Buzz now if you know it, or show the answer."; $("state").appendChild(l);
+    judgeMode();
+  }
+  function judgeMode() {
+    $("judge").hidden = false; $("reveal").hidden = false; $("right").hidden = true; $("wrong").hidden = true; $("next").hidden = true;
+    $("reveal").focus({ preventScroll: true });
+  }
+  function reveal() {
+    var c = S.cur; if (!c || (c.stage !== "buzzed" && c.stage !== "dead")) return;
+    clearInterval(S.timer);
+    if (c.stage === "dead") { c.buzz = null; $("buzz").disabled = true; }
+    c.stage = "revealed"; c.pos = c.n; paint();
+    $("atext").textContent = c.t.a; $("acard").textContent = "Your card: " + c.t.k + " (" + c.t.g + ")";
+    $("ans").hidden = false; $("reveal").hidden = true;
+    if (c.buzz === null) { $("right").hidden = true; $("wrong").hidden = true; record("none"); }
+    else { $("right").hidden = false; $("wrong").hidden = false; $("right").focus({ preventScroll: true }); }
+  }
+  function record(result) {
+    var c = S.cur; if (!c || c.stage === "judged") return;
+    c.stage = "judged";
+    var power = result === "correct" && c.star >= 0 && c.buzz < c.star;
+    var pts = result === "correct" ? (power ? 15 : 10) : (result === "wrong" && c.buzz < c.n ? -5 : 0);
+    S.sess.points += pts;
+    S.sess.items.push({ id: c.t.id, g: c.t.g, k: c.t.k, a: c.t.a.slice(0, 160), s: c.t.s, words: c.n,
+                        buzz: c.buzz, frac: c.buzz === null ? null : +(c.buzz / c.n).toFixed(3), power: power, result: result, pts: pts });
+    $("score").textContent = S.sess.points + " pts";
+    $("state").textContent = "";
+    var v = document.createElement("span");
+    v.className = "verdict " + (result === "correct" ? "good" : result === "wrong" ? "bad" : "none");
+    v.textContent = result === "correct" ? (power ? "Power · +15" : "Correct · +10") : result === "wrong" ? (pts ? "Neg · −5" : "Wrong · 0") : "No buzz · 0";
+    $("state").appendChild(v);
+    $("right").hidden = true; $("wrong").hidden = true; $("next").hidden = false; $("next").focus({ preventScroll: true });
+  }
+  function saveSession() {
+    var s = S.sess;
+    if (!s || s.saved) return;
+    s.saved = true;
+    var body = { id: s.id, startedAt: s.startedAt, at: new Date(s.startedAt).toISOString(), wps: S.wps, points: s.points, items: s.items.slice(), v: 1 };
+    S.sessions.push(body);
+    try {
+      localStorage.setItem("bd-sessions", JSON.stringify(S.sessions));
+    } catch (e) {
+      $("savenote").hidden = false;
+    }
+  }
+  function next() {
+    var c = S.cur; if (!c || c.stage !== "judged") return;
+    S.sess.i++;
+    if (S.sess.i >= S.sess.queue.length) return finish();
+    loadTossup();
+  }
+  $("buzz").onclick = buzz; $("reveal").onclick = reveal; $("next").onclick = next;
+  $("right").onclick = function () { record("correct"); };
+  $("wrong").onclick = function () { record("wrong"); };
+  document.addEventListener("keydown", function (e) {
+    if ($("play").hidden || e.target.tagName === "INPUT") return;
+    if (e.code === "Space") { e.preventDefault(); if (S.cur && (S.cur.stage === "reading" || S.cur.stage === "dead")) buzz(); }
+    else if (e.key === "Enter") { e.preventDefault(); if (S.cur.stage === "buzzed" || S.cur.stage === "dead") reveal(); else if (S.cur.stage === "judged") next(); }
+    else if (e.key === "1" && S.cur.stage === "revealed" && S.cur.buzz !== null) record("correct");
+    else if (e.key === "2" && S.cur.stage === "revealed" && S.cur.buzz !== null) record("wrong");
+  });
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden && S.cur && S.cur.stage === "reading") clearInterval(S.timer);
+    else if (!document.hidden && S.cur && S.cur.stage === "reading") run();
+  });
+
+  function finish() {
+    var s = S.sess, its = s.items;
+    saveSession();
+    var ok = its.filter(function (x) { return x.result === "correct"; });
+    var avg = ok.length ? ok.reduce(function (a, x) { return a + x.frac; }, 0) / ok.length : null;
+    $("sumh").textContent = "Session done: " + s.points + " points";
+    tiles($("sumtiles"), [
+      [ok.length + " / " + its.length, "correct"],
+      [its.filter(function (x) { return x.power; }).length, "powers"],
+      [its.filter(function (x) { return x.pts < 0; }).length, "negs"],
+      [avg === null ? "–" : Math.round(avg * 100) + "%", "heard before a correct buzz"]
+    ]);
+    var tb = $("sumrows"); tb.textContent = "";
+    its.forEach(function (x) {
+      var tr = document.createElement("tr");
+      [x.k, x.g, x.frac === null ? "–" : Math.round(x.frac * 100) + "%",
+       x.result === "correct" ? (x.power ? "Power" : "Correct") : x.result === "wrong" ? (x.pts ? "Neg" : "Wrong") : "No buzz"].forEach(function (v, i) {
+        var td = document.createElement("td"); td.textContent = v; if (i === 2) td.className = "num"; tr.appendChild(td);
+      });
+      tb.appendChild(tr);
+    });
+    S.cur = null; show("summary");
+  }
+  function tiles(box, arr) {
+    box.textContent = "";
+    arr.forEach(function (p) {
+      var d = document.createElement("div"); d.className = "tile";
+      var v = document.createElement("div"); v.className = "v"; v.textContent = p[0];
+      var k = document.createElement("div"); k.className = "k"; k.textContent = p[1];
+      d.appendChild(v); d.appendChild(k); box.appendChild(d);
+    });
+  }
+
+  // ---------- progress ----------
+  function setView(v) {
+    S.view = v;
+    $("view-drill").hidden = v !== "drill"; $("view-progress").hidden = v !== "progress";
+    $("tab-drill").setAttribute("aria-selected", v === "drill"); $("tab-progress").setAttribute("aria-selected", v === "progress");
+    if (v === "progress") renderProgress();
+  }
+  $("tab-drill").onclick = function () { setView("drill"); };
+  $("tab-progress").onclick = function () { setView("progress"); };
+
+  function renderProgress() {
+    var ss = S.sessions.filter(function (s) { return (s.items || []).length; });
+    var all = []; ss.forEach(function (s) { all = all.concat(s.items); });
+    var ok = all.filter(function (x) { return x.result === "correct"; });
+    var avg = ok.length ? ok.reduce(function (a, x) { return a + x.frac; }, 0) / ok.length : null;
+    tiles($("ptiles"), [
+      [ss.length, ss.length === 1 ? "session" : "sessions"], [all.length, "tossups heard"],
+      [all.length ? Math.round(100 * ok.length / all.length) + "%" : "–", "correct"],
+      [avg === null ? "–" : Math.round(avg * 100) + "%", "heard before a correct buzz"]
+    ]);
+    var pts = ss.map(function (s) {
+      var c = s.items.filter(function (x) { return x.result === "correct"; });
+      return { t: s.startedAt, n: s.items.length, buzz: c.length ? c.reduce(function (a, x) { return a + x.frac; }, 0) / c.length : null, acc: c.length / s.items.length };
+    });
+    line($("c-buzz"), pts.filter(function (p) { return p.buzz !== null; }).map(function (p) { return { t: p.t, y: p.buzz, n: p.n }; }), "heard");
+    line($("c-acc"), pts.map(function (p) { return { t: p.t, y: p.acc, n: p.n }; }), "correct");
+    var g = {};
+    all.forEach(function (x) {
+      var r = g[x.g] = g[x.g] || { n: 0, ok: 0, pw: 0, f: 0 };
+      r.n++; if (x.result === "correct") { r.ok++; r.f += x.frac; } if (x.power) r.pw++;
+    });
+    var tb = $("gt"); tb.textContent = "";
+    var rows = Object.keys(g).sort(function (a, b) { return g[b].n - g[a].n; });
+    if (!rows.length) { var tr0 = document.createElement("tr"), td0 = document.createElement("td"); td0.colSpan = 5; td0.className = "empty"; td0.textContent = "Categories appear after your first session."; tr0.appendChild(td0); tb.appendChild(tr0); }
+    rows.forEach(function (k) {
+      var r = g[k], tr = document.createElement("tr");
+      [k, r.n, Math.round(100 * r.ok / r.n) + "%", r.pw, r.ok ? Math.round(100 * r.f / r.ok) + "%" : "–"].forEach(function (v, i) {
+        var td = document.createElement("td"); td.textContent = v; if (i) td.className = "num"; tr.appendChild(td);
+      });
+      tb.appendChild(tr);
+    });
+    var ul = $("misses"); ul.textContent = "";
+    var miss = []; ss.slice().reverse().forEach(function (s) { s.items.forEach(function (x) { if (x.result !== "correct") miss.push(x); }); });
+    if (!miss.length) { var li0 = document.createElement("li"); li0.className = "empty"; li0.textContent = "Nothing missed yet."; ul.appendChild(li0); }
+    miss.slice(0, 25).forEach(function (x) {
+      var li = document.createElement("li"), a = document.createElement("span"), b = document.createElement("span");
+      a.textContent = x.k; b.className = "meta"; b.textContent = x.g + " · " + (x.result === "wrong" ? "buzzed wrong" : "no buzz");
+      li.appendChild(a); li.appendChild(b); ul.appendChild(li);
+    });
+  }
+
+  function line(box, data, what) {
+    box.textContent = "";
+    if (data.length < 2) { var p = document.createElement("p"); p.className = "empty"; p.textContent = data.length ? "One session so far. The line starts with your second." : "Your sessions will chart here."; box.appendChild(p); return; }
+    var W = 640, H = 220, L = 44, R = 16, T = 12, B = 30, NS = "http://www.w3.org/2000/svg";
+    var x = function (i) { return L + (W - L - R) * (data.length === 1 ? 0.5 : i / (data.length - 1)); };
+    var y = function (v) { return T + (H - T - B) * (1 - v); };
+    var svg = document.createElementNS(NS, "svg"); svg.setAttribute("viewBox", "0 0 " + W + " " + H); svg.setAttribute("role", "img");
+    svg.setAttribute("aria-label", (what === "heard" ? "Share of question heard before a correct buzz" : "Share correct") + ", by session");
+    function el(n, a) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); svg.appendChild(e); return e; }
+    [0, 0.25, 0.5, 0.75, 1].forEach(function (v) {
+      el("line", { x1: L, x2: W - R, y1: y(v), y2: y(v), stroke: "var(--grid)", "stroke-width": 1 });
+      var t = el("text", { x: L - 8, y: y(v) + 4, "text-anchor": "end", "font-size": 11, fill: "var(--ink-3)", "font-family": "var(--mono)" }); t.textContent = Math.round(v * 100) + "%";
+    });
+    var fmt = function (t) { var d = new Date(t); return (d.getMonth() + 1) + "/" + d.getDate(); };
+    var step = Math.max(1, Math.ceil(data.length / 6));
+    data.forEach(function (d, i) { if (i % step === 0 || i === data.length - 1) { var t = el("text", { x: x(i), y: H - 8, "text-anchor": "middle", "font-size": 11, fill: "var(--ink-3)", "font-family": "var(--mono)" }); t.textContent = fmt(d.t); } });
+    el("path", { d: data.map(function (d, i) { return (i ? "L" : "M") + x(i).toFixed(1) + " " + y(d.y).toFixed(1); }).join(" "), fill: "none", stroke: "var(--series-1)", "stroke-width": 2, "stroke-linejoin": "round", "stroke-linecap": "round" });
+    var tip = document.createElement("div"); tip.className = "tip"; tip.hidden = true; box.appendChild(tip);
+    data.forEach(function (d, i) {
+      var last = i === data.length - 1;
+      el("circle", { cx: x(i), cy: y(d.y), r: last ? 5 : 4, fill: "var(--series-1)", stroke: "var(--card)", "stroke-width": 2 });
+      var hit = el("circle", { cx: x(i), cy: y(d.y), r: 14, fill: "transparent", tabindex: 0 });
+      var showTip = function () {
+        tip.hidden = false; tip.textContent = new Date(d.t).toLocaleDateString() + " · " + Math.round(d.y * 100) + "% " + (what === "heard" ? "heard" : "correct") + " · " + d.n + " tossups";
+        tip.style.left = (100 * x(i) / W) + "%"; tip.style.top = (100 * y(d.y) / H) * (box.clientWidth * H / W) / 100 + "px";
+      };
+      hit.addEventListener("mouseenter", showTip); hit.addEventListener("focus", showTip);
+      hit.addEventListener("mouseleave", function () { tip.hidden = true; }); hit.addEventListener("blur", function () { tip.hidden = true; });
+    });
+    var lastD = data[data.length - 1], lab = el("text", { x: Math.min(x(data.length - 1), W - R), y: y(lastD.y) - 10, "text-anchor": "end", "font-size": 12, fill: "var(--ink)", "font-family": "var(--mono)", "font-weight": 600 });
+    lab.textContent = Math.round(lastD.y * 100) + "%";
+    box.insertBefore(svg, tip);
+  }
+})();
+</script>
