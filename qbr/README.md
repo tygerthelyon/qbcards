@@ -115,7 +115,7 @@ already shown on the card. It prints the matched QBR answerlines and suppressed 
 is easy to audit. This reduces alternate-answer collisions; it does not resolve missing canonical aliases, which
 still need an explicit alternate or a separate related-answer lookup.
 
-## Limits worth knowing
+## Limitations
 
 - An answer is matched by name. "John Adams" is both the president and the composer; use `-c`, `--not coolidge`, or
   `--exact`. The `answer lines:` row of a profile shows what was matched.
