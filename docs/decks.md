@@ -12,3 +12,10 @@ The [deck release](https://github.com/tygerthelyon/qbcards/releases/tag/decks-20
 The OVFA and VFA collections are divided by note across three packages each to keep downloads manageable. Import all three parts to get the full subject. The packages include cards that were suspended in the original collection; review the imported cards and suspend any you do not want to study.
 
 These are personal study materials and may contain mistakes. Check important facts against reliable sources. Images, audio, and other third-party material may have their own rights and licenses; the repository's software license does not cover them.
+
+Current decks in progress:
+| Subject |
+| --- |
+| Poetry |
+| History (China, Japan, Korea; South America; America) |
+| OAFA (opera, musicals, world & folk music, jazz) |
