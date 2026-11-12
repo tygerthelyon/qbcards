@@ -4,11 +4,9 @@ Tools for studying and practicing quizbowl: a clue retriever, a buzzer drill, an
 
 | Project | What it does |
 | --- | --- |
-| [StockFisher](qbr/) | Indexes QBReader questions in SQLite and finds recurring clues, shared answers, and gaps in a notes collection. |
+| [StockFisher](StockFisher.ipynb) | Indexes QBReader questions in SQLite and finds recurring clues, shared answers, and gaps in a notes collection. |
 | [Buzz Drill](drill/) | Streams tossups word by word, tracks buzz position, and saves self-scored practice sessions in the browser. |
 | [Anki models and samples](samples/) | Shows how the collection is organized across various category types. |
-
-![Buzz Drill setup screen, showing categories, session length, and reading speed](docs/images/buzz-drill.png)
 
 ## StockFisher
 
@@ -30,7 +28,22 @@ python -m qbr who "zero of form"
 
 Python 3.9+ and SQLite with FTS5 are required. The first sync needs internet access and extra disk space while the database is built; the resulting mirror is roughly 900 MB. Later searches run against the local mirror. See the [StockFisher guide](qbr/README.md) for filters, Python usage, Anki integration, and limitations.
 
+### StockFisher notebook
+
+[View the notebook and its configuration cells](StockFisher.ipynb) on GitHub. To use its interactive controls locally, install the optional notebook dependencies and start Jupyter from the repository root:
+
+![StockFisher notebook showing a photoelectric effect clue profile](docs/images/stockfisher-notebook.png)
+
+```bash
+python -m pip install -r requirements-notebook.txt
+python -m notebook StockFisher.ipynb
+```
+
+Run the cells, choose an answer and filters, and use the tabs to profile clues, search questions, check a draft, or export selected clues to CSV. The notebook uses the same local mirror as the command-line tool; if it is stored elsewhere, enter its path in the mirror selector or set `QBR_DB` before starting Jupyter. Anki comparisons are optional and read-only.
+
 ## Buzz Drill
+
+![Buzz Drill setup screen, showing categories, session length, and reading speed](docs/images/buzz-drill.png)
 
 The included practice pool contains 1,864 tossups selected for the study collection. Choose categories and a reading speed, buzz with **Space**, then reveal the answer and score yourself. Session history stays in browser storage.
 
