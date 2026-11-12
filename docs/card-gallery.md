@@ -6,7 +6,7 @@ Examples from the collection, shown as front and back pairs. These are static pr
 
 | Front | Back |
 | --- | --- |
-| ![Art: image to title front](images/cards-v2/art-front.png) | ![Art: image to title back](images/cards-v2/art-back.png) |
+| ![Fur Traders Descending the Missouri card front](images/cards-v2/art-front.png) | ![Fur Traders Descending the Missouri card back](images/cards-v2/art-back.png) |
 
 ## Architecture: image to name
 
@@ -38,11 +38,17 @@ Examples from the collection, shown as front and back pairs. These are static pr
 | --- | --- |
 | ![Photography: image to title front](images/cards-v2/photography-front.png) | ![Photography: image to title back](images/cards-v2/photography-back.png) |
 
-## Geography: map to name
+## Geography: historical state
 
 | Front | Back |
 | --- | --- |
-| ![Geography: map to name front](images/cards-v2/geography-front.png) | ![Geography: map to name back](images/cards-v2/geography-back.png) |
+| ![Qing dynasty map card front](images/cards-v2/geography-front.png) | ![Qing dynasty map card back](images/cards-v2/geography-back.png) |
+
+## Geography: province
+
+| Front | Back |
+| --- | --- |
+| ![Sichuan map card front](images/cards-v2/geography-sichuan-front.png) | ![Sichuan map card back](images/cards-v2/geography-sichuan-back.png) |
 
 ## Geology: definition to name
 
