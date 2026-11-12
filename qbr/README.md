@@ -82,6 +82,8 @@ con = qbr.db()                               # the SQLite connection, read-only
 
 Each function's docstring lists what it returns. `qbr.api` is the live qbreader client (retries, paging, and the
 split that gets past qbreader's 10,000-row paging ceiling) for anything not yet in the mirror.
+If one difficulty/category partition still exceeds the ceiling, `api.rows()` raises `OverflowError` rather than
+returning incomplete results or broadening the filters.
 
 ## The mirror
 
