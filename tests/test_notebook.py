@@ -36,7 +36,7 @@ class NotebookTests(unittest.TestCase):
         self.app.db_path.value = str(missing)
         self.assertFalse(self.app.connect())
         self.assertFalse(missing.exists())
-        self.assertIn("Mirror not connected", self.app.db_status.value)
+        self.assertIn("Database not connected", self.app.db_status.value)
 
     def test_profile_filters_and_export(self):
         result = {"found": True, "name": "Example", "questions": 1, "tossups": 1,

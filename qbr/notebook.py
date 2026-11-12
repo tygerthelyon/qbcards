@@ -26,31 +26,71 @@ def _table(headers, rows):
 
 
 _STYLE = """<style>
-.stockfisher {color:#202a35; font:14px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  background:#fff; border:1px solid #dfe5eb; border-radius:10px; padding:22px 24px; box-sizing:border-box;}
-.stockfisher .sf-heading {font-size:19px; font-weight:600; letter-spacing:-.02em; margin:0 0 2px; color:#182535;}
-.stockfisher .sf-subtitle {color:#667687; margin:0 0 12px; font-size:13px;}
-.stockfisher .sf-status {color:#607181; font-size:12px; margin:0 0 14px;}
-.stockfisher .sf-status .dot {display:inline-block; width:7px; height:7px; border-radius:50%; background:#4c9b76; margin-right:6px;}
-.stockfisher .widget-tab > .p-TabBar {margin-top:14px;}
-.stockfisher .widget-tab .p-TabBar-tab {font-size:13px; text-transform:none; background:#f7f9fb;
-  color:#526578; border-color:#e4eaf0;}
-.stockfisher .widget-tab .p-TabBar-tab.p-mod-current {background:#fff; color:#1b4a72;
-  border-top:2px solid #467ba4;}
-.stockfisher .widget-tab-contents {padding:14px 4px 4px !important; border:0 !important;}
-.stockfisher .widget-label {font-size:13px; color:#425363;}
-.stockfisher input, .stockfisher textarea, .stockfisher select {font-size:13px; border:1px solid #d5dfe8;
-  border-radius:4px; background:#fff;}
-.stockfisher .sf-table {width:100%; border-collapse:collapse; margin:12px 0; font-size:13px;}
-.stockfisher .sf-table th {text-align:left; padding:9px 10px; color:#68798a; font-size:11px; font-weight:600;
-  border-bottom:1px solid #dfe5eb; white-space:nowrap;}
-.stockfisher .sf-table td {padding:12px 10px; border-bottom:1px solid #edf0f3; vertical-align:top; line-height:1.5;}
-.stockfisher .sf-clue {font-weight:600; color:#253c56;}
-.stockfisher .sf-example {display:block; color:#5d6b78; margin-top:4px;}
-.stockfisher .sf-source {display:block; color:#8a98a5; font-size:11px; margin-top:3px;}
-.stockfisher .sf-meta {color:#68798a; font-size:12px;}
-.stockfisher details.sf-meta {margin:10px 0;}
+.stockfisher {
+  --sf-ink:#1d2939; --sf-muted:#617286; --sf-border:#dce4eb; --sf-accent:#28638e;
+  box-sizing:border-box; color:var(--sf-ink); background:#fff;
+  border:1px solid #dfe6ed; border-radius:12px; padding:26px 30px 22px;
+  font:14px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  box-shadow:0 4px 18px rgba(30,50,70,.045);
+}
+.stockfisher .sf-heading {font-size:20px; font-weight:650; letter-spacing:-.025em; line-height:1.3; color:#182b3b;}
+.stockfisher .sf-subtitle {color:var(--sf-muted); font-size:13px; margin:5px 0 0;}
+.stockfisher .sf-status {font-size:12px; color:#658073; margin:14px 0 18px;}
+.stockfisher .sf-status .dot {display:inline-block; width:7px; height:7px; border-radius:50%; background:#54a77a; margin-right:7px;}
+.stockfisher .sf-fields {display:flex; flex-wrap:wrap; gap:12px; padding:16px; border:1px solid #e9eef2;
+  background:#f7f9fb; border-radius:8px; box-sizing:border-box;}
+.stockfisher .sf-field {display:flex !important; flex-direction:column !important; align-items:stretch !important; gap:5px;}
+.stockfisher .sf-field > .widget-label {width:auto !important; min-width:0 !important; text-align:left !important;
+  padding:0 !important; margin:0 !important; font-size:12px; font-weight:500; color:#495f70; line-height:18px;}
+.stockfisher .sf-field > input, .stockfisher .sf-field > select, .stockfisher .sf-field > textarea {box-sizing:border-box; width:100% !important;
+  height:36px !important; min-height:36px !important; padding:6px 10px !important; font-size:13px;
+  color:#223646; background:#fff !important; border:1px solid #cedae4 !important; border-radius:6px !important;
+  box-shadow:none !important;}
+.stockfisher .sf-field > select {appearance:auto !important; padding-right:24px !important;}
+.stockfisher .sf-long > textarea {height:90px !important; resize:vertical;}
+.stockfisher .sf-field > input:focus, .stockfisher .sf-field > select:focus,
+.stockfisher .sf-field > textarea:focus {outline:2px solid #b2d2e8; outline-offset:1px;}
+.stockfisher .widget-tab-bar {margin:20px 0 0 !important; border-bottom:1px solid #e1e8ed !important;}
+.stockfisher .widget-tab-bar .lm-TabBar-content {gap:20px;}
+.stockfisher .widget-tab-bar .lm-TabBar-tab {background:transparent !important; border:0 !important;
+  border-bottom:2px solid transparent !important; margin:0 !important; padding:0 1px 9px !important;
+  color:#697d8d !important; font-size:13px !important; min-width:0 !important;}
+.stockfisher .widget-tab-bar .lm-TabBar-tab.lm-mod-current {color:#245b80 !important; border-bottom-color:#367ca8 !important;}
+.stockfisher .widget-tab-bar .lm-TabBar-tab::before {display:none !important;}
+.stockfisher .widget-tab-contents {padding:16px 0 0 !important; border:0 !important;}
+.stockfisher .sf-actions {display:flex; flex-wrap:wrap; align-items:flex-end; gap:12px;}
+.stockfisher .sf-actions .widget-button {height:36px !important; margin:0 0 5px !important; padding:0 17px !important;
+  border:1px solid #28638e !important; border-radius:6px !important; background:#28638e !important;
+  color:#fff !important; font-size:13px; font-weight:600; box-shadow:none !important;}
+.stockfisher .sf-actions .widget-button:hover {background:#1e5178 !important;}
+.stockfisher .sf-button:not(.mod-primary) {height:36px !important; padding:0 14px !important;
+  border:1px solid #cdd9e2 !important; border-radius:6px !important; background:#fff !important;
+  color:#36546a !important; font-size:13px; box-shadow:none !important;}
+.stockfisher .sf-button:not(.mod-primary):hover {background:#f4f8fa !important;}
+.stockfisher .sf-options {margin:4px 0 4px;}
+.stockfisher .sf-options .jupyter-widget-Collapse-header,
+.stockfisher .sf-database .jupyter-widget-Collapse-header {background:transparent !important; border:0 !important;
+  color:#60778a !important; padding:8px 0 !important; font-size:12px; font-weight:500;}
+.stockfisher .sf-options .widget-checkbox {width:auto !important; margin-right:20px;}
+.stockfisher .sf-options .widget-checkbox > .widget-label {display:none;}
+.stockfisher .sf-options .jupyter-widget-Collapse-contents,
+.stockfisher .sf-database .jupyter-widget-Collapse-contents {border:0 !important; padding:4px 0 12px !important;}
+.stockfisher .sf-database {margin-top:12px; border-top:1px solid #e9eef2;}
+.stockfisher .sf-result-heading {font-size:17px; font-weight:600; color:#203649; margin:16px 0 2px;}
+.stockfisher .sf-result-summary {font-size:12px; color:#6a7c8b; margin:0 0 12px;}
+.stockfisher .sf-table {width:100%; border-collapse:collapse; margin:8px 0; font-size:13px;}
+.stockfisher .sf-table th {text-align:left; padding:10px 10px; color:#6b7e8e; font-size:11px; font-weight:600;
+  background:#f7f9fb; border-bottom:1px solid #e1e8ed; white-space:nowrap;}
+.stockfisher .sf-table th:first-child {border-radius:5px 0 0 0;}
+.stockfisher .sf-table th:last-child {border-radius:0 5px 0 0;}
+.stockfisher .sf-table td {padding:14px 10px; border-bottom:1px solid #edf1f4; vertical-align:top; line-height:1.5;}
+.stockfisher .sf-clue {font-weight:600; color:#27455b;}
+.stockfisher .sf-example {display:block; color:#556c7b; margin-top:4px;}
+.stockfisher .sf-source {display:block; color:#82929f; font-size:11px; margin-top:4px;}
+.stockfisher .sf-meta {color:#788b99; font-size:12px;}
+.stockfisher details.sf-meta {margin:12px 0;}
 .stockfisher details.sf-meta summary {cursor:pointer;}
+@media (max-width:620px) {.stockfisher {padding:20px 16px;} .stockfisher .widget-tab-bar .lm-TabBar-content {gap:10px;}}
 </style>"""
 
 
@@ -58,7 +98,7 @@ def connect_database(path):
     """Validate and select an existing mirror. The database is opened read-only."""
     db_path = Path(path).expanduser().resolve()
     if not db_path.is_file():
-        raise FileNotFoundError("Mirror not found. Choose an existing qbreader.sqlite file.")
+        raise FileNotFoundError("Database not found. Choose an existing qbreader.sqlite file.")
     con = sqlite3.connect(db_path.as_uri() + "?mode=ro", uri=True, timeout=10)
     try:
         tables = {row[0] for row in con.execute("SELECT name FROM sqlite_master WHERE type IN ('table', 'view')")}
@@ -84,12 +124,13 @@ class StockFisherNotebook:
                  ranking="spec", limit=15):
         self.result = None
         self.connected = False
-        self.db_path = widgets.Text(value=store.PATH, description="Mirror", layout=widgets.Layout(width="100%"))
+        self.db_path = widgets.Text(value=store.PATH, description="File", layout=widgets.Layout(width="100%"))
         self.db_button = widgets.Button(description="Connect", icon="database", button_style="")
         self.db_status = widgets.HTML()
         self.db_settings = widgets.Accordion(children=[widgets.VBox([self.db_path, self.db_button])])
         self.db_settings.set_title(0, "Database settings")
         self.db_settings.selected_index = None
+        self.db_settings.add_class("sf-database")
 
         self.answer = widgets.Text(value=answer, description="Answer", layout=widgets.Layout(width="340px"))
         self.category = widgets.Text(value=category, description="Category", layout=widgets.Layout(width="300px"))
@@ -102,7 +143,19 @@ class StockFisherNotebook:
         self.use_anki = widgets.Checkbox(value=False, description="Compare with Anki")
         self.exclude = widgets.Text(description="Exclude", placeholder="Terms to exclude, comma-separated", layout=widgets.Layout(width="360px"))
 
-        self.profile_button = widgets.Button(description="Find stock clues", icon="search", button_style="primary")
+        for field, width, grow in ((self.answer, "230px", "2 1 210px"),
+                                   (self.category, "170px", "1 1 150px"),
+                                   (self.difficulty, "120px", "1 1 110px"),
+                                   (self.year, "120px", "1 1 110px"),
+                                   (self.ranking, "190px", "0 1 190px"),
+                                   (self.limit, "95px", "0 1 95px")):
+            field.layout.width = width
+            field.layout.flex = grow
+            field.layout.height = "74px"
+            field.add_class("sf-field")
+
+        self.profile_button = widgets.Button(description="Find clues", icon="search", button_style="primary",
+                                             layout=widgets.Layout(width="130px"))
         self.profile_status = widgets.HTML()
         self.profile_output = widgets.HTML()
         self.search_query = widgets.Text(description="Phrase", placeholder="A clue, phrase, or FTS query", layout=widgets.Layout(width="100%"))
@@ -120,9 +173,30 @@ class StockFisherNotebook:
         self.export_button = widgets.Button(description="Export selected", icon="download")
         self.export_status = widgets.HTML()
 
+        for field in (self.exclude, self.db_path, self.search_query, self.export_path):
+            field.add_class("sf-field")
+            field.layout.height = "74px"
+        self.clue_text.add_class("sf-field")
+        self.clue_text.add_class("sf-long")
+        self.clue_text.layout.height = "128px"
+        for button in (self.db_button, self.search_button, self.check_button, self.select_all,
+                       self.clear_selection, self.export_button):
+            button.add_class("sf-button")
+        for button, width in ((self.db_button, "110px"), (self.search_button, "160px"),
+                              (self.check_button, "130px"), (self.select_all, "100px"),
+                              (self.clear_selection, "80px"), (self.export_button, "160px")):
+            button.layout.width = width
+
+        options = widgets.Accordion(children=[widgets.VBox([
+            widgets.HBox([self.exact, self.use_anki], layout=widgets.Layout(flex_flow="row wrap")), self.exclude,
+        ])])
+        options.set_title(0, "More options")
+        options.selected_index = None
+        options.add_class("sf-options")
+        actions = widgets.HBox([self.ranking, self.limit, self.profile_button])
+        actions.add_class("sf-actions")
         profile_tab = widgets.VBox([
-            widgets.HBox([self.ranking, self.limit]), widgets.HBox([self.exact, self.use_anki]), self.exclude,
-            self.profile_button, self.profile_status, self.profile_output,
+            actions, options, self.profile_status, self.profile_output,
         ])
         search_tab = widgets.VBox([widgets.HTML("<p>Search question text using the category, difficulty, and year filters above.</p>"),
                                   self.search_query, self.search_button, self.search_output])
@@ -137,11 +211,12 @@ class StockFisherNotebook:
         for index, title in enumerate(("Profile", "Search", "Check clue", "Review & export")):
             self.tabs.set_title(index, title)
 
+        fields = widgets.HBox([self.answer, self.category, self.difficulty, self.year])
+        fields.add_class("sf-fields")
         self.view = widgets.VBox([
             widgets.HTML(_STYLE + "<div class='sf-heading'>StockFisher</div><p class='sf-subtitle'>Find recurring clues in QBReader questions.</p>"),
             self.db_status,
-            widgets.HBox([self.answer, self.category], layout=widgets.Layout(flex_flow="row wrap")),
-            widgets.HBox([self.difficulty, self.year], layout=widgets.Layout(flex_flow="row wrap")),
+            fields,
             self.tabs, self.db_settings,
         ], layout=widgets.Layout(max_width="940px", width="100%"))
         self.view.add_class("stockfisher")
@@ -168,7 +243,7 @@ class StockFisherNotebook:
         except (OSError, sqlite3.Error, ValueError) as exc:
             self.connected = False
             self.db_settings.selected_index = 0
-            self.db_status.value = "<p style='color:#a33'>Mirror not connected. %s</p>" % _escape(exc)
+            self.db_status.value = "<p style='color:#a33'>Database not connected. %s</p>" % _escape(exc)
             return False
         self.connected = True
         self.db_status.value = "<p class='sf-status'><span class='dot'></span>QBReader index connected · %s units · %s sets</p>" % (
@@ -183,7 +258,7 @@ class StockFisherNotebook:
     def _ready(self, output):
         if self.connected:
             return True
-        output.value = "<p>Connect a mirror above before running this action.</p>"
+        output.value = "<p>Connect a database in Database settings before running this action.</p>"
         return False
 
     def run_profile(self, _button=None):
@@ -209,13 +284,13 @@ class StockFisherNotebook:
                 guesses = ", ".join(_escape(x[0]) for x in result.get("suggest", [])) or "No close answerlines found."
                 self.profile_status.value = "<p>No matching answer. %s</p>" % guesses
                 return result
-            stats = "%s · %s questions · %s tossups · %s bonus parts · %s sets" % (
+            stats = "<div class='sf-result-heading'>%s</div><div class='sf-result-summary'>%s questions · %s tossups · %s bonus parts · %s sets</div>" % (
                 _escape(result["name"]), result["questions"], result["tossups"], result["bonuses"], result["sets"])
             if result.get("mentioned_truncated"):
                 stats += "<br><small>Mentions reached the search cap; related-answer counts may be incomplete.</small>"
             if result.get("anki_stale"):
                 stats += "<br><small>%s</small>" % _escape(result["anki_stale"])
-            self.profile_status.value = "<p>%s</p>" % stats
+            self.profile_status.value = stats
             lines = ", ".join("%s (%s)" % (_escape(line), count) for line, count in result.get("lines", []))
             rows = []
             for clue in result.get("things", []):
@@ -229,10 +304,10 @@ class StockFisherNotebook:
                 rows.append(cells)
             headers = ["Clue and example", "Questions", "Specificity", "Position"] + (["Anki"] if self.use_anki.value else [])
             foils = ", ".join(_escape(foil["answer"]) for foil in result.get("foils", []))
-            self.profile_output.value = ("<details class='sf-meta'><summary>Matched answerlines</summary>%s</details>" % (lines or "none") +
-                                         _table(headers, rows) +
+            self.profile_output.value = (_table(headers, rows) +
                                          ("<p>Related answers: %s</p>" % foils if foils else "") +
-                                         "<p class='sf-meta'>Specificity is the share of clue occurrences associated with this answer. Position summarizes tossups.</p>")
+                                         "<p class='sf-meta'>Specificity is the share of clue occurrences associated with this answer. Position summarizes tossups.</p>" +
+                                         "<details class='sf-meta'><summary>Matched answerlines</summary>%s</details>" % (lines or "none"))
             self.selection.options = [("%d. %s" % (i + 1, clue["thing"]), i)
                                       for i, clue in enumerate(result.get("things", []))]
             return result
