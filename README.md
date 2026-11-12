@@ -1,7 +1,5 @@
 # QBCards & StockFisher
 
----
-
 The tools here provide a software to process, index, and learn academic tournament material for the purpose of improving at quizbowl and more generally, learning facts more effectively. It is not an adequate substitution for "real learning" but nonetheless may occasionally prove useful for tournament play.
 
 * **StockFisher Engine (`qbr`)**: offline SQLite FTS5 search and clue frequency pipeline indexing public quizbowl question database. Profiles "stock" (recurring) clues, and their frequency and difficulty in under 3 seconds per query.
