@@ -1,6 +1,6 @@
 # QBCards & StockFisher
 
-A high-performance knowledge engineering suite, clue frequency analyzer, and tournament simulation toolkit for competitive academic quizbowl.
+Study tool for academic quizbowl.
 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](#)
 [![SQLite FTS5](https://img.shields.io/badge/sqlite-FTS5-green.svg)](#)
@@ -11,11 +11,11 @@ A high-performance knowledge engineering suite, clue frequency analyzer, and tou
 
 ## Overview
 
-Competitive quizbowl rewards rapid clue retrieval, deep canon coverage, and prompt buzzer recognition. **QBCards & StockFisher** provides an integrated software ecosystem designed to process, index, and master large volumes of academic tournament material:
+Quizbowl rewards recall, and real-world and canon coverage. The tools here provide a software to process, index, and learn academic tournament material:
 
-* **StockFisher Engine (`qbr`)**: An offline SQLite FTS5 search and clue frequency pipeline indexing **670,000+ question units across 700+ sets**. Profiles stock clues, exclusivity shares, and pyramid positions in under 2.8 seconds without network latency.
-* **Tossup Buzzer Simulator (`drill/`)**: A client-side web application simulating live moderator question reading with configurable reading speeds, keyboard buzzer interrupts, and session performance telemetry.
-* **Anki Knowledge Architecture (`templates/`, `samples/`)**: Production Anki card models with responsive WebKit-compliant layouts, dynamic multi-image mosaic engines, full-screen zoom overlays, and tier-based spaced repetition workflows.
+* **StockFisher Engine (`qbr`)**: offline SQLite FTS5 search and clue frequency pipeline indexing public quizbowl question database. Profiles "stock" (recurring) clues, and their frequency and difficulty in under 3 seconds per query.
+* **Tossup Simulator (`drill/`)**: web application simulating live question-reading with configurable reading speeds, keyboard buzzer interrupts, and session performance telemetry.
+* **Anki Card Architecture (`templates/`, `samples/`)**: Anki flashcard models with responsive WebKit-compliant layouts.
 
 ---
 
