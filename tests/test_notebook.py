@@ -1,8 +1,9 @@
-﻿import csv
+import csv
 import importlib.util
 import sqlite3
 import tempfile
 import unittest
+from contextlib import closing
 from pathlib import Path
 from unittest.mock import patch
 
@@ -17,9 +18,10 @@ class NotebookTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.path = Path(self.temp.name) / "mirror.sqlite"
-        with sqlite3.connect(str(self.path)) as con:
-            for table in ("u", "q", "f", "sets", "meta"):
-                con.execute('CREATE TABLE "{}" (id INTEGER)'.format(table))
+        with closing(sqlite3.connect(str(self.path))) as con:
+            with con:
+                for table in ("u", "q", "f", "sets", "meta"):
+                    con.execute('CREATE TABLE "{}" (id INTEGER)'.format(table))
         self.old_path, self.old_con, self.old_cache = store.PATH, store._CON, anki.CACHE
         store.PATH, store._CON = str(self.path), None
         self.app = StockFisherNotebook()

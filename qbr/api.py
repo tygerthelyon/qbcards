@@ -24,13 +24,17 @@ CEILING = 10000    # past this row a query repeats its last page (measured 2026-
 
 def get(path, tries=5, timeout=180, **params):
     """One GET, as parsed JSON. Retries rate limits, timeouts and server errors with a growing wait."""
-    q = urllib.parse.urlencode({k: v for k, v in params.items() if v is not None})
+    query = {key: ",".join(map(str, value)) if isinstance(value, (list, tuple, set)) else value
+             for key, value in params.items() if value is not None}
+    q = urllib.parse.urlencode(query)
     url = BASE + path + ("?" + q if q else "")
     for k in range(tries):
         try:
-            r = urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=timeout)
-            raw = r.read()
-            if r.headers.get("Content-Encoding") == "gzip":
+            request = urllib.request.Request(url, headers=UA)
+            with urllib.request.urlopen(request, timeout=timeout) as response:
+                raw = response.read()
+                encoding = response.headers.get("Content-Encoding")
+            if encoding == "gzip":
                 raw = gzip.decompress(raw)
             return json.loads(raw.decode("utf-8"))
         except urllib.error.HTTPError as e:
@@ -78,25 +82,41 @@ def pages(**params):
         page += 1
 
 
+def _values(value, default):
+    """Expand a comma-separated or sequence-valued API filter."""
+    if value is None or value == "":
+        return list(default)
+    if isinstance(value, str):
+        return [part.strip() for part in value.split(",") if part.strip()] or list(default)
+    if isinstance(value, (list, tuple, set)):
+        return list(value) or list(default)
+    return [value]
+
+
 def rows(**params):
-    """Every row of a query of any size: split by difficulty, then by category, wherever the ceiling would bite."""
+    """Fetch all rows, splitting oversized queries by difficulty and category.
+
+    Raises OverflowError if a single partition still exceeds the API limit.
+    """
     try:
         yield from pages(**params)
         return
     except OverflowError:
         pass
     seen = set()
-    for d in ([params["difficulties"]] if "difficulties" in params else range(0, 11)):
+    difficulties = _values(params.get("difficulties"), range(0, 11))
+    categories = _values(params.get("categories"), CATEGORIES)
+    for difficulty in difficulties:
         try:
-            part = list(pages(**dict(params, difficulties=d)))
+            part = list(pages(**dict(params, difficulties=difficulty)))
         except OverflowError:
             part = []
-            for c in CATEGORIES:
-                part += list(pages(**dict(params, difficulties=d, categories=c)))
-        for q in part:
-            if q["_id"] not in seen:
-                seen.add(q["_id"])
-                yield q
+            for category in categories:
+                part.extend(pages(**dict(params, difficulties=difficulty, categories=category)))
+        for question in part:
+            if question["_id"] not in seen:
+                seen.add(question["_id"])
+                yield question
 
 
 CATEGORIES = ["Literature", "History", "Science", "Fine Arts", "Religion", "Mythology", "Philosophy", "Social Science",
