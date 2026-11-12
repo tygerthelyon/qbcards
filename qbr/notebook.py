@@ -14,7 +14,7 @@ def _escape(value):
     return html.escape(str(value if value is not None else ""))
 
 
-def _table(headers, rows):
+def _table(headers, rows, profile=False):
     if not rows:
         return "<p>No results to show.</p>"
     heading = "".join("<th>%s</th>" % _escape(h) for h in headers)
@@ -22,75 +22,75 @@ def _table(headers, rows):
         "<tr>%s</tr>" % "".join("<td>%s</td>" % cell for cell in row)
         for row in rows
     )
-    return "<table class='sf-table'><thead><tr>%s</tr></thead><tbody>%s</tbody></table>" % (heading, body)
+    table_class = "sf-table sf-profile-table" if profile else "sf-table"
+    return "<table class='%s'><thead><tr>%s</tr></thead><tbody>%s</tbody></table>" % (table_class, heading, body)
 
 
 _STYLE = """<style>
 .stockfisher {
-  --sf-ink:#1d2939; --sf-muted:#617286; --sf-border:#dce4eb; --sf-accent:#28638e;
-  box-sizing:border-box; color:var(--sf-ink); background:#fff;
-  border:1px solid #dfe6ed; border-radius:12px; padding:26px 30px 22px;
-  font:14px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  box-shadow:0 4px 18px rgba(30,50,70,.045);
+  --ink:#202723; --muted:#5e6a64; --rule:#c9d1cb; --accent:#315b4b;
+  box-sizing:border-box; color:var(--ink); background:#fdfdfb;
+  border:1px solid #aebbb2; padding:22px 26px 18px;
+  font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
-.stockfisher .sf-heading {font-size:20px; font-weight:650; letter-spacing:-.025em; line-height:1.3; color:#182b3b;}
-.stockfisher .sf-subtitle {color:var(--sf-muted); font-size:13px; margin:5px 0 0;}
-.stockfisher .sf-status {font-size:12px; color:#658073; margin:14px 0 18px;}
-.stockfisher .sf-status .dot {display:inline-block; width:7px; height:7px; border-radius:50%; background:#54a77a; margin-right:7px;}
-.stockfisher .sf-fields {display:flex; flex-wrap:wrap; gap:12px; padding:16px; border:1px solid #e9eef2;
-  background:#f7f9fb; border-radius:8px; box-sizing:border-box;}
-.stockfisher .sf-field {display:flex !important; flex-direction:column !important; align-items:stretch !important; gap:5px;}
+.stockfisher .sf-heading {font-size:22px; font-weight:650; letter-spacing:-.035em; line-height:1.2; color:#1e3026;}
+.stockfisher .sf-subtitle {color:#596760; font-size:13px; margin:4px 0 0;}
+.stockfisher .sf-status {font:12px/1.4 ui-monospace,Consolas,monospace; color:#50665a;
+  margin:12px 0 16px; padding:0 0 11px; border-bottom:1px solid #c9d1cb;}
+.stockfisher .sf-status .dot {display:inline-block; width:6px; height:6px; background:#558467; margin-right:8px;}
+.stockfisher .sf-fields {display:flex; flex-wrap:wrap; gap:14px; box-sizing:border-box;}
+.stockfisher .sf-field {display:flex !important; flex-direction:column !important; align-items:stretch !important; gap:4px;}
 .stockfisher .sf-field > .widget-label {width:auto !important; min-width:0 !important; text-align:left !important;
-  padding:0 !important; margin:0 !important; font-size:12px; font-weight:500; color:#495f70; line-height:18px;}
-.stockfisher .sf-field > input, .stockfisher .sf-field > select, .stockfisher .sf-field > textarea {box-sizing:border-box; width:100% !important;
-  height:36px !important; min-height:36px !important; padding:6px 10px !important; font-size:13px;
-  color:#223646; background:#fff !important; border:1px solid #cedae4 !important; border-radius:6px !important;
-  box-shadow:none !important;}
+  padding:0 !important; margin:0 !important; color:#4d5c53; font:12px/18px ui-monospace,Consolas,monospace;}
+.stockfisher .sf-field > input, .stockfisher .sf-field > select, .stockfisher .sf-field > textarea {
+  box-sizing:border-box; width:100% !important; height:34px !important; min-height:34px !important;
+  padding:6px 9px !important; color:#17251d; background:#fff !important; border:1px solid #aebbb2 !important;
+  border-radius:0 !important; box-shadow:none !important; font-size:13px;}
 .stockfisher .sf-field > select {appearance:auto !important; padding-right:24px !important;}
 .stockfisher .sf-long > textarea {height:90px !important; resize:vertical;}
 .stockfisher .sf-field > input:focus, .stockfisher .sf-field > select:focus,
-.stockfisher .sf-field > textarea:focus {outline:2px solid #b2d2e8; outline-offset:1px;}
-.stockfisher .widget-tab-bar {margin:20px 0 0 !important; border-bottom:1px solid #e1e8ed !important;}
-.stockfisher .widget-tab-bar .lm-TabBar-content {gap:20px;}
+.stockfisher .sf-field > textarea:focus {outline:2px solid #71927f; outline-offset:1px;}
+.stockfisher .widget-tab-bar {margin:12px 0 0 !important; border-bottom:1px solid #aebbb2 !important;}
+.stockfisher .widget-tab-bar .lm-TabBar-content {gap:18px;}
 .stockfisher .widget-tab-bar .lm-TabBar-tab {background:transparent !important; border:0 !important;
-  border-bottom:2px solid transparent !important; margin:0 !important; padding:0 1px 9px !important;
-  color:#697d8d !important; font-size:13px !important; min-width:0 !important;}
-.stockfisher .widget-tab-bar .lm-TabBar-tab.lm-mod-current {color:#245b80 !important; border-bottom-color:#367ca8 !important;}
+  border-bottom:2px solid transparent !important; margin:0 !important; padding:0 1px 8px !important;
+  color:#596a60 !important; font-size:13px !important; min-width:0 !important;}
+.stockfisher .widget-tab-bar .lm-TabBar-tab.lm-mod-current {color:#1e4632 !important; border-bottom-color:#315b4b !important;}
 .stockfisher .widget-tab-bar .lm-TabBar-tab::before {display:none !important;}
-.stockfisher .widget-tab-contents {padding:16px 0 0 !important; border:0 !important;}
+.stockfisher .widget-tab-contents {padding:12px 0 0 !important; border:0 !important;}
 .stockfisher .sf-actions {display:flex; flex-wrap:wrap; align-items:flex-end; gap:12px;}
-.stockfisher .sf-actions .widget-button {height:36px !important; margin:0 0 5px !important; padding:0 17px !important;
-  border:1px solid #28638e !important; border-radius:6px !important; background:#28638e !important;
+.stockfisher .sf-actions .widget-button {height:34px !important; margin:0 0 5px !important; padding:0 14px !important;
+  border:1px solid #315b4b !important; border-radius:0 !important; background:#315b4b !important;
   color:#fff !important; font-size:13px; font-weight:600; box-shadow:none !important;}
-.stockfisher .sf-actions .widget-button:hover {background:#1e5178 !important;}
-.stockfisher .sf-button:not(.mod-primary) {height:36px !important; padding:0 14px !important;
-  border:1px solid #cdd9e2 !important; border-radius:6px !important; background:#fff !important;
-  color:#36546a !important; font-size:13px; box-shadow:none !important;}
-.stockfisher .sf-button:not(.mod-primary):hover {background:#f4f8fa !important;}
-.stockfisher .sf-options {margin:4px 0 4px;}
+.stockfisher .sf-actions .widget-button:hover {background:#234738 !important;}
+.stockfisher .sf-button:not(.mod-primary) {height:34px !important; padding:0 14px !important;
+  border:1px solid #9eafa4 !important; border-radius:0 !important; background:#fff !important;
+  color:#2e4d3b !important; font-size:13px; box-shadow:none !important;}
+.stockfisher .sf-button:not(.mod-primary):hover {background:#f0f4f0 !important;}
+.stockfisher .sf-options {margin:0 0 3px;}
 .stockfisher .sf-options .jupyter-widget-Collapse-header,
 .stockfisher .sf-database .jupyter-widget-Collapse-header {background:transparent !important; border:0 !important;
-  color:#60778a !important; padding:8px 0 !important; font-size:12px; font-weight:500;}
+  color:#536b5d !important; padding:6px 0 !important; font-size:12px; font-weight:500;}
 .stockfisher .sf-options .widget-checkbox {width:auto !important; margin-right:20px;}
 .stockfisher .sf-options .widget-checkbox > .widget-label {display:none;}
 .stockfisher .sf-options .jupyter-widget-Collapse-contents,
-.stockfisher .sf-database .jupyter-widget-Collapse-contents {border:0 !important; padding:4px 0 12px !important;}
-.stockfisher .sf-database {margin-top:12px; border-top:1px solid #e9eef2;}
-.stockfisher .sf-result-heading {font-size:17px; font-weight:600; color:#203649; margin:16px 0 2px;}
-.stockfisher .sf-result-summary {font-size:12px; color:#6a7c8b; margin:0 0 12px;}
+.stockfisher .sf-database .jupyter-widget-Collapse-contents {border:0 !important; padding:4px 0 10px !important;}
+.stockfisher .sf-database {margin-top:10px; border-top:1px solid #d9e0db;}
+.stockfisher .sf-result-heading {font-size:17px; font-weight:600; color:#1d2c24; margin:13px 0 2px;}
+.stockfisher .sf-result-summary {font:12px/1.5 ui-monospace,Consolas,monospace; color:#596960; margin:0 0 9px;}
 .stockfisher .sf-table {width:100%; border-collapse:collapse; margin:8px 0; font-size:13px;}
-.stockfisher .sf-table th {text-align:left; padding:10px 10px; color:#6b7e8e; font-size:11px; font-weight:600;
-  background:#f7f9fb; border-bottom:1px solid #e1e8ed; white-space:nowrap;}
-.stockfisher .sf-table th:first-child {border-radius:5px 0 0 0;}
-.stockfisher .sf-table th:last-child {border-radius:0 5px 0 0;}
-.stockfisher .sf-table td {padding:14px 10px; border-bottom:1px solid #edf1f4; vertical-align:top; line-height:1.5;}
-.stockfisher .sf-clue {font-weight:600; color:#27455b;}
-.stockfisher .sf-example {display:block; color:#556c7b; margin-top:4px;}
-.stockfisher .sf-source {display:block; color:#82929f; font-size:11px; margin-top:4px;}
-.stockfisher .sf-meta {color:#788b99; font-size:12px;}
-.stockfisher details.sf-meta {margin:12px 0;}
+.stockfisher .sf-table th {text-align:left; padding:8px 8px; color:#4f6156;
+  font:12px/1.3 ui-monospace,Consolas,monospace; border-top:1px solid #aebbb2; border-bottom:1px solid #aebbb2; white-space:nowrap;}
+.stockfisher .sf-table td {padding:11px 8px; border-bottom:1px solid #e0e5e1; vertical-align:top; line-height:1.45;}
+.stockfisher .sf-profile-table th:not(:first-child), .stockfisher .sf-profile-table td:not(:first-child) {text-align:right; white-space:nowrap;}
+.stockfisher .sf-profile-table td:not(:first-child) {font:12px/1.5 ui-monospace,Consolas,monospace; color:#34483b;}
+.stockfisher .sf-clue {font-weight:600; color:#203a2b;}
+.stockfisher .sf-example {display:block; color:#44554c; margin-top:4px;}
+.stockfisher .sf-source {display:block; color:#697b70; font-size:11px; margin-top:3px;}
+.stockfisher .sf-meta {color:#62726a; font-size:12px;}
+.stockfisher details.sf-meta {margin:10px 0;}
 .stockfisher details.sf-meta summary {cursor:pointer;}
-@media (max-width:620px) {.stockfisher {padding:20px 16px;} .stockfisher .widget-tab-bar .lm-TabBar-content {gap:10px;}}
+@media (max-width:620px) {.stockfisher {padding:18px 14px;} .stockfisher .widget-tab-bar .lm-TabBar-content {gap:9px;}}
 </style>"""
 
 
@@ -151,7 +151,7 @@ class StockFisherNotebook:
                                    (self.limit, "95px", "0 1 95px")):
             field.layout.width = width
             field.layout.flex = grow
-            field.layout.height = "74px"
+            field.layout.height = "66px"
             field.add_class("sf-field")
 
         self.profile_button = widgets.Button(description="Find clues", icon="search", button_style="primary",
@@ -304,7 +304,7 @@ class StockFisherNotebook:
                 rows.append(cells)
             headers = ["Clue and example", "Questions", "Specificity", "Position"] + (["Anki"] if self.use_anki.value else [])
             foils = ", ".join(_escape(foil["answer"]) for foil in result.get("foils", []))
-            self.profile_output.value = (_table(headers, rows) +
+            self.profile_output.value = (_table(headers, rows, profile=True) +
                                          ("<p>Related answers: %s</p>" % foils if foils else "") +
                                          "<p class='sf-meta'>Specificity is the share of clue occurrences associated with this answer. Position summarizes tossups.</p>" +
                                          "<details class='sf-meta'><summary>Matched answerlines</summary>%s</details>" % (lines or "none"))
