@@ -7,24 +7,24 @@ Run commands from the repository root with Python 3.9 or later. The database is 
 `python -m qbr sync` first. The initial download is large and requires internet access; the resulting database is
 about 900 MB. Set `QBR_DB` to use a different database path. AnkiConnect is needed only for Anki comparisons.
 
-For an interactive interface, see the [StockFisher notebook](../StockFisher.ipynb) and its [setup instructions](../README.md#stockfisher-notebook).
+For an interactive interface, see the [StockFisher notebook](../StockFisher.ipynb) and its [setup instructions](../README.md#setup).
 
 ## Commands
 
 ```
-python -m qbr profile "Kazimir Malevich"         the stock clues for an answer (--spec, --pyramid)
-python -m qbr profile "John Adams" -c afa --anki  the composer only, marked against the Anki collection
+python -m qbr profile "Kazimir Malevich"          # stock clues (--spec, --pyramid)
+python -m qbr profile "John Adams" -c afa --anki  # the composer, compared with Anki
 python -m qbr search "zero of form" -c vfa -d 7-9
-python -m qbr who "zero of form"                 which answers a clue points to
-python -m qbr top -c architecture -n 100         frequency list; --rising, --anki, --missing
-python -m qbr fact "Bury St. Edmunds|eel"        find passages containing both terms
+python -m qbr who "zero of form"                  # answers associated with a clue
+python -m qbr top -c architecture -n 100          # frequency list; --rising, --anki, --missing
+python -m qbr fact "Bury St. Edmunds|eel"         # passages containing both terms
 python -m qbr like "a white fish obscures the image of a tuxedoed man"
-python -m qbr sets "ACF Nationals"               sets in the mirror
-python -m qbr set "2026 ACF Nationals" -c vfa    one set's questions, in packet order
-python -m qbr show <id or uid>                   one whole question; --html keeps the italics
-python -m qbr brief "OVFA::Dance" -t 1 -c fa     compare existing clues with recurring clues
-python -m qbr sql "SELECT ..."                   read-only SQL
-python -m qbr sync                               update the mirror;  status  says how fresh it is
+python -m qbr sets "ACF Nationals"                # sets in the mirror
+python -m qbr set "2026 ACF Nationals" -c vfa     # questions in packet order
+python -m qbr show <id or uid>                    # one whole question; --html keeps the italics
+python -m qbr brief "OVFA::Dance" -t 1 -c fa      # compare notes with recurring clues
+python -m qbr sql "SELECT ..."                    # read-only SQL
+python -m qbr sync                                # update the mirror; status shows its age
 ```
 
 Filters, on most commands: `-c` category (`vfa`, `phil`, `architecture`, `"Other Fine Arts"`, several with commas),
