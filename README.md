@@ -1,17 +1,8 @@
 # QBCards & StockFisher
 
-Study tool for academic quizbowl.
-
-[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](#)
-[![SQLite FTS5](https://img.shields.io/badge/sqlite-FTS5-green.svg)](#)
-[![Anki Integration](https://img.shields.io/badge/anki-AnkiConnect-purple.svg)](#)
-[![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg)](#)
-
 ---
 
-## Overview
-
-Quizbowl rewards recall, and real-world and canon coverage. The tools here provide a software to process, index, and learn academic tournament material:
+The tools here provide a software to process, index, and learn academic tournament material for the purpose of improving at quizbowl and more generally, learning facts more effectively. It is not an adequate substitution for "real learning" but nonetheless may occasionally prove useful for tournament play.
 
 * **StockFisher Engine (`qbr`)**: offline SQLite FTS5 search and clue frequency pipeline indexing public quizbowl question database. Profiles "stock" (recurring) clues, and their frequency and difficulty in under 3 seconds per query.
 * **Tossup Simulator (`drill/`)**: web application simulating live question-reading with configurable reading speeds, keyboard buzzer interrupts, and session performance telemetry.
