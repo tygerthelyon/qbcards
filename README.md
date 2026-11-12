@@ -68,7 +68,9 @@ The collection had 11,921 notes and 34,848 cards in November 2026. These example
 
 [See the full gallery](docs/card-gallery.md) for examples of all 11 populated note types, including biology and physics cards.
 
-The repository includes [sample notes](samples/), [note-type definitions](templates/models.json), and [collection utilities](scripts/). The full collection, media, and importable deck packages are not included.
+Download the [Anki decks](https://github.com/tygerthelyon/qbcards/releases/tag/decks-2026-11-12) to import them into Anki. See the [download guide](docs/decks.md) for the subject list and import instructions. The repository also includes [sample notes](samples/), [note-type definitions](templates/models.json), and [collection utilities](scripts/).
+
+These cards are personal study materials and may contain mistakes. Check important facts against reliable sources.
 
 ## Buzz Drill
 
@@ -89,3 +91,5 @@ Open <http://localhost:8000/drill/buzz-drill.html>. Buzz Drill does not require 
 Run the offline tests with `python -m unittest discover -s tests -v`. The larger `python -m qbr.selftest` also checks a synced index against the live QBReader API and requires a network connection.
 
 StockFisher and Buzz Drill use questions made available through QBReader. The questions remain the work of their writers and tournament hosts; see [QBReader's notes on question sources and non-commercial use](https://github.com/qbreader#questions).
+
+The software in this repository is available under the [MIT License](LICENSE). The license does not cover third-party questions, artwork, photographs, maps, audio recordings, or other third-party material in the examples and decks; those remain subject to their respective rights and licenses.
