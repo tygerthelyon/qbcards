@@ -2,6 +2,8 @@
 
 These files show a small cross-section of the larger Anki collection:
 
+For rendered card examples, see the [gallery](../README.md#anki-cards).
+
 | File | Records | Contents |
 | --- | ---: | --- |
 | [sample_fine_arts.json](sample_fine_arts.json) | 27 | Works, artists, dates, locations, and selected clues |

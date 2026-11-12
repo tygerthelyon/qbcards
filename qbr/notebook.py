@@ -17,12 +17,41 @@ def _escape(value):
 def _table(headers, rows):
     if not rows:
         return "<p>No results to show.</p>"
-    heading = "".join("<th style='text-align:left;padding:8px'>%s</th>" % _escape(h) for h in headers)
+    heading = "".join("<th>%s</th>" % _escape(h) for h in headers)
     body = "".join(
-        "<tr>%s</tr>" % "".join("<td style='padding:8px;vertical-align:top'>%s</td>" % cell for cell in row)
+        "<tr>%s</tr>" % "".join("<td>%s</td>" % cell for cell in row)
         for row in rows
     )
-    return "<table style='border-collapse:collapse;width:100%%'><thead><tr>%s</tr></thead><tbody>%s</tbody></table>" % (heading, body)
+    return "<table class='sf-table'><thead><tr>%s</tr></thead><tbody>%s</tbody></table>" % (heading, body)
+
+
+_STYLE = """<style>
+.stockfisher {color:#202a35; font:14px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:#fff; border:1px solid #dfe5eb; border-radius:10px; padding:22px 24px; box-sizing:border-box;}
+.stockfisher .sf-heading {font-size:19px; font-weight:600; letter-spacing:-.02em; margin:0 0 2px; color:#182535;}
+.stockfisher .sf-subtitle {color:#667687; margin:0 0 12px; font-size:13px;}
+.stockfisher .sf-status {color:#607181; font-size:12px; margin:0 0 14px;}
+.stockfisher .sf-status .dot {display:inline-block; width:7px; height:7px; border-radius:50%; background:#4c9b76; margin-right:6px;}
+.stockfisher .widget-tab > .p-TabBar {margin-top:14px;}
+.stockfisher .widget-tab .p-TabBar-tab {font-size:13px; text-transform:none; background:#f7f9fb;
+  color:#526578; border-color:#e4eaf0;}
+.stockfisher .widget-tab .p-TabBar-tab.p-mod-current {background:#fff; color:#1b4a72;
+  border-top:2px solid #467ba4;}
+.stockfisher .widget-tab-contents {padding:14px 4px 4px !important; border:0 !important;}
+.stockfisher .widget-label {font-size:13px; color:#425363;}
+.stockfisher input, .stockfisher textarea, .stockfisher select {font-size:13px; border:1px solid #d5dfe8;
+  border-radius:4px; background:#fff;}
+.stockfisher .sf-table {width:100%; border-collapse:collapse; margin:12px 0; font-size:13px;}
+.stockfisher .sf-table th {text-align:left; padding:9px 10px; color:#68798a; font-size:11px; font-weight:600;
+  border-bottom:1px solid #dfe5eb; white-space:nowrap;}
+.stockfisher .sf-table td {padding:12px 10px; border-bottom:1px solid #edf0f3; vertical-align:top; line-height:1.5;}
+.stockfisher .sf-clue {font-weight:600; color:#253c56;}
+.stockfisher .sf-example {display:block; color:#5d6b78; margin-top:4px;}
+.stockfisher .sf-source {display:block; color:#8a98a5; font-size:11px; margin-top:3px;}
+.stockfisher .sf-meta {color:#68798a; font-size:12px;}
+.stockfisher details.sf-meta {margin:10px 0;}
+.stockfisher details.sf-meta summary {cursor:pointer;}
+</style>"""
 
 
 def connect_database(path):
@@ -59,14 +88,14 @@ class StockFisherNotebook:
         self.db_button = widgets.Button(description="Connect", icon="database", button_style="")
         self.db_status = widgets.HTML()
         self.db_settings = widgets.Accordion(children=[widgets.VBox([self.db_path, self.db_button])])
-        self.db_settings.set_title(0, "Choose a different mirror")
+        self.db_settings.set_title(0, "Database settings")
         self.db_settings.selected_index = None
 
         self.answer = widgets.Text(value=answer, description="Answer", layout=widgets.Layout(width="340px"))
         self.category = widgets.Text(value=category, description="Category", layout=widgets.Layout(width="300px"))
         self.difficulty = widgets.Text(value=difficulty, description="Difficulty", placeholder="e.g. 6-9", layout=widgets.Layout(width="230px"))
         self.year = widgets.Text(value=year, description="Years", placeholder="e.g. 2018-", layout=widgets.Layout(width="230px"))
-        self.ranking = widgets.Dropdown(options=[("Specificity", "spec"), ("Frequency", "n"), ("Pyramid order", "pyramid")],
+        self.ranking = widgets.Dropdown(options=[("Specificity", "spec"), ("Frequency", "n"), ("Clue position", "pyramid")],
                                         value=ranking, description="Rank by", layout=widgets.Layout(width="245px"))
         self.limit = widgets.BoundedIntText(value=limit, min=1, max=100, description="Clues", layout=widgets.Layout(width="160px"))
         self.exact = widgets.Checkbox(value=False, description="Exact answerline")
@@ -109,12 +138,13 @@ class StockFisherNotebook:
             self.tabs.set_title(index, title)
 
         self.view = widgets.VBox([
-            widgets.HTML("<h2 style='margin-bottom:4px'>StockFisher</h2><p style='margin-top:0'>Explore clues, inspect evidence, and compare your notes.</p>"),
-            self.db_status, self.db_settings,
+            widgets.HTML(_STYLE + "<div class='sf-heading'>StockFisher</div><p class='sf-subtitle'>Find recurring clues in QBReader questions.</p>"),
+            self.db_status,
             widgets.HBox([self.answer, self.category], layout=widgets.Layout(flex_flow="row wrap")),
             widgets.HBox([self.difficulty, self.year], layout=widgets.Layout(flex_flow="row wrap")),
-            self.tabs,
-        ], layout=widgets.Layout(max_width="1050px", width="100%"))
+            self.tabs, self.db_settings,
+        ], layout=widgets.Layout(max_width="940px", width="100%"))
+        self.view.add_class("stockfisher")
 
         self.db_button.on_click(self.connect)
         self.profile_button.on_click(self.run_profile)
@@ -138,10 +168,10 @@ class StockFisherNotebook:
         except (OSError, sqlite3.Error, ValueError) as exc:
             self.connected = False
             self.db_settings.selected_index = 0
-            self.db_status.value = "<p style='color:#a33'><b>Mirror not connected.</b> %s</p>" % _escape(exc)
+            self.db_status.value = "<p style='color:#a33'>Mirror not connected. %s</p>" % _escape(exc)
             return False
         self.connected = True
-        self.db_status.value = "<p style='color:#26714b'><b>Mirror connected</b> · %s units · %s sets</p>" % (
+        self.db_status.value = "<p class='sf-status'><span class='dot'></span>QBReader index connected · %s units · %s sets</p>" % (
             format(info["units"], ","), format(info["sets"], ","))
         self.db_settings.selected_index = None
         return True
@@ -179,7 +209,7 @@ class StockFisherNotebook:
                 guesses = ", ".join(_escape(x[0]) for x in result.get("suggest", [])) or "No close answerlines found."
                 self.profile_status.value = "<p>No matching answer. %s</p>" % guesses
                 return result
-            stats = "<b>%s</b> · %s questions · %s tossups · %s bonus parts · %s sets" % (
+            stats = "%s · %s questions · %s tossups · %s bonus parts · %s sets" % (
                 _escape(result["name"]), result["questions"], result["tossups"], result["bonuses"], result["sets"])
             if result.get("mentioned_truncated"):
                 stats += "<br><small>Mentions reached the search cap; related-answer counts may be incomplete.</small>"
@@ -189,20 +219,20 @@ class StockFisherNotebook:
             lines = ", ".join("%s (%s)" % (_escape(line), count) for line, count in result.get("lines", []))
             rows = []
             for clue in result.get("things", []):
-                title = "<b>%s</b>" % _escape(clue.get("thing"))
+                title = "<span class='sf-clue'>%s</span>" % _escape(clue.get("thing"))
                 if clue.get("example"):
-                    title += "<br><small>%s<br>%s</small>" % (_escape(clue["example"]), _escape(clue.get("source", "")))
+                    title += "<span class='sf-example'>%s</span><span class='sf-source'>%s</span>" % (_escape(clue["example"]), _escape(clue.get("source", "")))
                 cells = [title, _escape(clue.get("n", 0)), "%.0f%%" % (100 * clue.get("tied", 0)),
                          _escape(clue.get("where", ""))]
                 if self.use_anki.value:
                     cells.append(_escape(clue.get("anki", "")))
                 rows.append(cells)
-            headers = ["Clue and example", "Questions", "Tied", "Position"] + (["Anki"] if self.use_anki.value else [])
+            headers = ["Clue and example", "Questions", "Specificity", "Position"] + (["Anki"] if self.use_anki.value else [])
             foils = ", ".join(_escape(foil["answer"]) for foil in result.get("foils", []))
-            self.profile_output.value = ("<p><small>Matched answerlines: %s</small></p>" % (lines or "none") +
+            self.profile_output.value = ("<details class='sf-meta'><summary>Matched answerlines</summary>%s</details>" % (lines or "none") +
                                          _table(headers, rows) +
-                                         ("<p><b>Related / confusable:</b> %s</p>" % foils if foils else "") +
-                                         "<p><small>Tied is the share of occurrences associated with this answer; position summarizes tossup clues.</small></p>")
+                                         ("<p>Related answers: %s</p>" % foils if foils else "") +
+                                         "<p class='sf-meta'>Specificity is the share of clue occurrences associated with this answer. Position summarizes tossups.</p>")
             self.selection.options = [("%d. %s" % (i + 1, clue["thing"]), i)
                                       for i, clue in enumerate(result.get("things", []))]
             return result

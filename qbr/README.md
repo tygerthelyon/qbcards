@@ -1,7 +1,8 @@
 # qbr
 
-A local SQLite mirror of the QBReader question database, with tools for searching questions and comparing recurring clues.
-It supports offline queries after the initial sync and can compare results with an Anki collection.
+StockFisher downloads questions through the QBReader API and indexes them locally in SQLite. Searches and clue
+comparisons use that local index; run a sync to fetch new sets and check recent sets for changes. Queries work offline
+after the initial sync, and results can be compared with an Anki collection.
 
 Run commands from the repository root with Python 3.9 or later. The database is not included: run
 `python -m qbr sync` first. The initial download is large and requires internet access; the resulting database is
