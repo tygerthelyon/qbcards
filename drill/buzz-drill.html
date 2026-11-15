@@ -80,6 +80,11 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
 .meta { font: 0.78rem var(--mono); color: var(--ink-3); display: flex; gap: 12px; flex-wrap: wrap; }
 .meta b { color: var(--ink-2); font-weight: 600; }
 .tossup { font-family: var(--serif); font-size: 1.18rem; line-height: 1.62; min-height: 9.5em; overflow-wrap: anywhere; }
+.tossup.sz-lg { font-size: 1.32rem; }
+.tossup.sz-xl { font-size: 1.48rem; }
+.settings-drawer { border: 1px solid var(--rule); background: var(--paper); border-radius: 8px; padding: 12px 14px; display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
+.btn.sm { padding: 5px 10px; font-size: 0.82rem; font-weight: 600; }
+label.chk { display: inline-flex; align-items: center; gap: 6px; font: 0.9rem var(--sans); color: var(--ink-2); cursor: pointer; }
 .tossup .ahead { color: transparent; }
 .tossup .star { font-family: var(--mono); font-size: 0.8em; color: var(--lamp); }
 .tossup .bz { display: inline-block; font: 700 0.7rem var(--mono); color: var(--card); background: var(--lamp); border-radius: 4px; padding: 0 5px; margin: 0 4px; vertical-align: 0.15em; }
@@ -97,7 +102,12 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
 .verdict.good { background: var(--good-soft); color: var(--good); }
 .verdict.bad { background: var(--bad-soft); color: var(--bad); }
 .verdict.none { background: var(--rule); color: var(--ink-2); }
-.keys { font: 0.75rem var(--mono); color: var(--ink-3); }
+.keys { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px 16px; border-top: 1px solid var(--rule); padding-top: 12px; }
+.keylist { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; font-size: 0.78rem; color: var(--ink-3); }
+.keyitem { display: inline-flex; align-items: center; gap: 6px; transition: opacity 0.12s ease; }
+.keyitem kbd { font-family: var(--mono); font-size: 0.72rem; font-weight: 600; color: var(--ink); background: var(--paper); border: 1px solid var(--rule); border-bottom-width: 2px; border-radius: 5px; padding: 2px 6px; line-height: 1.2; }
+.keyitem span { color: var(--ink-2); }
+.keyitem.off { opacity: 0.35; }
 .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
 .tile { border: 1px solid var(--rule); border-radius: 8px; padding: 12px 14px; background: var(--card); }
 .tile .v { font: 600 1.6rem var(--mono); font-variant-numeric: tabular-nums; }
@@ -153,7 +163,22 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     </div>
 
     <div id="play" class="panel" hidden>
-      <div class="meta"><span id="pos"></span><span id="cat"></span><span id="setname"></span><span id="score"></span></div>
+      <div class="meta" style="justify-content:space-between">
+        <div class="row" style="gap:12px"><span id="pos"></span><span id="cat"></span><span id="setname"></span></div>
+        <div class="row" style="gap:10px"><span id="score"></span><button id="play-settings-btn" type="button" class="btn ghost sm" aria-expanded="false" aria-controls="play-settings">Settings</button></div>
+      </div>
+      <div id="play-settings" class="settings-drawer" hidden>
+        <div class="row"><label class="label" for="play-speed">Speed</label>
+          <input id="play-speed" type="range" min="2" max="8" step="0.5" value="4">
+          <span id="play-speedv" class="meta"></span>
+        </div>
+        <div class="row"><span class="label">Text</span>
+          <div class="seg" id="sz">
+            <button data-sz="md" aria-pressed="true">M</button><button data-sz="lg" aria-pressed="false">L</button><button data-sz="xl" aria-pressed="false">XL</button>
+          </div>
+        </div>
+        <label class="chk"><input type="checkbox" id="show-meta"> Show category &amp; set before answer</label>
+      </div>
       <div class="bar" aria-hidden="true"><div class="fill" id="fill"></div><div class="pm" id="pm"></div></div>
       <div id="text" class="tossup" aria-live="off"></div>
       <div id="state" class="row"></div>
@@ -165,7 +190,16 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
         <button id="next" class="btn" hidden>Next tossup</button>
       </div>
       <div id="ans" class="answer" hidden><div class="label">Answer</div><div class="a" id="atext"></div><div class="card" id="acard"></div></div>
-      <div class="keys">Space buzz · Enter show answer / next · 1 had it · 2 missed it</div>
+      <div class="keys">
+        <div class="keylist" id="keylist">
+          <span class="keyitem" data-st="reading,dead"><kbd>Space</kbd><span>Buzz</span></span>
+          <span class="keyitem" data-st="buzzed,dead"><kbd>Enter</kbd><span>Show answer</span></span>
+          <span class="keyitem" data-st="revealed"><kbd>1</kbd><span>Had it</span></span>
+          <span class="keyitem" data-st="revealed"><kbd>2</kbd><span>Missed it</span></span>
+          <span class="keyitem" data-st="judged"><kbd>N</kbd> / <kbd>Enter</kbd><span>Next</span></span>
+          <span class="keyitem" data-st="all"><kbd>[</kbd> <kbd>]</kbd><span>Speed</span></span>
+        </div>
+      </div>
     </div>
 
     <div id="summary" class="panel" hidden>
@@ -204,13 +238,15 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
 (function () {
   "use strict";
   var $ = function (id) { return document.getElementById(id); };
-  var S = { items: [], groups: [], chosen: {}, len: 10, wps: 4, sessions: [], view: "drill",
+  var S = { items: [], groups: [], chosen: {}, len: 10, wps: 4, showMeta: false, sz: "md", sessions: [], view: "drill",
             sess: null, cur: null, timer: null };
 
   function store(k, v) { try { if (v === undefined) return JSON.parse(localStorage.getItem(k)); localStorage.setItem(k, JSON.stringify(v)); } catch (e) { return null; } }
   var saved = store("bd-prefs") || {};
   if (saved.wps) S.wps = saved.wps;
   if (saved.len) S.len = saved.len;
+  if (saved.showMeta !== undefined) S.showMeta = !!saved.showMeta;
+  if (saved.sz) S.sz = saved.sz;
 
   // ---------- data ----------
   fetch("tossups.json").then(function (r) { return r.json(); }).then(function (j) {
@@ -271,11 +307,43 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       $("cat-toggle").setAttribute("aria-expanded", open ? "true" : "false");
       $("cat-caret").textContent = open ? "▴" : "▾";
     };
-    $("speed").value = S.wps; $("speedv").textContent = S.wps + " words/s";
-    $("speed").oninput = function () { S.wps = +this.value; $("speedv").textContent = S.wps + " words/s"; savePrefs(); };
+    syncSpeedUI();
+    $("speed").oninput = function () { setSpeed(+this.value); };
+    $("play-speed").oninput = function () { setSpeed(+this.value); };
+    $("play-settings-btn").onclick = function () {
+      var open = $("play-settings").hidden;
+      $("play-settings").hidden = !open;
+      $("play-settings-btn").setAttribute("aria-expanded", open ? "true" : "false");
+    };
+    $("show-meta").checked = S.showMeta;
+    $("show-meta").onchange = function () { S.showMeta = this.checked; savePrefs(); renderTossupMeta(); };
+    applyTextSize();
+    Array.prototype.forEach.call($("sz").children, function (b) {
+      b.setAttribute("aria-pressed", b.dataset.sz === S.sz ? "true" : "false");
+      b.onclick = function () {
+        S.sz = b.dataset.sz;
+        Array.prototype.forEach.call($("sz").children, function (c) { c.setAttribute("aria-pressed", c === b ? "true" : "false"); });
+        applyTextSize(); savePrefs();
+      };
+    });
     renderSetupInfo();
   }
-  function savePrefs() { store("bd-prefs", { wps: S.wps, len: S.len, chosen: S.chosen }); }
+  function syncSpeedUI() {
+    $("speed").value = S.wps; $("speedv").textContent = S.wps + " words/s";
+    $("play-speed").value = S.wps; $("play-speedv").textContent = S.wps + " words/s";
+  }
+  function setSpeed(val) {
+    S.wps = Math.max(2, Math.min(8, Math.round(val * 2) / 2));
+    syncSpeedUI(); savePrefs();
+    if (S.cur && S.cur.stage === "reading") run();
+  }
+  function applyTextSize() {
+    var el = $("text");
+    el.classList.remove("sz-lg", "sz-xl");
+    if (S.sz === "lg") el.classList.add("sz-lg");
+    else if (S.sz === "xl") el.classList.add("sz-xl");
+  }
+  function savePrefs() { store("bd-prefs", { wps: S.wps, len: S.len, chosen: S.chosen, showMeta: S.showMeta, sz: S.sz }); }
   function renderSetupInfo() {
     if (!S.items.length) return;
     var sel = S.groups.filter(function (x) { return S.chosen[x.g]; });
@@ -313,17 +381,37 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     show("play"); loadTossup();
   }
   function words(t) { return t.q.split(/\s+/).filter(Boolean); }
+  function renderTossupMeta() {
+    if (!S.cur) return;
+    var t = S.cur.t;
+    var revealed = S.cur.stage === "revealed" || S.cur.stage === "judged";
+    if (revealed || S.showMeta) {
+      $("cat").textContent = t.g;
+      $("setname").textContent = t.s + (t.d ? " · difficulty " + t.d : "");
+    } else {
+      $("cat").textContent = "";
+      $("setname").textContent = "";
+    }
+  }
+  function renderKeys() {
+    var st = S.cur ? S.cur.stage : "";
+    Array.prototype.forEach.call($("keylist").children, function (el) {
+      var allow = (el.dataset.st || "").split(",");
+      el.classList.toggle("off", allow.indexOf("all") < 0 && allow.indexOf(st) < 0);
+    });
+  }
   function loadTossup() {
     var t = S.sess.queue[S.sess.i], w = words(t);
     var star = w.indexOf("(*)");
     S.cur = { t: t, w: w, n: w.length, star: star, pos: 0, buzz: null, stage: "reading" };
     $("pos").innerHTML = "<b>Tossup " + (S.sess.i + 1) + "</b> of " + S.sess.queue.length;
-    $("cat").textContent = t.g; $("setname").textContent = t.s + (t.d ? " · difficulty " + t.d : "");
+    renderTossupMeta();
     $("score").textContent = S.sess.points + " pts";
     $("pm").style.left = star >= 0 ? (100 * star / w.length) + "%" : "-10px";
     $("pm").hidden = star < 0;
     $("ans").hidden = true; $("judge").hidden = true; $("buzz").hidden = false; $("buzz").disabled = false;
     $("state").textContent = "";
+    renderKeys();
     paint(); run();
   }
   function run() {
@@ -362,17 +450,18 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
   }
   function judgeMode() {
     $("judge").hidden = false; $("reveal").hidden = false; $("right").hidden = true; $("wrong").hidden = true; $("next").hidden = true;
+    renderKeys();
     $("reveal").focus({ preventScroll: true });
   }
   function reveal() {
     var c = S.cur; if (!c || (c.stage !== "buzzed" && c.stage !== "dead")) return;
     clearInterval(S.timer);
     if (c.stage === "dead") { c.buzz = null; $("buzz").disabled = true; }
-    c.stage = "revealed"; c.pos = c.n; paint();
+    c.stage = "revealed"; c.pos = c.n; paint(); renderTossupMeta();
     $("atext").textContent = c.t.a; $("acard").textContent = "Your card: " + c.t.k + " (" + c.t.g + ")";
     $("ans").hidden = false; $("reveal").hidden = true;
     if (c.buzz === null) { $("right").hidden = true; $("wrong").hidden = true; record("none"); }
-    else { $("right").hidden = false; $("wrong").hidden = false; $("right").focus({ preventScroll: true }); }
+    else { $("right").hidden = false; $("wrong").hidden = false; renderKeys(); $("right").focus({ preventScroll: true }); }
   }
   function record(result) {
     var c = S.cur; if (!c || c.stage === "judged") return;
@@ -388,7 +477,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     v.className = "verdict " + (result === "correct" ? "good" : result === "wrong" ? "bad" : "none");
     v.textContent = result === "correct" ? (power ? "Power · +15" : "Correct · +10") : result === "wrong" ? (pts ? "Neg · −5" : "Wrong · 0") : "No buzz · 0";
     $("state").appendChild(v);
-    $("right").hidden = true; $("wrong").hidden = true; $("next").hidden = false; $("next").focus({ preventScroll: true });
+    $("right").hidden = true; $("wrong").hidden = true; $("next").hidden = false; renderKeys(); $("next").focus({ preventScroll: true });
   }
   function saveSession() {
     var s = S.sess;
@@ -414,9 +503,12 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
   document.addEventListener("keydown", function (e) {
     if ($("play").hidden || e.target.tagName === "INPUT") return;
     if (e.code === "Space") { e.preventDefault(); if (S.cur && (S.cur.stage === "reading" || S.cur.stage === "dead")) buzz(); }
-    else if (e.key === "Enter") { e.preventDefault(); if (S.cur.stage === "buzzed" || S.cur.stage === "dead") reveal(); else if (S.cur.stage === "judged") next(); }
-    else if (e.key === "1" && S.cur.stage === "revealed" && S.cur.buzz !== null) record("correct");
-    else if (e.key === "2" && S.cur.stage === "revealed" && S.cur.buzz !== null) record("wrong");
+    else if (e.key === "Enter") { e.preventDefault(); if (S.cur && (S.cur.stage === "buzzed" || S.cur.stage === "dead")) reveal(); else if (S.cur && S.cur.stage === "judged") next(); }
+    else if ((e.key === "n" || e.key === "N") && S.cur && S.cur.stage === "judged") { e.preventDefault(); next(); }
+    else if (e.key === "[") { e.preventDefault(); setSpeed(S.wps - 0.5); }
+    else if (e.key === "]") { e.preventDefault(); setSpeed(S.wps + 0.5); }
+    else if (e.key === "1" && S.cur && S.cur.stage === "revealed" && S.cur.buzz !== null) record("correct");
+    else if (e.key === "2" && S.cur && S.cur.stage === "revealed" && S.cur.buzz !== null) record("wrong");
   });
   document.addEventListener("visibilitychange", function () {
     if (document.hidden && S.cur && S.cur.stage === "reading") clearInterval(S.timer);
