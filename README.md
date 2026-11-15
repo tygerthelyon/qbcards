@@ -37,7 +37,7 @@ python -m qbr sync
 python -m qbr.app
 ```
 
-The app uses Python's standard library; no packages need installing. For later sessions, run `python -m qbr.app` or use the Windows shortcut. Chrome or Edge opens a dedicated app window on Windows; other setups open the default browser. Update the index when needed with `python -m qbr sync`; the interface shows the last successful sync time.
+The app uses Python's standard library so no packages need installing. For later sessions, run `python -m qbr.app` or use the Windows shortcut. Chrome or Edge opens a dedicated app window on Windows; other setups open the default browser. Update the index when needed with `python -m qbr sync`; the interface shows the last successful sync time.
 
 If you already have an index elsewhere, select **Index** and enter its path, or set `QBR_DB` before starting. AnkiConnect is needed only for Anki comparisons; those comparisons do not change the collection. The [user guide](docs/stockfisher.md) covers startup, shutting down, and the optional notebook interface.
 
