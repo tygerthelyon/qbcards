@@ -287,7 +287,8 @@ function renderResults() {
   const profile = context.mode === 'profile';
   $('result-content').hidden = false;
   $('result-kicker').textContent = profile ? 'Answer profile' : 'Question text';
-  $('result-title').textContent = profile ? (result.name || context.query) : context.query;
+  const rawTitle = profile ? (result.name || context.query) : context.query;
+  $('result-title').textContent = (/^[a-z][A-Z]/.test(rawTitle || '')) ? rawTitle : ((rawTitle || '').charAt(0).toUpperCase() + (rawTitle || '').slice(1));
   $('draft-open').hidden = !profile || !result.found;
   $('selection-bar').hidden = !profile || !result.things?.length;
   $('pagination').hidden = profile || result.units <= 20;
@@ -347,10 +348,10 @@ function renderResults() {
     const linesBox = $('answerlines');
     const linesList = linesBox.querySelector('.answerlines-list');
     clear(linesList);
-    const primaryName = (result.name || context.query || '').trim().toLowerCase();
+    const cleanNorm = s => (s || '').replace(/^(the|a|an)\s+/i, '').trim().toLowerCase();
+    const primaryNorm = cleanNorm(result.name || context.query || '');
     const rawLines = result.lines || [];
-    let displayLines = rawLines.filter(([line]) => line.trim().toLowerCase() !== primaryName);
-    if (!displayLines.length && rawLines.length > 1) displayLines = rawLines;
+    const displayLines = rawLines.filter(([line]) => cleanNorm(line) !== primaryNorm);
     if (displayLines.length) {
       const label = linesBox.querySelector('.answerlines-label');
       if (label) label.textContent = 'Alternates:';
