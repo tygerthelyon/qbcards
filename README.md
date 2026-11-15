@@ -2,35 +2,23 @@
 
 Tools for researching clues, studying cards, and practicing tossups.
 
-- [StockFisher](StockFisher.ipynb) finds recurring clues in QBReader questions.
+- [StockFisher](#stockfisher) finds recurring clues in QBReader questions.
 - [Anki cards](#anki-cards) cover physics, biology, fine arts, history, and other subjects.
 - [Buzz Drill](#buzz-drill) displays tossups word by word and records practice sessions.
 
 ## StockFisher
 
-Choose an answer and category in the [notebook](StockFisher.ipynb), then run the cell:
+StockFisher finds recurring clues in QBReader questions and pairs them with source questions side-by-side. It runs locally as a native desktop app using Python's standard library.
 
-```python
-from qbr.notebook import StockFisherNotebook
+1. [Set it up](#setup), then run `python -m qbr.app`. On Windows, double-click **Open StockFisher.cmd**.
+2. Enter an answer, optionally choose filters, and select **Find clues**.
+3. Select **Read question** to open the source beside your results. Tick useful clues and select **Export CSV** to save them with their sources.
 
-answer = "photoelectric effect"
-category = "Physics"
-difficulty = ""              # e.g. "6-9"
-years = ""                   # e.g. "2018-"
-rank_by = "spec"             # specificity; use "n" for frequency or "pyramid" for position
-clues = 15
+![StockFisher showing recurring clues for the photoelectric effect alongside a full source question](docs/images/stockfisher-app.png)
 
-research = StockFisherNotebook(
-    answer=answer, category=category, difficulty=difficulty,
-    year=years, ranking=rank_by, limit=clues,
-)
-research.run_profile()
-research.display()
-```
+**Question text** searches passages across answers, with pagination through all matching results. **Check a draft** checks wording for answer leakage and corpus support. Optional Anki comparisons distinguish active matches, suspended notes, and text mentions. These labels do not establish that a clue is tested on the front of an active card.
 
-The results show recurring clues, question counts, where clues tend to appear, and examples from the source questions. The notebook also searches question text, checks draft clues, and exports selected results to CSV. You can optionally compare results with your Anki notes using AnkiConnect.
-
-![StockFisher results for the photoelectric effect, with question counts and source passages](docs/images/stockfisher-notebook.png)
+See the [user guide](docs/stockfisher.md) for filters, ranking, exports, and troubleshooting. The [Python API and command line](qbr/README.md) provide the same search and extraction engine for scripts and terminal workflows.
 
 ### How it works
 
@@ -46,11 +34,12 @@ Python 3.9+ and SQLite with FTS5 are required. The first sync downloads the ques
 git clone https://github.com/tygerthelyon/qbcards.git
 cd qbcards
 python -m qbr sync
-python -m pip install -r requirements-notebook.txt
-python -m notebook StockFisher.ipynb
+python -m qbr.app
 ```
 
-Run the cell in the notebook. If you already have an index elsewhere, enter its path in the notebook or set `QBR_DB` before starting Jupyter. AnkiConnect is needed only for Anki comparisons; those comparisons do not change the collection. See the [command-line and Python guide](qbr/README.md) for other searches and filters.
+The app uses Python's standard library; no packages need installing. For later sessions, run `python -m qbr.app` or use the Windows shortcut. Chrome or Edge opens a dedicated app window on Windows; other setups open the default browser. Update the index when needed with `python -m qbr sync`; the interface shows the last successful sync time.
+
+If you already have an index elsewhere, select **Index** and enter its path, or set `QBR_DB` before starting. AnkiConnect is needed only for Anki comparisons; those comparisons do not change the collection. The [user guide](docs/stockfisher.md) covers startup, shutting down, and the optional notebook interface.
 
 ## Anki cards
 

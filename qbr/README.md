@@ -8,7 +8,9 @@ Run commands from the repository root with Python 3.9 or later. The database is 
 `python -m qbr sync` first. The initial download is large and requires internet access; the resulting database is
 about 900 MB. Set `QBR_DB` to use a different database path. AnkiConnect is needed only for Anki comparisons.
 
-For an interactive interface, see the [StockFisher notebook](../StockFisher.ipynb) and its [setup instructions](../README.md#setup).
+For the interactive app, run `python -m qbr.app`, or double-click **Open StockFisher.cmd** on Windows.
+See the [setup instructions](../README.md#setup) and [user guide](../docs/stockfisher.md).
+The app uses the standard library and opens a local window. The [notebook](../StockFisher.ipynb) is optional.
 
 ## Commands
 

@@ -178,7 +178,7 @@ def cmd_like(a):
     r = find.like(a.text, n=a.n, **_kw(a))
     if a.json:
         return r
-    for score, s, y, ans, sent in r:
+    for score, s, y, ans, sent, *diff in r:
         print("%s  [%s -> %s]\n      %s" % (_pct(score), s, ans, sent))
 
 

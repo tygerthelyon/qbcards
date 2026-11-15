@@ -24,7 +24,7 @@ import statistics
 from collections import Counter, defaultdict
 
 from . import find, store
-from .text import SEP, _key, _OPEN, _STOP, fold, grams, nested, sentences, things, where
+from .text import SEP, _key, _OPEN, _STOP, dot_difficulty, fold, grams, nested, sentences, things, where
 
 CAP_MENTIONS = 4000      # most "mentioned in" units read for one answer
 CAP_COMMON = 12000       # a candidate in more units than this (novel, painting) is a common word, not a clue
@@ -325,7 +325,7 @@ def profile(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=Fa
                 break
             if b["n"] < 0.7 * a["n"]:
                 continue
-            if b["spans"] >= a["spans"] or (b["kind"] == "title" and a["kind"] != "title" and len(a["q"] & b["q"]) >= 0.85 * a["n"]):
+            if b["spans"] >= a["spans"] or (b["kind"] == "title" and a["kind"] != "title" and len(a["q"] & b["q"]) >= 0.85 * a["n"]) or (len(b["key"].split()) >= 4 and len(a["q"] & b["q"]) >= 0.7 * a["n"]):
                 b["all_uids"] |= a["all_uids"]
                 b["m"] = max(a["m"], b["m"])
                 _recalc(b)
@@ -342,6 +342,20 @@ def profile(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=Fa
                 if (cov >= 0.9 * main[k]["n"] and (main[k]["kind"] != "title" or main[k]["spans"] < 0.5 * main[k]["n"])) or (
                         main[k]["spans"] < 5 and main[k]["kind"] != "title" and cov >= 0.7 * main[k]["n"]):
                     del main[k]
+    # Fold established acronyms/initialisms (e.g. "yba" into "young british artists")
+    for k in [k for k in list(main) if 2 <= len(k) <= 5 and " " not in k]:
+        if k not in main:
+            continue
+        a = main[k]
+        for o in [o for o in main if o != k and " " in o]:
+            words = [w for w in o.split() if w not in _STOP]
+            if len(words) >= 2 and k == "".join(w[0] for w in words):
+                b = main[o]
+                b["all_uids"] |= a["all_uids"]
+                b["m"] = max(a["m"], b["m"])
+                _recalc(b)
+                del main[k]
+                break
     for t in main.values():
         t["score"] = round((t["n"] + 0.35 * t["m"]) * math.log1p(max(1.0, t["lift"])) * (0.1 + 0.9 * (t["tied"] ** 0.7)), 2)
     ranked = []
@@ -381,9 +395,15 @@ def profile(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=Fa
         # a sentence not already shown for another clue, not the giveaway, from a tossup, of middling length
         pick = sorted(got, key=lambda sr: (sr[0]["s"] in used, sr[0]["give"], sr[1]["kind"] != "T",
                                            abs(len(sr[0]["s"]) - 150)))
-        t["example"], t["source"] = (pick[0][0]["s"], "%s, %s" % (pick[0][1]["set_name"], pick[0][1]["main"])) if pick \
+        diff_str = dot_difficulty(pick[0][1].get("difficulty")) if pick else ""
+        diff_bracket = (" [%s]" % diff_str) if diff_str else ""
+        t["example"], t["source"] = (pick[0][0]["s"], "%s%s, %s" % (pick[0][1]["set_name"], diff_bracket, pick[0][1]["main"])) if pick \
             else ("", "")
         used.add(t["example"])
+        t["answer"] = pick[0][1]["main"] if pick else ""
+        t["set_name"] = ("%s%s" % (pick[0][1]["set_name"], diff_bracket)) if pick else ""
+        t["example_uid"] = pick[0][1]["uid"] if pick else None
+        t["difficulty"] = pick[0][1].get("difficulty") if pick else None
         if t["kind"] == "phrase" and pick:                    # show the wording as printed; capitalised, it is a name
             m = re.search(r"\b" + r"[\W_]+".join(map(re.escape, t["key"].split())) + r"\b", fold_keep(t["example"]), re.I)
             if m:
@@ -483,13 +503,13 @@ def verify_clue(name, clue_text, cat=None, diff=None, year=None, sets=None):
                 hits.append({"term": th, "n": mine, "all": tot, "tied": round(mine / tot, 2)})
     sents = find.like(clean, cat=cat, diff=diff, year=year, sets=sets, n=5)
     tied_hit = any(h["n"] >= 1 and h["tied"] >= 0.05 for h in hits) or \
-        any(_key(ans) == _key(name) or _own(_key(ans), [own]) for _, _, _, ans, _ in sents)
+        any(_key(ans) == _key(name) or _own(_key(ans), [own]) for _, _, _, ans, *_ in sents)
     return {
         "ok": not leaks and len(clean) <= 190 and tied_hit,
         "leaks": leaks,
         "length": len(clean),
         "terms": hits,
-        "similar": [(round(sc, 2), st, yr, ans, s) for sc, st, yr, ans, s in sents],
+        "similar": [(round(sc, 2), st, yr, ans, s, diff) for sc, st, yr, ans, s, diff in sents],
     }
 
 

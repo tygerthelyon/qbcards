@@ -450,7 +450,7 @@ def like(text, cat=None, diff=None, year=None, sets=None, kind=None, n=10):
             score = sum(idf[w] for w in keep if w in f) / norm
             if score > 0.25 and s["s"] not in seen:
                 seen.add(s["s"])
-                out.append((score, r["set_name"], r["year"], r["main"], s["s"]))
+                out.append((score, r["set_name"], r["year"], r["main"], s["s"], r["difficulty"]))
     out.sort(key=lambda x: -x[0])
     return out[:n]
 

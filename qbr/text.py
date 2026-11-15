@@ -16,6 +16,20 @@ _ODD = str.maketrans({"ø": "o", "Ø": "O", "ł": "l", "Ł": "L", "đ": "d", "Đ
 DOTS = {0: "?", 1: "MS", 2: "easy HS", 3: "HS", 4: "hard HS", 5: "HS nats", 6: "1 dot", 7: "2 dot", 8: "3 dot",
         9: "4 dot", 10: "open"}
 
+DOT_LEVELS = {
+    1: "MS", 2: "easy HS", 3: "HS", 4: "hard HS", 5: "HS nats",
+    6: "●", 7: "●●", 8: "●●●", 9: "●●●●", 10: "open"
+}
+
+
+def dot_difficulty(diff):
+    """Format difficulty into dot difficulty notation, e.g. '●● 2-dot'."""
+    try:
+        d = int(diff)
+    except (TypeError, ValueError):
+        return ""
+    return DOT_LEVELS.get(d, str(d) if d else "")
+
 
 _NONWORD = re.compile(r"[^\w]+|_")
 
@@ -295,7 +309,18 @@ def things(san, htm=""):
     out, seen, idx = [], {}, {}
 
     def add(kind, t):
-        t = re.sub(r"\s+", " ", (t or "").replace("(*)", " ")).strip(" .,;:!?'\"“”’‘()[]")
+        t = re.sub(r"\s+", " ", (t or "").replace("(*)", " ")).strip(" .,;:!?'\"“”’‘")
+        while (t.startswith("(") and t.endswith(")")) or (t.startswith("[") and t.endswith("]")):
+            t = t[1:-1].strip(" .,;:!?'\"“”’‘")
+        while t.endswith(")") and t.count(")") > t.count("("):
+            t = t[:-1].strip()
+        while t.endswith("]") and t.count("]") > t.count("["):
+            t = t[:-1].strip()
+        while t.startswith("(") and t.count("(") > t.count(")"):
+            t = t[1:].strip()
+        while t.startswith("[") and t.count("[") > t.count("]"):
+            t = t[1:].strip()
+        t = t.strip(" .,;:!?'\"“”’‘")
         k = fold(t)
         if _SOUND.fullmatch(t) and re.search(r"[A-Z]{2}", t):
             return                                          # a pronunciation guide: REE-mun-shnai-dur
@@ -315,7 +340,7 @@ def things(san, htm=""):
     # qbreader often closes and reopens the italics inside one title: <i>Critique</i> <i>of Pure Reason</i>
     for t in _ITAL.findall(re.sub(r"</i>(\s*)<i>", r"\1", htm or "")):
         t = plain(t)
-        if len(t.split()) <= 10:
+        if len(t.split()) <= 13:
             add("title", t)
     text = no_guides(san or "")
     for t in _QUOT.findall(text):
@@ -331,7 +356,7 @@ def things(san, htm=""):
                         words = words[1:]
                 while words and words[-1].lower() in _OPEN:
                     words = words[:-1]
-                if rx is _WIDE and (len(words) < 3 or len(words) > 9):
+                if rx is _WIDE and (len(words) < 3 or len(words) > 12):
                     continue
                 if rx is _WIDE and "<i>" in (htm or "") and any(w.lower() in ("on", "in", "with", "for", "to", "at", "from", "into") for w in words):
                     continue

@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="stockfisher-token" content="__SESSION_TOKEN__">
+  <title>StockFisher</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/app.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#query">Skip to search</a>
+  <header class="app-header">
+    <a href="/" class="wordmark" aria-label="StockFisher home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M4 12h11M4 19h6"/><circle cx="19" cy="17" r="3"/><path d="m21 19 2 2"/></svg>StockFisher</a>
+    <div class="header-actions"><span id="index-status" hidden></span><button id="database-open" class="text-button">Index</button></div>
+  </header>
+
+  <main>
+    <section class="search-area" aria-label="Research search">
+      <form id="search-form">
+        <fieldset id="search-controls">
+          <div class="filter-bar">
+            <div class="filter-dropdown" id="category-dropdown">
+              <input type="hidden" id="category" name="category" value="">
+              <button type="button" id="category-btn" class="filter-dropdown-btn" aria-haspopup="true" aria-expanded="false">
+                <span class="filter-btn-label">Category:</span>
+                <span class="filter-btn-val" id="category-val">All</span>
+                <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="filter-menu" id="category-menu" role="menu" hidden>
+                <button type="button" class="filter-menu-item selected" data-value="" data-label="All">All Categories</button>
+                <div class="filter-menu-divider"></div>
+                <div class="filter-menu-header">Literature</div>
+                <button type="button" class="filter-menu-item" data-value="Literature" data-label="Literature">All Literature</button>
+                <button type="button" class="filter-menu-item sub" data-value="American Literature" data-label="American Lit">American Literature</button>
+                <button type="button" class="filter-menu-item sub" data-value="British Literature" data-label="British Lit">British Literature</button>
+                <button type="button" class="filter-menu-item sub" data-value="Classical Literature" data-label="Classical Lit">Classical Literature</button>
+                <button type="button" class="filter-menu-item sub" data-value="European Literature" data-label="European Lit">European Literature</button>
+                <button type="button" class="filter-menu-item sub" data-value="World Literature" data-label="World Lit">World Literature</button>
+                <div class="filter-menu-divider"></div>
+                <div class="filter-menu-header">History</div>
+                <button type="button" class="filter-menu-item" data-value="History" data-label="History">All History</button>
+                <button type="button" class="filter-menu-item sub" data-value="American History" data-label="American Hist">American History</button>
+                <button type="button" class="filter-menu-item sub" data-value="Ancient History" data-label="Ancient Hist">Ancient History</button>
+                <button type="button" class="filter-menu-item sub" data-value="European History" data-label="European Hist">European History</button>
+                <button type="button" class="filter-menu-item sub" data-value="World History" data-label="World Hist">World History</button>
+                <div class="filter-menu-divider"></div>
+                <div class="filter-menu-header">Science</div>
+                <button type="button" class="filter-menu-item" data-value="Science" data-label="Science">All Science</button>
+                <button type="button" class="filter-menu-item sub" data-value="Biology" data-label="Biology">Biology</button>
+                <button type="button" class="filter-menu-item sub" data-value="Chemistry" data-label="Chemistry">Chemistry</button>
+                <button type="button" class="filter-menu-item sub" data-value="Physics" data-label="Physics">Physics</button>
+                <button type="button" class="filter-menu-item sub" data-value="Other Science" data-label="Other Sci">Other Science</button>
+                <div class="filter-menu-divider"></div>
+                <div class="filter-menu-header">Fine Arts</div>
+                <button type="button" class="filter-menu-item" data-value="Fine Arts" data-label="Fine Arts">All Fine Arts</button>
+                <button type="button" class="filter-menu-item sub" data-value="Visual Fine Arts" data-label="Visual FA">Visual Fine Arts</button>
+                <button type="button" class="filter-menu-item sub" data-value="Auditory Fine Arts" data-label="Auditory FA">Auditory Fine Arts</button>
+                <button type="button" class="filter-menu-item sub" data-value="Other Fine Arts" data-label="Other FA">Other Fine Arts</button>
+                <div class="filter-menu-divider"></div>
+                <div class="filter-menu-header">Humanities &amp; Other</div>
+                <button type="button" class="filter-menu-item" data-value="Religion" data-label="Religion">Religion</button>
+                <button type="button" class="filter-menu-item" data-value="Mythology" data-label="Mythology">Mythology</button>
+                <button type="button" class="filter-menu-item" data-value="Philosophy" data-label="Philosophy">Philosophy</button>
+                <button type="button" class="filter-menu-item" data-value="Social Science" data-label="Social Sci">Social Science</button>
+                <button type="button" class="filter-menu-item" data-value="Current Events" data-label="Current Events">Current Events</button>
+                <button type="button" class="filter-menu-item" data-value="Geography" data-label="Geography">Geography</button>
+                <button type="button" class="filter-menu-item" data-value="Pop Culture" data-label="Pop Culture">Pop Culture</button>
+                <button type="button" class="filter-menu-item" data-value="Other Academic" data-label="Other Academic">Other Academic</button>
+              </div>
+            </div>
+            <div class="filter-dropdown" id="difficulty-dropdown">
+              <input type="hidden" id="difficulty" name="difficulty" value="">
+              <button type="button" id="difficulty-btn" class="filter-dropdown-btn" aria-haspopup="true" aria-expanded="false">
+                <span class="filter-btn-label">Difficulty:</span>
+                <span class="filter-btn-val" id="difficulty-val">All</span>
+                <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="filter-menu" id="difficulty-menu" role="menu" hidden>
+                <button type="button" class="filter-menu-item selected" data-value="" data-label="All">All Difficulties</button>
+                <div class="filter-menu-divider"></div>
+                <div class="filter-menu-header">Presets</div>
+                <button type="button" class="filter-menu-item" data-value="hs" data-label="High School">High School</button>
+                <button type="button" class="filter-menu-item" data-value="college" data-label="College">College</button>
+                <button type="button" class="filter-menu-item" data-value="open" data-label="Open">Open</button>
+                <div class="filter-menu-divider"></div>
+                <div class="filter-menu-header">Levels</div>
+                <button type="button" class="filter-menu-item" data-value="1" data-label="1">1 · Middle School</button>
+                <button type="button" class="filter-menu-item" data-value="2" data-label="2">2 · Easy High School</button>
+                <button type="button" class="filter-menu-item" data-value="3" data-label="3">3 · Regular High School</button>
+                <button type="button" class="filter-menu-item" data-value="4" data-label="4">4 · Hard High School</button>
+                <button type="button" class="filter-menu-item" data-value="5" data-label="5">5 · National High School</button>
+                <button type="button" class="filter-menu-item" data-value="6" data-label="6">6 · College ●</button>
+                <button type="button" class="filter-menu-item" data-value="7" data-label="7">7 · College ●●</button>
+                <button type="button" class="filter-menu-item" data-value="8" data-label="8">8 · College ●●●</button>
+                <button type="button" class="filter-menu-item" data-value="9" data-label="9">9 · College ●●●●</button>
+                <button type="button" class="filter-menu-item" data-value="10" data-label="Open">10 · Open</button>
+              </div>
+            </div>
+            <button type="button" id="options-toggle" class="options-btn" aria-expanded="false" aria-controls="options"><span>More options</span> <span class="options-icon" aria-hidden="true">+</span></button>
+          </div>
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg>
+            <label class="sr-only" for="query">Answer to research</label>
+            <input id="query" name="query" placeholder="Search" autocomplete="off" required maxlength="500">
+            <button type="submit" id="search-button" class="primary">Search</button>
+          </div>
+          <div id="options" class="options-card" hidden>
+            <input id="limit" type="hidden" value="50">
+            <div id="profile-options" class="options-body">
+              <div class="options-col">
+                <label class="option-field">
+                  <span class="option-label">Years</span>
+                  <input id="year" placeholder="e.g. 2018– or 2015–2022">
+                </label>
+                <label class="option-field">
+                  <span class="option-label">Exclude answer terms</span>
+                  <input id="exclude" placeholder="e.g. shark, diamond">
+                </label>
+              </div>
+              <div class="options-col">
+                <label class="option-field">
+                  <span class="option-label">Rank clues by</span>
+                  <select id="ranking">
+                    <option value="spec">Specificity (unique clues first)</option>
+                    <option value="n">Frequency (most questions first)</option>
+                    <option value="pyramid">Clue position (pyramidal order)</option>
+                  </select>
+                </label>
+                <div class="options-checkboxes">
+                  <label class="check-option">
+                    <input id="anki" type="checkbox" checked>
+                    <span>Audit against Anki (mark in-deck &amp; missing)</span>
+                  </label>
+                  <label class="check-option">
+                    <input id="exact" type="checkbox">
+                    <span>Exact answerline match only</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+      <p id="mode-hint" class="mode-hint" hidden></p>
+    </section>
+
+    <div id="live-status" class="sr-only" role="status" aria-live="polite"></div>
+    <div id="error" class="notice error" role="alert" hidden></div>
+    <div id="dirty-notice" class="notice" hidden>Inputs changed. Search again to update these results before exporting.</div>
+    <div id="workspace" class="workspace">
+      <section id="results" aria-label="Research results">
+        <div id="welcome" class="welcome" hidden></div>
+        <div id="loading" class="loading" hidden><span class="spinner" aria-hidden="true"></span><span>Searching…</span></div>
+        <div id="result-content" hidden>
+          <div class="result-heading">
+            <div>
+              <p id="result-kicker" class="eyebrow">Answer profile</p>
+              <h2 id="result-title"></h2>
+              <p id="result-summary"></p>
+              <div id="answerlines" class="answerlines-row" hidden>
+                <span class="answerlines-label">Alternates:</span>
+                <span class="answerlines-list"></span>
+              </div>
+            </div>
+            <button id="draft-open" class="secondary">Check a draft</button>
+          </div>
+          <div id="result-warning" class="notice" hidden></div>
+          <div id="selection-bar" class="selection-bar"><label><input id="select-all" type="checkbox"> <span id="selection-count">Select clues</span></label><button id="export-button" class="secondary" disabled>Export CSV ↓</button></div>
+          <div id="result-list" class="result-list"></div>
+          <div id="pagination" class="pagination" hidden><button id="previous-page" class="secondary">Previous</button><span id="page-label"></span><button id="next-page" class="secondary">Next</button></div>
+        </div>
+      </section>
+      <dialog id="source-reader" class="source-reader" aria-labelledby="reader-label">
+        <div class="reader-toolbar"><span id="reader-label" class="eyebrow">Source question</span><button id="source-close" class="icon-button" aria-label="Close source question">×</button></div>
+        <div id="source-content" class="source-content" tabindex="0"></div>
+      </dialog>
+    </div>
+
+  </main>
+
+  <dialog id="database-dialog" class="compact-dialog" aria-labelledby="database-title">
+    <div class="dialog-heading"><h2 id="database-title">Question Index</h2><button class="icon-button" data-close="database-dialog" aria-label="Close index settings">×</button></div>
+    <p id="database-info" class="compact-info"></p>
+    <form id="database-form">
+      <label>
+        <span class="option-label">Database file path</span>
+        <input id="database-path" placeholder="Path to qbreader.sqlite" required>
+      </label>
+      <div class="dialog-actions">
+        <button class="primary">Connect index</button>
+      </div>
+    </form>
+    <p id="database-error" class="error-text" role="alert"></p>
+  </dialog>
+  <dialog id="help-dialog" aria-labelledby="help-title">
+    <div class="dialog-heading"><h2 id="help-title">A short guide</h2><button class="icon-button" data-close="help-dialog" aria-label="Close help">×</button></div>
+    <h3>Find and read</h3><p>StockFisher finds recurring clues for a person, work, place, or concept. Click any clue card to open the full source alongside your results.</p>
+    <h3>Understand the numbers</h3><p>Question counts tell you how often a clue appears on this answer. Specificity compares target-associated units found by the profile with all matching units in the index. Ranking balances frequency and association.</p>
+    <h3>Keep useful clues</h3><p>Select clues with their checkboxes, then use <b>Export CSV</b>. Your browser saves the file with the answer, source, and filters. <b>Check a draft</b> checks a proposed clue for answer words and supporting passages.</p>
+    <p class="hint">Keyboard: Ctrl+K or ⌘K focuses search. Escape closes the reading panel or dialog.</p>
+  </dialog>
+  <dialog id="draft-dialog" aria-labelledby="draft-title">
+    <div class="dialog-heading"><h2 id="draft-title">Check a draft clue</h2><button class="icon-button" data-close="draft-dialog" aria-label="Close draft check">×</button></div>
+    <p id="draft-context"></p><form id="draft-form"><label>Your clue<textarea id="draft-text" rows="4" maxlength="4000" required placeholder="Write a clue for this answer"></textarea></label><button id="draft-button" class="primary">Check clue</button></form><div id="draft-result" aria-live="polite"></div>
+  </dialog>
+</body>
+</html>
