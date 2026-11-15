@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
 <style>
-/* Layout: a moderator's packet on a desk. One column; the tossup is the page, the buzzer sits under it. */
+/* Layout: a moderator's packet on a desk. Deck Drill is default; Pack Analysis adds set upload, Buzzpoints, and Anki coverage. */
 :root {
   --paper: #f6f7f9;
   --card: #ffffff;
@@ -26,6 +26,14 @@
   --bad-soft: #fbe7e5;
   --series-1: #2a78d6;
   --grid: #e7e9ed;
+  --bp-pw-bg: #ccefd9;
+  --bp-pw-ink: #0f4b28;
+  --bp-ok-bg: #dff4e6;
+  --bp-ok-ink: #13532d;
+  --bp-neg-bg: #fbe2df;
+  --bp-neg-ink: #7d1b15;
+  --bp-zero-bg: #f1f3f6;
+  --bp-zero-ink: #4a505a;
   --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --sans: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
@@ -36,6 +44,10 @@
     --accent: #7d97ff; --accent-ink: #0d1020; --lamp: #f2b52e; --lamp-soft: #3a2f12;
     --good: #5fd08e; --good-soft: #15301f; --bad: #ff8a80; --bad-soft: #3a1a18;
     --series-1: #3987e5; --grid: #262a31; color-scheme: dark;
+    --bp-pw-bg: #156d2a; --bp-pw-ink: #ffffff;
+    --bp-ok-bg: #185c27; --bp-ok-ink: #f4fbf6;
+    --bp-neg-bg: #7a2121; --bp-neg-ink: #fff2f2;
+    --bp-zero-bg: #23272f; --bp-zero-ink: #c6ccd5;
   }
 }
 :root[data-theme="dark"] {
@@ -43,15 +55,19 @@
   --accent: #7d97ff; --accent-ink: #0d1020; --lamp: #f2b52e; --lamp-soft: #3a2f12;
   --good: #5fd08e; --good-soft: #15301f; --bad: #ff8a80; --bad-soft: #3a1a18;
   --series-1: #3987e5; --grid: #262a31; color-scheme: dark;
+  --bp-pw-bg: #156d2a; --bp-pw-ink: #ffffff;
+  --bp-ok-bg: #185c27; --bp-ok-ink: #f4fbf6;
+  --bp-neg-bg: #7a2121; --bp-neg-ink: #fff2f2;
+  --bp-zero-bg: #23272f; --bp-zero-ink: #c6ccd5;
 }
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
 body {
   background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.5;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
-  padding-block: 20px 48px;
+  padding-block: 20px 56px;
 }
-.wrap { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+.wrap { max-width: 880px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
 header.top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 h1 { font-family: var(--serif); font-weight: 600; font-size: 1.75rem; margin: 0; letter-spacing: -0.01em; }
 h1 small { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-3); font-weight: 400; margin-left: 8px; letter-spacing: 0; }
@@ -59,15 +75,16 @@ h2 { font-size: 1rem; margin: 0; text-wrap: balance; }
 .tabs { display: flex; gap: 4px; background: var(--rule); padding: 3px; border-radius: 999px; }
 .tabs button { border: 0; background: transparent; color: var(--ink-2); font: 600 0.9rem var(--sans); padding: 6px 16px; border-radius: 999px; cursor: pointer; }
 .tabs button[aria-selected="true"] { background: var(--card); color: var(--ink); }
+.subbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .panel { background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
 .panel.dragover { border-color: var(--accent); box-shadow: inset 0 0 0 2px var(--accent); }
 .label { font: 600 0.72rem var(--sans); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); }
 .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-.srcbar { display: flex; justify-content: space-between; align-items: center; gap: 10px 16px; flex-wrap: wrap; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
+.srcbar { display: flex; justify-content: space-between; align-items: center; gap: 10px 16px; flex-wrap: wrap; }
 .chip { border: 1px solid var(--rule); background: var(--paper); color: var(--ink-2); border-radius: 999px; padding: 6px 12px; font: 0.9rem var(--sans); cursor: pointer; display: inline-flex; gap: 6px; align-items: baseline; }
 .chip .n { font-family: var(--mono); font-size: 0.75rem; color: var(--ink-3); }
 .chip[aria-pressed="true"] { border-color: var(--accent); color: var(--ink); background: var(--card); box-shadow: inset 0 0 0 1px var(--accent); }
-.select { font: 0.9rem var(--sans); background: var(--paper); color: var(--ink); border: 1px solid var(--rule); border-radius: 8px; padding: 6px 10px; max-width: 280px; }
+.select, .input { font: 0.9rem var(--sans); background: var(--paper); color: var(--ink); border: 1px solid var(--rule); border-radius: 8px; padding: 6px 10px; max-width: 280px; }
 .seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; }
 .seg button { border: 0; border-right: 1px solid var(--rule); background: var(--paper); color: var(--ink-2); font: 600 0.88rem var(--mono); padding: 6px 12px; cursor: pointer; }
 .seg button:last-child { border-right: 0; }
@@ -95,8 +112,8 @@ button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px s
 .statstrip { font: 0.78rem var(--mono); color: var(--ink-2); background: var(--paper); border: 1px solid var(--rule); border-radius: 8px; padding: 6px 10px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
 .statstrip b { color: var(--ink); font-weight: 600; }
 .tossup .ahead { color: transparent; }
-.tossup .star { font-family: var(--mono); font-size: 0.8em; color: var(--lamp); }
-.tossup .bz { display: inline-block; font: 700 0.7rem var(--mono); color: var(--card); background: var(--lamp); border-radius: 4px; padding: 0 5px; margin: 0 4px; vertical-align: 0.15em; }
+.tossup .star, .bp-q .star { font-family: var(--mono); font-size: 0.8em; color: var(--lamp); font-weight: 700; }
+.tossup .bz, .bp-q .bz { display: inline-block; font: 700 0.7rem var(--mono); color: var(--card); background: var(--lamp); border-radius: 4px; padding: 0 5px; margin: 0 4px; vertical-align: 0.15em; }
 .bar { position: relative; height: 6px; background: var(--rule); border-radius: 3px; }
 .bar .fill { position: absolute; inset: 0 auto 0 0; background: var(--accent); border-radius: 3px; width: 0; }
 .bar .pm { position: absolute; top: -4px; width: 2px; height: 14px; background: var(--lamp); }
@@ -107,7 +124,7 @@ button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px s
 .answer { border-top: 1px solid var(--rule); padding-top: 14px; display: flex; flex-direction: column; gap: 6px; }
 .answer .a { font-family: var(--serif); font-size: 1.12rem; }
 .answer .card { font-size: 0.88rem; color: var(--ink-2); display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-.pill { display: inline-block; font: 600 0.74rem var(--mono); padding: 2px 8px; border-radius: 999px; background: var(--rule); color: var(--ink-2); }
+.pill { display: inline-block; font: 600 0.72rem var(--mono); padding: 2px 8px; border-radius: 999px; background: var(--rule); color: var(--ink-2); }
 .pill.card { background: var(--good-soft); color: var(--good); }
 .pill.susp { background: var(--lamp-soft); color: var(--ink); }
 .verdict { display: inline-flex; gap: 8px; align-items: center; font: 700 0.9rem var(--sans); padding: 4px 10px; border-radius: 6px; }
@@ -137,6 +154,34 @@ ul.misses { list-style: none; margin: 0; padding: 0; display: flex; flex-directi
 ul.misses li { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--rule); padding-bottom: 8px; min-width: 0; }
 ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
 .empty { color: var(--ink-2); font-size: 0.95rem; margin: 0; }
+
+/* Buzzpoints compiled table styling */
+.bp-hero { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 4px 0 6px; }
+.bp-hero h2 { font-family: var(--serif); font-size: 1.55rem; margin: 0; }
+.bp-filters { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.bp-table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+.bp-table th { position: sticky; top: 0; background: var(--card); z-index: 1; padding: 9px 10px; border-bottom: 2px solid var(--rule); cursor: pointer; user-select: none; }
+.bp-table th:hover { color: var(--ink); }
+.bp-table th .sortind { margin-left: 4px; font-family: var(--mono); font-size: 0.72rem; opacity: 0.65; }
+.bp-row td { padding: 9px 10px; border-bottom: 1px solid rgba(128,128,128,0.25); vertical-align: middle; }
+.bp-row.pw { background: var(--bp-pw-bg); color: var(--bp-pw-ink); }
+.bp-row.ok { background: var(--bp-ok-bg); color: var(--bp-ok-ink); }
+.bp-row.neg { background: var(--bp-neg-bg); color: var(--bp-neg-ink); }
+.bp-row.zero { background: var(--bp-zero-bg); color: var(--bp-zero-ink); }
+.bp-row td.wrapcell { white-space: normal; min-width: 145px; max-width: 240px; }
+.bp-sub { display: block; font-size: 0.78rem; opacity: 0.85; }
+.bp-ans-btn { background: none; border: 0; padding: 0; color: inherit; font: inherit; font-weight: 600; text-align: left; text-decoration: underline; text-underline-offset: 2px; cursor: pointer; white-space: normal; }
+.bp-ans-btn:hover { opacity: 0.85; }
+.bp-val { font-family: var(--mono); font-weight: 700; text-align: right; }
+.bp-row .pill { background: rgba(0, 0, 0, 0.24); color: inherit; border: 1px solid rgba(255, 255, 255, 0.22); }
+:root:not([data-theme="dark"]) .bp-row .pill { background: rgba(255, 255, 255, 0.72); border-color: rgba(0, 0, 0, 0.14); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .bp-row .pill { background: rgba(0, 0, 0, 0.28); border-color: rgba(255, 255, 255, 0.22); color: #ffffff; }
+}
+.bp-detail td { background: var(--paper); padding: 14px 16px; white-space: normal; border-bottom: 2px solid var(--rule); }
+.bp-q { font-family: var(--serif); font-size: 1rem; line-height: 1.58; margin-bottom: 8px; }
+.bp-a { font-family: var(--serif); font-size: 0.96rem; margin-bottom: 6px; }
+
 @media (max-width: 480px) { .tossup { font-size: 1.06rem; } .panel { padding: 16px; } }
 @media (prefers-reduced-motion: no-preference) { .bar .fill { transition: width 0.15s linear; } }
 </style>
@@ -146,27 +191,42 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
 <div class="wrap">
   <header class="top">
     <h1>Buzz Drill <small id="built"></small></h1>
-    <div class="tabs" role="tablist">
-      <button id="tab-drill" role="tab" aria-selected="true">Drill</button>
-      <button id="tab-progress" role="tab" aria-selected="false">Progress</button>
+    <div class="tabs" role="tablist" aria-label="App mode">
+      <button id="mode-deck" role="tab" aria-selected="true">Deck Drill</button>
+      <button id="mode-pack" role="tab" aria-selected="false">Pack Analysis</button>
     </div>
   </header>
 
-  <section id="view-drill" class="wrap" style="gap:20px">
-    <div id="setup" class="panel">
-      <div class="srcbar">
-        <div class="row" style="gap:10px">
-          <label class="label" for="src">Question set</label>
-          <select id="src" class="select"></select>
-          <label class="btn ghost sm" for="upload-input" title="Load .json packets, QBReader exports, or a .zip of packets">+ Upload pack</label>
-          <input id="upload-input" type="file" accept=".json,.zip,application/json,application/zip" multiple hidden>
-          <button id="rm-local" type="button" class="btn ghost sm" hidden>Remove</button>
-        </div>
-        <span id="mon" class="status-dot">Checking local monitor...</span>
+  <div class="subbar">
+    <div id="deck-subtabs" class="tabs" role="tablist" aria-label="Deck views">
+      <button id="dtab-drill" role="tab" aria-selected="true">Drill</button>
+      <button id="dtab-progress" role="tab" aria-selected="false">Progress</button>
+    </div>
+    <div id="pack-subtabs" class="tabs" role="tablist" aria-label="Pack views" hidden>
+      <button id="ptab-play" role="tab" aria-selected="true">Play</button>
+      <button id="ptab-buzzpoints" role="tab" aria-selected="false">Buzzpoints</button>
+      <button id="ptab-stats" role="tab" aria-selected="false">Category Stats</button>
+    </div>
+    <span id="mon" class="status-dot">Checking local monitor...</span>
+  </div>
+
+  <div id="pack-bar" class="panel" hidden style="padding:14px 18px;gap:10px">
+    <div class="srcbar">
+      <div class="row" style="gap:10px">
+        <label class="label" for="pack-src">Pack</label>
+        <select id="pack-src" class="select"></select>
+        <label class="btn ghost sm" for="upload-input" title="Upload .json packets, QBReader exports, or a .zip of packets">+ Upload pack (.json / .zip)</label>
+        <input id="upload-input" type="file" accept=".json,.zip,application/json,application/zip" multiple hidden>
+        <button id="rm-local" type="button" class="btn ghost sm" hidden>Remove</button>
       </div>
+      <span id="pack-summary" class="meta"></span>
+    </div>
+    <p id="upload-msg" class="note" hidden></p>
+  </div>
 
-      <p id="set-desc" class="note">Buzz when you know the answer, score yourself, and track your stats. Drop a <code>.json</code> or <code>.zip</code> packet file here anytime to drill a new set.</p>
-
+  <section id="view-drill" class="wrap" style="gap:18px;width:100%">
+    <div id="setup" class="panel">
+      <p id="set-desc" class="note">Practice tossups from your studied Anki collection. Buzz when you know the answer, score yourself, and track your progress.</p>
       <div class="row" style="gap:18px 24px">
         <div id="pkt-wrap" class="row" hidden><label class="label" for="pkt">Packet</label>
           <select id="pkt" class="select"></select>
@@ -174,9 +234,9 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
         <div class="row"><span class="label">Categories</span>
           <button id="cat-toggle" type="button" class="chip" aria-expanded="false" aria-controls="groups"><span id="cat-summary">All</span><span id="cat-caret" class="n" aria-hidden="true">▾</span></button>
         </div>
-        <div class="row"><span class="label">Order</span>
+        <div id="order-wrap" class="row" hidden><span class="label">Order</span>
           <div class="seg" id="order">
-            <button data-o="random" aria-pressed="true">Random</button><button data-o="packet" aria-pressed="false" id="order-seq-lbl">In order</button>
+            <button data-o="random" aria-pressed="true">Random</button><button data-o="packet" aria-pressed="false" id="order-seq-lbl">Packet order</button>
           </div>
         </div>
         <div class="row"><span class="label">Tossups</span>
@@ -192,7 +252,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
 
       <div id="groups" class="row" hidden></div>
       <div class="row" style="gap:16px">
-        <label class="chk"><input type="checkbox" id="skip-heard" checked> <span id="skip-lbl">Skip tossups I've already heard</span></label>
+        <label class="chk"><input type="checkbox" id="skip-heard" checked> <span id="skip-lbl">Skip tossups heard in last 30 days</span></label>
       </div>
       <div class="row"><button id="start" class="btn">Start session</button><span id="poolinfo" class="meta"></span></div>
       <p id="savenote" class="note" hidden></p>
@@ -247,15 +307,75 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       <h2 id="sumh"></h2>
       <div class="tiles" id="sumtiles"></div>
       <div class="tablewrap"><table><thead><tr><th>Answer</th><th id="sumcol2">Category</th><th class="num">Heard</th><th>Result</th></tr></thead><tbody id="sumrows"></tbody></table></div>
-      <div class="row"><button id="again" class="btn">New session</button><button id="sum-prog" class="btn ghost">View Progress</button></div>
+      <div class="row">
+        <button id="again" class="btn">New session</button>
+        <button id="sum-bp" class="btn ghost" hidden>View Buzzpoints</button>
+        <button id="sum-prog" class="btn ghost">View Progress</button>
+      </div>
     </div>
   </section>
 
-  <section id="view-progress" class="wrap" style="gap:20px" hidden>
+  <section id="view-buzzpoints" class="wrap" style="gap:16px;width:100%" hidden>
+    <div class="panel">
+      <div class="bp-hero">
+        <h2 id="bp-title">Buzzpoints</h2>
+        <div id="bp-sub" class="meta"></div>
+        <div class="row" style="margin-top:4px">
+          <button id="bp-to-stats" type="button" class="btn sm">View Category Stats</button>
+          <button id="bp-to-play" type="button" class="btn ghost sm">Play Pack</button>
+        </div>
+      </div>
+      <div class="tiles" id="bp-tiles"></div>
+      <div class="bp-filters">
+        <select id="bp-out" class="select" aria-label="Filter outcome">
+          <option value="ALL">All outcomes</option>
+          <option value="pw">Powers (15)</option>
+          <option value="ok">All Correct (10 / 15)</option>
+          <option value="neg">Negs (−5)</option>
+          <option value="miss">Misses / No buzz</option>
+        </select>
+        <select id="bp-cat" class="select" aria-label="Filter category"><option value="ALL">All categories</option></select>
+        <select id="bp-anki" class="select" aria-label="Filter Anki status" hidden>
+          <option value="ALL">All Anki statuses</option>
+          <option value="card">Active Anki card</option>
+          <option value="suspended">Suspended card</option>
+          <option value="text">Note text only</option>
+          <option value="none">Not in Anki</option>
+        </select>
+        <input id="bp-q" class="input" type="search" placeholder="Search answer, packet, category..." aria-label="Filter buzzes">
+        <span id="bp-count" class="meta"></span>
+      </div>
+      <div class="tablewrap">
+        <table class="bp-table">
+          <thead>
+            <tr id="bp-head">
+              <th data-col="round">Round<span class="sortind"></span></th>
+              <th data-col="pkt">Packet<span class="sortind"></span></th>
+              <th data-col="n" class="num">#<span class="sortind"></span></th>
+              <th data-col="cat">Category<span class="sortind"></span></th>
+              <th data-col="ans">Answer<span class="sortind"></span></th>
+              <th data-col="buzz" class="num">Buzzpoint<span class="sortind"></span></th>
+              <th data-col="pts" class="num">Value<span class="sortind"></span></th>
+              <th data-col="anki" id="bp-th-anki">Anki<span class="sortind"></span></th>
+            </tr>
+          </thead>
+          <tbody id="bp-rows"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="view-progress" class="wrap" style="gap:18px;width:100%" hidden>
     <div class="row" style="justify-content:space-between">
       <div class="meta">Showing stats for <b id="prog-set"></b></div>
+      <button id="prog-to-bp" type="button" class="btn ghost sm" hidden>View Buzzpoints</button>
     </div>
     <div class="tiles" id="ptiles"></div>
+    <div id="audit-panel" class="panel" hidden>
+      <h2>Study Efficiency &amp; Anki Coverage Audit</h2>
+      <p class="note">Separates missed questions already in your Anki deck (recall / card leaks) from missed questions not yet in your deck (content gaps).</p>
+      <div class="tiles" id="audit-tiles"></div>
+    </div>
     <div class="panel">
       <h2>Where you buzz on tossups you get right</h2>
       <p class="note">Share of the question read before your buzz, averaged per session. Lower is earlier.</p>
@@ -268,23 +388,23 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     </div>
     <div id="anki-panel" class="panel" hidden>
       <h2>By Anki coverage</h2>
-      <div class="tablewrap"><table><thead><tr><th>Status</th><th class="num">Heard</th><th class="num">Correct</th><th class="num">Negs</th><th class="num">Avg buzz</th></tr></thead><tbody id="at"></tbody></table></div>
+      <div class="tablewrap"><table id="tbl-at" class="bp-table"><thead></thead><tbody></tbody></table></div>
     </div>
     <div class="panel">
       <h2>By category</h2>
-      <div class="tablewrap"><table><thead><tr><th>Category</th><th class="num">Heard</th><th class="num">Correct</th><th class="num">Powers</th><th class="num">Negs</th><th class="num">Avg buzz</th></tr></thead><tbody id="gt"></tbody></table></div>
+      <div class="tablewrap"><table id="tbl-gt" class="bp-table"><thead></thead><tbody></tbody></table></div>
     </div>
     <div id="sub-panel" class="panel" hidden>
       <h2>By subcategory</h2>
-      <div class="tablewrap"><table><thead><tr><th>Subcategory</th><th class="num">Heard</th><th class="num">Correct</th><th class="num">Powers</th><th class="num">Negs</th><th class="num">Avg buzz</th></tr></thead><tbody id="st"></tbody></table></div>
+      <div class="tablewrap"><table id="tbl-st" class="bp-table"><thead></thead><tbody></tbody></table></div>
     </div>
     <div id="pkt-panel" class="panel" hidden>
       <h2>By packet</h2>
-      <div class="tablewrap"><table><thead><tr><th>Packet</th><th class="num">Heard</th><th class="num">Correct</th><th class="num">Powers</th><th class="num">Negs</th><th class="num">Avg buzz</th></tr></thead><tbody id="pt"></tbody></table></div>
+      <div class="tablewrap"><table id="tbl-pt" class="bp-table"><thead></thead><tbody></tbody></table></div>
     </div>
     <div class="panel">
       <h2>Buzz timing</h2>
-      <div class="tablewrap"><table><thead><tr><th>Zone</th><th class="num">Heard</th><th class="num">Correct</th><th class="num">Powers</th><th class="num">Negs</th><th class="num">Avg buzz</th></tr></thead><tbody id="zt"></tbody></table></div>
+      <div class="tablewrap"><table id="tbl-zt" class="bp-table"><thead></thead><tbody></tbody></table></div>
     </div>
     <div class="panel">
       <h2>Recent misses</h2>
@@ -299,12 +419,17 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
   "use strict";
   var $ = function (id) { return document.getElementById(id); };
   var S = {
+    mode: "deck",     // "deck" (default studied collection) | "pack" (pack analysis)
+    tab: "drill",     // "drill" | "progress" | "buzzpoints"
     serverOk: false,
-    sets: [],         // [{id, name, count, url, hasPackets, custom, localOnly, built}]
+    studiedSet: null, // metadata + optional preloaded studied collection
+    packSets: [],     // non-studied sets from server
     localSets: {},    // custom sets uploaded in standalone browser mode
-    setId: null,
+    packSetId: null,  // currently selected pack in Pack Analysis
+    setId: "studied", // active loaded set id ("studied" or pack id)
     setMeta: null,
     items: [],
+    itemsById: {},
     groups: [],
     packets: [],
     hasPackets: false,
@@ -319,10 +444,12 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     wps: 4.5,
     sessions: [],
     buzzes: [],
-    view: "drill",
     sess: null,
     cur: null,
-    timer: null
+    timer: null,
+    bpSort: { col: "seq", dir: 1 },
+    bpExpanded: {},
+    tblSort: {}
   };
 
   function store(k, v) {
@@ -336,15 +463,13 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
   }
 
   var saved = store("bd-prefs") || {};
-  if (saved.src) S.setId = saved.src;
+  if (saved.packSetId) S.packSetId = saved.packSetId;
   if (saved.wps) S.wps = saved.wps;
   if (saved.len !== undefined) S.len = saved.len;
   if (saved.order) S.order = saved.order;
-  if (saved.pkt) S.pkt = saved.pkt;
   if (saved.skipHeard !== undefined) S.skipHeard = !!saved.skipHeard;
   if (saved.showMeta !== undefined) S.showMeta = !!saved.showMeta;
   if (saved.sz) S.sz = saved.sz;
-
   S.localSets = store("bd-custom-sets") || {};
 
   // ---------- helpers ----------
@@ -361,8 +486,13 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
   function saveNote(msg) {
     var el = $("savenote");
     if (!msg) { el.hidden = true; el.textContent = ""; return; }
-    el.textContent = msg;
-    el.hidden = false;
+    el.textContent = msg; el.hidden = false;
+  }
+
+  function uploadNote(msg) {
+    var el = $("upload-msg");
+    if (!msg) { el.hidden = true; el.textContent = ""; return; }
+    el.textContent = msg; el.hidden = false;
   }
 
   function stripHtml(s) {
@@ -413,10 +543,19 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     }).then(function (r) { return r.ok ? r.json() : Promise.reject(new Error("HTTP " + r.status)); });
   }
 
-  // ---------- upload parsers (.json / .zip) ----------
-  function decodeUtf8(u8) {
-    return new TextDecoder("utf-8").decode(u8);
+  function mergeSessions(a, b) {
+    var out = [], seen = {};
+    (a || []).concat(b || []).forEach(function (s) {
+      if (!s || !s.id || seen[s.id]) return;
+      seen[s.id] = 1;
+      out.push(s);
+    });
+    out.sort(function (x, y) { return (x.startedAt || 0) - (y.startedAt || 0); });
+    return out;
   }
+
+  // ---------- upload parsers (.json / .zip) ----------
+  function decodeUtf8(u8) { return new TextDecoder("utf-8").decode(u8); }
 
   function findEocd(u8) {
     var min = Math.max(0, u8.length - 65557);
@@ -439,13 +578,9 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
   }
 
   async function unzipJsonFiles(buf) {
-    var u8 = new Uint8Array(buf);
-    var dv = new DataView(buf);
-    var eocd = findEocd(u8);
+    var u8 = new Uint8Array(buf), dv = new DataView(buf), eocd = findEocd(u8);
     if (eocd < 0) throw new Error("Not a valid .zip archive.");
-    var total = dv.getUint16(eocd + 10, true);
-    var cdOff = dv.getUint32(eocd + 16, true);
-    var entries = [], pos = cdOff;
+    var total = dv.getUint16(eocd + 10, true), cdOff = dv.getUint32(eocd + 16, true), entries = [], pos = cdOff;
     for (var idx = 0; idx < total; idx++) {
       if (pos + 46 > u8.length || dv.getUint32(pos, true) !== 0x02014b50) break;
       var method = dv.getUint16(pos + 10, true);
@@ -459,14 +594,10 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       var base = name.split("/").pop();
       if (!name.toLowerCase().endsWith(".json") || name.indexOf("__MACOSX") >= 0 || base.startsWith(".")) continue;
       if (dv.getUint32(lfhOff, true) !== 0x04034b50) continue;
-      var lNameLen = dv.getUint16(lfhOff + 26, true);
-      var lExtraLen = dv.getUint16(lfhOff + 28, true);
-      var dataStart = lfhOff + 30 + lNameLen + lExtraLen;
-      var raw = u8.subarray(dataStart, dataStart + compSize);
-      var plain;
-      if (method === 0) plain = raw;
-      else if (method === 8) plain = await inflateRaw(raw);
-      else throw new Error("Unsupported ZIP compression method (" + method + ") in " + name);
+      var lNameLen = dv.getUint16(lfhOff + 26, true), lExtraLen = dv.getUint16(lfhOff + 28, true);
+      var raw = u8.subarray(lfhOff + 30 + lNameLen + lExtraLen, lfhOff + 30 + lNameLen + lExtraLen + compSize);
+      var plain = method === 0 ? raw : method === 8 ? await inflateRaw(raw) : null;
+      if (!plain) throw new Error("Unsupported ZIP compression method (" + method + ") in " + name);
       entries.push({ name: base, text: decodeUtf8(plain) });
     }
     entries.sort(function (a, b) { return naturalCmp(a.name, b.name); });
@@ -487,9 +618,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     else if (data && Array.isArray(data.questions)) list = data.questions;
     if (!list) return [];
 
-    var pktLabel = cleanLabel(fileLabel);
-    var pktSlug = slugify(pktLabel);
-    var items = [];
+    var pktLabel = cleanLabel(fileLabel), pktSlug = slugify(pktLabel), items = [];
     list.forEach(function (t, idx) {
       if (!t || (t.type && t.type !== "tossup")) return;
       if (t.q && t.a && t.id) {
@@ -500,8 +629,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
         items.push(copy);
         return;
       }
-      var qRaw = t.question_sanitized || stripHtml(t.question || "");
-      var q = qRaw.replace(/\s+/g, " ").trim();
+      var q = (t.question_sanitized || stripHtml(t.question || "")).replace(/\s+/g, " ").trim();
       var ah = t.answer || "";
       var a = (t.answer_sanitized || stripHtml(ah)).replace(/\s+/g, " ").trim();
       if (!q || !a) return;
@@ -512,15 +640,9 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       var pLabel = (pktObj && (pktObj.name || (pktObj.number !== undefined ? "Packet " + pktObj.number : ""))) || (isMultiPacket ? pktLabel : "");
       var id = t._id || t.id || (setSlug + ":" + (pSlug || "all") + ":" + num + ":" + idx);
       var item = {
-        id: String(id),
-        g: t.category || "General",
-        sub: t.subcategory || "",
-        q: q,
-        a: a,
-        ah: ah !== a ? ah : undefined,
-        main: mainAnswer(a),
-        s: String(setName || ""),
-        n: num
+        id: String(id), g: t.category || "General", sub: t.subcategory || "",
+        q: q, a: a, ah: ah !== a ? ah : undefined, main: mainAnswer(a),
+        s: String(setName || ""), n: num
       };
       if (pSlug) { item.p = String(pSlug); item.pl = String(pLabel || pSlug); }
       items.push(item);
@@ -532,7 +654,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     var files = Array.prototype.slice.call(fileList || []);
     if (!files.length) return;
     files.sort(function (a, b) { return naturalCmp(a.name, b.name); });
-    saveNote("Reading " + (files.length === 1 ? files[0].name : files.length + " files") + "...");
+    uploadNote("Reading " + (files.length === 1 ? files[0].name : files.length + " files") + "...");
     try {
       var jsonEntries = [];
       for (var i = 0; i < files.length; i++) {
@@ -544,10 +666,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
           jsonEntries.push({ name: f.name, text: await f.text() });
         }
       }
-      if (!jsonEntries.length) {
-        saveNote("No .json tossup files found inside that selection.");
-        return;
-      }
+      if (!jsonEntries.length) { uploadNote("No .json tossup files found inside that selection."); return; }
       var setName = files.length === 1 ? cleanLabel(files[0].name) : cleanLabel(files[0].name) + " (+" + (files.length - 1) + ")";
       var setSlug = slugify(setName);
       var isMultiPacket = jsonEntries.length > 1 || files[0].name.toLowerCase().endsWith(".zip");
@@ -555,21 +674,20 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       jsonEntries.forEach(function (ent) {
         try {
           var parsed = JSON.parse(ent.text);
-          var extracted = extractTossups(parsed, ent.name, isMultiPacket, setSlug);
-          items = items.concat(extracted);
-        } catch (err) { /* ignore non-JSON metadata files inside a zip */ }
+          items = items.concat(extractTossups(parsed, ent.name, isMultiPacket, setSlug));
+        } catch (err) {}
       });
-      if (!items.length) {
-        saveNote("Could not find any valid tossups (question + answer fields) in the uploaded file(s).");
-        return;
-      }
+      if (!items.length) { uploadNote("Could not find any valid tossups (question + answer fields)."); return; }
 
       if (S.serverOk) {
-        saveNote("Saving \"" + setName + "\" (" + items.length + " tossups) to local server...");
+        uploadNote("Saving \"" + setName + "\" (" + items.length + " tossups) to local server...");
         var resp = await post("/api/sets", { name: setName, items: items });
-        await refreshSetList(resp.id);
-        saveNote("");
-        await selectSet(resp.id, resp.items);
+        await refreshCatalog(resp.id);
+        uploadNote("Loaded \"" + resp.name + "\" (" + resp.count + " tossups).");
+        S.packSetId = resp.id;
+        savePrefs();
+        if (S.mode !== "pack") await setMode("pack");
+        else await loadActiveSet(resp.id, resp.items);
       } else {
         var sid = "local_" + setSlug;
         var hasPackets = items.some(function (it) { return !!it.p; });
@@ -577,50 +695,54 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
         S.localSets[sid] = obj;
         var ok = store("bd-custom-sets", S.localSets);
         if (!ok) {
-          // Keep in memory for this tab if archive exceeds localStorage quota
-          delete S.localSets[sid];
-          store("bd-custom-sets", S.localSets);
-          S.localSets[sid] = obj;
-          saveNote("Loaded \"" + setName + "\" (" + items.length + " tossups) for this tab. Note: it exceeds browser storage quota; run drill_server.py to save large packs permanently.");
+          delete S.localSets[sid]; store("bd-custom-sets", S.localSets); S.localSets[sid] = obj;
+          uploadNote("Loaded \"" + setName + "\" (" + items.length + " tossups) for this browser tab (exceeds browser storage quota; run drill_server.py to persist large packs).");
         } else {
-          saveNote("");
+          uploadNote("Loaded \"" + setName + "\" (" + items.length + " tossups).");
         }
-        rebuildSourceOptions(sid);
-        await selectSet(sid, items);
+        S.packSetId = sid; savePrefs();
+        rebuildPackOptions(sid);
+        if (S.mode !== "pack") await setMode("pack");
+        else await loadActiveSet(sid, items);
       }
     } catch (e) {
-      saveNote("Upload failed: " + (e && e.message ? e.message : String(e)));
+      uploadNote("Upload failed: " + (e && e.message ? e.message : String(e)));
     } finally {
       $("upload-input").value = "";
     }
   }
 
-  // ---------- set discovery & loading ----------
-  function rebuildSourceOptions(preferId) {
-    var merged = S.sets.slice();
+  // ---------- catalog & mode switching ----------
+  function rebuildPackOptions(preferId) {
+    var merged = S.packSets.slice();
     Object.keys(S.localSets).sort().forEach(function (k) {
       if (!merged.some(function (x) { return x.id === k; })) {
         var ls = S.localSets[k];
         merged.push({ id: k, name: ls.name + " (browser)", count: (ls.items || []).length, hasPackets: !!ls.hasPackets, localOnly: true });
       }
     });
-    var sel = $("src");
-    sel.textContent = "";
+    var sel = $("pack-src"); sel.textContent = "";
+    if (!merged.length) {
+      var opt0 = document.createElement("option");
+      opt0.value = ""; opt0.textContent = "No packs loaded yet — upload a .json or .zip";
+      sel.appendChild(opt0);
+      $("rm-local").hidden = true;
+      $("pack-summary").textContent = "";
+      return null;
+    }
     merged.forEach(function (m) {
       var o = document.createElement("option");
-      o.value = m.id;
-      o.textContent = m.name + " (" + m.count + ")";
+      o.value = m.id; o.textContent = m.name + " (" + m.count + ")";
       sel.appendChild(o);
     });
-    var chosen = preferId || S.setId;
-    if (!chosen || !merged.some(function (m) { return m.id === chosen; })) {
-      chosen = merged.length ? merged[0].id : null;
-    }
-    if (chosen) sel.value = chosen;
+    var chosen = preferId || S.packSetId;
+    if (!chosen || !merged.some(function (m) { return m.id === chosen; })) chosen = merged[0].id;
+    sel.value = chosen;
+    S.packSetId = chosen;
     return chosen;
   }
 
-  function refreshSetList(preferId) {
+  function refreshCatalog(preferPackId) {
     return fetch("/api/sets").then(function (r) {
       if (!r.ok) throw new Error("no api");
       return r.json();
@@ -628,62 +750,71 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       S.serverOk = true;
       $("mon").className = "status-dot ok";
       $("mon").textContent = "Local server connected";
-      S.sets = d.sets || [];
-      return rebuildSourceOptions(preferId);
+      var all = d.sets || [];
+      S.studiedSet = all.find(function (s) { return s.id === "studied"; }) || null;
+      S.packSets = all.filter(function (s) { return s.id !== "studied"; });
+      return rebuildPackOptions(preferPackId);
     }).catch(function () {
       S.serverOk = false;
       $("mon").className = "status-dot";
       $("mon").textContent = "Standalone browser mode";
+      S.packSets = [];
       return fetch("tossups.json").then(function (r) {
         if (!r.ok) throw new Error("missing tossups.json");
         return r.json();
       }).then(function (d) {
-        S.sets = [{ id: "studied", name: "Studied collection", count: (d.items || []).length, url: "tossups.json", hasPackets: false, built: d.built || "", _preloaded: d }];
-        return rebuildSourceOptions(preferId);
+        S.studiedSet = { id: "studied", name: "Studied collection", count: (d.items || []).length, url: "tossups.json", hasPackets: false, built: d.built || "", _preloaded: d };
+        return rebuildPackOptions(preferPackId);
       }).catch(function () {
-        S.sets = [];
-        return rebuildSourceOptions(preferId);
+        S.studiedSet = null;
+        return rebuildPackOptions(preferPackId);
       });
     });
   }
 
   function loadSetState(setId) {
-    if (S.serverOk && !setId.startsWith("local_")) {
+    var localSess = store(sessStorageKey(setId)) || [];
+    if (S.serverOk && setId && !setId.startsWith("local_")) {
       return fetch("/api/state?set=" + encodeURIComponent(setId)).then(function (r) {
         if (!r.ok) throw new Error("no state");
         return r.json();
       }).then(function (st) {
         S.buzzes = st.buzzes || [];
-        if (Array.isArray(st.sessions) && st.sessions.length) S.sessions = st.sessions;
-        else S.sessions = store(sessStorageKey(setId)) || [];
+        S.sessions = mergeSessions(st.sessions || [], localSess);
       }).catch(function () {
-        S.buzzes = [];
-        S.sessions = store(sessStorageKey(setId)) || [];
+        S.buzzes = []; S.sessions = localSess;
       });
     }
-    S.buzzes = [];
-    S.sessions = store(sessStorageKey(setId)) || [];
+    S.buzzes = []; S.sessions = localSess;
     return Promise.resolve();
   }
 
-  async function selectSet(setId, preloadedItems) {
+  async function loadActiveSet(setId, preloadedItems) {
+    clearInterval(S.timer);
+    S.cur = null;
+    S.bpExpanded = {};
     if (!setId) {
+      S.setId = null; S.setMeta = null; S.items = []; S.itemsById = {}; S.groups = []; S.packets = [];
+      S.buzzes = []; S.sessions = [];
+      $("built").textContent = "Pack Analysis";
+      $("pack-summary").textContent = "Upload any .json or .zip pack to analyze";
       $("poolinfo").textContent = "Upload a .json or .zip packet above to start.";
       $("start").disabled = true;
+      if (S.tab === "buzzpoints") renderBuzzpoints();
+      if (S.tab === "progress") renderProgress();
       return;
     }
+
     S.setId = setId;
-    savePrefs();
-    $("src").value = setId;
     var localEntry = S.localSets[setId];
-    var meta = S.sets.find(function (m) { return m.id === setId; }) || localEntry;
+    var meta = setId === "studied" ? S.studiedSet : (S.packSets.find(function (m) { return m.id === setId; }) || localEntry);
     S.setMeta = meta;
-    $("rm-local").hidden = !(localEntry && localEntry.localOnly);
+    $("rm-local").hidden = !(S.mode === "pack" && localEntry && localEntry.localOnly);
 
     var items = preloadedItems || (localEntry && localEntry.items) || (meta && meta._preloaded && meta._preloaded.items) || null;
     var built = (meta && meta.built) || "";
     if (!items && meta && meta.url) {
-      var res = await fetch(meta.url.replace(/^\//, S.serverOk ? "/" : ""));
+      var res = await fetch(meta.url);
       if (!res.ok) throw new Error("Could not load " + meta.url);
       var json = await res.json();
       items = json.items || [];
@@ -691,13 +822,18 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     }
     items = items || [];
     S.items = items;
-    S.hasPackets = items.some(function (t) { return !!t.p; });
-    S.hasAnki = items.some(function (t) { return t.anki !== undefined; });
-    $("built").textContent = (meta ? meta.name + " · " : "") + items.length + " tossups" + (built ? " (" + built + ")" : "");
-    $("set-desc").textContent = setId === "studied"
-      ? "Practice tossups from your studied collection. Buzz when you know the answer, score yourself, and track your progress."
-      : "Buzz when you know the answer, score yourself, and track your coverage. Drop any .json or .zip pack above to switch sets.";
-    $("skip-lbl").textContent = setId === "studied" ? "Skip tossups heard in last 30 days" : "Skip tossups I've already heard";
+    S.itemsById = {};
+    items.forEach(function (t) { S.itemsById[t.id] = t; });
+    S.hasPackets = S.mode === "pack" && items.some(function (t) { return !!t.p; });
+    S.hasAnki = S.mode === "pack" && items.some(function (t) { return t.anki !== undefined; });
+
+    $("built").textContent = S.mode === "deck"
+      ? (built ? "set built " + built : items.length + " studied tossups")
+      : ((meta ? meta.name + " · " : "") + items.length + " tossups");
+    $("set-desc").textContent = S.mode === "deck"
+      ? "Practice tossups from your studied Anki collection. Buzz when you know the answer, score yourself, and track your progress."
+      : "Play this pack with Anki coverage tracking, then inspect every buzz on Buzzpoints or break down performance in Category Stats.";
+    $("skip-lbl").textContent = S.mode === "deck" ? "Skip tossups heard in last 30 days" : "Skip tossups I've already heard";
 
     var c = {}, p = {};
     items.forEach(function (t) {
@@ -710,49 +846,129 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     });
     S.groups = Object.keys(c).sort(function (a, b) { return c[b] - c[a]; }).map(function (g) { return { g: g, n: c[g] }; });
     S.packets = Object.keys(p).map(function (k) { return p[k]; });
+
     var catPrefs = (saved.chosenBySet && saved.chosenBySet[setId]) || (setId === "studied" && saved.chosen) || null;
     S.chosen = {};
     S.groups.forEach(function (x) { S.chosen[x.g] = catPrefs ? !!catPrefs[x.g] : true; });
     S.pkt = (saved.pktBySet && saved.pktBySet[setId]) || "ALL";
     if (S.pkt !== "ALL" && !p[S.pkt]) S.pkt = "ALL";
+    if (!S.hasPackets && S.mode === "deck") S.order = "random";
 
     await loadSetState(setId);
+    updatePackSummary();
     renderSetup();
-    if (S.view === "progress") renderProgress();
+    if (S.tab === "buzzpoints") renderBuzzpoints();
+    if (S.tab === "progress") renderProgress();
   }
 
-  refreshSetList().then(function (chosenId) {
-    return selectSet(chosenId);
-  }).catch(function () {
-    $("poolinfo").textContent = "Could not load initial set. Upload a .json or .zip packet above to drill.";
-    $("start").disabled = true;
-  });
+  function updatePackSummary() {
+    var box = $("pack-summary");
+    if (S.mode !== "pack" || !S.items.length) { box.textContent = ""; return; }
+    var rec = allSetRecords();
+    var ok = rec.filter(function (x) { return x.result === "correct"; }).length;
+    box.textContent = rec.length + " / " + S.items.length + " heard" + (rec.length ? " · " + Math.round(100 * ok / rec.length) + "% correct" : "");
+  }
 
-  $("src").onchange = function () { selectSet(this.value); };
+  async function setMode(m) {
+    S.mode = m;
+    $("mode-deck").setAttribute("aria-selected", m === "deck" ? "true" : "false");
+    $("mode-pack").setAttribute("aria-selected", m === "pack" ? "true" : "false");
+    $("deck-subtabs").hidden = m !== "deck";
+    $("pack-subtabs").hidden = m !== "pack";
+    $("pack-bar").hidden = m !== "pack";
+    $("sum-bp").hidden = m !== "pack";
+    $("prog-to-bp").hidden = m !== "pack";
+
+    if (m === "deck") {
+      setTab(S.tab === "progress" ? "progress" : "drill", true);
+      await loadActiveSet("studied");
+    } else {
+      var pid = rebuildPackOptions(S.packSetId);
+      setTab(S.tab, true);
+      await loadActiveSet(pid);
+    }
+    show("setup");
+  }
+
+  function setTab(t, skipRender) {
+    if (S.mode === "deck" && t === "buzzpoints") t = "drill";
+    S.tab = t;
+    $("view-drill").hidden = t !== "drill";
+    $("view-buzzpoints").hidden = t !== "buzzpoints";
+    $("view-progress").hidden = t !== "progress";
+
+    $("dtab-drill").setAttribute("aria-selected", t === "drill" ? "true" : "false");
+    $("dtab-progress").setAttribute("aria-selected", t === "progress" ? "true" : "false");
+    $("ptab-play").setAttribute("aria-selected", t === "drill" ? "true" : "false");
+    $("ptab-buzzpoints").setAttribute("aria-selected", t === "buzzpoints" ? "true" : "false");
+    $("ptab-stats").setAttribute("aria-selected", t === "progress" ? "true" : "false");
+
+    if (!skipRender) {
+      if (t === "buzzpoints") renderBuzzpoints();
+      if (t === "progress") renderProgress();
+    }
+  }
+
+  $("mode-deck").onclick = function () { setMode("deck"); };
+  $("mode-pack").onclick = function () { setMode("pack"); };
+  $("dtab-drill").onclick = function () { setTab("drill"); };
+  $("dtab-progress").onclick = function () { setTab("progress"); };
+  $("ptab-play").onclick = function () { setTab("drill"); };
+  $("ptab-buzzpoints").onclick = function () { setTab("buzzpoints"); };
+  $("ptab-stats").onclick = function () { setTab("progress"); };
+  $("bp-to-stats").onclick = function () { setTab("progress"); };
+  $("bp-to-play").onclick = function () { setTab("drill"); show("setup"); };
+  $("prog-to-bp").onclick = function () { setTab("buzzpoints"); };
+  $("sum-bp").onclick = function () { setTab("buzzpoints"); };
+  $("sum-prog").onclick = function () { setTab("progress"); };
+
+  $("pack-src").onchange = function () {
+    S.packSetId = this.value;
+    savePrefs();
+    loadActiveSet(this.value);
+    show("setup");
+  };
   $("upload-input").onchange = function () { handleUpload(this.files); };
   $("rm-local").onclick = function () {
-    if (!S.localSets[S.setId]) return;
-    delete S.localSets[S.setId];
+    if (!S.localSets[S.packSetId]) return;
+    delete S.localSets[S.packSetId];
     store("bd-custom-sets", S.localSets);
-    var nextId = rebuildSourceOptions(S.sets.length ? S.sets[0].id : null);
-    selectSet(nextId);
+    var nextId = rebuildPackOptions(null);
+    savePrefs();
+    loadActiveSet(nextId);
   };
-  var setupEl = $("setup");
-  setupEl.addEventListener("dragover", function (e) { e.preventDefault(); setupEl.classList.add("dragover"); });
-  setupEl.addEventListener("dragleave", function () { setupEl.classList.remove("dragover"); });
-  setupEl.addEventListener("drop", function (e) {
+  $("setup").addEventListener("dragover", function (e) { e.preventDefault(); $("setup").classList.add("dragover"); });
+  $("setup").addEventListener("dragleave", function () { $("setup").classList.remove("dragover"); });
+  $("setup").addEventListener("drop", function (e) {
     e.preventDefault();
-    setupEl.classList.remove("dragover");
+    $("setup").classList.remove("dragover");
     if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) handleUpload(e.dataTransfer.files);
   });
 
-  // ---------- heard tracking ----------
+  // Always land on Deck Drill (user's studied Anki cards) by default
+  refreshCatalog(S.packSetId).then(function () {
+    return loadActiveSet("studied");
+  }).catch(function () {
+    $("poolinfo").textContent = "Could not load tossups.json. Start drill_server.py or a local web server in drill/.";
+    $("start").disabled = true;
+  });
+
+  // ---------- records & heard lookup ----------
   function allSetRecords() {
-    var base = S.buzzes.length ? S.buzzes.slice() : [];
-    if (!base.length) {
-      S.sessions.forEach(function (s) { base = base.concat(s.items || []); });
+    var raw = [], seen = {};
+    function pushItem(b, fallbackSid) {
+      if (!b) return;
+      var sid = b.sessionId || fallbackSid || "";
+      var key = sid + "|" + b.id + "|" + (b.ts || "");
+      if (seen[key]) return;
+      seen[key] = 1;
+      raw.push(Object.assign({ sessionId: sid }, b));
     }
-    return base;
+    S.buzzes.forEach(function (b) { pushItem(b, "s0"); });
+    S.sessions.forEach(function (s) {
+      (s.items || []).forEach(function (it) { pushItem(it, s.id); });
+    });
+    return raw;
   }
 
   function heardLookup() {
@@ -764,6 +980,10 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
           if (it.k) keys[it.g + "|" + it.k] = Math.max(keys[it.g + "|" + it.k] || 0, s.startedAt || 0);
         });
       });
+      S.buzzes.forEach(function (b) {
+        if ((b.ts || 0) > cut) ids[b.id] = 1;
+        if (b.k) keys[b.g + "|" + b.k] = Math.max(keys[b.g + "|" + b.k] || 0, b.ts || 0);
+      });
     } else {
       allSetRecords().forEach(function (b) { ids[b.id] = 1; });
     }
@@ -773,6 +993,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
   // ---------- setup ----------
   function renderSetup() {
     $("pkt-wrap").hidden = !S.hasPackets;
+    $("order-wrap").hidden = !(S.mode === "pack" && S.items.length);
     $("order-seq-lbl").textContent = S.hasPackets ? "Packet order" : "In order";
     var pktSel = $("pkt"); pktSel.textContent = "";
     var o0 = document.createElement("option"); o0.value = "ALL"; o0.textContent = "All packets (" + S.items.length + ")"; pktSel.appendChild(o0);
@@ -792,7 +1013,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       b.onclick = function () { S.chosen[x.g] = !S.chosen[x.g]; b.setAttribute("aria-pressed", S.chosen[x.g] ? "true" : "false"); savePrefs(); renderSetupInfo(); };
       box.appendChild(b);
     });
-    if (S.groups.length > 1) {
+    if (S.mode === "pack" && S.groups.length > 1) {
       var bAll = document.createElement("button"); bAll.className = "btn ghost sm"; bAll.type = "button"; bAll.textContent = "Select all";
       var bClr = document.createElement("button"); bClr.className = "btn ghost sm"; bClr.type = "button"; bClr.textContent = "Clear";
       bAll.onclick = function () { S.groups.forEach(function (x) { S.chosen[x.g] = true; }); savePrefs(); renderSetup(); };
@@ -862,7 +1083,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
 
   function savePrefs() {
     var p = store("bd-prefs") || {};
-    p.src = S.setId;
+    p.packSetId = S.packSetId;
     p.wps = S.wps;
     p.len = S.len;
     p.order = S.order;
@@ -908,7 +1129,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     var f = filteredItems();
     var pool = (S.skipHeard ? f.fresh : f.all).slice();
     if (!pool.length) return;
-    if (S.order === "packet") {
+    if (S.mode === "pack" && S.order === "packet") {
       var pIdx = {};
       S.packets.forEach(function (p) { pIdx[p.p] = p.order; });
       pool.sort(function (a, b) {
@@ -919,7 +1140,6 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
         var j = Math.floor(Math.random() * (i + 1)), tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
       }
       if (S.setId === "studied") {
-        // Keep least-recently-drilled cards toward the front of random draws
         var keys = f.keys;
         pool.sort(function (a, b) { return (keys[a.g + "|" + (a.k || "")] || 0) - (keys[b.g + "|" + (b.k || "")] || 0); });
       }
@@ -930,9 +1150,9 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     show("play");
     loadTossup();
   }
+
   $("start").onclick = start;
-  $("again").onclick = function () { loadSetState(S.setId).then(function () { renderSetupInfo(); show("setup"); }); };
-  $("sum-prog").onclick = function () { setView("progress"); };
+  $("again").onclick = function () { loadSetState(S.setId).then(function () { updatePackSummary(); renderSetupInfo(); show("setup"); }); };
   $("end-early").onclick = function () { if (S.sess && S.sess.items.length) finish(); else { clearInterval(S.timer); S.cur = null; show("setup"); } };
 
   function renderStatStrip() {
@@ -947,7 +1167,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     box.textContent = "";
     box.hidden = false;
     [
-      ["Set progress", n + " / " + S.items.length],
+      [S.mode === "pack" ? "Pack progress" : "Collection heard", S.mode === "pack" ? (n + " / " + S.items.length) : String(n)],
       ["Correct", ok.length + " (" + Math.round(100 * ok.length / n) + "%)"],
       ["Powers / Negs", pw + " / " + neg],
       ["Avg buzz", avg]
@@ -955,8 +1175,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       var sp = document.createElement("span");
       sp.textContent = pair[0] + " ";
       var b = document.createElement("b"); b.textContent = pair[1];
-      sp.appendChild(b);
-      box.appendChild(sp);
+      sp.appendChild(b); box.appendChild(sp);
     });
   }
 
@@ -966,8 +1185,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     Array.prototype.forEach.call($("keylist").children, function (el) {
       var want = (el.dataset.st || "").split(",");
       var on = want.indexOf("all") >= 0 || want.indexOf(st) >= 0;
-      if (st === "revealed" && !hasBuzz && el.querySelector("kbd") && el.querySelector("kbd").textContent === "1") on = false;
-      if (st === "revealed" && !hasBuzz && el.querySelector("kbd") && el.querySelector("kbd").textContent === "2") on = false;
+      if (st === "revealed" && !hasBuzz && el.querySelector("kbd") && (el.querySelector("kbd").textContent === "1" || el.querySelector("kbd").textContent === "2")) on = false;
       el.classList.toggle("off", !on);
     });
   }
@@ -976,11 +1194,21 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     var c = S.cur; if (!c) return;
     var revealed = c.stage === "revealed" || c.stage === "judged" || S.showMeta;
     $("cat").textContent = revealed ? (c.t.sub ? c.t.g + " · " + c.t.sub : c.t.g) : "Category hidden";
-    if (revealed) {
-      $("setname").textContent = c.t.pl ? (c.t.pl + (c.t.n ? " · TU " + c.t.n : "")) : (c.t.s || "");
-    } else {
-      $("setname").textContent = "";
-    }
+    $("setname").textContent = revealed ? (c.t.pl ? (c.t.pl + (c.t.n ? " · TU " + c.t.n : "")) : (c.t.s || "")) : "";
+  }
+
+  function renderWordsInto(el, words, pos, buzzIdx, showAll) {
+    el.textContent = "";
+    words.forEach(function (word, i) {
+      if (buzzIdx !== null && buzzIdx !== undefined && i === buzzIdx) {
+        var bz = document.createElement("span"); bz.className = "bz"; bz.textContent = "BUZZ"; el.appendChild(bz);
+      }
+      var s = document.createElement("span");
+      if (word === "(*)") s.className = "star";
+      if (!showAll && i >= pos) s.className = (s.className + " ahead").trim();
+      s.textContent = word + " ";
+      el.appendChild(s);
+    });
   }
 
   function loadTossup() {
@@ -1005,18 +1233,9 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
   }
 
   function paint() {
-    var c = S.cur, el = $("text"); el.textContent = "";
+    var c = S.cur;
     var showAll = c.stage === "revealed" || c.stage === "judged";
-    c.words.forEach(function (word, i) {
-      if (c.buzz !== null && i === c.buzz) {
-        var bz = document.createElement("span"); bz.className = "bz"; bz.textContent = "BUZZ"; el.appendChild(bz);
-      }
-      var s = document.createElement("span");
-      if (word === "(*)") s.className = "star";
-      if (i >= c.pos && !showAll) s.className = (s.className + " ahead").trim();
-      s.textContent = word + " ";
-      el.appendChild(s);
-    });
+    renderWordsInto($("text"), c.words, c.pos, c.buzz, showAll);
     $("fill").style.width = (100 * Math.min(c.pos, c.n) / c.n) + "%";
   }
 
@@ -1041,8 +1260,14 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
 
   function judgeMode() {
     $("judge").hidden = false; $("reveal").hidden = false; $("right").hidden = true; $("wrong").hidden = true; $("next").hidden = true;
-    renderKeys();
-    $("reveal").focus({ preventScroll: true });
+    renderKeys(); $("reveal").focus({ preventScroll: true });
+  }
+
+  function ankiLabel(status) {
+    if (status === "card") return "In Anki";
+    if (status === "suspended") return "Suspended";
+    if (status === "text" || status === "on-note") return "Text only";
+    return "Not in Anki";
   }
 
   function renderAnkiPill(status) {
@@ -1061,7 +1286,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     c.stage = "revealed"; c.pos = c.n; paint(); renderTossupMeta();
     setAnswerFormatted($("atext"), c.t.ah || "", c.t.a);
     var ac = $("acard"); ac.textContent = "";
-    if (c.t.anki !== undefined) ac.appendChild(renderAnkiPill(c.t.anki));
+    if (S.mode === "pack" && c.t.anki !== undefined) ac.appendChild(renderAnkiPill(c.t.anki));
     var info = document.createElement("span");
     if (c.t.k) info.textContent = "Your card: " + c.t.k + " (" + c.t.g + ")";
     else info.textContent = [c.t.sub || c.t.g, c.t.pl, c.t.n ? "TU " + c.t.n : ""].filter(Boolean).join(" · ");
@@ -1079,25 +1304,11 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     var pts = result === "correct" ? (power ? 15 : 10) : (result === "wrong" && c.buzz < c.n ? -5 : 0);
     S.sess.points += pts;
     var ev = {
-      sessionId: S.sess.id,
-      setId: S.setId,
-      ts: Date.now(),
-      id: c.t.id,
-      g: c.t.g,
-      sub: c.t.sub || "",
-      p: c.t.p || "",
-      pl: c.t.pl || "",
-      n: c.t.n || 0,
-      k: c.t.k || "",
-      main: c.t.main || mainAnswer(c.t.a),
-      a: (c.t.a || "").slice(0, 160),
-      s: c.t.s || "",
-      words: c.n,
-      buzz: c.buzz,
-      frac: c.buzz === null ? null : +(c.buzz / c.n).toFixed(3),
-      power: power,
-      result: result,
-      pts: pts
+      sessionId: S.sess.id, setId: S.setId, ts: Date.now(), wps: S.wps,
+      id: c.t.id, g: c.t.g, sub: c.t.sub || "", p: c.t.p || "", pl: c.t.pl || "", n: c.t.n || 0,
+      k: c.t.k || "", main: c.t.main || mainAnswer(c.t.a), a: (c.t.a || "").slice(0, 160), s: c.t.s || "",
+      words: c.n, buzz: c.buzz, frac: c.buzz === null ? null : +(c.buzz / c.n).toFixed(3),
+      power: power, result: result, pts: pts
     };
     if (c.t.anki !== undefined) ev.anki = c.t.anki;
     S.sess.items.push(ev);
@@ -1111,7 +1322,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     v.textContent = result === "correct" ? (power ? "Power · +15" : "Correct · +10") : result === "wrong" ? (pts ? "Neg · −5" : "Wrong · 0") : "No buzz · 0";
     $("state").appendChild(v);
     $("right").hidden = true; $("wrong").hidden = true; $("next").hidden = false;
-    renderStatStrip(); renderKeys();
+    updatePackSummary(); renderStatStrip(); renderKeys();
     $("next").focus({ preventScroll: true });
   }
 
@@ -1121,7 +1332,8 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     s.saved = true;
     var body = { id: s.id, setId: S.setId, startedAt: s.startedAt, at: new Date(s.startedAt).toISOString(), wps: S.wps, points: s.points, items: s.items.slice(), v: 2 };
     S.sessions.push(body);
-    store(sessStorageKey(S.setId), S.sessions);
+    var savedOk = store(sessStorageKey(S.setId), S.sessions);
+    if (!savedOk && !S.serverOk) saveNote("Browser storage is full, so session history wasn't saved locally.");
     post("/api/session", body).catch(function () {});
   }
 
@@ -1136,7 +1348,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
   $("right").onclick = function () { record("correct"); };
   $("wrong").onclick = function () { record("wrong"); };
   document.addEventListener("keydown", function (e) {
-    if ($("play").hidden || e.target.tagName === "INPUT" || e.target.tagName === "SELECT") return;
+    if (S.tab !== "drill" || $("play").hidden || e.target.tagName === "INPUT" || e.target.tagName === "SELECT") return;
     if (e.code === "Space") { e.preventDefault(); if (S.cur && (S.cur.stage === "reading" || S.cur.stage === "dead")) buzz(); }
     else if (e.key === "Enter") { e.preventDefault(); if (S.cur && (S.cur.stage === "buzzed" || S.cur.stage === "dead")) reveal(); else if (S.cur && S.cur.stage === "judged") next(); }
     else if ((e.key === "n" || e.key === "N") && S.cur && S.cur.stage === "judged") { e.preventDefault(); next(); }
@@ -1162,13 +1374,13 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       [its.filter(function (x) { return x.pts < 0; }).length, "negs"],
       [avg === null ? "–" : Math.round(avg * 100) + "%", "heard before a correct buzz"]
     ]);
-    $("sumcol2").textContent = S.setId === "studied" ? "Card deck" : "Category / Packet";
+    $("sumcol2").textContent = S.mode === "deck" ? "Card deck" : "Category / Packet";
     var tb = $("sumrows"); tb.textContent = "";
     its.forEach(function (x) {
       var tr = document.createElement("tr");
       var td0 = document.createElement("td");
       td0.textContent = x.main || x.k || x.a;
-      if (x.anki !== undefined) { td0.appendChild(document.createTextNode(" ")); td0.appendChild(renderAnkiPill(x.anki)); }
+      if (S.mode === "pack" && x.anki !== undefined) { td0.appendChild(document.createTextNode(" ")); td0.appendChild(renderAnkiPill(x.anki)); }
       tr.appendChild(td0);
 
       var td1 = document.createElement("td");
@@ -1197,47 +1409,349 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     });
   }
 
-  // ---------- progress ----------
-  function setView(v) {
-    S.view = v;
-    $("view-drill").hidden = v !== "drill"; $("view-progress").hidden = v !== "progress";
-    $("tab-drill").setAttribute("aria-selected", v === "drill"); $("tab-progress").setAttribute("aria-selected", v === "progress");
-    if (v === "progress") renderProgress();
-  }
-  $("tab-drill").onclick = function () { setView("drill"); };
-  $("tab-progress").onclick = function () { setView("progress"); };
+  // ---------- buzzpoints compiled log ----------
+  function compiledBuzzRows() {
+    var raw = allSetRecords();
+    var sessStart = {};
+    S.sessions.forEach(function (s) { sessStart[s.id] = s.startedAt || 0; });
+    raw.forEach(function (b) {
+      var sid = b.sessionId || "s0";
+      if (!sessStart[sid] || (b.ts && b.ts < sessStart[sid])) sessStart[sid] = b.ts || 0;
+    });
+    var sids = Object.keys(sessStart).sort(function (a, b) { return sessStart[a] - sessStart[b]; });
+    var roundOf = {};
+    sids.forEach(function (sid, i) { roundOf[sid] = i + 1; });
 
-  function groupTable(items, keyFn, tb, showPowerCol) {
+    return raw.map(function (b, idx) {
+      var frac = b.frac !== null && b.frac !== undefined ? b.frac : (b.buzz !== null && b.words ? +(b.buzz / b.words).toFixed(3) : null);
+      return {
+        seq: idx + 1,
+        round: roundOf[b.sessionId || "s0"] || 1,
+        pkt: b.pl || b.p || "–",
+        n: b.n || 0,
+        cat: b.g || "General",
+        sub: b.sub || "",
+        ans: b.main || b.k || b.a || "",
+        buzz: b.buzz,
+        words: b.words || 0,
+        frac: frac,
+        pts: b.pts !== undefined ? b.pts : 0,
+        power: !!b.power,
+        result: b.result,
+        anki: b.anki,
+        raw: b
+      };
+    });
+  }
+
+  function fracOf(x) {
+    if (!x) return null;
+    if (x.frac !== null && x.frac !== undefined) return x.frac;
+    if (x.buzz !== null && x.buzz !== undefined && x.words) return +(x.buzz / x.words).toFixed(3);
+    return null;
+  }
+
+  function renderBuzzpoints() {
+    var rows = compiledBuzzRows();
+    var packName = (S.setMeta && S.setMeta.name) || S.setId || "Uploaded Pack";
+    $("bp-title").textContent = packName;
+    var pts = rows.reduce(function (a, r) { return a + r.pts; }, 0);
+    var okRows = rows.filter(function (r) { return r.result === "correct"; });
+    var ok = okRows.length;
+    var pw = rows.filter(function (r) { return r.power; }).length;
+    var gets = ok - pw;
+    var neg = rows.filter(function (r) { return r.pts < 0; }).length;
+    var attempts = rows.filter(function (r) { return r.buzz !== null && r.buzz !== undefined; }).length;
+    var pptu = rows.length ? (pts / rows.length).toFixed(2) : "–";
+    var pp20 = rows.length ? Math.round(pts * 20 / rows.length) : "–";
+    var okWithFrac = okRows.filter(function (r) { return r.frac !== null && r.frac !== undefined; });
+    var avgBuzz = okWithFrac.length ? Math.round(100 * okWithFrac.reduce(function (a, r) { return a + r.frac; }, 0) / okWithFrac.length) + "%" : "–";
+    $("bp-sub").textContent = (S.items.length ? (rows.length + " / " + S.items.length + " tossups") : (rows.length + " tossups heard")) + " · " + pts + " pts";
+    tiles($("bp-tiles"), [
+      [rows.length ? String(pts) : "0", "total points"],
+      [rows.length ? String(pp20) : "–", rows.length ? ("PP20 (" + pptu + " PPTU)") : "PP20"],
+      [pw + " / " + gets + " / " + neg, "15 / 10 / −5"],
+      [attempts ? Math.round(100 * ok / attempts) + "%" : "–", attempts ? ("buzz acc (" + ok + "/" + attempts + ")") : "buzz accuracy"],
+      [avgBuzz, "avg correct buzz"]
+    ]);
+
+    // Populate category filter dynamically preserving choice
+    var catSel = $("bp-cat"), prevCat = catSel.value;
+    var cats = {};
+    rows.forEach(function (r) { cats[r.cat] = 1; });
+    catSel.textContent = "";
+    var optAll = document.createElement("option"); optAll.value = "ALL"; optAll.textContent = "All categories"; catSel.appendChild(optAll);
+    Object.keys(cats).sort().forEach(function (c) {
+      var o = document.createElement("option"); o.value = c; o.textContent = c; catSel.appendChild(o);
+    });
+    catSel.value = cats[prevCat] ? prevCat : "ALL";
+
+    var showAnki = S.hasAnki || rows.some(function (r) { return r.anki !== undefined; });
+    $("bp-anki").hidden = !showAnki;
+    $("bp-th-anki").hidden = !showAnki;
+
+    var outF = $("bp-out").value, catF = $("bp-cat").value, ankiF = showAnki ? $("bp-anki").value : "ALL";
+    var qF = ($("bp-q").value || "").trim().toLowerCase();
+    var filtered = rows.filter(function (r) {
+      if (outF === "pw" && !r.power) return false;
+      if (outF === "ok" && r.result !== "correct") return false;
+      if (outF === "neg" && !(r.pts < 0)) return false;
+      if (outF === "miss" && r.result === "correct") return false;
+      if (catF !== "ALL" && r.cat !== catF) return false;
+      if (ankiF !== "ALL") {
+        var normAnki = (r.anki === "on-note" || r.anki === "text") ? "text" : (r.anki || "none");
+        if (normAnki !== ankiF) return false;
+      }
+      if (qF) {
+        var full = S.itemsById[r.raw.id];
+        var hay = [r.ans, r.raw.a, r.cat, r.sub, r.pkt, full && full.q].filter(Boolean).join(" ").toLowerCase();
+        if (hay.indexOf(qF) < 0) return false;
+      }
+      return true;
+    });
+
+    // Sort
+    var col = S.bpSort.col, dir = S.bpSort.dir;
+    filtered.sort(function (a, b) {
+      var cmp = 0;
+      if (col === "seq") cmp = a.seq - b.seq;
+      else if (col === "round") cmp = (a.round - b.round) || (a.seq - b.seq);
+      else if (col === "pkt") cmp = naturalCmp(a.pkt, b.pkt) || (a.n - b.n);
+      else if (col === "n") cmp = (a.n - b.n) || (a.seq - b.seq);
+      else if (col === "cat") cmp = naturalCmp(a.cat + " " + a.sub, b.cat + " " + b.sub);
+      else if (col === "ans") cmp = naturalCmp(a.ans, b.ans);
+      else if (col === "buzz") cmp = ((a.buzz === null ? 99999 : a.buzz) - (b.buzz === null ? 99999 : b.buzz));
+      else if (col === "pts") cmp = (a.pts - b.pts) || (a.seq - b.seq);
+      else if (col === "anki") cmp = naturalCmp(ankiLabel(a.anki), ankiLabel(b.anki));
+      return cmp * dir;
+    });
+
+    Array.prototype.forEach.call($("bp-head").children, function (th) {
+      var ind = th.querySelector(".sortind");
+      if (!ind) return;
+      ind.textContent = th.dataset.col === col ? (dir === 1 ? "▲" : "▼") : "↕";
+    });
+    $("bp-count").textContent = filtered.length === rows.length ? rows.length + " rows" : filtered.length + " of " + rows.length + " rows";
+
+    var tb = $("bp-rows"); tb.textContent = "";
+    var colSpan = showAnki ? 8 : 7;
+    if (!filtered.length) {
+      var tr0 = document.createElement("tr"), td0 = document.createElement("td");
+      td0.colSpan = colSpan; td0.className = "empty";
+      td0.textContent = rows.length ? "No buzzes match the active filters." : "Play a session on this pack to see your compiled Buzzpoints table here.";
+      tr0.appendChild(td0); tb.appendChild(tr0); return;
+    }
+
+    filtered.forEach(function (r) {
+      var tr = document.createElement("tr");
+      var cls = r.power ? "pw" : r.result === "correct" ? "ok" : r.pts < 0 ? "neg" : "zero";
+      tr.className = "bp-row " + cls;
+
+      var tdRound = document.createElement("td"); tdRound.className = "num"; tdRound.style.textAlign = "left";
+      tdRound.textContent = String(r.round);
+      if (r.raw.ts) tdRound.title = new Date(r.raw.ts).toLocaleString();
+      tr.appendChild(tdRound);
+
+      var tdPkt = document.createElement("td"); tdPkt.textContent = r.pkt; tr.appendChild(tdPkt);
+
+      var tdN = document.createElement("td"); tdN.className = "num"; tdN.textContent = r.n ? String(r.n) : "–"; tr.appendChild(tdN);
+
+      var tdCat = document.createElement("td"); tdCat.className = "wrapcell";
+      tdCat.textContent = r.cat;
+      if (r.sub && r.sub !== r.cat) {
+        var spSub = document.createElement("span"); spSub.className = "bp-sub"; spSub.textContent = r.sub;
+        tdCat.appendChild(spSub);
+      }
+      tr.appendChild(tdCat);
+
+      var tdAns = document.createElement("td"); tdAns.className = "wrapcell";
+      var ansBtn = document.createElement("button"); ansBtn.type = "button"; ansBtn.className = "bp-ans-btn";
+      ansBtn.textContent = r.ans;
+      var rowKey = r.seq + "|" + r.raw.id;
+      ansBtn.onclick = function () { S.bpExpanded[rowKey] = !S.bpExpanded[rowKey]; renderBuzzpoints(); };
+      tdAns.appendChild(ansBtn);
+      tr.appendChild(tdAns);
+
+      var tdBuzz = document.createElement("td"); tdBuzz.className = "num";
+      if (r.buzz !== null && r.buzz !== undefined) {
+        tdBuzz.textContent = String(r.buzz);
+        if (r.frac !== null) {
+          var spPct = document.createElement("span"); spPct.className = "bp-sub";
+          spPct.textContent = Math.round(r.frac * 100) + "%";
+          tdBuzz.appendChild(spPct);
+        }
+      } else {
+        tdBuzz.textContent = "–";
+      }
+      tr.appendChild(tdBuzz);
+
+      var tdVal = document.createElement("td"); tdVal.className = "num bp-val";
+      tdVal.textContent = r.pts < 0 ? "−" + Math.abs(r.pts) : String(r.pts);
+      tr.appendChild(tdVal);
+
+      if (showAnki) {
+        var tdAnki = document.createElement("td");
+        tdAnki.appendChild(renderAnkiPill(r.anki));
+        tr.appendChild(tdAnki);
+      }
+      tb.appendChild(tr);
+
+      if (S.bpExpanded[rowKey]) {
+        var trD = document.createElement("tr"); trD.className = "bp-detail";
+        var tdD = document.createElement("td"); tdD.colSpan = colSpan;
+        var full = S.itemsById[r.raw.id];
+        if (full && full.q) {
+          var qDiv = document.createElement("div"); qDiv.className = "bp-q";
+          renderWordsInto(qDiv, full.q.split(/\s+/), full.q.split(/\s+/).length, r.buzz, true);
+          tdD.appendChild(qDiv);
+        }
+        var aDiv = document.createElement("div"); aDiv.className = "bp-a";
+        var lbl = document.createElement("strong"); lbl.textContent = "ANSWER: "; aDiv.appendChild(lbl);
+        var aSpan = document.createElement("span");
+        setAnswerFormatted(aSpan, full && full.ah ? full.ah : "", (full && full.a) || r.raw.a || r.ans);
+        aDiv.appendChild(aSpan);
+        tdD.appendChild(aDiv);
+
+        var mDiv = document.createElement("div"); mDiv.className = "meta";
+        var bits = [r.pkt !== "–" ? r.pkt : "", r.n ? "TU " + r.n : "", r.buzz !== null && r.words ? "Buzzed at word " + r.buzz + " / " + r.words + " (" + Math.round((r.frac || 0) * 100) + "%)" : "No buzz", r.raw.wps ? r.raw.wps + " wps" : "", r.raw.ts ? new Date(r.raw.ts).toLocaleString() : ""].filter(Boolean);
+        mDiv.textContent = bits.join(" · ");
+        tdD.appendChild(mDiv);
+        trD.appendChild(tdD);
+        tb.appendChild(trD);
+      }
+    });
+  }
+
+  Array.prototype.forEach.call($("bp-head").children, function (th) {
+    th.onclick = function () {
+      var col = th.dataset.col;
+      if (!col) return;
+      if (S.bpSort.col === col) S.bpSort.dir *= -1;
+      else { S.bpSort.col = col; S.bpSort.dir = col === "pts" ? -1 : 1; }
+      renderBuzzpoints();
+    };
+  });
+  ["bp-out", "bp-cat", "bp-anki"].forEach(function (id) { $(id).onchange = renderBuzzpoints; });
+  $("bp-q").oninput = renderBuzzpoints;
+
+  // ---------- progress / category stats ----------
+  function renderGroupTable(items, keyFn, tableId, opts) {
+    opts = opts || {};
+    var tbl = $(tableId), thead = tbl.querySelector("thead"), tb = tbl.querySelector("tbody");
+    var showAnkiCol = !!opts.showAnkiCol;
+    var sortState = S.tblSort[tableId] || (opts.fixedOrder ? { col: "order", dir: 1 } : { col: "n", dir: -1 });
+    S.tblSort[tableId] = sortState;
+
     var g = {};
     items.forEach(function (x) {
       var k = keyFn(x) || "Unknown";
-      var r = g[k] = g[k] || { n: 0, ok: 0, pw: 0, neg: 0, f: 0 };
+      var r = g[k] = g[k] || { k: k, n: 0, pw: 0, gets: 0, ok: 0, neg: 0, att: 0, pts: 0, f: 0, fn: 0, w: 0, wn: 0, inAnki: 0 };
       r.n++;
-      if (x.result === "correct") { r.ok++; r.f += (x.frac || 0); }
-      if (x.power) r.pw++;
-      if (x.pts < 0) r.neg++;
+      r.pts += (x.pts || 0);
+      if (x.buzz !== null && x.buzz !== undefined) r.att++;
+      if (x.result === "correct") {
+        r.ok++;
+        if (x.power) r.pw++; else r.gets++;
+        var fr = fracOf(x);
+        if (fr !== null) { r.f += fr; r.fn++; }
+        if (x.buzz !== null && x.buzz !== undefined) { r.w += x.buzz; r.wn++; }
+      }
+      if ((x.pts || 0) < 0) r.neg++;
+      if (x.anki === "card") r.inAnki++;
     });
+
+    var cols = [
+      { id: "k", label: opts.col0 || "Group", num: false },
+      { id: "n", label: "Heard", num: true },
+      { id: "pw", label: "15", num: true },
+      { id: "gets", label: "10", num: true },
+      { id: "neg", label: "−5", num: true },
+      { id: "conv", label: "Conv%", num: true },
+      { id: "pptu", label: "PPTU", num: true },
+      { id: "buzz", label: "Avg buzz", num: true }
+    ];
+    if (showAnkiCol) cols.push({ id: "ankiPct", label: "In Anki", num: true });
+
+    thead.textContent = "";
+    var htr = document.createElement("tr");
+    cols.forEach(function (c) {
+      var th = document.createElement("th");
+      if (c.num) th.className = "num";
+      th.textContent = c.label;
+      var ind = document.createElement("span"); ind.className = "sortind";
+      ind.textContent = sortState.col === c.id ? (sortState.dir === 1 ? " ▲" : " ▼") : "";
+      th.appendChild(ind);
+      th.onclick = function () {
+        if (sortState.col === c.id) sortState.dir *= -1;
+        else { sortState.col = c.id; sortState.dir = c.id === "k" ? 1 : -1; }
+        renderGroupTable(items, keyFn, tableId, opts);
+      };
+      htr.appendChild(th);
+    });
+    thead.appendChild(htr);
+
+    var rows = Object.keys(g).map(function (k) {
+      var r = g[k];
+      r.conv = r.att ? r.ok / r.att : -1;
+      r.pptu = r.n ? r.pts / r.n : 0;
+      r.avgF = r.fn ? r.f / r.fn : 99;
+      r.ankiPct = r.n ? r.inAnki / r.n : 0;
+      return r;
+    });
+
+    if (sortState.col === "order" && opts.fixedOrder) {
+      rows.sort(function (a, b) {
+        var ia = opts.fixedOrder.indexOf(a.k), ib = opts.fixedOrder.indexOf(b.k);
+        return (ia < 0 ? 999 : ia) - (ib < 0 ? 999 : ib);
+      });
+    } else {
+      rows.sort(function (a, b) {
+        var cmp = 0, c = sortState.col;
+        if (c === "k") cmp = naturalCmp(a.k, b.k);
+        else if (c === "n") cmp = a.n - b.n;
+        else if (c === "pw") cmp = a.pw - b.pw;
+        else if (c === "gets") cmp = a.gets - b.gets;
+        else if (c === "neg") cmp = a.neg - b.neg;
+        else if (c === "conv") cmp = a.conv - b.conv;
+        else if (c === "pptu") cmp = a.pptu - b.pptu;
+        else if (c === "buzz") cmp = a.avgF - b.avgF;
+        else if (c === "ankiPct") cmp = a.ankiPct - b.ankiPct;
+        return (cmp || (b.n - a.n)) * sortState.dir;
+      });
+    }
+
     tb.textContent = "";
-    var keys = Object.keys(g).sort(function (a, b) { return g[b].n - g[a].n; });
-    if (!keys.length) {
+    if (!rows.length) {
       var tr0 = document.createElement("tr"), td0 = document.createElement("td");
-      td0.colSpan = showPowerCol ? 6 : 5; td0.className = "empty"; td0.textContent = "Data appears after your first tossup.";
+      td0.colSpan = cols.length; td0.className = "empty"; td0.textContent = "Data appears after your first tossup.";
       tr0.appendChild(td0); tb.appendChild(tr0); return;
     }
-    keys.forEach(function (k) {
-      var r = g[k], tr = document.createElement("tr");
-      var cols = showPowerCol
-        ? [k, r.n, Math.round(100 * r.ok / r.n) + "%", r.pw, r.neg, r.ok ? Math.round(100 * r.f / r.ok) + "%" : "–"]
-        : [k, r.n, Math.round(100 * r.ok / r.n) + "%", r.neg, r.ok ? Math.round(100 * r.f / r.ok) + "%" : "–"];
-      cols.forEach(function (v, i) {
-        var td = document.createElement("td"); td.textContent = v; if (i) td.className = "num"; tr.appendChild(td);
+    rows.forEach(function (r) {
+      var tr = document.createElement("tr");
+      var vals = [
+        r.k,
+        String(r.n),
+        String(r.pw),
+        String(r.gets),
+        String(r.neg),
+        r.att ? Math.round(100 * r.ok / r.att) + "%" : "–",
+        r.pptu.toFixed(1),
+        r.fn ? Math.round(100 * r.f / r.fn) + "%" : "–"
+      ];
+      if (showAnkiCol) vals.push(Math.round(100 * r.ankiPct) + "%");
+      vals.forEach(function (v, i) {
+        var td = document.createElement("td");
+        td.textContent = v;
+        if (i) td.className = "num";
+        if (i === 7 && r.wn) td.title = "Avg word " + Math.round(r.w / r.wn);
+        tr.appendChild(td);
       });
       tb.appendChild(tr);
     });
   }
 
   function renderProgress() {
-    $("prog-set").textContent = S.setMeta ? S.setMeta.name : (S.setId || "Current set");
+    $("prog-set").textContent = (S.setMeta && S.setMeta.name) || (S.mode === "deck" ? "Studied collection" : "Uploaded pack");
     var all = allSetRecords();
     var ss = S.sessions.filter(function (s) { return (s.items || []).length; });
     var bySid = {};
@@ -1251,44 +1765,72 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       .filter(function (s) { return (s.items || []).length; })
       .sort(function (a, b) { return (a.startedAt || 0) - (b.startedAt || 0); });
 
+    var n = all.length;
     var ok = all.filter(function (x) { return x.result === "correct"; });
-    var neg = all.filter(function (x) { return x.pts < 0; });
-    var avg = ok.length ? ok.reduce(function (a, x) { return a + (x.frac || 0); }, 0) / ok.length : null;
+    var pw = all.filter(function (x) { return x.power; }).length;
+    var gets = ok.length - pw;
+    var neg = all.filter(function (x) { return (x.pts || 0) < 0; });
+    var att = all.filter(function (x) { return x.buzz !== null && x.buzz !== undefined; });
+    var totalPts = all.reduce(function (a, x) { return a + (x.pts || 0); }, 0);
+    var pptu = n ? (totalPts / n).toFixed(2) : "–";
+    var pp20 = n ? Math.round(totalPts * 20 / n) : "–";
+    var okF = ok.filter(function (x) { return fracOf(x) !== null; });
+    var avgOk = okF.length ? okF.reduce(function (a, x) { return a + fracOf(x); }, 0) / okF.length : null;
+    var negF = neg.filter(function (x) { return fracOf(x) !== null; });
+    var avgNeg = negF.length ? negF.reduce(function (a, x) { return a + fracOf(x); }, 0) / negF.length : null;
+
     tiles($("ptiles"), [
-      [S.items.length ? (all.length + " / " + S.items.length) : all.length, "tossups heard"],
-      [all.length ? Math.round(100 * ok.length / all.length) + "%" : "–", "correct"],
-      [neg.length, "negs"],
-      [avg === null ? "–" : Math.round(avg * 100) + "%", "heard before a correct buzz"]
+      [S.mode === "pack" && S.items.length ? (n + " / " + S.items.length) : String(n), "tossups heard"],
+      [n ? String(pp20) : "–", n ? ("PP20 (" + pptu + " PPTU)") : "PP20"],
+      [pw + " / " + gets + " / " + neg.length, "15 / 10 / −5"],
+      [att.length ? Math.round(100 * ok.length / att.length) + "%" : "–", att.length ? ("buzz conversion (" + ok.length + "/" + att.length + ")") : "buzz conversion"],
+      [avgOk === null ? "–" : Math.round(avgOk * 100) + "%", ok.length ? ("avg correct buzz (" + Math.round(100 * pw / ok.length) + "% pw)") : "avg correct buzz"],
+      [n ? Math.round(100 * neg.length / n) + "%" : "–", avgNeg === null ? "neg rate" : ("neg rate · avg neg @" + Math.round(avgNeg * 100) + "%")]
     ]);
 
-    var showAnki = S.hasAnki || all.some(function (x) { return x.anki !== undefined; });
+    var showAnki = S.mode === "pack" && (S.hasAnki || all.some(function (x) { return x.anki !== undefined; }));
     var showSub = all.some(function (x) { return !!x.sub; });
     var showPkt = S.hasPackets || all.some(function (x) { return !!(x.pl || x.p); });
+    $("audit-panel").hidden = !showAnki;
     $("anki-panel").hidden = !showAnki;
     $("sub-panel").hidden = !showSub;
     $("pkt-panel").hidden = !showPkt;
 
     if (showAnki) {
-      groupTable(all, function (x) {
+      var cardsHeard = all.filter(function (x) { return x.anki === "card"; });
+      var cardsOk = cardsHeard.filter(function (x) { return x.result === "correct"; }).length;
+      var cardLeaks = all.filter(function (x) { return (x.anki === "card" || x.anki === "suspended") && x.result !== "correct"; }).length;
+      var missingGaps = all.filter(function (x) { return (!x.anki || x.anki === "none") && x.result !== "correct"; }).length;
+      tiles($("audit-tiles"), [
+        [cardsHeard.length ? Math.round(100 * cardsOk / cardsHeard.length) + "%" : "–", "active Anki recall (" + cardsOk + "/" + cardsHeard.length + ")"],
+        [ok.length ? Math.round(100 * cardsOk / ok.length) + "%" : "–", "of gets already in deck"],
+        [String(cardLeaks), "missed in deck / suspended (review leak)"],
+        [String(missingGaps), "missed not in Anki (add gap)"]
+      ]);
+      renderGroupTable(all, function (x) {
         if (x.anki === "card") return "Active Anki card";
         if (x.anki === "suspended") return "Suspended card";
         if (x.anki === "text" || x.anki === "on-note") return "Note text only";
         return "Not in Anki";
-      }, $("at"), false);
+      }, "tbl-at", { col0: "Status" });
     }
-    groupTable(all, function (x) { return x.g || "General"; }, $("gt"), true);
-    if (showSub) groupTable(all, function (x) { return x.sub || x.g || "General"; }, $("st"), true);
-    if (showPkt) groupTable(all, function (x) { return x.pl || x.p || "Unknown"; }, $("pt"), true);
-    groupTable(all, function (x) {
-      if (x.frac === null || x.frac === undefined) return "End / No buzz";
-      if (x.frac < 0.35) return "Early (<35%)";
-      if (x.frac <= 0.70) return "Middle (35–70%)";
-      return "Late (>70%)";
-    }, $("zt"), true);
+    renderGroupTable(all, function (x) { return x.g || "General"; }, "tbl-gt", { col0: "Category", showAnkiCol: showAnki });
+    if (showSub) renderGroupTable(all, function (x) { return x.sub || x.g || "General"; }, "tbl-st", { col0: "Subcategory", showAnkiCol: showAnki });
+    if (showPkt) renderGroupTable(all, function (x) { return x.pl || x.p || "Unknown"; }, "tbl-pt", { col0: "Packet", showAnkiCol: showAnki });
+    var zones = ["Lead (<25%)", "Early-Mid (25–50%)", "Mid-Late (50–75%)", "Late (>75%)", "End / No buzz"];
+    renderGroupTable(all, function (x) {
+      var fr = fracOf(x);
+      if (fr === null || x.buzz === null || x.buzz === undefined) return zones[4];
+      if (fr < 0.25) return zones[0];
+      if (fr < 0.50) return zones[1];
+      if (fr <= 0.75) return zones[2];
+      return zones[3];
+    }, "tbl-zt", { col0: "Zone", fixedOrder: zones });
 
     var pts = allSess.map(function (s) {
       var c = s.items.filter(function (x) { return x.result === "correct"; });
-      return { t: s.startedAt, n: s.items.length, buzz: c.length ? c.reduce(function (a, x) { return a + (x.frac || 0); }, 0) / c.length : null, acc: c.length / s.items.length };
+      var cf = c.filter(function (x) { return fracOf(x) !== null; });
+      return { t: s.startedAt, n: s.items.length, buzz: cf.length ? cf.reduce(function (a, x) { return a + fracOf(x); }, 0) / cf.length : null, acc: c.length / s.items.length };
     });
     line($("c-buzz"), pts.filter(function (p) { return p.buzz !== null; }).map(function (p) { return { t: p.t, y: p.buzz, n: p.n }; }), "heard");
     line($("c-acc"), pts.map(function (p) { return { t: p.t, y: p.acc, n: p.n }; }), "correct");
