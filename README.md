@@ -1,16 +1,12 @@
 # QBCards & StockFisher
 
-Tools and flashcard decks for quizbowl: a local clue-extraction engine over tournament history, a five-year Anki collection, and a word-by-word tossup reader.
-
 ## StockFisher
-
-When you make flashcards for a painting, a battle, or a physics effect, you want the clues that tournament writers actually use?not just whatever happens to sit in the first paragraph of Wikipedia.
 
 StockFisher downloads the [QBReader](https://www.qbreader.org/) question database into a local SQLite index (671,413 tossups and bonus parts across 716 sets as of November 2026) and extracts the recurring stock clues for any answerline. Clues are grouped by where they fall in the tossup (Power, Middle, Giveaways, Bonuses) and ordered by importance across three factors: how often the clue appears (weighted by how exclusive it is to that answer), how early in the question it shows up, and the difficulty levels at which it gets asked.
 
 ![StockFisher showing recurring clues for the photoelectric effect alongside a full source question](docs/images/stockfisher-app.png)
 
-Clicking any clue card opens the full tournament question beside your results with the matching sentence highlighted. If Anki is open with AnkiConnect, StockFisher also checks your collection in read-only mode and marks which clues are already covered by active cards, which sit on suspended cards, and which are missing. You can also test a draft clue for answer giveaways or export a shortlist to CSV.
+Clicking any clue card opens the full tournament question beside your results with the matching sentence highlighted. If Anki is open with AnkiConnect, StockFisher also checks your collection and marks which clues are already covered by active cards, which sit on suspended cards, and which are missing. You can also test a draft clue for answer giveaways or export a shortlist to CSV.
 
 ### Setup
 
@@ -63,4 +59,4 @@ Then open <http://localhost:8000/drill/buzz-drill.html>.
 
 Offline unit tests run with `python -m unittest discover -s tests -v`. A fuller regression suite (`python -m qbr.selftest`) also checks a synced database against the live QBReader API.
 
-Questions indexed by StockFisher and used in Buzz Drill come from [QBReader](https://www.qbreader.org/) and belong to their respective writers and tournament hosts; see [QBReader's notes on question sources](https://github.com/qbreader#questions). Code in this repository is under the [MIT License](LICENSE); artwork, maps, audio clips, and question text in the decks and examples remain under their respective rights.
+Questions indexed by StockFisher and used in Buzz Drill come from [QBReader](https://www.qbreader.org/) and are available on its public database; see [QBReader's notes on question sources](https://github.com/qbreader#questions). Code in this repository is under the [MIT License](LICENSE); artwork, maps, audio clips, and question text in the decks and examples remain under their respective rights.
