@@ -10,8 +10,6 @@ import traceback
 def main():
     import sys
     proj_dir = Path(__file__).resolve().parent
-    if not (proj_dir / "qbr").is_dir():
-        proj_dir = Path(r"C:\QB\qbcards")
     os.chdir(proj_dir)
     if str(proj_dir) not in sys.path:
         sys.path.insert(0, str(proj_dir))

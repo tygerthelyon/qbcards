@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
 """caption_clean.py [--dry|--apply] -- tidy every caption in the collection.
 
-Carter, on the Islamic architecture card: "faulty captions: either very long,
-contain met-data (like [25]), etc."
-
-Both faults come from the same place. The captions were taken from Wikipedia's
+The captions were taken from Wikipedia's
 media-list, which returns the article's own caption HTML -- so footnote markers
 came with it, and so did whole explanatory paragraphs written to sit beside a
 body of text rather than under a thumbnail. One Art caption is 1,131 characters;

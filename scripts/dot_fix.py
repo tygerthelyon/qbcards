@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 """dot_fix.py -- even spacing around the middle dot in proponent lists.
 
-Audit 2026-09-26: "Middle-dot spacing is broken in proponent lists, rendering
-'Donald Judd ·Carl Andre'." The proponents script joined names with "  ·  " in
+The proponents script joined names with "  ·  " in
 the deck's body font, which draws the dot off-centre; everywhere else the deck
 uses a .qb-dot span in Georgia with equal margins. The script now builds the
 same span.
 
-    py -3.9 dot_fix.py --dry | --apply
+    python dot_fix.py --dry | --apply
 """
 import json
 import sys

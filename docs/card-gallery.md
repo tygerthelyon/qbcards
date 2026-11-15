@@ -1,6 +1,6 @@
-# Anki card gallery
+# Card Gallery
 
-Examples from the collection, shown as front and back pairs. These are static previews; the audio button does not play. The biology example shows the back with its notes expanded.
+Front-and-back previews across the 11 note types in the collection. Audio controls in the music screenshot are static images, and the biology card is shown with its collapsible notes open.
 
 ## Art: image to title
 
@@ -74,4 +74,4 @@ Examples from the collection, shown as front and back pairs. These are static pr
 | --- | --- |
 | ![Physics: cloze front](images/cards-v2/physics-front.png) | ![Physics: cloze back](images/cards-v2/physics-back.png) |
 
-[Back to the project](../README.md)
+[Back to main README](../README.md)

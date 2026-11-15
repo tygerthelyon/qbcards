@@ -65,6 +65,7 @@ class AppHttpTests(unittest.TestCase):
                 self.assertEqual(response.status, 200)
         with self.assertRaises(HTTPError) as error:
             self.request("/../store.py", token=False)
+        error.exception.close()
         self.assertEqual(error.exception.code, 404)
 
     def test_api_rejects_missing_tokens_foreign_origins_and_hosts(self):
@@ -72,15 +73,18 @@ class AppHttpTests(unittest.TestCase):
                         {"headers": {"Host": "example.com"}}):
             with self.subTest(options=options), self.assertRaises(HTTPError) as error:
                 self.request("/api/status", **options)
+            error.exception.close()
             self.assertEqual(error.exception.code, 403)
 
     def test_json_errors_are_actionable(self):
         with self.assertRaises(HTTPError) as error:
             self.request("/api/profile", {"query": "Hirst", "difficulty": "banana"})
-        self.assertEqual(error.exception.code, 400)
-        self.assertIn("Difficulty: use", json.load(error.exception)["error"])
+        with error.exception:
+            self.assertEqual(error.exception.code, 400)
+            self.assertIn("Difficulty: use", json.load(error.exception)["error"])
         with self.assertRaises(HTTPError) as error:
             self.request("/api/profile", ["not an object"])
+        error.exception.close()
         self.assertEqual(error.exception.code, 400)
 
 

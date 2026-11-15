@@ -57,6 +57,4 @@ audio_inbox/
 /[A-Z]*.md
 !/README.md
 docs/designs*/
-/*_audit*
-prompts/
 audit/

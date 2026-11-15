@@ -25,6 +25,12 @@ from .ui import _validate_range, connect_database
 ASSETS = Path(__file__).with_name("web")
 
 
+def _code_mtime():
+    root = Path(__file__).resolve().parent
+    paths = list(root.glob("*.py")) + list(ASSETS.glob("*"))
+    return max((int(p.stat().st_mtime) for p in paths if p.is_file()), default=0)
+
+
 def _text(data, key, maximum=500, required=False):
     value = data.get(key, "")
     if not isinstance(value, str) or len(value) > maximum:
@@ -93,6 +99,7 @@ class AppServer(HTTPServer):
         self.app = application or Application()
         self.token = secrets.token_urlsafe(32)
         self.origin = "http://127.0.0.1:%s" % self.server_port
+        self.mtime = _code_mtime()
 
     def serve_forever(self, poll_interval=0.25):
         try:
@@ -146,7 +153,8 @@ class Handler(BaseHTTPRequestHandler):
         if not self._allowed(api=url.path.startswith("/api/")):
             return
         if url.path == "/health":
-            return self._json(200, {"app": "StockFisher", "version": 1, "root": str(Path(__file__).resolve().parent)})
+            return self._json(200, {"app": "StockFisher", "version": 1,
+                                    "root": str(Path(__file__).resolve().parent), "mtime": self.server.mtime})
         if url.path == "/":
             page = (ASSETS / "index.html").read_text(encoding="utf-8").replace("__SESSION_TOKEN__", self.server.token)
             return self._send(200, page, "text/html; charset=utf-8")
@@ -228,7 +236,9 @@ def main(argv=None):
             try:
                 with urlopen(url + "/health", timeout=2) as response:
                     health = json.load(response)
-                if health.get("app") == "StockFisher" and health.get("root") == str(Path(__file__).resolve().parent):
+                if (health.get("app") == "StockFisher"
+                        and health.get("root") == str(Path(__file__).resolve().parent)
+                        and health.get("mtime") == _code_mtime()):
                     if not args.no_browser:
                         open_window(url)
                     return 0

@@ -219,30 +219,29 @@ function clueRow(clue, index) {
       setName = clue.source;
     }
   }
+  const normAns = s => (s || '').replace(/^(the|a|an)\s+/i, '').trim().toLowerCase();
+  const profileAns = normAns(state.result?.name || state.context?.query || '');
+  const showAns = ansName && normAns(ansName) !== profileAns;
   if (setName) {
     sourceContainer.append(node('span', 'row-source-set', setName));
   }
-  if (ansName) {
+  if (showAns) {
     if (setName) sourceContainer.append(node('span', 'row-source-sep', ' · '));
     sourceContainer.append(node('span', 'row-source-ans', ansName));
   }
-  if (!setName && !ansName) {
-    sourceContainer.textContent = 'No example source available';
+  if (!setName && !showAns) {
+    sourceContainer.textContent = ansName || 'No example source available';
   }
   bottom.append(sourceContainer);
 
   if (state.context?.anki || clue.anki !== undefined) {
-    let ankiClass = 'missing';
-    let ankiText = '○ Missing';
     if (clue.anki === 'card' || clue.anki === 'text' || clue.anki === 'on-note') {
-      ankiClass = 'in-deck';
-      ankiText = '● In deck';
+      bottom.append(node('span', 'anki-status in-deck', '● In deck'));
     } else if (clue.anki === 'suspended') {
-      ankiClass = 'suspended';
-      ankiText = '● In deck (suspended)';
+      bottom.append(node('span', 'anki-status suspended', '● In deck (suspended)'));
+    } else {
+      bottom.append(node('span', 'anki-status missing', '○ Missing'));
     }
-    const ankiTag = node('span', 'anki-status ' + ankiClass, ankiText);
-    bottom.append(ankiTag);
   }
   body.append(bottom);
   row.append(checkbox, body);
@@ -301,7 +300,6 @@ function renderResults() {
       $('result-summary').textContent = 'No matching answer in the selected scope';
     } else {
       const stats = [
-        [count(result.questions), 'questions'],
         [count(result.tossups), 'tossups'],
         [count(result.bonuses), 'bonuses'],
         [count(result.sets), 'sets']
@@ -339,7 +337,7 @@ function renderResults() {
         if (!group.items.length) return;
         const section = node('div', 'clue-group');
         const header = node('div', 'group-header');
-        header.append(node('span', 'group-title', group.name));
+        header.append(node('span', 'group-title', group.name), node('span', 'group-count', count(group.items.length)));
         section.append(header);
         group.items.forEach(({ clue, index }) => section.append(clueRow(clue, index)));
         $('result-list').append(section);
@@ -476,6 +474,7 @@ async function openSource(uid, title, excerpt, button, row) {
   const reader = $('source-reader');
   if (!reader.open) {
     if (matchMedia('(max-width:1000px)').matches) reader.showModal(); else reader.show();
+    if (!button) $('source-content').focus({ preventScroll: true });
   }
   try {
     const source = await api('question?uid=' + encodeURIComponent(uid));
@@ -483,12 +482,23 @@ async function openSource(uid, title, excerpt, button, row) {
     const question = source.question;
     clear($('source-content'));
     const dot = dotDifficulty(question.difficulty);
-    const heading = node('h2', '', question.set_name + (dot ? (' [' + dot + ']') : ''));
+    const heading = node('h2', '', question.set_name);
     heading.id = 'source-title';
+    const metaParts = [
+      question.packet ? ('Packet ' + question.packet) : '',
+      (question.kind === 'B' ? 'Bonus' : 'Tossup') + (question.number ? (' ' + question.number) : ''),
+      question.subcategory || question.category || '',
+      dot ? ('Difficulty ' + question.difficulty + ' (' + dot + ')') : (question.difficulty ? ('Difficulty ' + question.difficulty) : '')
+    ].filter(Boolean);
     $('source-content').append(heading);
+    if (metaParts.length) $('source-content').append(node('p', 'source-meta', metaParts.join(' · ')));
+    let leadShown = false;
     for (const unit of source.units) {
-      if (unit.lead) $('source-content').append(highlightSentenceInPassage(unit.lead, title, excerpt));
-      if (unit.part) $('source-content').append(node('p', 'bonus-label', 'PART ' + unit.part));
+      if (unit.lead && !leadShown) {
+        $('source-content').append(highlightSentenceInPassage(unit.lead, title, excerpt));
+        leadShown = true;
+      }
+      if (unit.part) $('source-content').append(node('p', 'bonus-label', 'PART ' + unit.part + ' · 10 PTS'));
       const text = unit.text || '';
       $('source-content').append(highlightSentenceInPassage(text, title, excerpt));
 

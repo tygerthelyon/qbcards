@@ -123,7 +123,7 @@
                 <label class="option-field">
                   <span class="option-label">Rank clues by</span>
                   <select id="ranking">
-                    <option value="spec">Specificity (unique clues first)</option>
+                    <option value="spec">Importance (frequency, position &amp; difficulty)</option>
                     <option value="n">Frequency (most questions first)</option>
                     <option value="pyramid">Clue position (pyramidal order)</option>
                   </select>
@@ -190,6 +190,7 @@
       </label>
       <div class="dialog-actions">
         <button class="primary">Connect index</button>
+        <button type="button" id="quit-button" class="secondary">Quit StockFisher</button>
       </div>
     </form>
     <p id="database-error" class="error-text" role="alert"></p>

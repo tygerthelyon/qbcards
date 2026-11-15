@@ -69,7 +69,7 @@ h2 { font-size: 1rem; margin: 0; text-wrap: balance; }
 .seg button { border: 0; border-right: 1px solid var(--rule); background: var(--paper); color: var(--ink-2); font: 600 0.9rem var(--mono); padding: 6px 14px; cursor: pointer; }
 .seg button:last-child { border-right: 0; }
 .seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
-input[type=range] { accent-color: var(--accent); width: min(260px, 100%); }
+input[type=range] { accent-color: var(--accent); width: 110px; }
 .btn { border: 0; border-radius: 8px; padding: 10px 18px; font: 700 1rem var(--sans); cursor: pointer; background: var(--accent); color: var(--accent-ink); }
 .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--rule); }
 .btn.good { background: var(--good); color: var(--card); }
@@ -133,9 +133,10 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
   <section id="view-drill" class="wrap" style="gap:20px">
     <div id="setup" class="panel">
       <p class="note">Practice tossups selected from the study collection. Buzz when you know the answer, then score yourself and track your progress.</p>
-      <div class="row" style="gap:6px"><span class="label">Categories</span></div>
-      <div id="groups" class="row"></div>
       <div class="row" style="gap:24px">
+        <div class="row"><span class="label">Categories</span>
+          <button id="cat-toggle" type="button" class="chip" aria-expanded="false" aria-controls="groups"><span id="cat-summary">All</span><span id="cat-caret" class="n" aria-hidden="true">▾</span></button>
+        </div>
         <div class="row"><span class="label">Tossups</span>
           <div class="seg" id="len">
             <button data-n="5" aria-pressed="false">5</button><button data-n="10" aria-pressed="true">10</button><button data-n="20" aria-pressed="false">20</button>
@@ -146,6 +147,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
           <span id="speedv" class="meta"></span>
         </div>
       </div>
+      <div id="groups" class="row" hidden></div>
       <div class="row"><button id="start" class="btn">Start session</button><span id="poolinfo" class="meta"></span></div>
       <p id="savenote" class="note" hidden>History isn't being saved in this view, so this session won't count toward Progress.</p>
     </div>
@@ -263,6 +265,12 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       b.setAttribute("aria-pressed", +b.dataset.n === S.len ? "true" : "false");
       b.onclick = function () { S.len = +b.dataset.n; Array.prototype.forEach.call($("len").children, function (c) { c.setAttribute("aria-pressed", c === b ? "true" : "false"); }); savePrefs(); };
     });
+    $("cat-toggle").onclick = function () {
+      var open = $("groups").hidden;
+      $("groups").hidden = !open;
+      $("cat-toggle").setAttribute("aria-expanded", open ? "true" : "false");
+      $("cat-caret").textContent = open ? "▴" : "▾";
+    };
     $("speed").value = S.wps; $("speedv").textContent = S.wps + " words/s";
     $("speed").oninput = function () { S.wps = +this.value; $("speedv").textContent = S.wps + " words/s"; savePrefs(); };
     renderSetupInfo();
@@ -270,6 +278,8 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
   function savePrefs() { store("bd-prefs", { wps: S.wps, len: S.len, chosen: S.chosen }); }
   function renderSetupInfo() {
     if (!S.items.length) return;
+    var sel = S.groups.filter(function (x) { return S.chosen[x.g]; });
+    $("cat-summary").textContent = sel.length === S.groups.length ? "All (" + S.groups.length + ")" : sel.length === 0 ? "None" : sel.length === 1 ? sel[0].g : sel.length + " of " + S.groups.length;
     var pool = S.items.filter(function (t) { return S.chosen[t.g]; });
     var keys = {}; pool.forEach(function (t) { keys[t.g + "|" + t.k] = 1; });
     var h = heardRecently(), fresh = pool.filter(function (t) { return !h.ids[t.id]; }).length;

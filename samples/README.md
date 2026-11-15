@@ -1,16 +1,14 @@
-# Study-note samples
+# Sample Notes
 
-These files show a small cross-section of the larger Anki collection:
+A small JSON slice of the collection showing how note fields are structured across different subjects. For rendered card screenshots, see the [card gallery](../docs/card-gallery.md); for importable `.apkg` decks, see [`docs/decks.md`](../docs/decks.md).
 
-For rendered card examples, see the [gallery](../README.md#anki-cards).
-
-| File | Records | Contents |
+| File | Notes | Contents |
 | --- | ---: | --- |
-| [sample_fine_arts.json](sample_fine_arts.json) | 27 | Works, artists, dates, locations, and selected clues |
-| [sample_philosophy.json](sample_philosophy.json) | 30 | Short cloze notes on early Greek philosophy |
-| [sample_history.json](sample_history.json) | 30 | History and literature prompts with answer and context fields |
+| [`sample_fine_arts.json`](sample_fine_arts.json) | 27 | Works, artists, dates, locations, and stock clues |
+| [`sample_philosophy.json`](sample_philosophy.json) | 30 | Short cloze notes on Presocratic philosophy |
+| [`sample_history.json`](sample_history.json) | 30 | History and literature prompts with context fields |
 
-For example, a philosophy record contains an answerline and cloze-formatted text:
+Example record from `sample_philosophy.json`:
 
 ```json
 {
@@ -23,4 +21,4 @@ For example, a philosophy record contains an answerline and cloze-formatted text
 }
 ```
 
-These are illustrative JSON records, not Anki deck packages. Importing them requires a matching note type and a conversion or import script that maps each record's fields. The [model definitions](../templates/models.json) are provided as a reference; they are not directly importable as an `.apkg`. Images, audio, and the full collection are not included.
+The matching note-type schemas and card stylesheets live in [`templates/models.json`](../templates/models.json).

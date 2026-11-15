@@ -1,21 +1,17 @@
-# Anki decks
+# Anki Decks
 
-The [deck release](https://github.com/tygerthelyon/qbcards/releases/tag/decks-2026-11-12) contains the November 2026 collection as Anki packages. Download the subjects you want and open each `.apkg` file in Anki to import it. The packages include referenced media and card templates, but not review history or scheduling.
+The [November 2026 release](https://github.com/tygerthelyon/qbcards/releases/tag/decks-2026-11-12) packages the collection into `.apkg` files by subject. Download the subjects you want and open them in Anki to import. Media and card templates are included; scheduling and review history are stripped so cards import as new.
 
-| Download | Subject |
+| Package | Subject |
 | --- | --- |
-| `AFA.apkg` | Classical music |
-| `geography.apkg` | Geography |
+| `AFA.apkg` | Classical music (with audio clips) |
+| `geography.apkg` | World and regional geography |
 | `OVFA-1.apkg`, `OVFA-2.apkg`, `OVFA-3.apkg` | Architecture, dance, design, film, and photography |
-| `VFA-1.apkg`, `VFA-2.apkg`, `VFA-3.apkg` | Visual fine arts |
+| `VFA-1.apkg`, `VFA-2.apkg`, `VFA-3.apkg` | Painting and sculpture (Visual Fine Arts) |
 
-The OVFA and VFA collections are divided by note across three packages each to keep downloads manageable. Import all three parts to get the full subject. The packages include cards that were suspended in the original collection; review the imported cards and suspend any you do not want to study.
+`OVFA` and `VFA` are split into three parts each to keep individual file sizes reasonable under GitHub's release limits; import all three parts for the complete deck. Cards that were suspended in my own collection remain suspended on import so you can unsuspend topics as you study them.
 
-These are personal study materials and may contain mistakes. Check important facts against reliable sources. Images, audio, and other third-party material may have their own rights and licenses; the repository's software license does not cover them.
-
-Current decks in progress:
-| Subject |
-| --- |
-| Poetry |
-| History (China, Japan, Korea; South America; America) |
-| OAFA (opera, musicals, world & folk music, jazz) |
+Decks currently being built out or reorganized:
+- Poetry
+- History (East Asia, South America, and US)
+- Other Auditory Fine Arts (opera, musicals, jazz, and world/folk music)

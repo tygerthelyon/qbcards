@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 """figs_justify.py -- pictures in a row share one height (Architecture and Art).
 
-Carter (2026-09-25): the Ospedale degli Innocenti back "moves the two images onto
-separate rows", and the Heydar Aliyev Center "has two images of different
-sizes". A fixed height wraps wide pictures onto separate rows; equal-width cells
+A fixed height wraps wide pictures onto separate rows; equal-width cells
 give pictures of different shapes different heights. Neither can be fixed in CSS,
 which does not know each picture's proportions.
 
@@ -14,7 +12,7 @@ the row height, and the row height is whatever makes the row fill the card, capp
 at 300px (a lone picture is left to the stylesheet). Pictures are never cropped
 or stretched. It runs again when images load and when the window resizes.
 
-    py -3.9 figs_justify.py --dry | --apply
+    python figs_justify.py --dry | --apply
 """
 import json
 import sys

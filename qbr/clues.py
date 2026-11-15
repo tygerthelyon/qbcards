@@ -218,7 +218,11 @@ def profile(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=Fa
             continue
         gw = g.split()
         if (_BOILER & set(gw)) or (called & set(gw)) or _own(g, name_sets) or \
-           gw[0] in _GRAM_EDGE or gw[-1] in _GRAM_EDGE or gw[0] in _DEMONYM or gw[-1] in _DEMONYM:
+           (gw[0] in _GRAM_EDGE and g != "work function") or gw[-1] in _GRAM_EDGE or \
+           gw[0] in _DEMONYM or gw[-1] in _DEMONYM or \
+           any(w in ("won", "wrote", "written", "painted", "composed", "discovered", "invented", "observed",
+                     "demonstrated", "proposed", "developed", "formulated", "introduced", "studied", "argued",
+                     "claimed", "published", "performed", "conducted", "received", "awarded") for w in gw):
             continue
         qs = set(gq.get(g, ()))
         q_hits = gq_quoted.get(g, ())
@@ -241,6 +245,10 @@ def profile(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=Fa
         t["all"] = len(S)
         t["tied"] = sum(1 for u in S if u in a_uids or u in m_uids) / max(1, len(S))
         t["lift"] = (len(mine) / max(1, len(a_uids))) / (len(S) / total_units)
+        d = [r["difficulty"] for r in mine if r["difficulty"]]
+        t["dmin"] = min(d) if d else None
+        t["dmax"] = max(d) if d else None
+        t["davg"] = round(sum(d) / len(d), 2) if d else None
         return t
 
     raw_cur = con.cursor()
@@ -300,10 +308,26 @@ def profile(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=Fa
         return t["n"] >= floor and (t["lift"] >= 6 or t["tied"] >= 0.3) and \
             (t["tied"] >= 0.04 or t["n"] >= 0.4 * len(a_qids))
 
+    def _stem(w):
+        if w.startswith(("eject", "emitt", "emiss")):
+            return "eject"
+        return w[:5] if len(w) >= 6 else w
+
     def kin(a, b):
-        """do two keys share a word, or a word's first seven letters (suprematist / suprematism)?"""
+        """do two keys share a word, or a word's stem (suprematist / suprematism, ejected / ejection)?"""
         x, y = set(a.split()) - _STOP, set(b.split()) - _STOP
-        return bool(x & y) or any(len(w) >= 7 and len(v) >= 7 and w[:7] == v[:7] for w in x for v in y)
+        return bool(x & y) or any(_stem(w) == _stem(v) for w in x for v in y if len(w) >= 5 and len(v) >= 5)
+
+    def _redundant_phrase(t, o):
+        if not kin(t["key"], o["key"]):
+            return False
+        if len(t["q"] & o["q"]) >= 0.65 * t["n"]:
+            return True
+        tx = {_stem(w) for w in t["key"].split() if w not in _STOP}
+        ox = {_stem(w) for w in o["key"].split() if w not in _STOP}
+        if ox and (ox <= tx or tx <= ox):
+            return True
+        return False
 
     main = {k: t for k, t in kept.items() if strong(t)}
     # Combine overlapping candidates when they occur in mostly the same questions.
@@ -356,29 +380,7 @@ def profile(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=Fa
                 _recalc(b)
                 del main[k]
                 break
-    for t in main.values():
-        t["score"] = round((t["n"] + 0.35 * t["m"]) * math.log1p(max(1.0, t["lift"])) * (0.1 + 0.9 * (t["tied"] ** 0.7)), 2)
-    ranked = []
-    for t in sorted(main.values(), key=(lambda t: (-t["score"], -t["n"], t["key"])) if sort == "spec"
-                    else (lambda t: (-t["n"], t["kind"] == "phrase", -t["tied"], t["key"]))):
-        # wording that only ever appears alongside a thing already listed is that thing again ("opera victory")
-        if t["kind"] == "phrase" and any(kin(t["key"], o["key"]) and len(t["q"] & o["q"]) >= 0.8 * t["n"]
-                                         for o in ranked):
-            continue
-        ranked.append(t)
-    ranked = ranked[:top]
-    other = []
-    for t in sorted((t for k, t in kept.items() if k not in main and t["kind"] != "phrase" and t["n"] < floor
-                     and t["m"] >= (1 if thin else 2) and t["tied"] >= 0.25
-                     and not any(_in(k, " %s " % o) or _in(o, " %s " % k) for o in main)),
-                    key=lambda t: (-t["m"], -len(t["key"]), -t["tied"])):
-        if not any(_in(t["key"], " %s " % o["key"]) or _in(o["key"], " %s " % t["key"]) for o in other):
-            other.append(t)
-    other = other[:top if not A else max(8, top // 3)]
-    used = set()
-
-    def place(t, sents):
-        """where in a tossup it tends to fall, and one sentence that shows it"""
+    def locate(t, sents):
         got = [(s, r) for f, s, r in sents if _in(t["key"], f)]
         by_tu = {}
         for s, r in got:
@@ -392,16 +394,67 @@ def profile(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=Fa
         else:
             t["pos"], t["power"] = 1.0, 0.0
             t["where"] = "bonus" if got else ""
-        # a sentence not already shown for another clue, not the giveaway, from a tossup, of middling length
-        pick = sorted(got, key=lambda sr: (sr[0]["s"] in used, sr[0]["give"], sr[1]["kind"] != "T",
-                                           abs(len(sr[0]["s"]) - 150)))
+        return got
+
+    sents_by_key = {}
+    for t in main.values():
+        got = locate(t, a_sents)
+        if not got:
+            got = locate(t, m_sents)
+        sents_by_key[t["key"]] = got
+        base = (t["n"] + 0.35 * t["m"]) * math.log1p(max(1.0, t["lift"])) * (0.1 + 0.9 * (t["tied"] ** 0.7))
+        pos_w = 1.0 + 0.15 * (1.0 - t["pos"]) + 0.1 * t["power"]
+        diff_w = 1.0 + 0.15 * max(0.0, (9.0 - (t["davg"] or 7.5)) / 6.0)
+        t["score"] = round(base * pos_w * diff_w, 2)
+
+    ranked = []
+    for t in sorted(main.values(), key=(lambda t: (-t["score"], -t["n"], t["pos"], t["davg"] or 10, t["key"])) if sort == "spec"
+                    else (lambda t: (-t["n"], t["kind"] == "phrase", -t["tied"], t["pos"], t["davg"] or 10, t["key"]))):
+        # wording that only ever appears alongside a thing already listed is that thing again ("opera victory")
+        if t["kind"] == "phrase" and any(_redundant_phrase(t, o) for o in ranked):
+            continue
+        ranked.append(t)
+    ranked = ranked[:top]
+    other = []
+    for t in sorted((t for k, t in kept.items() if k not in main and t["kind"] != "phrase" and t["n"] < floor
+                     and t["m"] >= (1 if thin else 2) and t["tied"] >= 0.25
+                     and not any(_in(k, " %s " % o) or _in(o, " %s " % k) for o in main)),
+                    key=lambda t: (-t["m"], -len(t["key"]), -t["tied"])):
+        if not any(_in(t["key"], " %s " % o["key"]) or _in(o["key"], " %s " % t["key"]) for o in other):
+            other.append(t)
+    other = other[:top if not A else max(8, top // 3)]
+    used, used_sets = set(), set()
+
+    def place(t, sents, got=None):
+        """where in a tossup it tends to fall, and one sentence that shows it"""
+        if got is None:
+            got = locate(t, sents)
+        # Prefer a distinct tossup sentence matching the clue's position from a recent, college-level set
+        want_give = t.get("where") == "giveaway"
+        want_pwr = t.get("where") in ("lead-in", "early")
+        target_d = max(6, round(t.get("davg") or 7))
+        pick = sorted(got, key=lambda sr: (
+            sr[0]["s"] in used,
+            (not sr[0]["give"]) if want_give else sr[0]["give"],
+            sr[1]["kind"] != "T" if not want_give else False,
+            (sr[1].get("difficulty") or 0) < 6,
+            (sr[0]["pos"] > 0.65) if want_pwr else False,
+            not (75 <= len(sr[0]["s"]) <= 260),
+            (sr[1].get("year") or 0) < 2016,
+            sr[1]["set_name"] in used_sets,
+            abs((sr[1].get("difficulty") or 7) - target_d) > 2,
+            -((sr[1].get("year") or 0) // 3),
+            abs(len(sr[0]["s"]) - 150),
+        ))
         diff_str = dot_difficulty(pick[0][1].get("difficulty")) if pick else ""
         diff_bracket = (" [%s]" % diff_str) if diff_str else ""
         t["example"], t["source"] = (pick[0][0]["s"], "%s%s, %s" % (pick[0][1]["set_name"], diff_bracket, pick[0][1]["main"])) if pick \
             else ("", "")
         used.add(t["example"])
+        if pick:
+            used_sets.add(pick[0][1]["set_name"])
         t["answer"] = pick[0][1]["main"] if pick else ""
-        t["set_name"] = ("%s%s" % (pick[0][1]["set_name"], diff_bracket)) if pick else ""
+        t["set_name"] = pick[0][1]["set_name"] if pick else ""
         t["example_uid"] = pick[0][1]["uid"] if pick else None
         t["difficulty"] = pick[0][1].get("difficulty") if pick else None
         if t["kind"] == "phrase" and pick:                    # show the wording as printed; capitalised, it is a name
@@ -413,11 +466,9 @@ def profile(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=Fa
                     t["kind"] = "name"
 
     for t in ranked:
-        place(t, a_sents)
-        if not t["example"]:
-            place(t, m_sents)
+        place(t, a_sents, sents_by_key.get(t["key"]))
     if sort == "pyramid":
-        ranked.sort(key=lambda t: (t["where"] == "bonus", t["pos"], -t["n"]))
+        ranked.sort(key=lambda t: (t["where"] == "bonus", t["pos"], -t["n"], t["davg"] or 10))
     for t in other:
         place(t, m_sents)
 
@@ -481,7 +532,7 @@ def profile(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=Fa
 
 
 def verify_clue(name, clue_text, cat=None, diff=None, year=None, sets=None):
-    """Agent clue validator: check a proposed flashcard clue against an answer's qbreader profile and the mirror.
+    """Check a proposed flashcard clue against an answer's qbreader profile and the mirror.
     Returns {"ok": bool, "leaks": [words], "length": int, "terms": [{term, n, all, tied}], "similar": [(sc, set, year, ans, s)]}.
     `ok` requires: no answer-word leak, length <= 190, and evidence tying the clue to `name` (either an extracted term
     with n >= 1 and tied >= 0.05, or a similar sentence in the mirror on `name`).
