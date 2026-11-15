@@ -8,7 +8,7 @@ Tools for researching clues, studying cards, and practicing tossups.
 
 ## StockFisher
 
-StockFisher finds recurring clues in QBReader questions and pairs them with source questions side-by-side. It runs locally as a native desktop app using Python's standard library.
+StockFisher finds recurring clues in QBReader questions and pairs them with source questions. It runs locally as a native desktop app using Python's standard library.
 
 1. [Set it up](#setup), then run `python -m qbr.app`. On Windows, double-click **Open StockFisher.cmd**.
 2. Enter an answer, optionally choose filters, and select **Find clues**.
@@ -16,15 +16,13 @@ StockFisher finds recurring clues in QBReader questions and pairs them with sour
 
 ![StockFisher showing recurring clues for the photoelectric effect alongside a full source question](docs/images/stockfisher-app.png)
 
-**Question text** searches passages across answers, with pagination through all matching results. **Check a draft** checks wording for answer leakage and corpus support. Optional Anki comparisons distinguish active matches, suspended notes, and text mentions. These labels do not establish that a clue is tested on the front of an active card.
+**Question text** searches passages across answers, with pagination through all matching results. **Check a draft** checks if a queried clue/question is present in the database. There is also a feature to compare clues with Anki deck coverage.
 
 See the [user guide](docs/stockfisher.md) for filters, ranking, exports, and troubleshooting. The [Python API and command line](qbr/README.md) provide the same search and extraction engine for scripts and terminal workflows.
 
 ### How it works
 
-StockFisher uses questions from [QBReader](https://www.qbreader.org/). The sync command downloads them through QBReader's API and builds a local SQLite index. Searches and clue rankings run against that index, which lets the program compare many questions without fetching them again for every search. A sync downloads new sets and checks recent sets for changes; older edits require a full sync. Results reflect the last sync, rather than the live site. In November 2026, the index held 671,413 answerable units from 716 sets.
-
-Clues are suggestions, not fact checks. Read the source questions before using them, and check whether a clue uniquely identifies its answer.
+StockFisher uses questions from [QBReader](https://www.qbreader.org/). The sync command downloads them through QBReader's API and builds a local SQLite index. Searches and clue rankings run against that index, which lets the program compare many questions without fetching them again for every search. A sync downloads new sets and checks recent sets for changes; older edits require a full sync. Results reflect the last sync, rather than the live site. As of November 2026, the index holds 671,413 answerable units from 716 sets.
 
 ### Setup
 
@@ -37,7 +35,7 @@ python -m qbr sync
 python -m qbr.app
 ```
 
-The app uses Python's standard library so no packages need installing. For later sessions, run `python -m qbr.app` or use the Windows shortcut. Chrome or Edge opens a dedicated app window on Windows; other setups open the default browser. Update the index when needed with `python -m qbr sync`; the interface shows the last successful sync time.
+The app uses Python's standard library so no packages need installing. For later sessions, run `python -m qbr.app` or use the Windows shortcut. Chrome or Edge opens a dedicated app window on Windows; other setups open the default browser. Update the index when needed with `python -m qbr sync`.
 
 If you already have an index elsewhere, select **Index** and enter its path, or set `QBR_DB` before starting. AnkiConnect is needed only for Anki comparisons; those comparisons do not change the collection. The [user guide](docs/stockfisher.md) covers startup, shutting down, and the optional notebook interface.
 
