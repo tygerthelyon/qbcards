@@ -463,6 +463,17 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       <h2>By Anki coverage</h2>
       <div class="tablewrap"><table id="tbl-at" class="bp-table"><thead></thead><tbody></tbody></table></div>
     </div>
+    <div id="clue-audit-panel" class="panel" hidden>
+      <h2>Clue-Level Comparison (Clues in Deck vs Not in Deck)</h2>
+      <p class="note" id="clue-audit-note">Matches the sentences you heard against your full Anki collection so you can compare conversion and celerity on clues present anywhere in your deck versus unfamiliar clues.</p>
+      <div class="tiles" id="clue-audit-tiles"></div>
+      <h3 style="font-size:14px;margin:14px 0 6px;color:var(--muted)">By whether any heard clue appears in your deck</h3>
+      <div class="tablewrap"><table id="tbl-hc" class="bp-table"><thead></thead><tbody></tbody></table></div>
+      <h3 style="font-size:14px;margin:14px 0 6px;color:var(--muted)">By the specific sentence you buzzed on</h3>
+      <div class="tablewrap"><table id="tbl-bc" class="bp-table"><thead></thead><tbody></tbody></table></div>
+      <h3 style="font-size:14px;margin:14px 0 6px;color:var(--muted)">Missed or late questions whose clues were in your deck</h3>
+      <ul class="misses" id="clue-gaps"></ul>
+    </div>
     <div class="panel">
       <h2>By category</h2>
       <div class="tablewrap"><table id="tbl-gt" class="bp-table"><thead></thead><tbody></tbody></table></div>
@@ -550,7 +561,8 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     bpSort: { col: "seq", dir: 1 },
     bpExpanded: {},
     tblSort: {},
-    clueCache: {}
+    clueCache: {},
+    clueAuditCache: null
   };
 
   function store(k, v) {
@@ -1533,22 +1545,34 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     box.textContent = "";
     if (!data || !data.sentences || !data.sentences.length) { box.hidden = true; return; }
     var onCount = data.sentences.filter(function (s) { return s.covered; }).length;
+    var deckCount = data.sentences.filter(function (s) { return !s.covered && s.deckHits && s.deckHits.length; }).length;
+    if (!data.matchedName && !deckCount) { box.hidden = true; return; }
     var det = document.createElement("details");
     var sum = document.createElement("summary");
-    sum.textContent = "Card clue match" + (data.noteType ? " · " + data.noteType : "") + (data.matchedName ? " (\"" + data.matchedName + "\")" : "") + " · " + onCount + "/" + data.sentences.length + " sentences on card";
+    if (data.matchedName) {
+      sum.textContent = "Card clue match" + (data.noteType ? " · " + data.noteType : "") + " (\"" + data.matchedName + "\") · " + onCount + "/" + data.sentences.length + " sentences on card" + (deckCount ? " · " + deckCount + " other in deck" : "");
+    } else {
+      sum.textContent = "Deck clue matches · " + deckCount + "/" + data.sentences.length + " sentences appear on other Anki notes";
+    }
     det.appendChild(sum);
 
     var list = document.createElement("div"); list.className = "cluebox-list";
     data.sentences.forEach(function (st) {
+      var hasDeck = !!(st.deckHits && st.deckHits.length);
       var row = document.createElement("div"); row.className = "cluerow";
-      var tag = document.createElement("span"); tag.className = "cluetag " + (st.covered ? "on" : "off");
-      tag.textContent = st.stage + " · " + (st.covered ? "on card" : "not on card");
+      var tag = document.createElement("span"); tag.className = "cluetag " + ((st.covered || hasDeck) ? "on" : "off");
+      tag.textContent = st.stage + " · " + (st.covered ? "on card" : (hasDeck ? "in deck" : (data.matchedName ? "not on card" : "not in deck")));
       var body = document.createElement("span");
       body.textContent = st.s;
       if (st.matches && st.matches.length) {
         var m = document.createElement("span"); m.className = "cluematch";
         m.textContent = "[" + st.matches.join(", ") + "]";
         body.appendChild(m);
+      }
+      if (hasDeck) {
+        var dm = document.createElement("span"); dm.className = "cluematch";
+        dm.textContent = "[deck: " + st.deckHits.map(function (d) { return d.clue + " -> " + (d.notes || []).join(", "); }).join(" ; ") + "]";
+        body.appendChild(dm);
       }
       row.appendChild(tag); row.appendChild(body); list.appendChild(row);
     });
@@ -1643,7 +1667,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
 
     $("clue-match").hidden = true;
     $("clue-match").textContent = "";
-    if (S.serverOk && (c.t.anki === "card" || c.t.anki === "suspended")) {
+    if (S.serverOk && (S.mode === "pack" || c.t.anki === "card" || c.t.anki === "suspended")) {
       var curId = c.t.id;
       fetchClueMatch(c.t).then(function (data) {
         if (S.cur && S.cur.t.id === curId && (S.cur.stage === "revealed" || S.cur.stage === "judged")) {
@@ -2379,7 +2403,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
         var bits = [r.pkt !== "–" ? r.pkt : "", r.n ? "TU " + r.n : "", r.buzz !== null && r.words ? "Buzzed at word " + r.buzz + " / " + r.words + " (" + Math.round((r.frac || 0) * 100) + "%)" : "No buzz", r.raw.wps ? r.raw.wps + " wps" : "", r.raw.ts ? new Date(r.raw.ts).toLocaleString() : ""].filter(Boolean);
         mDiv.textContent = bits.join(" · ");
         tdD.appendChild(mDiv);
-        if (S.serverOk && full && (r.anki === "card" || r.anki === "suspended")) {
+        if (S.serverOk && full && (S.mode === "pack" || r.anki === "card" || r.anki === "suspended")) {
           var clueBox = document.createElement("div"); clueBox.className = "cluebox"; clueBox.hidden = true;
           tdD.appendChild(clueBox);
           if (S.clueCache[full.id]) {
@@ -2518,6 +2542,125 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     });
   }
 
+  function drawSetClueAudit(all, recItems, auditItems, showAnki) {
+    var auditByIdx = {};
+    (auditItems || []).forEach(function (a, i) { auditByIdx[i] = a; });
+    var enriched = [];
+    recItems.forEach(function (pair, i) {
+      var a = auditByIdx[i];
+      if (!a) return;
+      var copy = {};
+      Object.keys(pair.ev).forEach(function (k) { copy[k] = pair.ev[k]; });
+      copy.heardKind = a.heardKind;
+      copy.buzzKind = a.buzzKind;
+      copy.clueInfo = a;
+      enriched.push(copy);
+    });
+    if (!enriched.length) {
+      $("clue-audit-panel").hidden = true;
+      return;
+    }
+
+    var inDeck = enriched.filter(function (x) { return x.heardKind !== "none"; });
+    var inDeckOk = inDeck.filter(function (x) { return x.result === "correct"; });
+    var offDeck = enriched.filter(function (x) { return x.heardKind === "none"; });
+    var offDeckOk = offDeck.filter(function (x) { return x.result === "correct"; });
+    var buzzed = enriched.filter(function (x) { return x.buzz !== null && x.buzz !== undefined; });
+    var buzzDeck = buzzed.filter(function (x) { return x.buzzKind !== "none"; });
+    var buzzDeckOk = buzzDeck.filter(function (x) { return x.result === "correct"; });
+    var slowOrMissDeck = inDeck.filter(function (x) {
+      var fr = fracOf(x);
+      return x.result !== "correct" || (fr !== null && fr > 0.70);
+    });
+
+    tiles($("clue-audit-tiles"), [
+      [inDeck.length ? Math.round(100 * inDeckOk.length / inDeck.length) + "%" : "–", "in-deck clues heard (" + inDeckOk.length + "/" + inDeck.length + ")"],
+      [offDeck.length ? Math.round(100 * offDeckOk.length / offDeck.length) + "%" : "–", "no deck clue heard (" + offDeckOk.length + "/" + offDeck.length + ")"],
+      [buzzDeck.length ? Math.round(100 * buzzDeckOk.length / buzzDeck.length) + "%" : "–", "buzzed on deck clue (" + buzzDeckOk.length + "/" + buzzDeck.length + ")"],
+      [String(slowOrMissDeck.length), "missed or late (>70%) despite deck clue"]
+    ]);
+
+    var hLabels = {
+      card: "Clue on matching Anki card",
+      deck: "Clue on another Anki note",
+      none: "No matching clue in deck"
+    };
+    var hOrder = [hLabels.card, hLabels.deck, hLabels.none];
+    renderGroupTable(enriched, function (x) { return hLabels[x.heardKind] || hLabels.none; }, "tbl-hc", { col0: "Heard clues", fixedOrder: hOrder, showAnkiCol: showAnki });
+
+    var bLabels = {
+      card: "Buzzed on matching-card clue",
+      deck: "Buzzed on other-note clue",
+      none: "Buzzed on clue not in deck"
+    };
+    var bOrder = [bLabels.card, bLabels.deck, bLabels.none];
+    renderGroupTable(buzzed, function (x) { return bLabels[x.buzzKind] || bLabels.none; }, "tbl-bc", { col0: "Buzz sentence", fixedOrder: bOrder, showAnkiCol: showAnki });
+
+    var ul = $("clue-gaps"); ul.textContent = "";
+    var shown = slowOrMissDeck.slice().reverse().slice(0, 25);
+    if (!shown.length) {
+      var li0 = document.createElement("li"); li0.className = "empty";
+      li0.textContent = "No missed or late questions with matching Anki clues yet.";
+      ul.appendChild(li0);
+    } else {
+      shown.forEach(function (x) {
+        var li = document.createElement("li"), a = document.createElement("span"), b = document.createElement("span");
+        a.textContent = x.main || x.k || x.a;
+        b.className = "meta";
+        var fr = fracOf(x);
+        var stateTxt = x.result === "correct" ? ("late @" + Math.round((fr || 0) * 100) + "%") : (x.result === "wrong" ? "buzzed wrong" : "no buzz");
+        var whereTxt = x.heardKind === "card" ? "on matching card" : "on other Anki note";
+        var cluesTxt = (x.clueInfo.clues || []).slice(0, 3).join("; ");
+        b.textContent = [x.sub || x.g, stateTxt, whereTxt, cluesTxt].filter(Boolean).join(" · ");
+        li.appendChild(a); li.appendChild(b); ul.appendChild(li);
+      });
+    }
+    $("clue-audit-note").textContent = "Analyzed " + enriched.length + " heard tossups against your Anki collection (clues matched both on the answer card and on other cards in your deck).";
+    $("clue-audit-panel").hidden = false;
+  }
+
+  function renderSetClueAudit(all, showAnki) {
+    var panel = $("clue-audit-panel");
+    if (!S.serverOk || S.mode !== "pack" || !all.length) {
+      panel.hidden = true;
+      return;
+    }
+    var recItems = [];
+    all.forEach(function (x) {
+      var full = S.itemsById[x.id];
+      if (!full || !full.q) return;
+      recItems.push({
+        ev: x,
+        req: {
+          id: x.id, q: full.q, a: full.a || x.a || "", main: x.main || full.main || "",
+          buzz: x.buzz === undefined ? null : x.buzz, words: x.words || full.q.split(/\s+/).length,
+          result: x.result, pts: x.pts || 0, power: !!x.power, anki: x.anki || full.anki || ""
+        }
+      });
+    });
+    if (!recItems.length) { panel.hidden = true; return; }
+
+    var auditKey = S.setId + ":" + recItems.length + ":" + recItems.map(function (p) {
+      return p.req.id + "@" + (p.req.buzz === null ? "-" : p.req.buzz) + ":" + p.req.result;
+    }).join("|");
+    panel.hidden = false;
+    if (S.clueAuditCache && S.clueAuditCache.key === auditKey) {
+      drawSetClueAudit(all, recItems, S.clueAuditCache.items, showAnki);
+      return;
+    }
+
+    $("clue-audit-note").textContent = "Scanning " + recItems.length + " heard tossups against your Anki deck...";
+    post("/api/set-clue-audit", { records: recItems.map(function (p) { return p.req; }) }).then(function (res) {
+      var items = (res && res.items) || [];
+      S.clueAuditCache = { key: auditKey, items: items };
+      if (S.tab === "progress" && S.mode === "pack") {
+        drawSetClueAudit(all, recItems, items, showAnki);
+      }
+    }).catch(function () {
+      $("clue-audit-note").textContent = "Could not scan clues against the Anki deck.";
+    });
+  }
+
   function renderProgress() {
     $("prog-set").textContent = (S.setMeta && S.setMeta.name) || (S.mode === "deck" ? "Studied collection" : "Uploaded pack");
     var all = allSetRecords();
@@ -2617,6 +2760,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       b.textContent = tags.join(" · ");
       li.appendChild(a); li.appendChild(b); ul.appendChild(li);
     });
+    renderSetClueAudit(all, showAnki);
     renderBonusStats();
   }
 
