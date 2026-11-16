@@ -183,14 +183,14 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
 .bp-detail td { background: var(--paper); padding: 14px 16px; white-space: normal; border-bottom: 2px solid var(--rule); }
 .bp-q { font-family: var(--serif); font-size: 1rem; line-height: 1.58; margin-bottom: 8px; }
 .bp-a { font-family: var(--serif); font-size: 0.96rem; margin-bottom: 6px; }
-.cluebox { margin-top: 10px; padding: 10px 12px; border: 1px solid var(--rule); border-radius: 8px; background: var(--paper); display: flex; flex-direction: column; gap: 6px; font-size: 0.85rem; }
-.cluebox-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; font: 600 0.78rem var(--mono); color: var(--ink-2); }
+.cluebox { margin-top: 10px; padding: 8px 12px; border: 1px solid var(--rule); border-radius: 8px; background: var(--paper); font-size: 0.85rem; }
+.cluebox details > summary { cursor: pointer; font: 600 0.78rem var(--mono); color: var(--ink-2); user-select: none; }
+.cluebox-list { margin-top: 8px; display: flex; flex-direction: column; gap: 6px; }
 .cluerow { display: flex; gap: 8px; align-items: baseline; line-height: 1.45; }
 .cluetag { flex: 0 0 auto; font: 600 0.7rem var(--mono); padding: 1px 6px; border-radius: 999px; background: var(--rule); color: var(--ink-2); }
 .cluetag.on { background: var(--good-soft); color: var(--good); }
 .cluetag.off { background: var(--lamp-soft); color: var(--ink); }
 .cluematch { font: 0.76rem var(--mono); color: var(--good); margin-left: 6px; }
-.cluefields { border-top: 1px solid var(--rule); padding-top: 8px; display: flex; flex-direction: column; gap: 4px; font-size: 0.82rem; color: var(--ink-2); }
 
 @media (max-width: 480px) { .tossup { font-size: 1.06rem; } .panel { padding: 16px; } }
 @media (prefers-reduced-motion: no-preference) { .bar .fill { transition: width 0.15s linear; } }
@@ -271,7 +271,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     <div id="play" class="panel" hidden>
       <div class="meta" style="justify-content:space-between">
         <div class="row" style="gap:12px"><span id="pos"></span><span id="cat"></span><span id="setname"></span></div>
-        <div class="row" style="gap:10px"><span id="score"></span><button id="pause-btn" type="button" class="btn ghost sm" aria-pressed="false">Pause</button><button id="play-settings-btn" type="button" class="btn ghost sm" aria-expanded="false" aria-controls="play-settings">Settings</button><button id="end-early" type="button" class="btn ghost sm">End session</button></div>
+        <div class="row" style="gap:10px"><span id="score"></span><button id="undo-btn" type="button" class="btn ghost sm" title="Undo last action (Ctrl+Z)" disabled>Undo</button><button id="pause-btn" type="button" class="btn ghost sm" aria-pressed="false">Pause</button><button id="play-settings-btn" type="button" class="btn ghost sm" aria-expanded="false" aria-controls="play-settings">Settings</button><button id="end-early" type="button" class="btn ghost sm">End session</button></div>
       </div>
       <div id="play-settings" class="settings-drawer" hidden>
         <div class="row"><label class="label" for="play-speed">Speed</label>
@@ -292,8 +292,8 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       <button id="buzz" class="buzzer">BUZZ</button>
       <div id="judge" class="row" hidden>
         <button id="reveal" class="btn ghost">Show answer</button>
-        <button id="right" class="btn good" hidden>I had it</button>
-        <button id="wrong" class="btn bad" hidden>I missed it</button>
+        <button id="right" class="btn good" hidden>Correct</button>
+        <button id="wrong" class="btn bad" hidden>Incorrect</button>
         <button id="next" class="btn" hidden>Next tossup</button>
       </div>
       <div id="ans" class="answer" hidden>
@@ -307,9 +307,10 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
           <span class="keyitem" data-st="reading,paused,dead"><kbd>Space</kbd><span>Buzz</span></span>
           <span class="keyitem" data-st="reading,paused"><kbd>P</kbd><span id="key-pause">Pause</span></span>
           <span class="keyitem" data-st="buzzed,dead"><kbd>Enter</kbd><span>Show answer</span></span>
-          <span class="keyitem" data-st="revealed"><kbd>1</kbd><span>Had it</span></span>
-          <span class="keyitem" data-st="revealed"><kbd>2</kbd><span>Missed it</span></span>
+          <span class="keyitem" data-st="revealed"><kbd>1</kbd><span>Correct</span></span>
+          <span class="keyitem" data-st="revealed"><kbd>2</kbd><span>Incorrect</span></span>
           <span class="keyitem" data-st="judged"><kbd>N</kbd> / <kbd>Enter</kbd><span>Next</span></span>
+          <span class="keyitem" data-st="undo"><kbd>Ctrl+Z</kbd><span>Undo</span></span>
           <span class="keyitem" data-st="all"><kbd>[</kbd> <kbd>]</kbd><span>Speed</span></span>
         </div>
       </div>
@@ -1198,12 +1199,21 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     });
   }
 
+  function canUndo() {
+    var c = S.cur;
+    if (!c) return false;
+    if (c.stage === "buzzed" || c.stage === "revealed" || c.stage === "judged") return true;
+    return (c.stage === "reading" || c.stage === "paused") && S.sess && S.sess.i > 0 && S.sess.items.length > 0;
+  }
+
   function renderKeys() {
     var st = (S.cur && S.cur.stage) || "reading";
     var hasBuzz = S.cur && S.cur.buzz !== null;
+    var allowUndo = canUndo();
+    if ($("undo-btn")) $("undo-btn").disabled = !allowUndo;
     Array.prototype.forEach.call($("keylist").children, function (el) {
       var want = (el.dataset.st || "").split(",");
-      var on = want.indexOf("all") >= 0 || want.indexOf(st) >= 0;
+      var on = want.indexOf("undo") >= 0 ? allowUndo : (want.indexOf("all") >= 0 || want.indexOf(st) >= 0);
       if (st === "revealed" && !hasBuzz && el.querySelector("kbd") && (el.querySelector("kbd").textContent === "1" || el.querySelector("kbd").textContent === "2")) on = false;
       el.classList.toggle("off", !on);
     });
@@ -1335,13 +1345,12 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     box.textContent = "";
     if (!data || !data.sentences || !data.sentences.length) { box.hidden = true; return; }
     var onCount = data.sentences.filter(function (s) { return s.covered; }).length;
-    var hd = document.createElement("div"); hd.className = "cluebox-head";
-    var title = document.createElement("span");
-    title.textContent = "Card clue match" + (data.noteType ? " · " + data.noteType : "") + (data.matchedName ? " (\"" + data.matchedName + "\")" : "");
-    var frac = document.createElement("span");
-    frac.textContent = onCount + " / " + data.sentences.length + " sentences on card";
-    hd.appendChild(title); hd.appendChild(frac); box.appendChild(hd);
+    var det = document.createElement("details");
+    var sum = document.createElement("summary");
+    sum.textContent = "Card clue match" + (data.noteType ? " · " + data.noteType : "") + (data.matchedName ? " (\"" + data.matchedName + "\")" : "") + " · " + onCount + "/" + data.sentences.length + " sentences on card";
+    det.appendChild(sum);
 
+    var list = document.createElement("div"); list.className = "cluebox-list";
     data.sentences.forEach(function (st) {
       var row = document.createElement("div"); row.className = "cluerow";
       var tag = document.createElement("span"); tag.className = "cluetag " + (st.covered ? "on" : "off");
@@ -1353,21 +1362,10 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
         m.textContent = "[" + st.matches.join(", ") + "]";
         body.appendChild(m);
       }
-      row.appendChild(tag); row.appendChild(body); box.appendChild(row);
+      row.appendChild(tag); row.appendChild(body); list.appendChild(row);
     });
-
-    if (data.liveFields && data.liveFields.length) {
-      var det = document.createElement("details"); det.className = "cluefields";
-      var sum = document.createElement("summary"); sum.style.cursor = "pointer"; sum.textContent = "Show live Anki card fields";
-      det.appendChild(sum);
-      data.liveFields.forEach(function (f) {
-        var p = document.createElement("div");
-        var b = document.createElement("strong"); b.textContent = f.name + ": ";
-        p.appendChild(b); p.appendChild(document.createTextNode(f.value));
-        det.appendChild(p);
-      });
-      box.appendChild(det);
-    }
+    det.appendChild(list);
+    box.appendChild(det);
     box.hidden = false;
   }
 
@@ -1385,24 +1383,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     clearInterval(S.timer);
     if (c.stage === "dead") { c.buzz = null; $("buzz").disabled = true; }
     c.stage = "revealed"; c.pos = c.n; paint(); renderTossupMeta();
-    setAnswerFormatted($("atext"), c.t.ah || "", c.t.a);
-    var ac = $("acard"); ac.textContent = "";
-    if (S.mode === "pack" && c.t.anki !== undefined) ac.appendChild(renderAnkiPill(c.t.anki));
-    var info = document.createElement("span");
-    if (c.t.k) info.textContent = "Your card: " + c.t.k + " (" + c.t.g + ")";
-    else info.textContent = [c.t.sub || c.t.g, c.t.pl, c.t.n ? "TU " + c.t.n : ""].filter(Boolean).join(" · ");
-    ac.appendChild(info);
-
-    $("clue-match").hidden = true;
-    $("clue-match").textContent = "";
-    if (S.serverOk && (c.t.anki === "card" || c.t.anki === "suspended")) {
-      var curId = c.t.id;
-      fetchClueMatch(c.t).then(function (data) {
-        if (S.cur && S.cur.t.id === curId && (S.cur.stage === "revealed" || S.cur.stage === "judged")) {
-          renderClueBox($("clue-match"), data);
-        }
-      });
-    }
+    showAnswerMetaAndClues(c);
 
     $("ans").hidden = false; $("reveal").hidden = true;
     if (c.buzz === null) { $("right").hidden = true; $("wrong").hidden = true; record("none"); }
@@ -1449,6 +1430,131 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     post("/api/session", body).catch(function () {});
   }
 
+  function popLastBuzzRecord() {
+    if (!S.sess || !S.sess.items.length) return null;
+    var ev = S.sess.items.pop();
+    S.sess.points -= (ev.pts || 0);
+    for (var i = S.buzzes.length - 1; i >= 0; i--) {
+      if (S.buzzes[i].sessionId === ev.sessionId && S.buzzes[i].id === ev.id && S.buzzes[i].ts === ev.ts) {
+        S.buzzes.splice(i, 1);
+        break;
+      }
+    }
+    post("/api/unbuzz", { setId: S.setId, sessionId: ev.sessionId, id: ev.id, ts: ev.ts }).catch(function () {});
+    return ev;
+  }
+
+  function showAnswerMetaAndClues(c) {
+    setAnswerFormatted($("atext"), c.t.ah || "", c.t.a);
+    var ac = $("acard"); ac.textContent = "";
+    if (S.mode === "pack" && c.t.anki !== undefined) ac.appendChild(renderAnkiPill(c.t.anki));
+    var info = document.createElement("span");
+    if (c.t.k) info.textContent = "Your card: " + c.t.k + " (" + c.t.g + ")";
+    else info.textContent = [c.t.sub || c.t.g, c.t.pl, c.t.n ? "TU " + c.t.n : ""].filter(Boolean).join(" · ");
+    ac.appendChild(info);
+
+    $("clue-match").hidden = true;
+    $("clue-match").textContent = "";
+    if (S.serverOk && (c.t.anki === "card" || c.t.anki === "suspended")) {
+      var curId = c.t.id;
+      fetchClueMatch(c.t).then(function (data) {
+        if (S.cur && S.cur.t.id === curId && (S.cur.stage === "revealed" || S.cur.stage === "judged")) {
+          renderClueBox($("clue-match"), data);
+        }
+      });
+    }
+  }
+
+  function undo() {
+    var c = S.cur;
+    if (!canUndo()) return;
+    if (c.stage === "judged") {
+      popLastBuzzRecord();
+      $("score").textContent = S.sess.points + " pts";
+      updatePackSummary(); renderStatStrip();
+      if (c.buzz === null) {
+        c.stage = "dead";
+        $("ans").hidden = true; $("clue-match").hidden = true;
+        $("buzz").disabled = false;
+        $("judge").hidden = false; $("reveal").hidden = false; $("right").hidden = true; $("wrong").hidden = true; $("next").hidden = true;
+        $("state").textContent = "";
+        var l0 = document.createElement("span"); l0.className = "verdict none"; l0.textContent = "Question read in full. Buzz now if you know it, or show the answer.";
+        $("state").appendChild(l0);
+        renderTossupMeta(); paint(); renderKeys();
+        $("reveal").focus({ preventScroll: true });
+      } else {
+        c.stage = "revealed";
+        $("ans").hidden = false;
+        $("judge").hidden = false; $("reveal").hidden = true; $("right").hidden = false; $("wrong").hidden = false; $("next").hidden = true;
+        $("state").textContent = "";
+        var l1 = document.createElement("span"); l1.className = "lamp"; l1.textContent = "Buzzed at word " + c.buzz + " of " + c.n + " · say your answer";
+        $("state").appendChild(l1);
+        renderKeys();
+        $("right").focus({ preventScroll: true });
+      }
+      return;
+    }
+    if (c.stage === "revealed") {
+      c.stage = "buzzed";
+      c.pos = c.buzz !== null ? c.buzz : c.n;
+      $("ans").hidden = true; $("clue-match").hidden = true;
+      $("judge").hidden = false; $("reveal").hidden = false; $("right").hidden = true; $("wrong").hidden = true; $("next").hidden = true;
+      renderTossupMeta(); paint(); renderKeys();
+      $("reveal").focus({ preventScroll: true });
+      return;
+    }
+    if (c.stage === "buzzed") {
+      c.buzz = null;
+      c.stage = "paused";
+      $("buzz").disabled = false;
+      $("judge").hidden = true;
+      resetPauseUI(false);
+      $("pause-btn").textContent = "Resume";
+      $("pause-btn").setAttribute("aria-pressed", "true");
+      $("key-pause").textContent = "Resume";
+      $("state").textContent = "";
+      var l2 = document.createElement("span"); l2.className = "verdict none";
+      l2.textContent = "Buzz undone · paused at word " + c.pos + " of " + c.n + " · press P to resume";
+      $("state").appendChild(l2);
+      paint(); renderKeys();
+      return;
+    }
+    if ((c.stage === "reading" || c.stage === "paused") && S.sess && S.sess.i > 0 && S.sess.items.length > 0) {
+      clearInterval(S.timer);
+      S.sess.i--;
+      var ev = popLastBuzzRecord();
+      var prevT = S.sess.queue[S.sess.i], prevWords = prevT.q.split(/\s+/);
+      var prevBuzz = ev ? ev.buzz : null;
+      c = {
+        t: prevT, words: prevWords, n: prevWords.length, star: prevWords.indexOf("(*)"),
+        pos: prevWords.length, buzz: prevBuzz, stage: prevBuzz === null ? "dead" : "revealed"
+      };
+      S.cur = c;
+      $("pos").textContent = (S.sess.i + 1) + " / " + S.sess.queue.length;
+      $("score").textContent = S.sess.points + " pts";
+      $("pm").style.left = c.star >= 0 ? (100 * c.star / c.n) + "%" : "-99px";
+      resetPauseUI(true);
+      updatePackSummary(); renderStatStrip(); renderTossupMeta(); paint();
+      if (c.stage === "dead") {
+        $("buzz").disabled = false; $("ans").hidden = true; $("clue-match").hidden = true;
+        $("judge").hidden = false; $("reveal").hidden = false; $("right").hidden = true; $("wrong").hidden = true; $("next").hidden = true;
+        $("state").textContent = "";
+        var ld = document.createElement("span"); ld.className = "verdict none"; ld.textContent = "Question read in full. Buzz now if you know it, or show the answer.";
+        $("state").appendChild(ld);
+        renderKeys(); $("reveal").focus({ preventScroll: true });
+      } else {
+        $("buzz").disabled = true;
+        showAnswerMetaAndClues(c);
+        $("ans").hidden = false;
+        $("judge").hidden = false; $("reveal").hidden = true; $("right").hidden = false; $("wrong").hidden = false; $("next").hidden = true;
+        $("state").textContent = "";
+        var lr = document.createElement("span"); lr.className = "lamp"; lr.textContent = "Buzzed at word " + c.buzz + " of " + c.n + " · say your answer";
+        $("state").appendChild(lr);
+        renderKeys(); $("right").focus({ preventScroll: true });
+      }
+    }
+  }
+
   function next() {
     var c = S.cur; if (!c || c.stage !== "judged") return;
     S.sess.i++;
@@ -1456,11 +1562,12 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     loadTossup();
   }
 
-  $("buzz").onclick = buzz; $("pause-btn").onclick = togglePause; $("reveal").onclick = reveal; $("next").onclick = next;
+  $("buzz").onclick = buzz; $("undo-btn").onclick = undo; $("pause-btn").onclick = togglePause; $("reveal").onclick = reveal; $("next").onclick = next;
   $("right").onclick = function () { record("correct"); };
   $("wrong").onclick = function () { record("wrong"); };
   document.addEventListener("keydown", function (e) {
     if (S.tab !== "drill" || $("play").hidden || e.target.tagName === "INPUT" || e.target.tagName === "SELECT") return;
+    if ((e.ctrlKey || e.metaKey) && !e.shiftKey && (e.key === "z" || e.key === "Z")) { e.preventDefault(); undo(); return; }
     if (e.code === "Space") { e.preventDefault(); if (S.cur && (S.cur.stage === "reading" || S.cur.stage === "paused" || S.cur.stage === "dead")) buzz(); }
     else if (e.key === "p" || e.key === "P") { e.preventDefault(); togglePause(); }
     else if (e.key === "Enter") { e.preventDefault(); if (S.cur && (S.cur.stage === "buzzed" || S.cur.stage === "dead")) reveal(); else if (S.cur && S.cur.stage === "judged") next(); }
