@@ -239,7 +239,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
             <button data-o="random" aria-pressed="true">Random</button><button data-o="packet" aria-pressed="false" id="order-seq-lbl">Packet order</button>
           </div>
         </div>
-        <div class="row"><span class="label">Tossups</span>
+        <div id="len-wrap" class="row"><span class="label">Tossups</span>
           <div class="seg" id="len">
             <button data-n="5" aria-pressed="false">5</button><button data-n="10" aria-pressed="true">10</button><button data-n="20" aria-pressed="false">20</button><button data-n="40" aria-pressed="false">40</button><button data-n="0" aria-pressed="false">All</button>
           </div>
@@ -999,6 +999,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
   function renderSetup() {
     $("pkt-wrap").hidden = !S.hasPackets;
     $("order-wrap").hidden = !(S.mode === "pack" && S.items.length);
+    $("len-wrap").hidden = S.mode !== "deck";
     $("order-seq-lbl").textContent = S.hasPackets ? "Packet order" : "In order";
     var pktSel = $("pkt"); pktSel.textContent = "";
     var o0 = document.createElement("option"); o0.value = "ALL"; o0.textContent = "All packets (" + S.items.length + ")"; pktSel.appendChild(o0);
@@ -1149,7 +1150,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
         pool.sort(function (a, b) { return (keys[a.g + "|" + (a.k || "")] || 0) - (keys[b.g + "|" + (b.k || "")] || 0); });
       }
     }
-    var n = S.len === 0 ? pool.length : Math.min(S.len, pool.length);
+    var n = (S.mode !== "deck" || S.len === 0) ? pool.length : Math.min(S.len, pool.length);
     var queue = pool.slice(0, n);
     S.sess = { id: Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 6), setId: S.setId, startedAt: Date.now(), queue: queue, i: 0, items: [], points: 0, saved: false };
     show("play");
