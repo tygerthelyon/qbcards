@@ -163,6 +163,8 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
 .bp-filters { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
 .bp-table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
 .bp-table th { position: sticky; top: 0; background: var(--card); z-index: 1; padding: 9px 10px; border-bottom: 2px solid var(--rule); cursor: pointer; user-select: none; }
+abbr[title] { text-decoration: underline dotted var(--ink-3); text-underline-offset: 3px; cursor: help; }
+th abbr[title] { cursor: inherit; color: inherit; }
 .bp-table th:hover { color: var(--ink); }
 .bp-table th .sortind { margin-left: 4px; font-family: var(--mono); font-size: 0.72rem; opacity: 0.65; }
 .bp-row td { padding: 9px 10px; border-bottom: 1px solid rgba(128,128,128,0.25); vertical-align: middle; }
@@ -2129,12 +2131,69 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     S.cur = null; show("summary");
   }
 
+  var ACRONYM_TIPS = {
+    "Buzz AUC": "Buzz Area Under Curve (0.000–1.000) — correct rate × average celerity; equals your average (1 − buzz depth) across all tossups heard. Multiply by 20 for a 20-tossup packet scale.",
+    "part conv": "Bonus Part Conversion — correct bonus parts ÷ total bonus parts heard.",
+    "Avg buzz": "Average Correct Buzz Depth — % of the question read before correct buzzes (lower = earlier).",
+    "15 / 10 / −5": "Power (+15 before *), Get (+10 after *), and Neg (−5 wrong interrupt) counts.",
+    "30 / 20 / 10 / 0": "Bonus outcomes: counts of 30-point sweeps, 20-pt, 10-pt, and 0-pt bonuses.",
+    "PP20": "Points Per 20 Tossups — (total points ÷ tossups heard) × 20, normalized to a standard 20-tossup packet.",
+    "PPTU": "Points Per Tossup — total points ÷ tossups heard.",
+    "PPB": "Points Per Bonus — total bonus points ÷ bonuses heard (max 30.0).",
+    "Conv%": "Buzz Conversion Rate — correct buzzes ÷ total buzz attempts.",
+    "Strength": "Sample-size-adjusted Category Strength (0–100) — blends accuracy, buzz earliness (celerity), and −5 negs, shrunk toward your overall average (prior k = 8 tossups) so tiny samples don't dominate.",
+    "In Anki": "Share of tossups matching an active card in your Anki deck.",
+    "P1%": "Part 1 Conversion — % correct on the 1st bonus part (typically easiest).",
+    "P2%": "Part 2 Conversion — % correct on the 2nd bonus part (typically medium).",
+    "P3%": "Part 3 Conversion — % correct on the 3rd bonus part (typically hardest).",
+    "AUC": "Area Under Curve (0.000–1.000) — correct rate × average celerity across tossups heard (×20 for a 20-tossup packet scale).",
+    "cel": "Average Celerity (1 − buzz depth) on correct buzzes: 1.000 = buzzed at start, 0.000 = buzzed at end."
+  };
+  var ACRONYM_RE = /(Buzz AUC|part conv|Avg buzz|15 \/ 10 \/ −5|30 \/ 20 \/ 10 \/ 0|PP20|PPTU|PPB|Conv%|Strength|In Anki|P1%|P2%|P3%|\bAUC\b|\bcel\b)/g;
+
+  function appendTippedText(el, text) {
+    el.textContent = "";
+    var s = String(text || ""), last = 0, m;
+    ACRONYM_RE.lastIndex = 0;
+    while ((m = ACRONYM_RE.exec(s))) {
+      if (m.index > last) el.appendChild(document.createTextNode(s.slice(last, m.index)));
+      var tok = m[1];
+      if (ACRONYM_TIPS[tok]) {
+        var ab = document.createElement("abbr");
+        ab.title = ACRONYM_TIPS[tok];
+        ab.textContent = tok;
+        el.appendChild(ab);
+      } else {
+        el.appendChild(document.createTextNode(tok));
+      }
+      last = m.index + tok.length;
+    }
+    if (last < s.length) el.appendChild(document.createTextNode(s.slice(last)));
+  }
+
+  function appendThLabel(th, label, tip) {
+    if (tip) {
+      var ab = document.createElement("abbr");
+      ab.title = tip;
+      ab.textContent = label;
+      th.appendChild(ab);
+    } else if (ACRONYM_TIPS[label]) {
+      var ab2 = document.createElement("abbr");
+      ab2.title = ACRONYM_TIPS[label];
+      ab2.textContent = label;
+      th.appendChild(ab2);
+    } else {
+      appendTippedText(th, label);
+    }
+  }
+
   function tiles(box, arr) {
     box.textContent = "";
     arr.forEach(function (p) {
       var d = document.createElement("div"); d.className = "tile";
+      if (p[2]) d.title = p[2];
       var v = document.createElement("div"); v.className = "v"; v.textContent = p[0];
-      var k = document.createElement("div"); k.className = "k"; k.textContent = p[1];
+      var k = document.createElement("div"); k.className = "k"; appendTippedText(k, p[1]);
       d.appendChild(v); d.appendChild(k); box.appendChild(d);
     });
   }
@@ -2259,7 +2318,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       [pw + " / " + gets + " / " + neg, "15 / 10 / −5"],
       [attempts ? Math.round(100 * ok / attempts) + "%" : "–", attempts ? ("buzz acc (" + ok + "/" + attempts + ")") : "buzz accuracy"],
       [avgBuzz, aucStat.cel !== null ? ("avg buzz (cel " + aucStat.cel.toFixed(3) + ")") : "avg correct buzz"],
-      [rows.length ? aucStat.auc.toFixed(3) : "–", "Buzz AUC (0.000–1.000)"]
+      [rows.length ? aucStat.auc.toFixed(3) : "–", "Buzz AUC (0.000–1.000)", rows.length ? ("20-tossup eq: " + (aucStat.auc * 20).toFixed(1) + " / 20 tossups · celerity-weighted gets") : ""]
     ]);
 
     // Populate category filter dynamically preserving choice
@@ -2422,6 +2481,16 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
   $("bp-q").oninput = renderBuzzpoints;
 
   // ---------- progress / category stats ----------
+  function tossupQuality(x) {
+    if (x.result === "correct") {
+      var fr = fracOf(x);
+      var cel = fr === null ? 0.5 : Math.max(0, Math.min(1, 1 - fr));
+      return 0.5 + 0.5 * cel;
+    }
+    if ((x.pts || 0) < 0) return -0.25;
+    return 0;
+  }
+
   function renderGroupTable(items, keyFn, tableId, opts) {
     opts = opts || {};
     var tbl = $(tableId), thead = tbl.querySelector("thead"), tb = tbl.querySelector("tbody");
@@ -2429,12 +2498,19 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     var sortState = S.tblSort[tableId] || (opts.fixedOrder ? { col: "order", dir: 1 } : { col: "n", dir: -1 });
     S.tblSort[tableId] = sortState;
 
+    var priorN = 8, totQ = 0;
+    items.forEach(function (x) { totQ += tossupQuality(x); });
+    var priorMu = items.length ? (totQ / items.length) : 0;
+
     var g = {};
     items.forEach(function (x) {
       var k = keyFn(x) || "Unknown";
-      var r = g[k] = g[k] || { k: k, n: 0, pw: 0, gets: 0, ok: 0, neg: 0, att: 0, pts: 0, f: 0, fn: 0, w: 0, wn: 0, celSum: 0, inAnki: 0 };
+      var r = g[k] = g[k] || { k: k, n: 0, pw: 0, gets: 0, ok: 0, neg: 0, att: 0, pts: 0, f: 0, fn: 0, w: 0, wn: 0, celSum: 0, qSum: 0, qSq: 0, inAnki: 0 };
       r.n++;
       r.pts += (x.pts || 0);
+      var qv = tossupQuality(x);
+      r.qSum += qv;
+      r.qSq += qv * qv;
       if (x.buzz !== null && x.buzz !== undefined) r.att++;
       if (x.result === "correct") {
         r.ok++;
@@ -2449,14 +2525,15 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
 
     var cols = [
       { id: "k", label: opts.col0 || "Group", num: false },
-      { id: "n", label: "Heard", num: true },
-      { id: "pw", label: "15", num: true },
-      { id: "gets", label: "10", num: true },
-      { id: "neg", label: "−5", num: true },
+      { id: "n", label: "Heard", num: true, tip: "Total tossups heard in this group" },
+      { id: "pw", label: "15", num: true, tip: "Powers (+15) — correct buzzes before the * power mark" },
+      { id: "gets", label: "10", num: true, tip: "Regular Gets (+10) — correct buzzes after the * power mark" },
+      { id: "neg", label: "−5", num: true, tip: "Negs (−5) — wrong interrupts before the end of the tossup" },
       { id: "conv", label: "Conv%", num: true },
       { id: "pptu", label: "PPTU", num: true },
       { id: "buzz", label: "Avg buzz", num: true },
-      { id: "auc", label: "Buzz AUC", num: true }
+      { id: "auc", label: "Buzz AUC", num: true },
+      { id: "str", label: "Strength", num: true }
     ];
     if (showAnkiCol) cols.push({ id: "ankiPct", label: "In Anki", num: true });
 
@@ -2465,7 +2542,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     cols.forEach(function (c) {
       var th = document.createElement("th");
       if (c.num) th.className = "num";
-      th.textContent = c.label;
+      appendThLabel(th, c.label, c.tip);
       var ind = document.createElement("span"); ind.className = "sortind";
       ind.textContent = sortState.col === c.id ? (sortState.dir === 1 ? " ▲" : " ▼") : "";
       th.appendChild(ind);
@@ -2484,6 +2561,11 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       r.pptu = r.n ? r.pts / r.n : 0;
       r.avgF = r.fn ? r.f / r.fn : 99;
       r.auc = r.n ? r.celSum / r.n : 0;
+      r.rawQ = r.n ? (r.qSum / r.n) : 0;
+      r.postQ = (r.qSum + priorN * priorMu) / (r.n + priorN);
+      r.str = Math.max(0, Math.min(100, Math.round(r.postQ * 100)));
+      var qVar = r.n > 1 ? Math.max(0, (r.qSq / r.n) - r.rawQ * r.rawQ) : 0.16;
+      r.strCi = Math.round(196 * Math.sqrt(qVar / (r.n + priorN)));
       r.ankiPct = r.n ? r.inAnki / r.n : 0;
       return r;
     });
@@ -2505,6 +2587,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
         else if (c === "pptu") cmp = a.pptu - b.pptu;
         else if (c === "buzz") cmp = a.avgF - b.avgF;
         else if (c === "auc") cmp = a.auc - b.auc;
+        else if (c === "str") cmp = (a.postQ - b.postQ);
         else if (c === "ankiPct") cmp = a.ankiPct - b.ankiPct;
         return (cmp || (b.n - a.n)) * sortState.dir;
       });
@@ -2527,7 +2610,8 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
         r.att ? Math.round(100 * r.ok / r.att) + "%" : "–",
         r.pptu.toFixed(1),
         r.fn ? Math.round(100 * r.f / r.fn) + "%" : "–",
-        r.n ? r.auc.toFixed(3) : "–"
+        r.n ? r.auc.toFixed(3) : "–",
+        r.n ? String(r.str) : "–"
       ];
       if (showAnkiCol) vals.push(Math.round(100 * r.ankiPct) + "%");
       vals.forEach(function (v, i) {
@@ -2535,7 +2619,8 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
         td.textContent = v;
         if (i) td.className = "num";
         if (i === 7 && r.wn) td.title = "Avg word " + Math.round(r.w / r.wn);
-        if (i === 8 && r.fn) td.title = "Correct rate × avg celerity (" + (r.celSum / r.fn).toFixed(3) + ")";
+        if (i === 8 && r.n) td.title = "Avg celerity " + (r.fn ? (r.celSum / r.fn).toFixed(3) : "–") + " · 20-tossup eq: " + (r.auc * 20).toFixed(1) + " / 20";
+        if (i === 9 && r.n) td.title = "Strength " + r.str + "/100 (raw " + Math.round(Math.max(0, r.rawQ) * 100) + ", shrunk toward overall " + Math.round(Math.max(0, priorMu) * 100) + " with k=" + priorN + " · ±" + r.strCi + ")";
         tr.appendChild(td);
       });
       tb.appendChild(tr);
@@ -2697,10 +2782,10 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       [pw + " / " + gets + " / " + neg.length, "15 / 10 / −5"],
       [att.length ? Math.round(100 * ok.length / att.length) + "%" : "–", att.length ? ("buzz conversion (" + ok.length + "/" + att.length + ")") : "buzz conversion"],
       [avgOk === null ? "–" : Math.round(avgOk * 100) + "%", ok.length ? ("avg correct buzz (cel " + (aucStat.cel !== null ? aucStat.cel.toFixed(3) : "–") + ")") : "avg correct buzz"],
-      [n ? aucStat.auc.toFixed(3) : "–", "Buzz AUC (0.000–1.000)"],
+      [n ? aucStat.auc.toFixed(3) : "–", "Buzz AUC (0.000–1.000)", n ? ("20-tossup eq: " + (aucStat.auc * 20).toFixed(1) + " / 20 tossups · celerity-weighted gets") : ""],
       [n ? Math.round(100 * neg.length / n) + "%" : "–", avgNeg === null ? "neg rate" : ("neg rate · avg neg @" + Math.round(avgNeg * 100) + "%")]
     ]);
-    $("auc-badge").textContent = n ? ("AUC " + aucStat.auc.toFixed(3) + (aucStat.cel !== null ? " · celerity " + aucStat.cel.toFixed(3) : "")) : "";
+    appendTippedText($("auc-badge"), n ? ("AUC " + aucStat.auc.toFixed(3) + " (" + (aucStat.auc * 20).toFixed(1) + "/20)" + (aucStat.cel !== null ? " · cel " + aucStat.cel.toFixed(3) : "")) : "");
     aucChart($("c-auc"), all, aucStat);
 
     var showAnki = S.mode === "pack" && (S.hasAnki || all.some(function (x) { return x.anki !== undefined; }));
@@ -2794,12 +2879,12 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     });
     var cols = [
       { id: "k", label: col0 || "Group", num: false },
-      { id: "n", label: "Bonuses", num: true },
+      { id: "n", label: "Bonuses", num: true, tip: "Total bonuses heard in this group" },
       { id: "ppb", label: "PPB", num: true },
-      { id: "b30", label: "30", num: true },
-      { id: "b20", label: "20", num: true },
-      { id: "b10", label: "10", num: true },
-      { id: "b0", label: "0", num: true },
+      { id: "b30", label: "30", num: true, tip: "30-point sweeps (3/3 parts)" },
+      { id: "b20", label: "20", num: true, tip: "20-point bonuses (2/3 parts)" },
+      { id: "b10", label: "10", num: true, tip: "10-point bonuses (1/3 parts)" },
+      { id: "b0", label: "0", num: true, tip: "0-point bonuses (0/3 parts)" },
       { id: "p1", label: "P1%", num: true },
       { id: "p2", label: "P2%", num: true },
       { id: "p3", label: "P3%", num: true }
@@ -2807,7 +2892,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     thead.textContent = "";
     var htr = document.createElement("tr");
     cols.forEach(function (c) {
-      var th = document.createElement("th"); if (c.num) th.className = "num"; th.textContent = c.label;
+      var th = document.createElement("th"); if (c.num) th.className = "num"; appendThLabel(th, c.label, c.tip);
       var ind = document.createElement("span"); ind.className = "sortind";
       ind.textContent = sortState.col === c.id ? (sortState.dir === 1 ? " ▲" : " ▼") : "";
       th.appendChild(ind);
@@ -2905,8 +2990,15 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       var tbA = $("tbl-bat"), thA = tbA.querySelector("thead"), byA = tbA.querySelector("tbody");
       thA.textContent = ""; byA.textContent = "";
       var htrA = document.createElement("tr");
-      ["Status", "Parts", "Correct%", "Easy%", "Med%", "Hard%"].forEach(function (lbl, i) {
-        var th = document.createElement("th"); if (i) th.className = "num"; th.textContent = lbl; htrA.appendChild(th);
+      [
+        ["Status", "Match status in your Anki collection"],
+        ["Parts", "Total bonus parts heard"],
+        ["Correct%", "% of bonus parts answered correctly"],
+        ["Easy%", "% correct on Easy bonus parts"],
+        ["Med%", "% correct on Medium bonus parts"],
+        ["Hard%", "% correct on Hard bonus parts"]
+      ].forEach(function (pair, i) {
+        var th = document.createElement("th"); if (i) th.className = "num"; appendThLabel(th, pair[0], pair[1]); htrA.appendChild(th);
       });
       thA.appendChild(htrA);
       var ga = {};
@@ -3168,7 +3260,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     });
 
     var aucLbl = el("text", { x: sx(0.98), y: sy(0.06), "text-anchor": "end", "font-size": 12, fill: "var(--ink)", "font-family": "var(--mono)", "font-weight": 600 });
-    aucLbl.textContent = "Buzz AUC = " + aucStat.auc.toFixed(3);
+    aucLbl.textContent = "Buzz AUC = " + aucStat.auc.toFixed(3) + " (" + (aucStat.auc * 20).toFixed(1) + "/20)";
     box.insertBefore(svg, tip);
   }
 
