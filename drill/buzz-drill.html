@@ -278,6 +278,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
       <div id="groups" class="row" hidden></div>
       <div class="row" style="gap:16px">
         <label class="chk"><input type="checkbox" id="skip-heard" checked> <span id="skip-lbl">Skip tossups heard in last 30 days</span></label>
+        <label class="chk" title="Slows down smoothly on longer words and adds gentle punctuation pauses while matching your average words/s"><input type="checkbox" id="adaptive-pacing" checked> Adaptive word-length pacing</label>
       </div>
       <div class="row"><button id="start" class="btn">Start session</button><span id="poolinfo" class="meta"></span></div>
       <p id="savenote" class="note" hidden></p>
@@ -298,6 +299,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
             <button data-sz="md" aria-pressed="true">M</button><button data-sz="lg" aria-pressed="false">L</button><button data-sz="xl" aria-pressed="false">XL</button>
           </div>
         </div>
+        <label class="chk" title="Slows down smoothly on longer words and adds gentle punctuation pauses while matching your average words/s"><input type="checkbox" id="play-adaptive" checked> Adaptive pacing</label>
         <label class="chk"><input type="checkbox" id="show-meta"> Show category &amp; pack before answer</label>
       </div>
       <div id="statstrip" class="statstrip" hidden></div>
@@ -551,6 +553,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
     sz: "md",
     len: 10,
     wps: 4.5,
+    pacing: "adaptive", // "adaptive" | "steady"
     sessions: [],
     buzzes: [],
     bonusLogs: [],
@@ -580,6 +583,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
   var saved = store("bd-prefs") || {};
   if (saved.packSetId) S.packSetId = saved.packSetId;
   if (saved.wps) S.wps = saved.wps;
+  if (saved.pacing) S.pacing = saved.pacing;
   if (saved.len !== undefined) S.len = saved.len;
   if (saved.order) S.order = saved.order;
   if (saved.skipHeard !== undefined) S.skipHeard = !!saved.skipHeard;
@@ -959,7 +963,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
   }
 
   async function loadActiveSet(setId, preloadedItems, preloadedBonuses) {
-    clearInterval(S.timer);
+    stopTimer();
     S.cur = null; S.bcur = null;
     S.bpExpanded = {};
     if (!setId) {
@@ -1260,6 +1264,15 @@ th abbr[title] { cursor: inherit; color: inherit; }
       $("play-settings").hidden = !open;
       $("play-settings-btn").setAttribute("aria-expanded", open ? "true" : "false");
     };
+    $("adaptive-pacing").checked = S.pacing !== "steady";
+    $("play-adaptive").checked = S.pacing !== "steady";
+    var onPacingChange = function () {
+      S.pacing = this.checked ? "adaptive" : "steady";
+      syncSpeedUI(); savePrefs();
+      if (S.cur && S.cur.stage === "reading") run();
+    };
+    $("adaptive-pacing").onchange = onPacingChange;
+    $("play-adaptive").onchange = onPacingChange;
     $("show-meta").checked = S.showMeta;
     $("show-meta").onchange = function () { S.showMeta = this.checked; savePrefs(); renderTossupMeta(); };
     applyTextSize();
@@ -1276,8 +1289,12 @@ th abbr[title] { cursor: inherit; color: inherit; }
   }
 
   function syncSpeedUI() {
-    $("speed").value = S.wps; $("speedv").textContent = S.wps + " words/s";
-    $("play-speed").value = S.wps; $("play-speedv").textContent = S.wps + " words/s";
+    var cpm = Math.round(S.wps * 60 * 5.3);
+    var lbl = S.wps + " words/s (~" + cpm + " cpm)";
+    $("speed").value = S.wps; $("speedv").textContent = lbl;
+    $("play-speed").value = S.wps; $("play-speedv").textContent = lbl;
+    if ($("adaptive-pacing")) $("adaptive-pacing").checked = S.pacing !== "steady";
+    if ($("play-adaptive")) $("play-adaptive").checked = S.pacing !== "steady";
   }
 
   function setSpeed(val) {
@@ -1300,6 +1317,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
     var p = store("bd-prefs") || {};
     p.packSetId = S.packSetId;
     p.wps = S.wps;
+    p.pacing = S.pacing;
     p.len = S.len;
     p.order = S.order;
     p.skipHeard = S.skipHeard;
@@ -1375,7 +1393,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
 
   $("start").onclick = start;
   $("again").onclick = function () { loadSetState(S.setId).then(function () { updatePackSummary(); renderSetupInfo(); show("setup"); }); };
-  $("end-early").onclick = function () { if (S.sess && S.sess.items.length) finish(); else { clearInterval(S.timer); S.cur = null; show("setup"); } };
+  $("end-early").onclick = function () { if (S.sess && S.sess.items.length) finish(); else { stopTimer(); S.cur = null; show("setup"); } };
 
   function renderStatStrip() {
     var box = $("statstrip");
@@ -1454,7 +1472,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
     var c = S.cur;
     if (!c || (c.stage !== "reading" && c.stage !== "paused")) return;
     if (c.stage === "reading") {
-      clearInterval(S.timer);
+      stopTimer();
       c.stage = "paused";
       $("pause-btn").textContent = "Resume";
       $("pause-btn").setAttribute("aria-pressed", "true");
@@ -1485,13 +1503,35 @@ th abbr[title] { cursor: inherit; color: inherit; }
     paint(); run();
   }
 
+  function stopTimer() {
+    if (S.timer) { clearTimeout(S.timer); S.timer = null; }
+  }
+
+  function wordDelayMs(word) {
+    var base = 1000 / S.wps;
+    if (S.pacing === "steady") return base;
+    if (word === "(*)") return Math.round(base * 0.35);
+    var clean = (word || "").replace(/^["'“‘(\[]+|["'”’),.;:!?…\]]+$/g, "");
+    var len = Math.max(2, clean.length);
+    var mult = Math.max(0.65, Math.min(2.3, 0.45 + 0.55 * (len / 5.3)));
+    if (/[.!?]["'”’)\]]*$/.test(word)) mult += 0.65;
+    else if (/[,;:—–]["'”’)\]]*$/.test(word)) mult += 0.30;
+    return Math.round(base * mult);
+  }
+
   function run() {
-    clearInterval(S.timer);
-    S.timer = setInterval(function () {
-      var c = S.cur; if (!c || c.stage !== "reading") return clearInterval(S.timer);
-      c.pos++; paint();
-      if (c.pos >= c.n) { clearInterval(S.timer); deadEnd(); }
-    }, 1000 / S.wps);
+    stopTimer();
+    var c = S.cur;
+    if (!c || c.stage !== "reading") return;
+    if (c.pos >= c.n) { deadEnd(); return; }
+    var firstDelay = c.pos > 0 ? wordDelayMs(c.words[c.pos - 1]) : Math.round(1000 / S.wps);
+    S.timer = setTimeout(function tick() {
+      var cur = S.cur;
+      if (!cur || cur.stage !== "reading") { stopTimer(); return; }
+      cur.pos++; paint();
+      if (cur.pos >= cur.n) { stopTimer(); deadEnd(); return; }
+      S.timer = setTimeout(tick, wordDelayMs(cur.words[cur.pos - 1]));
+    }, firstDelay);
   }
 
   function paint() {
@@ -1503,7 +1543,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
 
   function buzz() {
     var c = S.cur; if (!c || (c.stage !== "reading" && c.stage !== "paused" && c.stage !== "dead")) return;
-    clearInterval(S.timer);
+    stopTimer();
     c.buzz = Math.min(c.pos, c.n); c.stage = "buzzed";
     $("buzz").disabled = true;
     resetPauseUI(true);
@@ -1594,7 +1634,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
 
   function reveal() {
     var c = S.cur; if (!c || (c.stage !== "buzzed" && c.stage !== "dead")) return;
-    clearInterval(S.timer);
+    stopTimer();
     if (c.stage === "dead") { c.buzz = null; $("buzz").disabled = true; }
     c.stage = "revealed"; c.pos = c.n; paint(); renderTossupMeta();
     showAnswerMetaAndClues(c);
@@ -1734,7 +1774,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
       return;
     }
     if ((c.stage === "reading" || c.stage === "paused") && S.sess && S.sess.i > 0 && S.sess.items.length > 0) {
-      clearInterval(S.timer);
+      stopTimer();
       S.sess.i--;
       var ev = popLastBuzzRecord();
       var prevT = S.sess.queue[S.sess.i], prevWords = prevT.q.split(/\s+/);
@@ -2090,7 +2130,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
     else if (e.key === "2" && S.cur && S.cur.stage === "revealed" && S.cur.buzz !== null) record("wrong");
   });
   document.addEventListener("visibilitychange", function () {
-    if (document.hidden && S.cur && S.cur.stage === "reading") clearInterval(S.timer);
+    if (document.hidden && S.cur && S.cur.stage === "reading") stopTimer();
     else if (!document.hidden && S.cur && S.cur.stage === "reading") run();
   });
 
