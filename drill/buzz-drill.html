@@ -1607,11 +1607,13 @@ th abbr[title] { cursor: inherit; color: inherit; }
       var body = document.createElement("span");
       body.textContent = st.s;
       if (st.matches && st.matches.length) {
+        body.appendChild(document.createTextNode(" "));
         var m = document.createElement("span"); m.className = "cluematch";
         m.textContent = "[" + st.matches.join(", ") + "]";
         body.appendChild(m);
       }
       if (hasDeck) {
+        body.appendChild(document.createTextNode(" "));
         var dm = document.createElement("span"); dm.className = "cluematch";
         dm.textContent = "[deck: " + st.deckHits.map(function (d) { return d.clue + " -> " + (d.notes || []).join(", "); }).join(" ; ") + "]";
         body.appendChild(dm);
