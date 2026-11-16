@@ -377,6 +377,11 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       <div class="tiles" id="audit-tiles"></div>
     </div>
     <div class="panel">
+      <h2>Cumulative buzz curve (Buzz AUC) <small id="auc-badge" class="meta" style="display:inline;margin-left:8px"></small></h2>
+      <p class="note">Share of all tossups answered correctly by each point in the question. The shaded area under the curve (0.000 to 1.000) equals your conversion rate multiplied by average celerity (1 − buzz depth).</p>
+      <div class="chart" id="c-auc"></div>
+    </div>
+    <div class="panel">
       <h2>Where you buzz on tossups you get right</h2>
       <p class="note">Share of the question read before your buzz, averaged per session. Lower is earlier.</p>
       <div class="chart" id="c-buzz"></div>
@@ -1451,6 +1456,21 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     return null;
   }
 
+  function calcAuc(items) {
+    if (!items.length) return { auc: 0, cel: null, okN: 0 };
+    var sum = 0, celSum = 0, celN = 0;
+    items.forEach(function (x) {
+      if (x.result === "correct") {
+        var fr = fracOf(x);
+        if (fr !== null) {
+          var cel = Math.max(0, Math.min(1, 1 - fr));
+          sum += cel; celSum += cel; celN++;
+        }
+      }
+    });
+    return { auc: sum / items.length, cel: celN ? (celSum / celN) : null, okN: celN };
+  }
+
   function renderBuzzpoints() {
     var rows = compiledBuzzRows();
     var packName = (S.setMeta && S.setMeta.name) || S.setId || "Uploaded Pack";
@@ -1466,13 +1486,15 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     var pp20 = rows.length ? Math.round(pts * 20 / rows.length) : "–";
     var okWithFrac = okRows.filter(function (r) { return r.frac !== null && r.frac !== undefined; });
     var avgBuzz = okWithFrac.length ? Math.round(100 * okWithFrac.reduce(function (a, r) { return a + r.frac; }, 0) / okWithFrac.length) + "%" : "–";
+    var aucStat = calcAuc(rows);
     $("bp-sub").textContent = (S.items.length ? (rows.length + " / " + S.items.length + " tossups") : (rows.length + " tossups heard")) + " · " + pts + " pts";
     tiles($("bp-tiles"), [
       [rows.length ? String(pts) : "0", "total points"],
       [rows.length ? String(pp20) : "–", rows.length ? ("PP20 (" + pptu + " PPTU)") : "PP20"],
       [pw + " / " + gets + " / " + neg, "15 / 10 / −5"],
       [attempts ? Math.round(100 * ok / attempts) + "%" : "–", attempts ? ("buzz acc (" + ok + "/" + attempts + ")") : "buzz accuracy"],
-      [avgBuzz, "avg correct buzz"]
+      [avgBuzz, aucStat.cel !== null ? ("avg buzz (cel " + aucStat.cel.toFixed(3) + ")") : "avg correct buzz"],
+      [rows.length ? aucStat.auc.toFixed(3) : "–", "Buzz AUC (0.000–1.000)"]
     ]);
 
     // Populate category filter dynamically preserving choice
@@ -1645,7 +1667,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     var g = {};
     items.forEach(function (x) {
       var k = keyFn(x) || "Unknown";
-      var r = g[k] = g[k] || { k: k, n: 0, pw: 0, gets: 0, ok: 0, neg: 0, att: 0, pts: 0, f: 0, fn: 0, w: 0, wn: 0, inAnki: 0 };
+      var r = g[k] = g[k] || { k: k, n: 0, pw: 0, gets: 0, ok: 0, neg: 0, att: 0, pts: 0, f: 0, fn: 0, w: 0, wn: 0, celSum: 0, inAnki: 0 };
       r.n++;
       r.pts += (x.pts || 0);
       if (x.buzz !== null && x.buzz !== undefined) r.att++;
@@ -1653,7 +1675,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
         r.ok++;
         if (x.power) r.pw++; else r.gets++;
         var fr = fracOf(x);
-        if (fr !== null) { r.f += fr; r.fn++; }
+        if (fr !== null) { r.f += fr; r.fn++; r.celSum += Math.max(0, Math.min(1, 1 - fr)); }
         if (x.buzz !== null && x.buzz !== undefined) { r.w += x.buzz; r.wn++; }
       }
       if ((x.pts || 0) < 0) r.neg++;
@@ -1668,7 +1690,8 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       { id: "neg", label: "−5", num: true },
       { id: "conv", label: "Conv%", num: true },
       { id: "pptu", label: "PPTU", num: true },
-      { id: "buzz", label: "Avg buzz", num: true }
+      { id: "buzz", label: "Avg buzz", num: true },
+      { id: "auc", label: "Buzz AUC", num: true }
     ];
     if (showAnkiCol) cols.push({ id: "ankiPct", label: "In Anki", num: true });
 
@@ -1695,6 +1718,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       r.conv = r.att ? r.ok / r.att : -1;
       r.pptu = r.n ? r.pts / r.n : 0;
       r.avgF = r.fn ? r.f / r.fn : 99;
+      r.auc = r.n ? r.celSum / r.n : 0;
       r.ankiPct = r.n ? r.inAnki / r.n : 0;
       return r;
     });
@@ -1715,6 +1739,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
         else if (c === "conv") cmp = a.conv - b.conv;
         else if (c === "pptu") cmp = a.pptu - b.pptu;
         else if (c === "buzz") cmp = a.avgF - b.avgF;
+        else if (c === "auc") cmp = a.auc - b.auc;
         else if (c === "ankiPct") cmp = a.ankiPct - b.ankiPct;
         return (cmp || (b.n - a.n)) * sortState.dir;
       });
@@ -1736,7 +1761,8 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
         String(r.neg),
         r.att ? Math.round(100 * r.ok / r.att) + "%" : "–",
         r.pptu.toFixed(1),
-        r.fn ? Math.round(100 * r.f / r.fn) + "%" : "–"
+        r.fn ? Math.round(100 * r.f / r.fn) + "%" : "–",
+        r.n ? r.auc.toFixed(3) : "–"
       ];
       if (showAnkiCol) vals.push(Math.round(100 * r.ankiPct) + "%");
       vals.forEach(function (v, i) {
@@ -1744,6 +1770,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
         td.textContent = v;
         if (i) td.className = "num";
         if (i === 7 && r.wn) td.title = "Avg word " + Math.round(r.w / r.wn);
+        if (i === 8 && r.fn) td.title = "Correct rate × avg celerity (" + (r.celSum / r.fn).toFixed(3) + ")";
         tr.appendChild(td);
       });
       tb.appendChild(tr);
@@ -1778,15 +1805,19 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     var avgOk = okF.length ? okF.reduce(function (a, x) { return a + fracOf(x); }, 0) / okF.length : null;
     var negF = neg.filter(function (x) { return fracOf(x) !== null; });
     var avgNeg = negF.length ? negF.reduce(function (a, x) { return a + fracOf(x); }, 0) / negF.length : null;
+    var aucStat = calcAuc(all);
 
     tiles($("ptiles"), [
       [S.mode === "pack" && S.items.length ? (n + " / " + S.items.length) : String(n), "tossups heard"],
       [n ? String(pp20) : "–", n ? ("PP20 (" + pptu + " PPTU)") : "PP20"],
       [pw + " / " + gets + " / " + neg.length, "15 / 10 / −5"],
       [att.length ? Math.round(100 * ok.length / att.length) + "%" : "–", att.length ? ("buzz conversion (" + ok.length + "/" + att.length + ")") : "buzz conversion"],
-      [avgOk === null ? "–" : Math.round(avgOk * 100) + "%", ok.length ? ("avg correct buzz (" + Math.round(100 * pw / ok.length) + "% pw)") : "avg correct buzz"],
+      [avgOk === null ? "–" : Math.round(avgOk * 100) + "%", ok.length ? ("avg correct buzz (cel " + (aucStat.cel !== null ? aucStat.cel.toFixed(3) : "–") + ")") : "avg correct buzz"],
+      [n ? aucStat.auc.toFixed(3) : "–", "Buzz AUC (0.000–1.000)"],
       [n ? Math.round(100 * neg.length / n) + "%" : "–", avgNeg === null ? "neg rate" : ("neg rate · avg neg @" + Math.round(avgNeg * 100) + "%")]
     ]);
+    $("auc-badge").textContent = n ? ("AUC " + aucStat.auc.toFixed(3) + (aucStat.cel !== null ? " · celerity " + aucStat.cel.toFixed(3) : "")) : "";
+    aucChart($("c-auc"), all, aucStat);
 
     var showAnki = S.mode === "pack" && (S.hasAnki || all.some(function (x) { return x.anki !== undefined; }));
     var showSub = all.some(function (x) { return !!x.sub; });
@@ -1845,6 +1876,68 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       b.textContent = tags.join(" · ");
       li.appendChild(a); li.appendChild(b); ul.appendChild(li);
     });
+  }
+
+  function aucChart(box, items, aucStat) {
+    box.textContent = "";
+    if (!items.length) {
+      var p = document.createElement("p"); p.className = "empty"; p.textContent = "Your cumulative buzz curve appears after your first tossup.";
+      box.appendChild(p); return;
+    }
+    var n = items.length;
+    var okFracs = [];
+    items.forEach(function (x) {
+      if (x.result === "correct") {
+        var fr = fracOf(x);
+        if (fr !== null) okFracs.push(Math.max(0, Math.min(1, fr)));
+      }
+    });
+    okFracs.sort(function (a, b) { return a - b; });
+
+    // Build exact step function vertices over [0, 1]
+    var pts = [{ x: 0, y: 0, count: 0 }], cur = 0;
+    okFracs.forEach(function (f) {
+      pts.push({ x: f, y: cur / n, count: cur });
+      cur++;
+      pts.push({ x: f, y: cur / n, count: cur });
+    });
+    pts.push({ x: 1, y: cur / n, count: cur });
+
+    var W = 640, H = 220, L = 44, R = 16, T = 12, B = 30, NS = "http://www.w3.org/2000/svg";
+    var sx = function (v) { return L + (W - L - R) * v; };
+    var sy = function (v) { return T + (H - T - B) * (1 - v); };
+    var svg = document.createElementNS(NS, "svg"); svg.setAttribute("viewBox", "0 0 " + W + " " + H); svg.setAttribute("role", "img");
+    svg.setAttribute("aria-label", "Cumulative correct rate by fraction of question read");
+    function el(tag, a) { var e = document.createElementNS(NS, tag); for (var k in a) e.setAttribute(k, a[k]); svg.appendChild(e); return e; }
+
+    [0, 0.25, 0.5, 0.75, 1].forEach(function (v) {
+      el("line", { x1: L, x2: W - R, y1: sy(v), y2: sy(v), stroke: "var(--grid)", "stroke-width": 1 });
+      var ty = el("text", { x: L - 8, y: sy(v) + 4, "text-anchor": "end", "font-size": 11, fill: "var(--ink-3)", "font-family": "var(--mono)" }); ty.textContent = Math.round(v * 100) + "%";
+      var tx = el("text", { x: sx(v), y: H - 8, "text-anchor": "middle", "font-size": 11, fill: "var(--ink-3)", "font-family": "var(--mono)" }); tx.textContent = Math.round(v * 100) + "%";
+    });
+
+    var lineD = pts.map(function (p, i) { return (i ? "L" : "M") + sx(p.x).toFixed(1) + " " + sy(p.y).toFixed(1); }).join(" ");
+    var areaD = lineD + " L" + sx(1).toFixed(1) + " " + sy(0).toFixed(1) + " L" + sx(0).toFixed(1) + " " + sy(0).toFixed(1) + " Z";
+    el("path", { d: areaD, fill: "var(--series-1)", "fill-opacity": 0.16 });
+    el("path", { d: lineD, fill: "none", stroke: "var(--series-1)", "stroke-width": 2, "stroke-linejoin": "round" });
+
+    var tip = document.createElement("div"); tip.className = "tip"; tip.hidden = true; box.appendChild(tip);
+    [0.1, 0.25, 0.4, 0.5, 0.6, 0.75, 0.9, 1].forEach(function (t) {
+      var c = okFracs.filter(function (f) { return f <= t; }).length, yv = c / n;
+      el("circle", { cx: sx(t), cy: sy(yv), r: t === 1 ? 5 : 3.5, fill: "var(--series-1)", stroke: "var(--card)", "stroke-width": 1.5 });
+      var hit = el("circle", { cx: sx(t), cy: sy(yv), r: 12, fill: "transparent", tabindex: 0 });
+      var showTip = function () {
+        tip.hidden = false;
+        tip.textContent = "By " + Math.round(t * 100) + "% read: " + Math.round(yv * 100) + "% correct (" + c + "/" + n + ")";
+        tip.style.left = (100 * sx(t) / W) + "%"; tip.style.top = (100 * sy(yv) / H) + "%";
+      };
+      hit.addEventListener("mouseenter", showTip); hit.addEventListener("focus", showTip);
+      hit.addEventListener("mouseleave", function () { tip.hidden = true; }); hit.addEventListener("blur", function () { tip.hidden = true; });
+    });
+
+    var aucLbl = el("text", { x: sx(0.98), y: sy(0.06), "text-anchor": "end", "font-size": 12, fill: "var(--ink)", "font-family": "var(--mono)", "font-weight": 600 });
+    aucLbl.textContent = "Buzz AUC = " + aucStat.auc.toFixed(3);
+    box.insertBefore(svg, tip);
   }
 
   function line(box, data, what) {
