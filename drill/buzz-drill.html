@@ -261,7 +261,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     <div id="play" class="panel" hidden>
       <div class="meta" style="justify-content:space-between">
         <div class="row" style="gap:12px"><span id="pos"></span><span id="cat"></span><span id="setname"></span></div>
-        <div class="row" style="gap:10px"><span id="score"></span><button id="play-settings-btn" type="button" class="btn ghost sm" aria-expanded="false" aria-controls="play-settings">Settings</button><button id="end-early" type="button" class="btn ghost sm">End session</button></div>
+        <div class="row" style="gap:10px"><span id="score"></span><button id="pause-btn" type="button" class="btn ghost sm" aria-pressed="false">Pause</button><button id="play-settings-btn" type="button" class="btn ghost sm" aria-expanded="false" aria-controls="play-settings">Settings</button><button id="end-early" type="button" class="btn ghost sm">End session</button></div>
       </div>
       <div id="play-settings" class="settings-drawer" hidden>
         <div class="row"><label class="label" for="play-speed">Speed</label>
@@ -293,7 +293,8 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       </div>
       <div class="keys">
         <div class="keylist" id="keylist">
-          <span class="keyitem" data-st="reading,dead"><kbd>Space</kbd><span>Buzz</span></span>
+          <span class="keyitem" data-st="reading,paused,dead"><kbd>Space</kbd><span>Buzz</span></span>
+          <span class="keyitem" data-st="reading,paused"><kbd>P</kbd><span id="key-pause">Pause</span></span>
           <span class="keyitem" data-st="buzzed,dead"><kbd>Enter</kbd><span>Show answer</span></span>
           <span class="keyitem" data-st="revealed"><kbd>1</kbd><span>Had it</span></span>
           <span class="keyitem" data-st="revealed"><kbd>2</kbd><span>Missed it</span></span>
@@ -1217,6 +1218,37 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     });
   }
 
+  function resetPauseUI(disabled) {
+    var b = $("pause-btn");
+    b.textContent = "Pause";
+    b.setAttribute("aria-pressed", "false");
+    b.disabled = !!disabled;
+    $("key-pause").textContent = "Pause";
+  }
+
+  function togglePause() {
+    var c = S.cur;
+    if (!c || (c.stage !== "reading" && c.stage !== "paused")) return;
+    if (c.stage === "reading") {
+      clearInterval(S.timer);
+      c.stage = "paused";
+      $("pause-btn").textContent = "Resume";
+      $("pause-btn").setAttribute("aria-pressed", "true");
+      $("key-pause").textContent = "Resume";
+      $("state").textContent = "";
+      var l = document.createElement("span"); l.className = "verdict none";
+      l.textContent = "Paused at word " + c.pos + " of " + c.n + " · press P to resume";
+      $("state").appendChild(l);
+      renderKeys();
+    } else {
+      c.stage = "reading";
+      resetPauseUI(false);
+      $("state").textContent = "";
+      renderKeys();
+      run();
+    }
+  }
+
   function loadTossup() {
     var t = S.sess.queue[S.sess.i], words = t.q.split(/\s+/);
     S.cur = { t: t, words: words, n: words.length, star: words.indexOf("(*)"), pos: 0, buzz: null, stage: "reading" };
@@ -1225,7 +1257,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     $("score").textContent = S.sess.points + " pts";
     $("pm").style.left = S.cur.star >= 0 ? (100 * S.cur.star / S.cur.n) + "%" : "-99px";
     $("state").textContent = ""; $("ans").hidden = true; $("judge").hidden = true; $("buzz").disabled = false;
-    renderStatStrip(); renderKeys();
+    resetPauseUI(false); renderStatStrip(); renderKeys();
     paint(); run();
   }
 
@@ -1246,10 +1278,11 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
   }
 
   function buzz() {
-    var c = S.cur; if (!c || (c.stage !== "reading" && c.stage !== "dead")) return;
+    var c = S.cur; if (!c || (c.stage !== "reading" && c.stage !== "paused" && c.stage !== "dead")) return;
     clearInterval(S.timer);
     c.buzz = Math.min(c.pos, c.n); c.stage = "buzzed";
     $("buzz").disabled = true;
+    resetPauseUI(true);
     $("state").innerHTML = "";
     var l = document.createElement("span"); l.className = "lamp"; l.textContent = "Buzzed at word " + c.buzz + " of " + c.n + " · say your answer";
     $("state").appendChild(l);
@@ -1258,6 +1291,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
 
   function deadEnd() {
     var c = S.cur; c.stage = "dead";
+    resetPauseUI(true);
     $("state").textContent = "";
     var l = document.createElement("span"); l.className = "verdict none"; l.textContent = "Question read in full. Buzz now if you know it, or show the answer.";
     $("state").appendChild(l);
@@ -1350,12 +1384,13 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     loadTossup();
   }
 
-  $("buzz").onclick = buzz; $("reveal").onclick = reveal; $("next").onclick = next;
+  $("buzz").onclick = buzz; $("pause-btn").onclick = togglePause; $("reveal").onclick = reveal; $("next").onclick = next;
   $("right").onclick = function () { record("correct"); };
   $("wrong").onclick = function () { record("wrong"); };
   document.addEventListener("keydown", function (e) {
     if (S.tab !== "drill" || $("play").hidden || e.target.tagName === "INPUT" || e.target.tagName === "SELECT") return;
-    if (e.code === "Space") { e.preventDefault(); if (S.cur && (S.cur.stage === "reading" || S.cur.stage === "dead")) buzz(); }
+    if (e.code === "Space") { e.preventDefault(); if (S.cur && (S.cur.stage === "reading" || S.cur.stage === "paused" || S.cur.stage === "dead")) buzz(); }
+    else if (e.key === "p" || e.key === "P") { e.preventDefault(); togglePause(); }
     else if (e.key === "Enter") { e.preventDefault(); if (S.cur && (S.cur.stage === "buzzed" || S.cur.stage === "dead")) reveal(); else if (S.cur && S.cur.stage === "judged") next(); }
     else if ((e.key === "n" || e.key === "N") && S.cur && S.cur.stage === "judged") { e.preventDefault(); next(); }
     else if (e.key === "[") { e.preventDefault(); setSpeed(S.wps - 0.5); }
