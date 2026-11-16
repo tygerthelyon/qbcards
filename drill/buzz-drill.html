@@ -168,6 +168,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
 .bp-row td { padding: 9px 10px; border-bottom: 1px solid rgba(128,128,128,0.25); vertical-align: middle; }
 .bp-row.pw { background: var(--bp-pw-bg); color: var(--bp-pw-ink); }
 .bp-row.ok { background: var(--bp-ok-bg); color: var(--bp-ok-ink); }
+.bp-row.b10 { background: var(--lamp-soft); color: var(--ink); }
 .bp-row.neg { background: var(--bp-neg-bg); color: var(--bp-neg-ink); }
 .bp-row.zero { background: var(--bp-zero-bg); color: var(--bp-zero-ink); }
 .bp-row td.wrapcell { white-space: normal; min-width: 145px; max-width: 240px; }
@@ -191,6 +192,13 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
 .cluetag.on { background: var(--good-soft); color: var(--good); }
 .cluetag.off { background: var(--lamp-soft); color: var(--ink); }
 .cluematch { font: 0.76rem var(--mono); color: var(--good); margin-left: 6px; }
+.bleadin { font-family: var(--serif); font-size: 1.08rem; line-height: 1.55; color: var(--ink); padding: 12px 14px; border-left: 3px solid var(--accent); background: var(--paper); border-radius: 0 8px 8px 0; }
+.bdone { display: flex; flex-direction: column; gap: 8px; }
+.bdone-item { border: 1px solid var(--rule); border-radius: 8px; padding: 10px 12px; background: var(--paper); opacity: 0.85; font-size: 0.9rem; display: flex; flex-direction: column; gap: 4px; }
+.bpart { border: 1px solid var(--rule); border-radius: 10px; padding: 16px; background: var(--card); display: flex; flex-direction: column; gap: 12px; }
+.bpart-q { font-family: var(--serif); font-size: 1.16rem; line-height: 1.6; overflow-wrap: anywhere; }
+.bpart-q.sz-lg { font-size: 1.3rem; }
+.bpart-q.sz-xl { font-size: 1.44rem; }
 
 @media (max-width: 480px) { .tossup { font-size: 1.06rem; } .panel { padding: 16px; } }
 @media (prefers-reduced-motion: no-preference) { .bar .fill { transition: width 0.15s linear; } }
@@ -238,6 +246,11 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     <div id="setup" class="panel">
       <p id="set-desc" class="note">Practice tossups from your studied Anki collection. Buzz when you know the answer, score yourself, and track your progress.</p>
       <div class="row" style="gap:18px 24px">
+        <div id="qkind-wrap" class="row" hidden><span class="label">Format</span>
+          <div class="seg" id="qkind">
+            <button data-k="tossups" aria-pressed="true">Tossups</button><button data-k="bonuses" aria-pressed="false">Bonuses</button>
+          </div>
+        </div>
         <div id="pkt-wrap" class="row" hidden><label class="label" for="pkt">Packet</label>
           <select id="pkt" class="select"></select>
         </div>
@@ -254,7 +267,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
             <button data-n="5" aria-pressed="false">5</button><button data-n="10" aria-pressed="true">10</button><button data-n="20" aria-pressed="false">20</button><button data-n="40" aria-pressed="false">40</button><button data-n="0" aria-pressed="false">All</button>
           </div>
         </div>
-        <div class="row"><label class="label" for="speed">Reading speed</label>
+        <div id="speed-wrap" class="row"><label class="label" for="speed">Reading speed</label>
           <input id="speed" type="range" min="2" max="8" step="0.5" value="4.5">
           <span id="speedv" class="meta"></span>
         </div>
@@ -316,6 +329,45 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       </div>
     </div>
 
+    <div id="bplay" class="panel" hidden>
+      <div class="meta" style="justify-content:space-between">
+        <div class="row" style="gap:12px"><span id="b-pos"></span><span id="b-cat"></span><span id="b-pkt"></span></div>
+        <div class="row" style="gap:10px"><span id="b-score"></span><button id="b-undo" type="button" class="btn ghost sm" title="Undo last action (Ctrl+Z)" disabled>Undo</button><button id="b-end" type="button" class="btn ghost sm">End session</button></div>
+      </div>
+      <div id="b-statstrip" class="statstrip" hidden></div>
+      <div id="b-leadin" class="bleadin"></div>
+      <div id="b-done" class="bdone" hidden></div>
+      <div id="b-part-box" class="bpart">
+        <div class="meta" style="justify-content:space-between">
+          <span id="b-part-lbl"></span>
+          <span id="b-part-diff"></span>
+        </div>
+        <div id="b-part-q" class="bpart-q"></div>
+        <div id="b-ans" class="answer" hidden>
+          <div class="label">Answer</div>
+          <div class="a" id="b-atext"></div>
+          <div class="card" id="b-acard"></div>
+          <div id="b-clue-match" class="cluebox" hidden></div>
+        </div>
+        <div class="row" id="b-judge">
+          <button id="b-reveal" class="btn ghost">Show answer</button>
+          <button id="b-right" class="btn good" hidden>Correct</button>
+          <button id="b-wrong" class="btn bad" hidden>Incorrect</button>
+          <button id="b-next" class="btn" hidden>Next bonus</button>
+        </div>
+      </div>
+      <div id="b-complete" class="row" hidden></div>
+      <div class="keys">
+        <div class="keylist" id="b-keylist">
+          <span class="keyitem" data-bst="asking"><kbd>Space</kbd> / <kbd>Enter</kbd><span>Show answer</span></span>
+          <span class="keyitem" data-bst="revealed"><kbd>1</kbd><span>Correct</span></span>
+          <span class="keyitem" data-bst="revealed"><kbd>2</kbd><span>Incorrect</span></span>
+          <span class="keyitem" data-bst="done"><kbd>N</kbd> / <kbd>Enter</kbd><span>Next bonus</span></span>
+          <span id="b-key-undo" class="keyitem" data-bst="undo"><kbd>Ctrl+Z</kbd><span>Undo</span></span>
+        </div>
+      </div>
+    </div>
+
     <div id="summary" class="panel" hidden>
       <h2 id="sumh"></h2>
       <div class="tiles" id="sumtiles"></div>
@@ -334,6 +386,9 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
         <h2 id="bp-title">Buzzpoints</h2>
         <div id="bp-sub" class="meta"></div>
         <div class="row" style="margin-top:4px">
+          <div id="bp-kind-seg" class="seg" hidden>
+            <button data-bk="tossups" aria-pressed="true">Tossups</button><button data-bk="bonuses" aria-pressed="false">Bonuses</button>
+          </div>
           <button id="bp-to-stats" type="button" class="btn sm">View Category Stats</button>
           <button id="bp-to-play" type="button" class="btn ghost sm">Play Pack</button>
         </div>
@@ -429,6 +484,26 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       <p class="note">Answers you missed or heard in full during recent sessions.</p>
       <ul class="misses" id="misses"></ul>
     </div>
+    <div id="bonus-stats-section" class="wrap" style="gap:18px;width:100%" hidden>
+      <h2 style="margin-top:8px">Bonus Stats</h2>
+      <div class="tiles" id="bptiles"></div>
+      <div id="b-anki-panel" class="panel" hidden>
+        <h2>Bonus parts by Anki coverage</h2>
+        <div class="tablewrap"><table id="tbl-bat" class="bp-table"><thead></thead><tbody></tbody></table></div>
+      </div>
+      <div class="panel">
+        <h2>Bonuses by category</h2>
+        <div class="tablewrap"><table id="tbl-bgt" class="bp-table"><thead></thead><tbody></tbody></table></div>
+      </div>
+      <div id="b-pkt-panel" class="panel" hidden>
+        <h2>Bonuses by packet</h2>
+        <div class="tablewrap"><table id="tbl-bpt" class="bp-table"><thead></thead><tbody></tbody></table></div>
+      </div>
+      <div class="panel">
+        <h2>Recent missed bonus parts</h2>
+        <ul class="misses" id="b-misses"></ul>
+      </div>
+    </div>
   </section>
 </div>
 
@@ -446,8 +521,11 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     packSetId: null,  // currently selected pack in Pack Analysis
     setId: "studied", // active loaded set id ("studied" or pack id)
     setMeta: null,
+    kind: "tossups",  // "tossups" | "bonuses"
     items: [],
     itemsById: {},
+    bonuses: [],
+    bonusesById: {},
     groups: [],
     packets: [],
     hasPackets: false,
@@ -462,9 +540,13 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     wps: 4.5,
     sessions: [],
     buzzes: [],
+    bonusLogs: [],
     sess: null,
     cur: null,
+    bsess: null,
+    bcur: null,
     timer: null,
+    bpKind: "tossups",
     bpSort: { col: "seq", dir: 1 },
     bpExpanded: {},
     tblSort: {},
@@ -500,6 +582,10 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     if (setId === "acfw26") return "acfw26-sessions";
     if (setId === "studied") return "bd-sessions";
     return "bd-sessions-" + setId;
+  }
+
+  function bonusStorageKey(setId) {
+    return setId === "acfw26" ? "acfw26-bonuses" : ("bd-bonuses-" + setId);
   }
 
   function saveNote(msg) {
@@ -627,18 +713,31 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     return (name || "Uploaded Pack").replace(/\.(zip|json)$/i, "").replace(/[_]+/g, " ").trim() || "Uploaded Pack";
   }
 
-  function extractTossups(data, fileLabel, isMultiPacket, setSlug) {
-    var list = null;
-    if (Array.isArray(data)) list = data;
-    else if (data && Array.isArray(data.items)) list = data.items;
-    else if (data && Array.isArray(data.tossups)) list = data.tossups;
-    else if (data && data.tossups && Array.isArray(data.tossups.questionArray)) list = data.tossups.questionArray;
-    else if (data && Array.isArray(data.questionArray)) list = data.questionArray;
-    else if (data && Array.isArray(data.questions)) list = data.questions;
-    if (!list) return [];
+  function mergeBonusLogs(a, b) {
+    var out = [], seen = {};
+    (a || []).concat(b || []).forEach(function (x) {
+      if (!x || !x.id) return;
+      var k = (x.sessionId || "") + "|" + x.id + "|" + (x.ts || "");
+      if (seen[k]) return;
+      seen[k] = 1;
+      out.push(x);
+    });
+    out.sort(function (x, y) { return (x.ts || 0) - (y.ts || 0); });
+    return out;
+  }
 
-    var pktLabel = cleanLabel(fileLabel), pktSlug = slugify(pktLabel), items = [];
-    list.forEach(function (t, idx) {
+  function extractPack(data, fileLabel, isMultiPacket, setSlug) {
+    var tossupList = null, bonusList = null;
+    if (Array.isArray(data)) tossupList = data;
+    else if (data) {
+      tossupList = data.items || (Array.isArray(data.tossups) ? data.tossups : (data.tossups && data.tossups.questionArray)) || data.questionArray || data.questions || null;
+      bonusList = Array.isArray(data.bonuses) ? data.bonuses : (data.bonuses && data.bonuses.questionArray) || data.questionArray || null;
+    }
+
+    var pktLabel = cleanLabel(fileLabel), pktSlug = slugify(pktLabel);
+    var items = [], bonuses = [];
+
+    (tossupList || []).forEach(function (t, idx) {
       if (!t || (t.type && t.type !== "tossup")) return;
       if (t.q && t.a && t.id) {
         var copy = Object.assign({}, t);
@@ -657,7 +756,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       var pktObj = t.packet || null;
       var pSlug = (pktObj && (pktObj._id || (pktObj.number !== undefined ? "p" + pktObj.number : ""))) || (isMultiPacket ? pktSlug : "");
       var pLabel = (pktObj && (pktObj.name || (pktObj.number !== undefined ? "Packet " + pktObj.number : ""))) || (isMultiPacket ? pktLabel : "");
-      var id = t._id || t.id || (setSlug + ":" + (pSlug || "all") + ":" + num + ":" + idx);
+      var id = t._id || t.id || (setSlug + ":" + (pSlug || "all") + ":T" + num + ":" + idx);
       var item = {
         id: String(id), g: t.category || "General", sub: t.subcategory || "",
         q: q, a: a, ah: ah !== a ? ah : undefined, main: mainAnswer(a),
@@ -666,7 +765,41 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       if (pSlug) { item.p = String(pSlug); item.pl = String(pLabel || pSlug); }
       items.push(item);
     });
-    return items;
+
+    (bonusList || []).forEach(function (b, idx) {
+      if (!b || (b.type && b.type !== "bonus")) return;
+      if (b.leadin !== undefined && Array.isArray(b.parts) && Array.isArray(b.answers) && b.id) {
+        bonuses.push(Object.assign({}, b));
+        return;
+      }
+      var partsRaw = b.parts_sanitized || (b.parts || []).map(stripHtml);
+      var parts = (partsRaw || []).map(function (p) { return (p || "").replace(/\s+/g, " ").trim(); });
+      var ahList = b.answers || [];
+      var ansList = (b.answers_sanitized || ahList.map(stripHtml)).map(function (a) { return (a || "").replace(/\s+/g, " ").trim(); });
+      if (!parts.length || !ansList.length) return;
+      var leadin = (b.leadin_sanitized || stripHtml(b.leadin || "")).replace(/\s+/g, " ").trim();
+      var num = b.number || (idx + 1);
+      var pktObj = b.packet || null;
+      var pSlug = (pktObj && (pktObj._id || (pktObj.number !== undefined ? "p" + pktObj.number : ""))) || (isMultiPacket ? pktSlug : "");
+      var pLabel = (pktObj && (pktObj.name || (pktObj.number !== undefined ? "Packet " + pktObj.number : ""))) || (isMultiPacket ? pktLabel : "");
+      var bid = b._id || b.id || (setSlug + ":" + (pSlug || "all") + ":B" + num + ":" + idx);
+      var bo = {
+        id: String(bid),
+        g: b.category || "General",
+        sub: b.subcategory || "",
+        n: num,
+        leadin: leadin,
+        parts: parts,
+        answers: ansList,
+        ah: ahList,
+        values: b.values || parts.map(function () { return 10; }),
+        diff: b.difficultyModifiers || []
+      };
+      if (pSlug) { bo.p = String(pSlug); bo.pl = String(pLabel || pSlug); }
+      bonuses.push(bo);
+    });
+
+    return { tossups: items, bonuses: bonuses };
   }
 
   async function handleUpload(fileList) {
@@ -685,44 +818,45 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
           jsonEntries.push({ name: f.name, text: await f.text() });
         }
       }
-      if (!jsonEntries.length) { uploadNote("No .json tossup files found inside that selection."); return; }
+      if (!jsonEntries.length) { uploadNote("No .json files found inside that selection."); return; }
       var setName = files.length === 1 ? cleanLabel(files[0].name) : cleanLabel(files[0].name) + " (+" + (files.length - 1) + ")";
       var setSlug = slugify(setName);
       var isMultiPacket = jsonEntries.length > 1 || files[0].name.toLowerCase().endsWith(".zip");
-      var items = [];
+      var items = [], bonuses = [];
       jsonEntries.forEach(function (ent) {
         try {
-          var parsed = JSON.parse(ent.text);
-          items = items.concat(extractTossups(parsed, ent.name, isMultiPacket, setSlug));
+          var ex = extractPack(JSON.parse(ent.text), ent.name, isMultiPacket, setSlug);
+          items = items.concat(ex.tossups);
+          bonuses = bonuses.concat(ex.bonuses);
         } catch (err) {}
       });
-      if (!items.length) { uploadNote("Could not find any valid tossups (question + answer fields)."); return; }
+      if (!items.length && !bonuses.length) { uploadNote("Could not find any valid tossups or bonuses."); return; }
 
       if (S.serverOk) {
-        uploadNote("Saving \"" + setName + "\" (" + items.length + " tossups) to local server...");
-        var resp = await post("/api/sets", { name: setName, items: items });
+        uploadNote("Saving \"" + setName + "\" (" + items.length + " tossups, " + bonuses.length + " bonuses) to local server...");
+        var resp = await post("/api/sets", { name: setName, items: items, bonuses: bonuses });
         await refreshCatalog(resp.id);
-        uploadNote("Loaded \"" + resp.name + "\" (" + resp.count + " tossups).");
+        uploadNote("Loaded \"" + resp.name + "\" (" + resp.count + " tossups, " + (resp.bonusCount || 0) + " bonuses).");
         S.packSetId = resp.id;
         savePrefs();
         if (S.mode !== "pack") await setMode("pack");
-        else await loadActiveSet(resp.id, resp.items);
+        else await loadActiveSet(resp.id, resp.items, resp.bonuses);
       } else {
         var sid = "local_" + setSlug;
-        var hasPackets = items.some(function (it) { return !!it.p; });
-        var obj = { id: sid, name: setName, count: items.length, hasPackets: hasPackets, custom: true, localOnly: true, items: items };
+        var hasPackets = items.concat(bonuses).some(function (it) { return !!it.p; });
+        var obj = { id: sid, name: setName, count: items.length, bonusCount: bonuses.length, hasPackets: hasPackets, custom: true, localOnly: true, items: items, bonuses: bonuses };
         S.localSets[sid] = obj;
         var ok = store("bd-custom-sets", S.localSets);
         if (!ok) {
           delete S.localSets[sid]; store("bd-custom-sets", S.localSets); S.localSets[sid] = obj;
-          uploadNote("Loaded \"" + setName + "\" (" + items.length + " tossups) for this browser tab (exceeds browser storage quota; run drill_server.py to persist large packs).");
+          uploadNote("Loaded \"" + setName + "\" (" + items.length + " tossups, " + bonuses.length + " bonuses) for this tab (exceeds browser quota; run drill_server.py to persist large packs).");
         } else {
-          uploadNote("Loaded \"" + setName + "\" (" + items.length + " tossups).");
+          uploadNote("Loaded \"" + setName + "\" (" + items.length + " tossups, " + bonuses.length + " bonuses).");
         }
         S.packSetId = sid; savePrefs();
         rebuildPackOptions(sid);
         if (S.mode !== "pack") await setMode("pack");
-        else await loadActiveSet(sid, items);
+        else await loadActiveSet(sid, items, bonuses);
       }
     } catch (e) {
       uploadNote("Upload failed: " + (e && e.message ? e.message : String(e)));
@@ -793,28 +927,30 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
 
   function loadSetState(setId) {
     var localSess = store(sessStorageKey(setId)) || [];
+    var localBonuses = store(bonusStorageKey(setId)) || [];
     if (S.serverOk && setId && !setId.startsWith("local_")) {
       return fetch("/api/state?set=" + encodeURIComponent(setId)).then(function (r) {
         if (!r.ok) throw new Error("no state");
         return r.json();
       }).then(function (st) {
         S.buzzes = st.buzzes || [];
+        S.bonusLogs = mergeBonusLogs(st.bonuses || [], localBonuses);
         S.sessions = mergeSessions(st.sessions || [], localSess);
       }).catch(function () {
-        S.buzzes = []; S.sessions = localSess;
+        S.buzzes = []; S.bonusLogs = localBonuses; S.sessions = localSess;
       });
     }
-    S.buzzes = []; S.sessions = localSess;
+    S.buzzes = []; S.bonusLogs = localBonuses; S.sessions = localSess;
     return Promise.resolve();
   }
 
-  async function loadActiveSet(setId, preloadedItems) {
+  async function loadActiveSet(setId, preloadedItems, preloadedBonuses) {
     clearInterval(S.timer);
-    S.cur = null;
+    S.cur = null; S.bcur = null;
     S.bpExpanded = {};
     if (!setId) {
-      S.setId = null; S.setMeta = null; S.items = []; S.itemsById = {}; S.groups = []; S.packets = [];
-      S.buzzes = []; S.sessions = [];
+      S.setId = null; S.setMeta = null; S.kind = "tossups"; S.items = []; S.itemsById = {}; S.bonuses = []; S.bonusesById = {}; S.groups = []; S.packets = [];
+      S.buzzes = []; S.bonusLogs = []; S.sessions = [];
       $("built").textContent = "Pack Analysis";
       $("pack-summary").textContent = "Upload any .json or .zip pack to analyze";
       $("poolinfo").textContent = "Upload a .json or .zip packet above to start.";
@@ -831,31 +967,56 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     $("rm-local").hidden = !(S.mode === "pack" && localEntry && localEntry.localOnly);
 
     var items = preloadedItems || (localEntry && localEntry.items) || (meta && meta._preloaded && meta._preloaded.items) || null;
+    var bonuses = preloadedBonuses || (localEntry && localEntry.bonuses) || null;
     var built = (meta && meta.built) || "";
     if (!items && meta && meta.url) {
       var res = await fetch(meta.url);
       if (!res.ok) throw new Error("Could not load " + meta.url);
       var json = await res.json();
       items = json.items || [];
+      if (!bonuses && json.bonuses) bonuses = json.bonuses;
       built = built || json.built || "";
     }
+    if (S.mode === "pack" && !bonuses && S.serverOk && !setId.startsWith("local_") && meta && (meta.bonusCount || setId === "acfw26")) {
+      try {
+        var bres = await fetch("/api/bonuses?set=" + encodeURIComponent(setId));
+        if (bres.ok) bonuses = (await bres.json()).bonuses || [];
+      } catch (e) {}
+    }
     items = items || [];
+    bonuses = S.mode === "pack" ? (bonuses || []) : [];
     S.items = items;
     S.itemsById = {};
     items.forEach(function (t) { S.itemsById[t.id] = t; });
-    S.hasPackets = S.mode === "pack" && items.some(function (t) { return !!t.p; });
-    S.hasAnki = S.mode === "pack" && items.some(function (t) { return t.anki !== undefined; });
+    S.bonuses = bonuses;
+    S.bonusesById = {};
+    bonuses.forEach(function (b) { S.bonusesById[b.id] = b; });
+    if (S.mode !== "pack" || (!bonuses.length && items.length)) S.kind = "tossups";
+    else if (bonuses.length && !items.length) S.kind = "bonuses";
+
+    S.hasPackets = S.mode === "pack" && items.concat(bonuses).some(function (t) { return !!t.p; });
+    S.hasAnki = S.mode === "pack" && (items.some(function (t) { return t.anki !== undefined; }) || bonuses.some(function (b) { return !!(b.part_meta && b.part_meta.length); }));
 
     $("built").textContent = S.mode === "deck"
       ? (built ? "set built " + built : items.length + " studied tossups")
-      : ((meta ? meta.name + " · " : "") + items.length + " tossups");
+      : ((meta ? meta.name + " · " : "") + items.length + " TU" + (bonuses.length ? " · " + bonuses.length + " B" : ""));
     $("set-desc").textContent = S.mode === "deck"
       ? "Practice tossups from your studied Anki collection. Buzz when you know the answer, score yourself, and track your progress."
-      : "Play this pack with Anki coverage tracking, then inspect every buzz on Buzzpoints or break down performance in Category Stats.";
-    $("skip-lbl").textContent = S.mode === "deck" ? "Skip tossups heard in last 30 days" : "Skip tossups I've already heard";
+      : "Play tossups or bonuses with Anki coverage tracking, then inspect every round on Buzzpoints or break down performance in Category Stats.";
+    $("skip-lbl").textContent = S.mode === "deck" ? "Skip tossups heard in last 30 days" : (S.kind === "bonuses" ? "Skip bonuses I've already heard" : "Skip tossups I've already heard");
 
+    rebuildPoolDimensions();
+    await loadSetState(setId);
+    updatePackSummary();
+    renderSetup();
+    if (S.tab === "buzzpoints") renderBuzzpoints();
+    if (S.tab === "progress") renderProgress();
+  }
+
+  function rebuildPoolDimensions() {
+    var activeList = (S.mode === "pack" && S.kind === "bonuses") ? S.bonuses : S.items;
     var c = {}, p = {};
-    items.forEach(function (t) {
+    activeList.forEach(function (t) {
       var g = t.g || "General";
       c[g] = (c[g] || 0) + 1;
       if (t.p) {
@@ -866,26 +1027,26 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     S.groups = Object.keys(c).sort(function (a, b) { return c[b] - c[a]; }).map(function (g) { return { g: g, n: c[g] }; });
     S.packets = Object.keys(p).map(function (k) { return p[k]; });
 
-    var catPrefs = (saved.chosenBySet && saved.chosenBySet[setId]) || (setId === "studied" && saved.chosen) || null;
+    var catPrefs = (saved.chosenBySet && saved.chosenBySet[S.setId]) || (S.setId === "studied" && saved.chosen) || null;
     S.chosen = {};
     S.groups.forEach(function (x) { S.chosen[x.g] = catPrefs ? !!catPrefs[x.g] : true; });
-    S.pkt = (saved.pktBySet && saved.pktBySet[setId]) || "ALL";
+    S.pkt = (saved.pktBySet && saved.pktBySet[S.setId]) || "ALL";
     if (S.pkt !== "ALL" && !p[S.pkt]) S.pkt = "ALL";
     if (!S.hasPackets && S.mode === "deck") S.order = "random";
-
-    await loadSetState(setId);
-    updatePackSummary();
-    renderSetup();
-    if (S.tab === "buzzpoints") renderBuzzpoints();
-    if (S.tab === "progress") renderProgress();
   }
 
   function updatePackSummary() {
     var box = $("pack-summary");
-    if (S.mode !== "pack" || !S.items.length) { box.textContent = ""; return; }
+    if (S.mode !== "pack" || (!S.items.length && !S.bonuses.length)) { box.textContent = ""; return; }
     var rec = allSetRecords();
     var ok = rec.filter(function (x) { return x.result === "correct"; }).length;
-    box.textContent = rec.length + " / " + S.items.length + " heard" + (rec.length ? " · " + Math.round(100 * ok / rec.length) + "% correct" : "");
+    var parts = [];
+    if (S.items.length) parts.push(rec.length + "/" + S.items.length + " TU" + (rec.length ? " (" + Math.round(100 * ok / rec.length) + "%)" : ""));
+    if (S.bonuses.length || S.bonusLogs.length) {
+      var bt = S.bonusLogs.reduce(function (a, b) { return a + (b.totalPts || 0); }, 0);
+      parts.push(S.bonusLogs.length + "/" + S.bonuses.length + " B" + (S.bonusLogs.length ? " (" + (bt / S.bonusLogs.length).toFixed(1) + " PPB)" : ""));
+    }
+    box.textContent = parts.join(" · ");
   }
 
   async function setMode(m) {
@@ -1003,6 +1164,8 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
         if ((b.ts || 0) > cut) ids[b.id] = 1;
         if (b.k) keys[b.g + "|" + b.k] = Math.max(keys[b.g + "|" + b.k] || 0, b.ts || 0);
       });
+    } else if (S.mode === "pack" && S.kind === "bonuses") {
+      S.bonusLogs.forEach(function (b) { ids[b.id] = 1; });
     } else {
       allSetRecords().forEach(function (b) { ids[b.id] = 1; });
     }
@@ -1011,12 +1174,27 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
 
   // ---------- setup ----------
   function renderSetup() {
+    var activeList = (S.mode === "pack" && S.kind === "bonuses") ? S.bonuses : S.items;
+    $("qkind-wrap").hidden = !(S.mode === "pack" && S.bonuses.length);
+    if ($("qkind-wrap").hidden) S.kind = "tossups";
+    Array.prototype.forEach.call($("qkind").children, function (b) {
+      b.setAttribute("aria-pressed", b.dataset.k === S.kind ? "true" : "false");
+      b.onclick = function () {
+        if (S.kind === b.dataset.k) return;
+        S.kind = b.dataset.k;
+        $("skip-lbl").textContent = S.kind === "bonuses" ? "Skip bonuses I've already heard" : "Skip tossups I've already heard";
+        rebuildPoolDimensions();
+        renderSetup();
+      };
+    });
+
     $("pkt-wrap").hidden = !S.hasPackets;
-    $("order-wrap").hidden = !(S.mode === "pack" && S.items.length);
+    $("order-wrap").hidden = !(S.mode === "pack" && activeList.length);
     $("len-wrap").hidden = S.mode !== "deck";
+    $("speed-wrap").hidden = S.mode === "pack" && S.kind === "bonuses";
     $("order-seq-lbl").textContent = S.hasPackets ? "Packet order" : "In order";
     var pktSel = $("pkt"); pktSel.textContent = "";
-    var o0 = document.createElement("option"); o0.value = "ALL"; o0.textContent = "All packets (" + S.items.length + ")"; pktSel.appendChild(o0);
+    var o0 = document.createElement("option"); o0.value = "ALL"; o0.textContent = "All packets (" + activeList.length + ")"; pktSel.appendChild(o0);
     S.packets.forEach(function (x) {
       var o = document.createElement("option"); o.value = x.p; o.textContent = x.pl + " (" + x.n + ")"; pktSel.appendChild(o);
     });
@@ -1095,10 +1273,13 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
   }
 
   function applyTextSize() {
-    var el = $("text");
-    el.classList.remove("sz-lg", "sz-xl");
-    if (S.sz === "lg") el.classList.add("sz-lg");
-    else if (S.sz === "xl") el.classList.add("sz-xl");
+    ["text", "b-part-q"].forEach(function (id) {
+      var el = $(id);
+      if (!el) return;
+      el.classList.remove("sz-lg", "sz-xl");
+      if (S.sz === "lg") el.classList.add("sz-lg");
+      else if (S.sz === "xl") el.classList.add("sz-xl");
+    });
   }
 
   function savePrefs() {
@@ -1122,7 +1303,8 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
 
   function filteredItems() {
     var h = heardLookup();
-    var all = S.items.filter(function (t) {
+    var activeList = (S.mode === "pack" && S.kind === "bonuses") ? S.bonuses : S.items;
+    var all = activeList.filter(function (t) {
       return S.chosen[t.g || "General"] && (!S.hasPackets || S.pkt === "ALL" || t.p === S.pkt);
     });
     var fresh = all.filter(function (t) { return !h.ids[t.id]; });
@@ -1130,19 +1312,21 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
   }
 
   function renderSetupInfo() {
-    if (!S.items.length) { $("start").disabled = true; return; }
+    var activeList = (S.mode === "pack" && S.kind === "bonuses") ? S.bonuses : S.items;
+    if (!activeList.length) { $("start").disabled = true; $("poolinfo").textContent = ""; return; }
     var sel = S.groups.filter(function (x) { return S.chosen[x.g]; });
     $("cat-summary").textContent = sel.length === S.groups.length ? "All (" + S.groups.length + ")" : sel.length === 0 ? "None" : sel.length === 1 ? sel[0].g : sel.length + " of " + S.groups.length;
     var f = filteredItems();
     var pool = S.skipHeard ? f.fresh : f.all;
     $("start").disabled = pool.length === 0;
     var done = f.all.length - f.fresh.length;
-    $("poolinfo").textContent = pool.length + " tossups ready" + (done ? " · " + done + " already heard" : "");
+    var noun = (S.mode === "pack" && S.kind === "bonuses") ? "bonuses" : "tossups";
+    $("poolinfo").textContent = pool.length + " " + noun + " ready" + (done ? " · " + done + " already heard" : "");
   }
 
   // ---------- reading & buzzing ----------
   function show(what) {
-    ["setup", "play", "summary"].forEach(function (id) { $(id).hidden = id !== what; });
+    ["setup", "play", "bplay", "summary"].forEach(function (id) { $(id).hidden = id !== what; });
   }
 
   function start() {
@@ -1163,6 +1347,10 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
         var keys = f.keys;
         pool.sort(function (a, b) { return (keys[a.g + "|" + (a.k || "")] || 0) - (keys[b.g + "|" + (b.k || "")] || 0); });
       }
+    }
+    if (S.mode === "pack" && S.kind === "bonuses") {
+      startBonusSession(pool);
+      return;
     }
     var n = (S.mode !== "deck" || S.len === 0) ? pool.length : Math.min(S.len, pool.length);
     var queue = pool.slice(0, n);
@@ -1565,8 +1753,306 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
   $("buzz").onclick = buzz; $("undo-btn").onclick = undo; $("pause-btn").onclick = togglePause; $("reveal").onclick = reveal; $("next").onclick = next;
   $("right").onclick = function () { record("correct"); };
   $("wrong").onclick = function () { record("wrong"); };
+
+  // ---------- bonuses play ----------
+  function startBonusSession(queue) {
+    S.bsess = {
+      id: "B" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 5),
+      setId: S.setId, startedAt: Date.now(), queue: queue, i: 0, items: [], points: 0
+    };
+    show("bplay");
+    applyTextSize();
+    loadBonus();
+  }
+
+  function renderBonusStatStrip() {
+    var box = $("b-statstrip"), all = S.bonusLogs;
+    if (!all.length) { box.hidden = true; return; }
+    var pts = all.reduce(function (a, x) { return a + (x.totalPts || 0); }, 0);
+    var pCounts = [0, 0, 0], pOk = [0, 0, 0];
+    all.forEach(function (b) {
+      (b.parts || []).forEach(function (p, idx) {
+        if (idx < 3) { pCounts[idx]++; if (p.ok) pOk[idx]++; }
+      });
+    });
+    var pStr = pCounts.map(function (c, i) { return "P" + (i + 1) + " " + (c ? Math.round(100 * pOk[i] / c) + "%" : "–"); }).join(" / ");
+    box.textContent = ""; box.hidden = false;
+    [
+      ["Bonuses", all.length + " / " + S.bonuses.length],
+      ["PPB", (pts / all.length).toFixed(2)],
+      ["Part rates", pStr]
+    ].forEach(function (pair) {
+      var sp = document.createElement("span");
+      sp.textContent = pair[0] + " ";
+      var b = document.createElement("b"); b.textContent = pair[1];
+      sp.appendChild(b); box.appendChild(sp);
+    });
+  }
+
+  function canBonusUndo() {
+    var bc = S.bcur;
+    if (!bc) return false;
+    if (bc.stage === "revealed" || bc.stage === "done" || bc.pi > 0) return true;
+    return S.bsess && S.bsess.i > 0 && S.bsess.items.length > 0;
+  }
+
+  function renderBonusKeys() {
+    var st = (S.bcur && S.bcur.stage) || "asking";
+    var allowUndo = canBonusUndo();
+    $("b-undo").disabled = !allowUndo;
+    Array.prototype.forEach.call($("b-keylist").children, function (el) {
+      var want = (el.dataset.bst || "").split(",");
+      var on = want.indexOf("undo") >= 0 ? allowUndo : want.indexOf(st) >= 0;
+      el.classList.toggle("off", !on);
+    });
+  }
+
+  function popLastBonusRecord() {
+    if (!S.bsess || !S.bsess.items.length) return null;
+    var ev = S.bsess.items.pop();
+    S.bsess.points -= (ev.totalPts || 0);
+    for (var i = S.bonusLogs.length - 1; i >= 0; i--) {
+      if (S.bonusLogs[i].sessionId === ev.sessionId && S.bonusLogs[i].id === ev.id && S.bonusLogs[i].ts === ev.ts) {
+        S.bonusLogs.splice(i, 1);
+        break;
+      }
+    }
+    store(bonusStorageKey(S.setId), S.bonusLogs);
+    post("/api/unbonus", { setId: S.setId, sessionId: ev.sessionId, id: ev.id, ts: ev.ts }).catch(function () {});
+    return ev;
+  }
+
+  function loadBonus() {
+    var b = S.bsess.queue[S.bsess.i];
+    S.bcur = { b: b, pi: 0, partsRes: [], stage: "asking" };
+    renderBonusView();
+  }
+
+  function renderBonusView() {
+    var bc = S.bcur, b = bc.b;
+    var revealed = bc.stage === "revealed" || bc.stage === "done" || S.showMeta;
+    $("b-pos").textContent = (S.bsess.i + 1) + " / " + S.bsess.queue.length;
+    $("b-cat").textContent = revealed ? (b.sub ? b.g + " · " + b.sub : b.g) : "Category hidden";
+    $("b-pkt").textContent = revealed ? ((b.pl || b.p || "") + (b.n ? " · B" + b.n : "")) : "";
+    $("b-score").textContent = S.bsess.points + " pts";
+    $("b-leadin").textContent = b.leadin || "(No lead-in)";
+    renderBonusStatStrip();
+
+    var doneEl = $("b-done"); doneEl.textContent = "";
+    doneEl.hidden = !bc.partsRes.length;
+    bc.partsRes.forEach(function (pr, idx) {
+      var d = document.createElement("div"); d.className = "bdone-item";
+      var top = document.createElement("div"); top.className = "meta"; top.style.justifyContent = "space-between";
+      var lhs = document.createElement("span"); lhs.textContent = "Part " + (idx + 1) + ": " + (pr.main || pr.a);
+      if (pr.anki !== undefined) { lhs.appendChild(document.createTextNode(" ")); lhs.appendChild(renderAnkiPill(pr.anki)); }
+      var rhs = document.createElement("span"); rhs.className = "verdict " + (pr.ok ? "good" : "bad");
+      rhs.textContent = pr.ok ? ("Correct · +" + pr.pts) : "Incorrect · 0";
+      top.appendChild(lhs); top.appendChild(rhs);
+      var qtxt = document.createElement("div"); qtxt.textContent = b.parts[idx] || "";
+      d.appendChild(top); d.appendChild(qtxt);
+      doneEl.appendChild(d);
+    });
+
+    if (bc.stage === "done") {
+      $("b-part-box").hidden = true;
+      var tot = bc.partsRes.reduce(function (a, p) { return a + p.pts; }, 0);
+      var mx = bc.partsRes.reduce(function (a, p) { return a + p.val; }, 0);
+      $("b-complete").hidden = false;
+      $("b-complete").textContent = "";
+      var v = document.createElement("span");
+      v.className = "verdict " + (tot >= 20 ? "good" : tot > 0 ? "none" : "bad");
+      v.textContent = "Bonus complete: " + tot + " / " + mx + " pts";
+      var nb = document.createElement("button"); nb.type = "button"; nb.className = "btn";
+      nb.textContent = S.bsess.i + 1 >= S.bsess.queue.length ? "Finish session" : "Next bonus";
+      nb.onclick = nextBonus;
+      $("b-complete").appendChild(v); $("b-complete").appendChild(nb);
+      renderBonusKeys();
+      nb.focus({ preventScroll: true });
+      return;
+    }
+
+    $("b-complete").hidden = true;
+    $("b-part-box").hidden = false;
+    var pi = bc.pi, nParts = b.parts.length;
+    var val = (b.values && b.values[pi]) || 10;
+    var diffCode = (b.diff && b.diff[pi]) || "";
+    var diffLabel = diffCode === "e" ? "Easy" : diffCode === "m" ? "Medium" : diffCode === "h" ? "Hard" : "";
+    $("b-part-lbl").textContent = "Part " + (pi + 1) + " of " + nParts + " · " + val + " pts";
+    $("b-part-diff").textContent = bc.stage === "revealed" ? diffLabel : "";
+    $("b-part-q").textContent = b.parts[pi] || "";
+
+    $("b-clue-match").hidden = true;
+    $("b-clue-match").textContent = "";
+    if (bc.stage === "revealed") {
+      var ansPlain = (b.answers && b.answers[pi]) || "";
+      var ansHtml = (b.ah && b.ah[pi]) || "";
+      var pm = (b.part_meta && b.part_meta[pi]) || {};
+      setAnswerFormatted($("b-atext"), ansHtml, ansPlain);
+      var bac = $("b-acard"); bac.textContent = "";
+      if (pm.anki !== undefined) bac.appendChild(renderAnkiPill(pm.anki));
+      if (diffLabel) { var dl = document.createElement("span"); dl.textContent = "Difficulty: " + diffLabel; bac.appendChild(dl); }
+      if (S.serverOk && (pm.anki === "card" || pm.anki === "suspended")) {
+        var cid = b.id + "_p" + pi;
+        var qForMatch = (b.leadin ? b.leadin + " " : "") + (b.parts[pi] || "");
+        fetchClueMatch({ id: cid, q: qForMatch, a: ansPlain, main: pm.main || "" }).then(function (data) {
+          if (S.bcur && S.bcur.b.id === b.id && S.bcur.pi === pi && S.bcur.stage === "revealed") {
+            renderClueBox($("b-clue-match"), data);
+          }
+        });
+      }
+      $("b-ans").hidden = false; $("b-reveal").hidden = true; $("b-right").hidden = false; $("b-wrong").hidden = false; $("b-next").hidden = true;
+      renderBonusKeys();
+      $("b-right").focus({ preventScroll: true });
+    } else {
+      $("b-ans").hidden = true; $("b-reveal").hidden = false; $("b-right").hidden = true; $("b-wrong").hidden = true; $("b-next").hidden = true;
+      renderBonusKeys();
+      $("b-reveal").focus({ preventScroll: true });
+    }
+  }
+
+  function revealBonusPart() {
+    var bc = S.bcur; if (!bc || bc.stage !== "asking") return;
+    bc.stage = "revealed";
+    renderBonusView();
+  }
+
+  function recordBonusPart(ok) {
+    var bc = S.bcur; if (!bc || bc.stage !== "revealed") return;
+    var b = bc.b, pi = bc.pi;
+    var val = (b.values && b.values[pi]) || 10;
+    var pts = ok ? val : 0;
+    var ans = (b.answers && b.answers[pi]) || "";
+    var pm = (b.part_meta && b.part_meta[pi]) || {};
+    var pObj = {
+      i: pi, val: val, pts: pts, ok: !!ok,
+      diff: (b.diff && b.diff[pi]) || "",
+      main: pm.main || mainAnswer(ans),
+      a: ans.slice(0, 140)
+    };
+    if (pm.anki !== undefined) pObj.anki = pm.anki;
+    bc.partsRes.push(pObj);
+    S.bsess.points += pts;
+
+    if (bc.pi + 1 < b.parts.length) {
+      bc.pi++;
+      bc.stage = "asking";
+    } else {
+      bc.stage = "done";
+      var tot = bc.partsRes.reduce(function (a, p) { return a + p.pts; }, 0);
+      var mx = bc.partsRes.reduce(function (a, p) { return a + p.val; }, 0);
+      var ev = {
+        sessionId: S.bsess.id, setId: S.setId, ts: Date.now(),
+        id: b.id, g: b.g || "General", sub: b.sub || "", p: b.p || "", pl: b.pl || "", n: b.n || 0,
+        leadin: (b.leadin || "").slice(0, 140),
+        totalPts: tot, maxPts: mx, parts: bc.partsRes.slice()
+      };
+      S.bsess.items.push(ev);
+      S.bonusLogs.push(ev);
+      store(bonusStorageKey(S.setId), S.bonusLogs);
+      post("/api/bonus", ev).catch(function () {});
+      updatePackSummary();
+    }
+    renderBonusView();
+  }
+
+  function undoBonus() {
+    var bc = S.bcur; if (!canBonusUndo()) return;
+    if (bc.stage === "done") {
+      var ev = popLastBonusRecord();
+      if (ev) bc.partsRes = (ev.parts || []).slice(0, -1);
+      bc.pi = Math.max(0, bc.b.parts.length - 1);
+      bc.stage = "revealed";
+      updatePackSummary();
+      renderBonusView();
+      return;
+    }
+    if (bc.stage === "revealed") {
+      bc.stage = "asking";
+      renderBonusView();
+      return;
+    }
+    if (bc.pi > 0) {
+      var prev = bc.partsRes.pop();
+      if (prev) S.bsess.points -= (prev.pts || 0);
+      bc.pi--;
+      bc.stage = "revealed";
+      renderBonusView();
+      return;
+    }
+    if (S.bsess.i > 0 && S.bsess.items.length > 0) {
+      S.bsess.i--;
+      var ev2 = popLastBonusRecord();
+      var prevB = S.bsess.queue[S.bsess.i];
+      var lastPi = Math.max(0, prevB.parts.length - 1);
+      var restoredParts = ev2 ? (ev2.parts || []).slice(0, lastPi) : [];
+      if (ev2) S.bsess.points += restoredParts.reduce(function (a, p) { return a + (p.pts || 0); }, 0);
+      S.bcur = { b: prevB, pi: lastPi, partsRes: restoredParts, stage: "revealed" };
+      updatePackSummary();
+      renderBonusView();
+    }
+  }
+
+  function nextBonus() {
+    var bc = S.bcur; if (!bc || bc.stage !== "done") return;
+    S.bsess.i++;
+    if (S.bsess.i >= S.bsess.queue.length) return finishBonus();
+    loadBonus();
+  }
+
+  function finishBonus() {
+    var s = S.bsess, its = s.items;
+    var totPts = its.reduce(function (a, x) { return a + (x.totalPts || 0); }, 0);
+    var ppb = its.length ? (totPts / its.length).toFixed(2) : "–";
+    var allParts = []; its.forEach(function (x) { allParts = allParts.concat(x.parts || []); });
+    var okParts = allParts.filter(function (p) { return p.ok; }).length;
+    var sweeps = its.filter(function (x) { return (x.totalPts || 0) >= 30; }).length;
+    var zeros = its.filter(function (x) { return (x.totalPts || 0) === 0; }).length;
+    $("sumh").textContent = "Bonus session done: " + totPts + " points (" + ppb + " PPB)";
+    tiles($("sumtiles"), [
+      [its.length, "bonuses heard"],
+      [String(ppb), "points per bonus"],
+      [allParts.length ? Math.round(100 * okParts / allParts.length) + "%" : "–", "part conversion (" + okParts + "/" + allParts.length + ")"],
+      [sweeps + " / " + zeros, "30s / 0s"]
+    ]);
+    $("sumcol2").textContent = "Category / Packet";
+    var tb = $("sumrows"); tb.textContent = "";
+    its.forEach(function (x) {
+      var tr = document.createElement("tr");
+      var td0 = document.createElement("td");
+      td0.textContent = (x.parts || []).map(function (p) { return p.main || p.a; }).join(" / ");
+      tr.appendChild(td0);
+      var td1 = document.createElement("td");
+      td1.textContent = [x.sub || x.g, x.pl ? x.pl + (x.n ? " B" + x.n : "") : ""].filter(Boolean).join(" · ");
+      tr.appendChild(td1);
+      var td2 = document.createElement("td"); td2.className = "num";
+      td2.textContent = (x.parts || []).map(function (p) { return p.ok ? "✓" : "✗"; }).join(" ");
+      tr.appendChild(td2);
+      var td3 = document.createElement("td"); td3.className = "num";
+      td3.textContent = String(x.totalPts);
+      tr.appendChild(td3);
+      tb.appendChild(tr);
+    });
+    S.bcur = null; show("summary");
+  }
+
+  $("b-reveal").onclick = revealBonusPart;
+  $("b-right").onclick = function () { recordBonusPart(true); };
+  $("b-wrong").onclick = function () { recordBonusPart(false); };
+  $("b-next").onclick = nextBonus;
+  $("b-undo").onclick = undoBonus;
+  $("b-end").onclick = function () { if (S.bsess && S.bsess.items.length) finishBonus(); else { S.bcur = null; show("setup"); } };
+
   document.addEventListener("keydown", function (e) {
-    if (S.tab !== "drill" || $("play").hidden || e.target.tagName === "INPUT" || e.target.tagName === "SELECT") return;
+    if (S.tab !== "drill" || e.target.tagName === "INPUT" || e.target.tagName === "SELECT") return;
+    if (!$("bplay").hidden && S.bcur) {
+      if ((e.ctrlKey || e.metaKey) && !e.shiftKey && (e.key === "z" || e.key === "Z")) { e.preventDefault(); undoBonus(); return; }
+      if ((e.code === "Space" || e.key === "Enter") && S.bcur.stage === "asking") { e.preventDefault(); revealBonusPart(); return; }
+      if (e.key === "1" && S.bcur.stage === "revealed") { e.preventDefault(); recordBonusPart(true); return; }
+      if (e.key === "2" && S.bcur.stage === "revealed") { e.preventDefault(); recordBonusPart(false); return; }
+      if ((e.key === "n" || e.key === "N" || e.key === "Enter") && S.bcur.stage === "done") { e.preventDefault(); nextBonus(); return; }
+      return;
+    }
+    if ($("play").hidden) return;
     if ((e.ctrlKey || e.metaKey) && !e.shiftKey && (e.key === "z" || e.key === "Z")) { e.preventDefault(); undo(); return; }
     if (e.code === "Space") { e.preventDefault(); if (S.cur && (S.cur.stage === "reading" || S.cur.stage === "paused" || S.cur.stage === "dead")) buzz(); }
     else if (e.key === "p" || e.key === "P") { e.preventDefault(); togglePause(); }
@@ -1687,6 +2173,46 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
   }
 
   function renderBuzzpoints() {
+    var hasB = S.mode === "pack" && (S.bonuses.length > 0 || S.bonusLogs.length > 0);
+    $("bp-kind-seg").hidden = !hasB;
+    if (!hasB) S.bpKind = "tossups";
+    Array.prototype.forEach.call($("bp-kind-seg").children, function (btn) {
+      btn.setAttribute("aria-pressed", btn.dataset.bk === S.bpKind ? "true" : "false");
+      btn.onclick = function () {
+        if (S.bpKind === btn.dataset.bk) return;
+        S.bpKind = btn.dataset.bk;
+        S.bpExpanded = {};
+        renderBuzzpoints();
+      };
+    });
+    if (S.bpKind === "bonuses") { renderBonusBuzzpoints(); return; }
+
+    var headCells = [
+      { col: "round", label: "Round" }, { col: "pkt", label: "Packet" }, { col: "n", label: "#", num: true },
+      { col: "cat", label: "Category" }, { col: "ans", label: "Answer" },
+      { col: "buzz", label: "Buzzpoint", num: true }, { col: "pts", label: "Value", num: true },
+      { col: "anki", label: "Anki", id: "bp-th-anki" }
+    ];
+    var htr = $("bp-head"); htr.textContent = "";
+    headCells.forEach(function (hc) {
+      var th = document.createElement("th");
+      th.dataset.col = hc.col;
+      if (hc.id) th.id = hc.id;
+      if (hc.num) th.className = "num";
+      th.textContent = hc.label;
+      var ind = document.createElement("span"); ind.className = "sortind"; th.appendChild(ind);
+      th.onclick = function () {
+        if (S.bpSort.col === hc.col) S.bpSort.dir *= -1;
+        else { S.bpSort.col = hc.col; S.bpSort.dir = hc.col === "pts" ? -1 : 1; }
+        renderBuzzpoints();
+      };
+      htr.appendChild(th);
+    });
+    if ($("bp-out").dataset.kind !== "tossups") {
+      $("bp-out").dataset.kind = "tossups";
+      $("bp-out").innerHTML = '<option value="ALL">All outcomes</option><option value="pw">Powers (15)</option><option value="ok">All Correct (10 / 15)</option><option value="neg">Negs (−5)</option><option value="miss">Misses / No buzz</option>';
+    }
+
     var rows = compiledBuzzRows();
     var packName = (S.setMeta && S.setMeta.name) || S.setId || "Uploaded Pack";
     $("bp-title").textContent = packName;
@@ -1868,15 +2394,6 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     });
   }
 
-  Array.prototype.forEach.call($("bp-head").children, function (th) {
-    th.onclick = function () {
-      var col = th.dataset.col;
-      if (!col) return;
-      if (S.bpSort.col === col) S.bpSort.dir *= -1;
-      else { S.bpSort.col = col; S.bpSort.dir = col === "pts" ? -1 : 1; }
-      renderBuzzpoints();
-    };
-  });
   ["bp-out", "bp-cat", "bp-anki"].forEach(function (id) { $(id).onchange = renderBuzzpoints; });
   $("bp-q").oninput = renderBuzzpoints;
 
@@ -2099,6 +2616,353 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
       var tags = [x.sub || x.g, x.pl ? (x.pl + (x.n ? " #" + x.n : "")) : "", x.result === "wrong" ? "buzzed wrong" : "no buzz"].filter(Boolean);
       b.textContent = tags.join(" · ");
       li.appendChild(a); li.appendChild(b); ul.appendChild(li);
+    });
+    renderBonusStats();
+  }
+
+  function bonusPartBuckets() {
+    var out = [];
+    S.bonusLogs.forEach(function (b) {
+      (b.parts || []).forEach(function (p, idx) {
+        out.push({ b: b, p: p, idx: idx });
+      });
+    });
+    return out;
+  }
+
+  function renderBonusGroupTable(logs, keyFn, tableId, col0) {
+    var tbl = $(tableId), thead = tbl.querySelector("thead"), tb = tbl.querySelector("tbody");
+    var sortState = S.tblSort[tableId] || { col: "n", dir: -1 };
+    S.tblSort[tableId] = sortState;
+    var g = {};
+    logs.forEach(function (b) {
+      var k = keyFn(b) || "Unknown";
+      var r = g[k] = g[k] || { k: k, n: 0, pts: 0, b30: 0, b20: 0, b10: 0, b0: 0, pN: [0, 0, 0], pOk: [0, 0, 0], inAnki: 0, partsTotal: 0 };
+      r.n++;
+      var tp = b.totalPts || 0;
+      r.pts += tp;
+      if (tp >= 30) r.b30++; else if (tp >= 20) r.b20++; else if (tp >= 10) r.b10++; else r.b0++;
+      (b.parts || []).forEach(function (p, idx) {
+        if (idx < 3) { r.pN[idx]++; if (p.ok) r.pOk[idx]++; }
+        r.partsTotal++;
+        if (p.anki === "card") r.inAnki++;
+      });
+    });
+    var cols = [
+      { id: "k", label: col0 || "Group", num: false },
+      { id: "n", label: "Bonuses", num: true },
+      { id: "ppb", label: "PPB", num: true },
+      { id: "b30", label: "30", num: true },
+      { id: "b20", label: "20", num: true },
+      { id: "b10", label: "10", num: true },
+      { id: "b0", label: "0", num: true },
+      { id: "p1", label: "P1%", num: true },
+      { id: "p2", label: "P2%", num: true },
+      { id: "p3", label: "P3%", num: true }
+    ];
+    thead.textContent = "";
+    var htr = document.createElement("tr");
+    cols.forEach(function (c) {
+      var th = document.createElement("th"); if (c.num) th.className = "num"; th.textContent = c.label;
+      var ind = document.createElement("span"); ind.className = "sortind";
+      ind.textContent = sortState.col === c.id ? (sortState.dir === 1 ? " ▲" : " ▼") : "";
+      th.appendChild(ind);
+      th.onclick = function () {
+        if (sortState.col === c.id) sortState.dir *= -1;
+        else { sortState.col = c.id; sortState.dir = c.id === "k" ? 1 : -1; }
+        renderBonusGroupTable(logs, keyFn, tableId, col0);
+      };
+      htr.appendChild(th);
+    });
+    thead.appendChild(htr);
+
+    var rows = Object.keys(g).map(function (k) {
+      var r = g[k];
+      r.ppb = r.n ? r.pts / r.n : 0;
+      r.p1 = r.pN[0] ? r.pOk[0] / r.pN[0] : -1;
+      r.p2 = r.pN[1] ? r.pOk[1] / r.pN[1] : -1;
+      r.p3 = r.pN[2] ? r.pOk[2] / r.pN[2] : -1;
+      return r;
+    });
+    rows.sort(function (a, b) {
+      var cmp = 0, c = sortState.col;
+      if (c === "k") cmp = naturalCmp(a.k, b.k);
+      else if (c === "n") cmp = a.n - b.n;
+      else if (c === "ppb") cmp = a.ppb - b.ppb;
+      else if (c === "b30") cmp = a.b30 - b.b30;
+      else if (c === "b20") cmp = a.b20 - b.b20;
+      else if (c === "b10") cmp = a.b10 - b.b10;
+      else if (c === "b0") cmp = a.b0 - b.b0;
+      else if (c === "p1") cmp = a.p1 - b.p1;
+      else if (c === "p2") cmp = a.p2 - b.p2;
+      else if (c === "p3") cmp = a.p3 - b.p3;
+      return (cmp || (b.n - a.n)) * sortState.dir;
+    });
+
+    tb.textContent = "";
+    if (!rows.length) {
+      var tr0 = document.createElement("tr"), td0 = document.createElement("td");
+      td0.colSpan = cols.length; td0.className = "empty"; td0.textContent = "Bonus stats appear after your first bonus.";
+      tr0.appendChild(td0); tb.appendChild(tr0); return;
+    }
+    rows.forEach(function (r) {
+      var tr = document.createElement("tr");
+      [
+        r.k, String(r.n), r.ppb.toFixed(1), String(r.b30), String(r.b20), String(r.b10), String(r.b0),
+        r.p1 >= 0 ? Math.round(100 * r.p1) + "%" : "–",
+        r.p2 >= 0 ? Math.round(100 * r.p2) + "%" : "–",
+        r.p3 >= 0 ? Math.round(100 * r.p3) + "%" : "–"
+      ].forEach(function (v, i) {
+        var td = document.createElement("td"); td.textContent = v; if (i) td.className = "num"; tr.appendChild(td);
+      });
+      tb.appendChild(tr);
+    });
+  }
+
+  function renderBonusStats() {
+    var sec = $("bonus-stats-section");
+    var logs = S.bonusLogs;
+    var showB = S.mode === "pack" && (logs.length > 0 || S.bonuses.length > 0);
+    sec.hidden = !showB;
+    if (!showB) return;
+
+    var totPts = logs.reduce(function (a, x) { return a + (x.totalPts || 0); }, 0);
+    var ppb = logs.length ? (totPts / logs.length).toFixed(2) : "–";
+    var b30 = logs.filter(function (x) { return (x.totalPts || 0) >= 30; }).length;
+    var b20 = logs.filter(function (x) { return (x.totalPts || 0) === 20; }).length;
+    var b10 = logs.filter(function (x) { return (x.totalPts || 0) === 10; }).length;
+    var b0 = logs.filter(function (x) { return (x.totalPts || 0) === 0; }).length;
+
+    var parts = bonusPartBuckets();
+    var pOk = parts.filter(function (x) { return x.p.ok; }).length;
+    var dRate = function (code) {
+      var sub = parts.filter(function (x) { return x.p.diff === code; });
+      if (!sub.length) return "–";
+      return Math.round(100 * sub.filter(function (x) { return x.p.ok; }).length / sub.length) + "%";
+    };
+    var pRate = function (idx) {
+      var sub = parts.filter(function (x) { return x.idx === idx; });
+      if (!sub.length) return "–";
+      return Math.round(100 * sub.filter(function (x) { return x.p.ok; }).length / sub.length) + "%";
+    };
+
+    tiles($("bptiles"), [
+      [S.bonuses.length ? (logs.length + " / " + S.bonuses.length) : String(logs.length), "bonuses heard"],
+      [String(ppb), "points per bonus (PPB)"],
+      [b30 + " / " + b20 + " / " + b10 + " / " + b0, "30 / 20 / 10 / 0"],
+      [parts.length ? Math.round(100 * pOk / parts.length) + "%" : "–", parts.length ? ("part conv (" + pOk + "/" + parts.length + ")") : "part conversion"],
+      [pRate(0) + " / " + pRate(1) + " / " + pRate(2), "Part 1 / 2 / 3 %"],
+      [dRate("e") + " / " + dRate("m") + " / " + dRate("h"), "Easy / Med / Hard %"]
+    ]);
+
+    var hasBAnki = parts.some(function (x) { return x.p.anki !== undefined; });
+    $("b-anki-panel").hidden = !hasBAnki;
+    if (hasBAnki) {
+      var tbA = $("tbl-bat"), thA = tbA.querySelector("thead"), byA = tbA.querySelector("tbody");
+      thA.textContent = ""; byA.textContent = "";
+      var htrA = document.createElement("tr");
+      ["Status", "Parts", "Correct%", "Easy%", "Med%", "Hard%"].forEach(function (lbl, i) {
+        var th = document.createElement("th"); if (i) th.className = "num"; th.textContent = lbl; htrA.appendChild(th);
+      });
+      thA.appendChild(htrA);
+      var ga = {};
+      parts.forEach(function (x) {
+        var st = x.p.anki === "card" ? "Active Anki card" : x.p.anki === "suspended" ? "Suspended card" : (x.p.anki === "text" || x.p.anki === "on-note") ? "Note text only" : "Not in Anki";
+        var r = ga[st] = ga[st] || { n: 0, ok: 0, eN: 0, eOk: 0, mN: 0, mOk: 0, hN: 0, hOk: 0 };
+        r.n++; if (x.p.ok) r.ok++;
+        if (x.p.diff === "e") { r.eN++; if (x.p.ok) r.eOk++; }
+        if (x.p.diff === "m") { r.mN++; if (x.p.ok) r.mOk++; }
+        if (x.p.diff === "h") { r.hN++; if (x.p.ok) r.hOk++; }
+      });
+      Object.keys(ga).sort(function (a, b) { return ga[b].n - ga[a].n; }).forEach(function (k) {
+        var r = ga[k], tr = document.createElement("tr");
+        [k, String(r.n), Math.round(100 * r.ok / r.n) + "%", r.eN ? Math.round(100 * r.eOk / r.eN) + "%" : "–", r.mN ? Math.round(100 * r.mOk / r.mN) + "%" : "–", r.hN ? Math.round(100 * r.hOk / r.hN) + "%" : "–"].forEach(function (v, i) {
+          var td = document.createElement("td"); td.textContent = v; if (i) td.className = "num"; tr.appendChild(td);
+        });
+        byA.appendChild(tr);
+      });
+    }
+
+    renderBonusGroupTable(logs, function (b) { return b.g || "General"; }, "tbl-bgt", "Category");
+    var hasBPkt = logs.some(function (b) { return !!(b.pl || b.p); });
+    $("b-pkt-panel").hidden = !hasBPkt;
+    if (hasBPkt) renderBonusGroupTable(logs, function (b) { return b.pl || b.p || "Unknown"; }, "tbl-bpt", "Packet");
+
+    var ulB = $("b-misses"); ulB.textContent = "";
+    var bMiss = parts.filter(function (x) { return !x.p.ok; }).slice().reverse();
+    if (!bMiss.length) {
+      var li0 = document.createElement("li"); li0.className = "empty"; li0.textContent = "No missed bonus parts yet."; ulB.appendChild(li0);
+    } else {
+      bMiss.slice(0, 30).forEach(function (x) {
+        var li = document.createElement("li"), a = document.createElement("span"), sp = document.createElement("span");
+        a.textContent = x.p.main || x.p.a; sp.className = "meta";
+        var dLbl = x.p.diff === "e" ? "Easy" : x.p.diff === "m" ? "Med" : x.p.diff === "h" ? "Hard" : "";
+        sp.textContent = [x.b.sub || x.b.g, x.b.pl ? (x.b.pl + " B" + x.b.n + " p" + (x.idx + 1)) : ("p" + (x.idx + 1)), dLbl].filter(Boolean).join(" · ");
+        li.appendChild(a); li.appendChild(sp); ulB.appendChild(li);
+      });
+    }
+  }
+
+  function renderBonusBuzzpoints() {
+    var logs = S.bonusLogs;
+    var packName = (S.setMeta && S.setMeta.name) || S.setId || "Uploaded Pack";
+    $("bp-title").textContent = packName + " — Bonuses";
+
+    var headCells = [
+      { col: "round", label: "Session" }, { col: "pkt", label: "Packet" }, { col: "n", label: "#", num: true },
+      { col: "cat", label: "Category" }, { col: "ans", label: "Answers" },
+      { col: "parts", label: "Parts" }, { col: "pts", label: "Value", num: true }
+    ];
+    var htr = $("bp-head"); htr.textContent = "";
+    headCells.forEach(function (hc) {
+      var th = document.createElement("th"); th.dataset.col = hc.col;
+      if (hc.num) th.className = "num";
+      th.textContent = hc.label;
+      var ind = document.createElement("span"); ind.className = "sortind"; th.appendChild(ind);
+      th.onclick = function () {
+        if (S.bpSort.col === hc.col) S.bpSort.dir *= -1;
+        else { S.bpSort.col = hc.col; S.bpSort.dir = hc.col === "pts" ? -1 : 1; }
+        renderBuzzpoints();
+      };
+      htr.appendChild(th);
+    });
+    if ($("bp-out").dataset.kind !== "bonuses") {
+      $("bp-out").dataset.kind = "bonuses";
+      $("bp-out").innerHTML = '<option value="ALL">All totals</option><option value="30">30s (Sweeps)</option><option value="20">20s</option><option value="10">10s</option><option value="0">0s (Shutouts)</option>';
+    }
+    $("bp-anki").hidden = true;
+
+    var totPts = logs.reduce(function (a, x) { return a + (x.totalPts || 0); }, 0);
+    var ppb = logs.length ? (totPts / logs.length).toFixed(2) : "–";
+    var b30 = logs.filter(function (x) { return (x.totalPts || 0) >= 30; }).length;
+    var b20 = logs.filter(function (x) { return (x.totalPts || 0) === 20; }).length;
+    var b10 = logs.filter(function (x) { return (x.totalPts || 0) === 10; }).length;
+    var b0 = logs.filter(function (x) { return (x.totalPts || 0) === 0; }).length;
+    var allParts = bonusPartBuckets();
+    var pOk = allParts.filter(function (x) { return x.p.ok; }).length;
+
+    $("bp-sub").textContent = (S.bonuses.length ? (logs.length + " / " + S.bonuses.length + " bonuses") : (logs.length + " bonuses heard")) + " · " + totPts + " pts";
+    tiles($("bp-tiles"), [
+      [String(totPts), "total bonus points"],
+      [String(ppb), "PPB"],
+      [b30 + " / " + b20 + " / " + b10 + " / " + b0, "30 / 20 / 10 / 0"],
+      [allParts.length ? Math.round(100 * pOk / allParts.length) + "%" : "–", allParts.length ? ("part accuracy (" + pOk + "/" + allParts.length + ")") : "part accuracy"]
+    ]);
+
+    var catSel = $("bp-cat"), prevCat = catSel.value, cats = {};
+    logs.forEach(function (b) { cats[b.g || "General"] = 1; });
+    catSel.textContent = "";
+    var oAll = document.createElement("option"); oAll.value = "ALL"; oAll.textContent = "All categories"; catSel.appendChild(oAll);
+    Object.keys(cats).sort().forEach(function (c) { var o = document.createElement("option"); o.value = c; o.textContent = c; catSel.appendChild(o); });
+    catSel.value = cats[prevCat] ? prevCat : "ALL";
+
+    var sids = Array.from(new Set(logs.map(function (b) { return b.sessionId || "b0"; })));
+    var roundOf = {}; sids.forEach(function (id, idx) { roundOf[id] = idx + 1; });
+    var rows = logs.map(function (b, idx) {
+      return {
+        seq: idx + 1,
+        round: roundOf[b.sessionId || "b0"] || 1,
+        pkt: b.pl || b.p || "–",
+        n: b.n || 0,
+        cat: b.g || "General",
+        sub: b.sub || "",
+        ans: (b.parts || []).map(function (p) { return p.main || p.a; }).join(" / "),
+        partsStr: (b.parts || []).map(function (p) { return p.ok ? "✓" : "✗"; }).join(" "),
+        pts: b.totalPts || 0,
+        raw: b
+      };
+    });
+
+    var outF = $("bp-out").value, catF = $("bp-cat").value, qF = ($("bp-q").value || "").trim().toLowerCase();
+    var filtered = rows.filter(function (r) {
+      if (outF !== "ALL" && String(r.pts) !== outF) return false;
+      if (catF !== "ALL" && r.cat !== catF) return false;
+      if (qF) {
+        var hay = [r.ans, r.raw.leadin, r.cat, r.sub, r.pkt].filter(Boolean).join(" ").toLowerCase();
+        if (hay.indexOf(qF) < 0) return false;
+      }
+      return true;
+    });
+
+    var col = S.bpSort.col, dir = S.bpSort.dir;
+    filtered.sort(function (a, b) {
+      var cmp = 0;
+      if (col === "seq") cmp = a.seq - b.seq;
+      else if (col === "round") cmp = (a.round - b.round) || (a.seq - b.seq);
+      else if (col === "pkt") cmp = naturalCmp(a.pkt, b.pkt) || (a.n - b.n);
+      else if (col === "n") cmp = (a.n - b.n) || (a.seq - b.seq);
+      else if (col === "cat") cmp = naturalCmp(a.cat + " " + a.sub, b.cat + " " + b.sub);
+      else if (col === "ans") cmp = naturalCmp(a.ans, b.ans);
+      else if (col === "parts") cmp = naturalCmp(a.partsStr, b.partsStr);
+      else if (col === "pts") cmp = (a.pts - b.pts) || (a.seq - b.seq);
+      return cmp * dir;
+    });
+
+    Array.prototype.forEach.call($("bp-head").children, function (th) {
+      var ind = th.querySelector(".sortind");
+      if (ind) ind.textContent = th.dataset.col === col ? (dir === 1 ? "▲" : "▼") : "↕";
+    });
+    $("bp-count").textContent = filtered.length === rows.length ? rows.length + " bonuses" : filtered.length + " of " + rows.length + " bonuses";
+    var tb = $("bp-rows"); tb.textContent = "";
+    if (!filtered.length) {
+      var tr0 = document.createElement("tr"), td0 = document.createElement("td");
+      td0.colSpan = 7; td0.className = "empty";
+      td0.textContent = rows.length ? "No bonuses match the active filters." : "Play a Bonus session to compile your Bonus Buzzpoints table here.";
+      tr0.appendChild(td0); tb.appendChild(tr0); return;
+    }
+
+    filtered.forEach(function (r) {
+      var tr = document.createElement("tr");
+      var cls = r.pts >= 30 ? "pw" : r.pts >= 20 ? "ok" : r.pts >= 10 ? "b10" : "neg";
+      tr.className = "bp-row " + cls;
+      [
+        [String(r.round), "num", "left"],
+        [r.pkt, "", ""],
+        [r.n ? ("B" + r.n) : "–", "num", ""]
+      ].forEach(function (cell) {
+        var td = document.createElement("td"); if (cell[1]) td.className = cell[1]; if (cell[2]) td.style.textAlign = cell[2]; td.textContent = cell[0]; tr.appendChild(td);
+      });
+      var tdCat = document.createElement("td"); tdCat.className = "wrapcell"; tdCat.textContent = r.cat;
+      if (r.sub && r.sub !== r.cat) { var ss = document.createElement("span"); ss.className = "bp-sub"; ss.textContent = r.sub; tdCat.appendChild(ss); }
+      tr.appendChild(tdCat);
+
+      var tdAns = document.createElement("td"); tdAns.className = "wrapcell";
+      var btn = document.createElement("button"); btn.type = "button"; btn.className = "bp-ans-btn"; btn.textContent = r.ans;
+      var rk = "B|" + r.seq + "|" + r.raw.id;
+      btn.onclick = function () { S.bpExpanded[rk] = !S.bpExpanded[rk]; renderBuzzpoints(); };
+      tdAns.appendChild(btn); tr.appendChild(tdAns);
+
+      var tdParts = document.createElement("td"); tdParts.className = "num"; tdParts.textContent = r.partsStr; tr.appendChild(tdParts);
+      var tdVal = document.createElement("td"); tdVal.className = "num bp-val"; tdVal.textContent = String(r.pts); tr.appendChild(tdVal);
+      tb.appendChild(tr);
+
+      if (S.bpExpanded[rk]) {
+        var trD = document.createElement("tr"); trD.className = "bp-detail";
+        var tdD = document.createElement("td"); tdD.colSpan = 7;
+        var full = S.bonusesById[r.raw.id];
+        if (full && full.leadin) {
+          var lDiv = document.createElement("div"); lDiv.className = "bp-q"; lDiv.style.fontWeight = "600"; lDiv.textContent = full.leadin; tdD.appendChild(lDiv);
+        }
+        (r.raw.parts || []).forEach(function (p, idx) {
+          var pDiv = document.createElement("div"); pDiv.style.marginTop = "8px"; pDiv.style.paddingTop = "8px"; pDiv.style.borderTop = "1px solid var(--rule)";
+          var topL = document.createElement("div"); topL.className = "meta"; topL.style.justifyContent = "space-between";
+          var tag = document.createElement("span"); tag.textContent = "Part " + (idx + 1) + (p.diff ? " (" + p.diff.toUpperCase() + ")" : "");
+          var resSpan = document.createElement("span"); resSpan.textContent = p.ok ? ("+" + p.pts) : "0 pts";
+          topL.appendChild(tag); topL.appendChild(resSpan); pDiv.appendChild(topL);
+          if (full && full.parts && full.parts[idx]) {
+            var qP = document.createElement("div"); qP.className = "bp-q"; qP.style.margin = "4px 0"; qP.textContent = full.parts[idx]; pDiv.appendChild(qP);
+          }
+          var aP = document.createElement("div"); aP.className = "bp-a";
+          var ab = document.createElement("strong"); ab.textContent = "ANSWER: "; aP.appendChild(ab);
+          var as = document.createElement("span");
+          setAnswerFormatted(as, full && full.ah ? full.ah[idx] : "", (full && full.answers && full.answers[idx]) || p.a || p.main);
+          aP.appendChild(as);
+          if (p.anki !== undefined) { aP.appendChild(document.createTextNode(" ")); aP.appendChild(renderAnkiPill(p.anki)); }
+          pDiv.appendChild(aP);
+          tdD.appendChild(pDiv);
+        });
+        trD.appendChild(tdD); tb.appendChild(trD);
+      }
     });
   }
 
