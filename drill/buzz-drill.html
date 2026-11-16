@@ -183,6 +183,14 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
 .bp-detail td { background: var(--paper); padding: 14px 16px; white-space: normal; border-bottom: 2px solid var(--rule); }
 .bp-q { font-family: var(--serif); font-size: 1rem; line-height: 1.58; margin-bottom: 8px; }
 .bp-a { font-family: var(--serif); font-size: 0.96rem; margin-bottom: 6px; }
+.cluebox { margin-top: 10px; padding: 10px 12px; border: 1px solid var(--rule); border-radius: 8px; background: var(--paper); display: flex; flex-direction: column; gap: 6px; font-size: 0.85rem; }
+.cluebox-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; font: 600 0.78rem var(--mono); color: var(--ink-2); }
+.cluerow { display: flex; gap: 8px; align-items: baseline; line-height: 1.45; }
+.cluetag { flex: 0 0 auto; font: 600 0.7rem var(--mono); padding: 1px 6px; border-radius: 999px; background: var(--rule); color: var(--ink-2); }
+.cluetag.on { background: var(--good-soft); color: var(--good); }
+.cluetag.off { background: var(--lamp-soft); color: var(--ink); }
+.cluematch { font: 0.76rem var(--mono); color: var(--good); margin-left: 6px; }
+.cluefields { border-top: 1px solid var(--rule); padding-top: 8px; display: flex; flex-direction: column; gap: 4px; font-size: 0.82rem; color: var(--ink-2); }
 
 @media (max-width: 480px) { .tossup { font-size: 1.06rem; } .panel { padding: 16px; } }
 @media (prefers-reduced-motion: no-preference) { .bar .fill { transition: width 0.15s linear; } }
@@ -292,6 +300,7 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
         <div class="label">Answer</div>
         <div class="a" id="atext"></div>
         <div class="card" id="acard"></div>
+        <div id="clue-match" class="cluebox" hidden></div>
       </div>
       <div class="keys">
         <div class="keylist" id="keylist">
@@ -457,7 +466,8 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     timer: null,
     bpSort: { col: "seq", dir: 1 },
     bpExpanded: {},
-    tblSort: {}
+    tblSort: {},
+    clueCache: {}
   };
 
   function store(k, v) {
@@ -1321,6 +1331,55 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     return pill;
   }
 
+  function renderClueBox(box, data) {
+    box.textContent = "";
+    if (!data || !data.sentences || !data.sentences.length) { box.hidden = true; return; }
+    var onCount = data.sentences.filter(function (s) { return s.covered; }).length;
+    var hd = document.createElement("div"); hd.className = "cluebox-head";
+    var title = document.createElement("span");
+    title.textContent = "Card clue match" + (data.noteType ? " · " + data.noteType : "") + (data.matchedName ? " (\"" + data.matchedName + "\")" : "");
+    var frac = document.createElement("span");
+    frac.textContent = onCount + " / " + data.sentences.length + " sentences on card";
+    hd.appendChild(title); hd.appendChild(frac); box.appendChild(hd);
+
+    data.sentences.forEach(function (st) {
+      var row = document.createElement("div"); row.className = "cluerow";
+      var tag = document.createElement("span"); tag.className = "cluetag " + (st.covered ? "on" : "off");
+      tag.textContent = st.stage + " · " + (st.covered ? "on card" : "not on card");
+      var body = document.createElement("span");
+      body.textContent = st.s;
+      if (st.matches && st.matches.length) {
+        var m = document.createElement("span"); m.className = "cluematch";
+        m.textContent = "[" + st.matches.join(", ") + "]";
+        body.appendChild(m);
+      }
+      row.appendChild(tag); row.appendChild(body); box.appendChild(row);
+    });
+
+    if (data.liveFields && data.liveFields.length) {
+      var det = document.createElement("details"); det.className = "cluefields";
+      var sum = document.createElement("summary"); sum.style.cursor = "pointer"; sum.textContent = "Show live Anki card fields";
+      det.appendChild(sum);
+      data.liveFields.forEach(function (f) {
+        var p = document.createElement("div");
+        var b = document.createElement("strong"); b.textContent = f.name + ": ";
+        p.appendChild(b); p.appendChild(document.createTextNode(f.value));
+        det.appendChild(p);
+      });
+      box.appendChild(det);
+    }
+    box.hidden = false;
+  }
+
+  function fetchClueMatch(item) {
+    if (!S.serverOk || !item || !item.q) return Promise.resolve(null);
+    if (S.clueCache[item.id] !== undefined) return Promise.resolve(S.clueCache[item.id]);
+    return post("/api/clue-match", { q: item.q, a: item.a, main: item.main || "" }).then(function (res) {
+      S.clueCache[item.id] = res;
+      return res;
+    }).catch(function () { return null; });
+  }
+
   function reveal() {
     var c = S.cur; if (!c || (c.stage !== "buzzed" && c.stage !== "dead")) return;
     clearInterval(S.timer);
@@ -1333,6 +1392,17 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
     if (c.t.k) info.textContent = "Your card: " + c.t.k + " (" + c.t.g + ")";
     else info.textContent = [c.t.sub || c.t.g, c.t.pl, c.t.n ? "TU " + c.t.n : ""].filter(Boolean).join(" · ");
     ac.appendChild(info);
+
+    $("clue-match").hidden = true;
+    $("clue-match").textContent = "";
+    if (S.serverOk && (c.t.anki === "card" || c.t.anki === "suspended")) {
+      var curId = c.t.id;
+      fetchClueMatch(c.t).then(function (data) {
+        if (S.cur && S.cur.t.id === curId && (S.cur.stage === "revealed" || S.cur.stage === "judged")) {
+          renderClueBox($("clue-match"), data);
+        }
+      });
+    }
 
     $("ans").hidden = false; $("reveal").hidden = true;
     if (c.buzz === null) { $("right").hidden = true; $("wrong").hidden = true; record("none"); }
@@ -1676,6 +1746,15 @@ ul.misses li span:first-child { min-width: 0; overflow-wrap: anywhere; }
         var bits = [r.pkt !== "–" ? r.pkt : "", r.n ? "TU " + r.n : "", r.buzz !== null && r.words ? "Buzzed at word " + r.buzz + " / " + r.words + " (" + Math.round((r.frac || 0) * 100) + "%)" : "No buzz", r.raw.wps ? r.raw.wps + " wps" : "", r.raw.ts ? new Date(r.raw.ts).toLocaleString() : ""].filter(Boolean);
         mDiv.textContent = bits.join(" · ");
         tdD.appendChild(mDiv);
+        if (S.serverOk && full && (r.anki === "card" || r.anki === "suspended")) {
+          var clueBox = document.createElement("div"); clueBox.className = "cluebox"; clueBox.hidden = true;
+          tdD.appendChild(clueBox);
+          if (S.clueCache[full.id]) {
+            renderClueBox(clueBox, S.clueCache[full.id]);
+          } else {
+            fetchClueMatch(full).then(function (data) { renderClueBox(clueBox, data); });
+          }
+        }
         trD.appendChild(tdD);
         tb.appendChild(trD);
       }
