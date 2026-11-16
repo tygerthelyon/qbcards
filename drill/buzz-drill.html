@@ -1442,7 +1442,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
   function renderTossupMeta() {
     var c = S.cur; if (!c) return;
     var revealed = c.stage === "revealed" || c.stage === "judged" || S.showMeta;
-    $("cat").textContent = revealed ? (c.t.sub ? c.t.g + " · " + c.t.sub : c.t.g) : "Category hidden";
+    $("cat").textContent = revealed ? (c.t.sub ? c.t.g + " · " + c.t.sub : c.t.g) : "";
     $("setname").textContent = revealed ? (c.t.pl ? (c.t.pl + (c.t.n ? " · TU " + c.t.n : "")) : (c.t.s || "")) : "";
   }
 
@@ -1898,7 +1898,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
     var bc = S.bcur, b = bc.b;
     var revealed = bc.stage === "revealed" || bc.stage === "done" || S.showMeta;
     $("b-pos").textContent = (S.bsess.i + 1) + " / " + S.bsess.queue.length;
-    $("b-cat").textContent = revealed ? (b.sub ? b.g + " · " + b.sub : b.g) : "Category hidden";
+    $("b-cat").textContent = revealed ? (b.sub ? b.g + " · " + b.sub : b.g) : "";
     $("b-pkt").textContent = revealed ? ((b.pl || b.p || "") + (b.n ? " · B" + b.n : "")) : "";
     $("b-score").textContent = S.bsess.points + " pts";
     $("b-leadin").textContent = b.leadin || "(No lead-in)";
