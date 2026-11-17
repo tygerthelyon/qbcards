@@ -313,6 +313,12 @@ summary { cursor: pointer; }
       </div>
       <span id="pack-summary" class="meta"></span>
     </div>
+    <div class="row" style="gap:10px">
+      <label class="label" for="qbr-set">QBReader</label>
+      <input id="qbr-set" class="input" style="width:230px" list="qbr-sets" placeholder="Type a set, e.g. 2025 ACF Fall" autocomplete="off" spellcheck="false">
+      <datalist id="qbr-sets"></datalist>
+      <button id="qbr-get" type="button" class="btn ghost sm">Download and play</button>
+    </div>
     <p id="upload-msg" class="note" hidden></p>
   </div>
 
@@ -995,37 +1001,106 @@ summary { cursor: pointer; }
         } catch (err) {}
       });
       if (!items.length && !bonuses.length) { uploadNote("Could not find any valid tossups or bonuses."); return; }
-
-      if (S.serverOk) {
-        uploadNote("Saving \"" + setName + "\" (" + items.length + " tossups, " + bonuses.length + " bonuses) to local server...");
-        var resp = await post("/api/sets", { name: setName, items: items, bonuses: bonuses });
-        await refreshCatalog(resp.id);
-        uploadNote("Loaded \"" + resp.name + "\" (" + resp.count + " tossups, " + (resp.bonusCount || 0) + " bonuses).");
-        S.packSetId = resp.id;
-        savePrefs();
-        if (S.mode !== "pack") await setMode("pack");
-        else await loadActiveSet(resp.id, resp.items, resp.bonuses);
-      } else {
-        var sid = "local_" + setSlug;
-        var hasPackets = items.concat(bonuses).some(function (it) { return !!it.p; });
-        var obj = { id: sid, name: setName, count: items.length, bonusCount: bonuses.length, hasPackets: hasPackets, custom: true, localOnly: true, items: items, bonuses: bonuses };
-        S.localSets[sid] = obj;
-        var ok = store("bd-custom-sets", S.localSets);
-        if (!ok) {
-          delete S.localSets[sid]; store("bd-custom-sets", S.localSets); S.localSets[sid] = obj;
-          uploadNote("Loaded \"" + setName + "\" (" + items.length + " tossups, " + bonuses.length + " bonuses) for this tab (exceeds browser quota; run drill_server.py to persist large packs).");
-        } else {
-          uploadNote("Loaded \"" + setName + "\" (" + items.length + " tossups, " + bonuses.length + " bonuses).");
-        }
-        S.packSetId = sid; savePrefs();
-        rebuildPackOptions(sid);
-        if (S.mode !== "pack") await setMode("pack");
-        else await loadActiveSet(sid, items, bonuses);
-      }
+      await savePack(setName, setSlug, items, bonuses);
     } catch (e) {
       uploadNote("Upload failed: " + (e && e.message ? e.message : String(e)));
     } finally {
       $("upload-input").value = "";
+    }
+  }
+
+  // Store a parsed pack (on the local server, or in this browser without one) and open it.
+  async function savePack(setName, setSlug, items, bonuses) {
+    if (S.serverOk) {
+      uploadNote("Saving \"" + setName + "\" (" + items.length + " tossups, " + bonuses.length + " bonuses) to local server...");
+      var resp = await post("/api/sets", { name: setName, items: items, bonuses: bonuses });
+      await refreshCatalog(resp.id);
+      uploadNote("Loaded \"" + resp.name + "\" (" + resp.count + " tossups, " + (resp.bonusCount || 0) + " bonuses).");
+      S.packSetId = resp.id;
+      savePrefs();
+      if (S.mode !== "pack") await setMode("pack");
+      else await loadActiveSet(resp.id, resp.items, resp.bonuses);
+    } else {
+      var sid = "local_" + setSlug;
+      var hasPackets = items.concat(bonuses).some(function (it) { return !!it.p; });
+      var obj = { id: sid, name: setName, count: items.length, bonusCount: bonuses.length, hasPackets: hasPackets, custom: true, localOnly: true, items: items, bonuses: bonuses };
+      S.localSets[sid] = obj;
+      var ok = store("bd-custom-sets", S.localSets);
+      if (!ok) {
+        delete S.localSets[sid]; store("bd-custom-sets", S.localSets); S.localSets[sid] = obj;
+        uploadNote("Loaded \"" + setName + "\" (" + items.length + " tossups, " + bonuses.length + " bonuses) for this tab (exceeds browser quota; run drill_server.py to persist large packs).");
+      } else {
+        uploadNote("Loaded \"" + setName + "\" (" + items.length + " tossups, " + bonuses.length + " bonuses).");
+      }
+      S.packSetId = sid; savePrefs();
+      rebuildPackOptions(sid);
+      if (S.mode !== "pack") await setMode("pack");
+      else await loadActiveSet(sid, items, bonuses);
+    }
+  }
+
+  // ---------- QBReader sets: QBReader's API allows cross-origin reads, so this works with or without the server ----------
+  var QBR_API = "https://www.qbreader.org/api/";
+  var qbrSetNames = null;
+
+  async function loadQbreaderSets() {
+    if (qbrSetNames) return qbrSetNames;
+    var r = await fetch(QBR_API + "set-list");
+    if (!r.ok) throw new Error("QBReader answered " + r.status);
+    qbrSetNames = (await r.json()).setList || [];
+    var list = $("qbr-sets"); list.textContent = "";
+    qbrSetNames.forEach(function (name) {
+      var o = document.createElement("option"); o.value = name; list.appendChild(o);
+    });
+    return qbrSetNames;
+  }
+
+  // QBReader's packet names are often file slugs ("A_Toronto-A_City-..."); keep short readable ones, else "Packet N".
+  function packetName(p) {
+    var name = (p && p.name) || "";
+    return name && name.length <= 24 && name.indexOf("_") < 0 && !/^\d+$/.test(name) ? name : "Packet " + ((p && p.number) || "?");
+  }
+
+  async function getQbreaderSet(name) {
+    name = (name || "").trim();
+    if (!name) { uploadNote("Type or pick a set name first."); return; }
+    $("qbr-get").disabled = true;
+    try {
+      var names = await loadQbreaderSets();
+      if (names.indexOf(name) < 0) { uploadNote("QBReader has no set called \"" + name + "\". Pick one from the list."); return; }
+      uploadNote("Downloading \"" + name + "\" from QBReader...");
+      var got = { tossups: [], bonuses: [] };
+      for (var page = 1; page < 20; page++) {
+        var r = await fetch(QBR_API + "query?" + new URLSearchParams({
+          queryString: "", questionType: "all", setName: name, maxReturnLength: 5000,
+          tossupPagination: page, bonusPagination: page
+        }));
+        if (!r.ok) throw new Error("QBReader answered " + r.status);
+        var j = await r.json(), more = false;
+        ["tossups", "bonuses"].forEach(function (kind) {
+          var block = j[kind] || {}, rows = block.questionArray || [];
+          if (got[kind].length < (block.count || 0)) {
+            got[kind] = got[kind].concat(rows);
+            more = more || (rows.length > 0 && got[kind].length < block.count);
+          }
+        });
+        if (!more) break;
+      }
+      ["tossups", "bonuses"].forEach(function (kind) {
+        got[kind] = got[kind].filter(function (q) { return q.set && q.set.name === name; });
+        got[kind].forEach(function (q) { q.packet = Object.assign({}, q.packet, { name: packetName(q.packet) }); });
+        got[kind].sort(function (a, b) {
+          return ((a.packet.number || 0) - (b.packet.number || 0)) || ((a.number || 0) - (b.number || 0));
+        });
+      });
+      var ex = extractPack(got, name, false, slugify(name));
+      if (!ex.tossups.length && !ex.bonuses.length) { uploadNote("\"" + name + "\" has no questions on QBReader."); return; }
+      await savePack(name, slugify(name), ex.tossups, ex.bonuses);
+      $("qbr-set").value = "";
+    } catch (e) {
+      uploadNote("Could not download from QBReader (" + (e && e.message ? e.message : String(e)) + "). Check your internet connection and try again.");
+    } finally {
+      $("qbr-get").disabled = false;
     }
   }
 
@@ -1264,6 +1339,11 @@ summary { cursor: pointer; }
     show("setup");
   };
   $("upload-input").onchange = function () { handleUpload(this.files); };
+  $("qbr-set").onfocus = function () {
+    loadQbreaderSets().catch(function () { uploadNote("Could not reach QBReader to list its sets. Check your internet connection."); });
+  };
+  $("qbr-set").onkeydown = function (e) { if (e.key === "Enter") getQbreaderSet(this.value); };
+  $("qbr-get").onclick = function () { getQbreaderSet($("qbr-set").value); };
   $("rm-local").onclick = function () {
     if (!S.localSets[S.packSetId]) return;
     delete S.localSets[S.packSetId];

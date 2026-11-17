@@ -66,7 +66,7 @@ Packaged `.apkg` files are available on the [releases page](https://github.com/t
 A tossup reader for practising on real questions. It has two modes:
 
 - **Deck Drill** reads 1,905 tossups on 695 answers from the study collection. Pick categories, question count, and reading speed, buzz with `Space`, press `G` to mark a guess, and score yourself. Questions you heard in the last 30 days are skipped.
-- **Pack Analysis** plays a whole tournament set in pack order, tossups or bonuses. Upload a set as QBReader-format question JSON (or a `.zip` of pack files), then review every buzz on **Buzzpoints** and your performance on **Stats**.
+- **Pack Analysis** plays a whole tournament set in pack order, tossups or bonuses. Type the name of any of the 700+ sets on QBReader and click **Download and play**, or upload a set as QBReader-format question JSON (or a `.zip` of pack files). Then review every buzz on **Buzzpoints** and your performance on **Stats**.
 
 ![Buzz Drill setup screen](docs/images/buzz-drill.png)
 
