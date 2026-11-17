@@ -25,7 +25,7 @@ See [`docs/stockfisher.md`](docs/stockfisher.md) for a walkthrough of the app, o
 
 ## Anki decks
 
-The collection has 11,921 notes and 34,848 cards built over five years of study, covering visual art, architecture, classical music, geography, biology, physics, philosophy, and history.
+The collection has 12,084 notes and 35,191 cards built over five years of study, covering visual art, architecture, classical music, geography, biology, physics, philosophy, and history.
 
 | Art: front | Art: back |
 | --- | --- |
@@ -39,7 +39,7 @@ The collection has 11,921 notes and 34,848 cards built over five years of study,
 
 More examples across all 11 note types are in the [card gallery](docs/card-gallery.md).
 
-Packaged `.apkg` files are available on the [releases page](https://github.com/tygerthelyon/qbcards/releases/tag/decks-2026-11-12); see [`docs/decks.md`](docs/decks.md) for the subject breakdown. The repository also includes [sample JSON notes](samples/), [card templates and stylesheets](templates/models.json), and the [maintenance scripts](scripts/) used to keep formatting consistent across decks.
+Packaged `.apkg` files are available on the [releases page](https://github.com/tygerthelyon/qbcards/releases/tag/decks-2026-11-16). They keep my study order, suspensions, and deck options when imported with learning progress and deck presets ticked; see [`docs/decks.md`](docs/decks.md) for the subject breakdown and import steps. The repository also includes [sample JSON notes](samples/), [card templates and stylesheets](templates/models.json), and the [maintenance scripts](scripts/) used to keep formatting consistent across decks.
 
 ## Buzz Drill
 
