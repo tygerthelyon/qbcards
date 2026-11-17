@@ -1,0 +1,18 @@
+Buzz Drill and StockFisher for Windows
+======================================
+
+Python is built in. There is nothing else to install.
+
+Buzz Drill:   double-click "Start Buzz Drill".
+StockFisher:  double-click "Start StockFisher". The first start downloads the
+              QBReader questions (about 900 MB, around 10 to 20 minutes).
+
+Keep the black window open while you use an app. Close it to quit.
+
+If Windows asks whether to run the file, click Run. If it says
+"Windows protected your PC", click More info, then Run anyway.
+
+Your Buzz Drill results are saved in the data folder here. To update, download
+the new QBCards-Windows.zip, extract it, and copy your old data folder into it.
+
+Help and the full guide: https://github.com/tygerthelyon/qbcards

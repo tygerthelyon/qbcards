@@ -1,0 +1,58 @@
+name: Windows download
+
+# Rebuilds QBCards-Windows.zip (Buzz Drill and StockFisher with Python built in) whenever the apps change, checks that
+# it starts, and replaces the file on the windows-app release so the README's download link is always current.
+on:
+  push:
+    branches: [main]
+    paths:
+      - drill/**
+      - drill_server.py
+      - qbr/**
+      - LICENSE
+      - stockfisher.ico
+      - scripts/build_windows_bundle.py
+      - scripts/windows_bundle/**
+      - .github/workflows/windows-bundle.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  bundle:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - run: python scripts/build_windows_bundle.py
+      - name: Check the bundle starts
+        shell: pwsh
+        run: |
+          Expand-Archive dist/QBCards-Windows.zip -DestinationPath "smoke test"
+          $app = Resolve-Path "smoke test/QBCards"
+          & "$app/runtime/python.exe" -c "import drill_server, qbr.app, qbr.store, sqlite3, ssl"
+          if ($LASTEXITCODE) { exit 1 }
+          $server = Start-Process "$app/runtime/python.exe" -ArgumentList "drill_server.py", "--port", "8799" -WorkingDirectory $app -PassThru
+          $ok = $false
+          foreach ($i in 1..30) {
+            Start-Sleep 1
+            try { $ok = (Invoke-RestMethod http://127.0.0.1:8799/api/health).app -eq "BuzzDrill" } catch {}
+            if ($ok) { break }
+          }
+          Stop-Process $server
+          if (-not $ok) { Write-Error "Buzz Drill did not answer on port 8799"; exit 1 }
+      - name: Publish to the windows-app release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view windows-app *> $null
+          if ($LASTEXITCODE) {
+            gh release create windows-app --title "Buzz Drill and StockFisher for Windows" --latest=false --notes-file scripts/windows_bundle/release_notes.md
+          }
+          gh release upload windows-app dist/QBCards-Windows.zip --clobber
+          $notes = (Get-Content -Raw scripts/windows_bundle/release_notes.md) + "`nBuilt from $($env:GITHUB_SHA.Substring(0, 7)) on $(Get-Date -Format yyyy-MM-dd)."
+          gh release edit windows-app --notes "$notes"

@@ -8,5 +8,6 @@ Small maintenance scripts for my Anki decks. Most talk to a running Anki instanc
 - `dot_fix.py`: normalizes middle-dot (`·`) spacing in movement/proponent lists to use a consistent `.qb-dot` span.
 - `export_for_cloud.py`: exports note fields, card metadata, and templates to `scripts/export/` (gitignored) for offline inspection or backup.
 - `export_friend_apkg.py`: exports a deck for sharing through AnkiConnect, keeping its study order, suspensions, and deck preset while stripping review history (writes to `scripts/anki_exports/`; the live collection is not changed).
+- `build_windows_bundle.py`: builds `QBCards-Windows.zip`, Buzz Drill and StockFisher with the official embeddable Python and the launchers in `windows_bundle/`. GitHub Actions runs it whenever the apps change and publishes the ZIP to the `windows-app` release.
 - `split_friend_apkg.py`: cuts a large export into importable parts under GitHub's 2 GB release limit, and checks that every note, card, suspension, and media file lands in exactly one part.
 - `anki_backup_to_onedrive.ps1`: PowerShell task script that copies the Anki media folder and latest `.colpkg` backup to a backup directory (`C:\AnkiBackup` by default).

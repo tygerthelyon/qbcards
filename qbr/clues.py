@@ -563,7 +563,13 @@ def profile(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=Fa
         t.pop("own", None)
     if anki:
         from . import anki as deck
-        idx = deck.index()
+        try:
+            idx = deck.index()
+        except RuntimeError:
+            # no Anki and no saved index (anyone without the decks): show the clues, just without coverage
+            out["anki_stale"] = ("No Anki coverage: Anki is not open with AnkiConnect. Open it and search again, "
+                                 "or untick Show Anki coverage.")
+            return out
         tnames = [out["name"]] + list(names)
         for t in ranked + other:
             t["anki"] = deck.have(idx, t["key"], target_names=tnames)

@@ -2783,80 +2783,108 @@ summary { cursor: pointer; }
       var table = document.createElement("table");
       table.className = "bp-table";
       var header = table.createTHead().insertRow();
-      ["Answer", "Pack / TU", "Buzzpoint", "Value"].forEach(function (label, i) {
+      var list = table.createTBody();
+      var sortKey = (button.dataset.key || button.id) + "|attempts";
+      var heads = [
+        { col: "ans", label: "Answer" }, { col: "pkt", label: "Pack / TU" },
+        { col: "buzz", label: "Buzzpoint", num: true }, { col: "pts", label: "Value", num: true }
+      ].map(function (hc) {
         var th = document.createElement("th");
         th.scope = "col";
-        if (i >= 2) th.className = "num";
-        th.textContent = label;
-        header.appendChild(th);
-      });
-      var list = table.createTBody();
-      attempts.forEach(function (attempt) {
-        var row = list.insertRow();
-        var outcome = attempt.result === "correct" ? (attempt.power ? "pw" : "ok")
-          : attempt.pts < 0 ? "neg" : "zero";   // as on Buzzpoints: wrong at the end scores 0, so it is not a neg
-        row.className = "bp-row " + outcome;
-        var depth = fracOf(attempt);
-        var full = S.itemsById[attempt.id];
-        var answer = attempt.main || attempt.k || attempt.a || "Unknown answer";
-        var answerCell = row.insertCell();
-        var toggle = document.createElement("button");
-        toggle.type = "button";
-        toggle.className = "bp-ans-btn";
-        toggle.textContent = answer;
-        toggle.setAttribute("aria-expanded", "false");
-        answerCell.appendChild(toggle);
-        row.insertCell().textContent = packetLabel(attempt);
-        var clueButton = document.createElement("button");
-        clueButton.type = "button";
-        clueButton.className = "bp-ans-btn";
-        clueButton.textContent = Number.isFinite(attempt.buzz) ? String(attempt.buzz) : "–";
-        clueButton.title = buzzLabel(attempt) + (Number.isFinite(attempt.buzz) && attempt.words ? " · word " + attempt.buzz + " of " + attempt.words : "");
-        clueButton.setAttribute("aria-expanded", "false");
-        var buzzCell = row.insertCell();
-        buzzCell.className = "num";
-        buzzCell.appendChild(clueButton);
-        if (Number.isFinite(attempt.buzz) && depth !== null) {
-          var pctSub = document.createElement("span"); pctSub.className = "bp-sub";
-          pctSub.textContent = Math.round(100 * depth) + "%";
-          buzzCell.appendChild(pctSub);
-        }
-        var ptsCell = row.insertCell();
-        ptsCell.className = "num bp-val";
-        ptsCell.textContent = (attempt.pts || 0) < 0 ? "−" + Math.abs(attempt.pts) : String(attempt.pts || 0);
-        var question = list.insertRow();
-        question.className = "bp-detail attempt-question";
-        question.id = detail.id + "-question-" + row.sectionRowIndex;
-        question.hidden = true;
-        toggle.setAttribute("aria-controls", question.id);
-        var questionCell = question.insertCell();
-        questionCell.colSpan = 4;
-        clueButton.setAttribute("aria-controls", question.id);
-        var qKey = (button.dataset.key || "") + "|" + attempt.id + "|" + (attempt.ts || "");
-        clueButton.onclick = toggle.onclick = function () {
-          question.hidden = !question.hidden;
-          S.openRows[qKey] = !question.hidden;
-          toggle.setAttribute("aria-expanded", String(!question.hidden));
-          clueButton.setAttribute("aria-expanded", String(!question.hidden));
-          if (question.hidden || questionCell.firstChild) return;
-          var text = document.createElement("div");
-          text.className = "bp-q";
-          if (full && full.q) {
-            var qv = questionView(full.q, attempt.buzz, attempt.words);
-            renderWordsInto(text, qv.words, qv.words.length, qv.at, true, qv.star);
-          } else {
-            text.textContent = "Question text is unavailable for this attempt.";
-          }
-          questionCell.appendChild(text);
-          if (full && full.a) {
-            var answerLine = document.createElement("div");
-            answerLine.className = "bp-a";
-            setAnswerFormatted(answerLine, full.ah || "", full.a);
-            questionCell.appendChild(answerLine);
-          }
+        if (hc.num) th.className = "num";
+        th.textContent = hc.label;
+        var ind = document.createElement("span"); ind.className = "sortind"; th.appendChild(ind);
+        th.onclick = function () {
+          var st = S.tblSort[sortKey];
+          if (st && st.col === hc.col) st.dir *= -1;
+          else S.tblSort[sortKey] = { col: hc.col, dir: hc.col === "pts" ? -1 : 1 };
+          draw();
         };
-        if (S.openRows[qKey]) toggle.onclick();
+        header.appendChild(th);
+        return { col: hc.col, ind: ind };
       });
+      function answerOf(x) { return x.main || x.k || x.a || "Unknown answer"; }
+      function draw() {
+        var st = S.tblSort[sortKey];
+        heads.forEach(function (h) { h.ind.textContent = st && st.col === h.col ? (st.dir === 1 ? " ▲" : " ▼") : ""; });
+        var sorted = attempts.slice();
+        if (st) sorted.sort(function (a, b) {
+          var cmp;
+          if (st.col === "ans") cmp = naturalCmp(answerOf(a), answerOf(b));
+          else if (st.col === "pkt") cmp = naturalCmp(packetLabel(a), packetLabel(b));
+          else if (st.col === "buzz") cmp = (Number.isFinite(a.buzz) ? a.buzz : 99999) - (Number.isFinite(b.buzz) ? b.buzz : 99999);
+          else cmp = (a.pts || 0) - (b.pts || 0);
+          return cmp * st.dir;
+        });
+        list.textContent = "";
+        sorted.forEach(function (attempt) {
+          var row = list.insertRow();
+          var outcome = attempt.result === "correct" ? (attempt.power ? "pw" : "ok")
+            : attempt.pts < 0 ? "neg" : "zero";   // as on Buzzpoints: wrong at the end scores 0, so it is not a neg
+          row.className = "bp-row " + outcome;
+          var depth = fracOf(attempt);
+          var full = S.itemsById[attempt.id];
+          var answer = attempt.main || attempt.k || attempt.a || "Unknown answer";
+          var answerCell = row.insertCell();
+          var toggle = document.createElement("button");
+          toggle.type = "button";
+          toggle.className = "bp-ans-btn";
+          toggle.textContent = answer;
+          toggle.setAttribute("aria-expanded", "false");
+          answerCell.appendChild(toggle);
+          row.insertCell().textContent = packetLabel(attempt);
+          var clueButton = document.createElement("button");
+          clueButton.type = "button";
+          clueButton.className = "bp-ans-btn";
+          clueButton.textContent = Number.isFinite(attempt.buzz) ? String(attempt.buzz) : "–";
+          clueButton.title = buzzLabel(attempt) + (Number.isFinite(attempt.buzz) && attempt.words ? " · word " + attempt.buzz + " of " + attempt.words : "");
+          clueButton.setAttribute("aria-expanded", "false");
+          var buzzCell = row.insertCell();
+          buzzCell.className = "num";
+          buzzCell.appendChild(clueButton);
+          if (Number.isFinite(attempt.buzz) && depth !== null) {
+            var pctSub = document.createElement("span"); pctSub.className = "bp-sub";
+            pctSub.textContent = Math.round(100 * depth) + "%";
+            buzzCell.appendChild(pctSub);
+          }
+          var ptsCell = row.insertCell();
+          ptsCell.className = "num bp-val";
+          ptsCell.textContent = (attempt.pts || 0) < 0 ? "−" + Math.abs(attempt.pts) : String(attempt.pts || 0);
+          var question = list.insertRow();
+          question.className = "bp-detail attempt-question";
+          question.id = detail.id + "-question-" + row.sectionRowIndex;
+          question.hidden = true;
+          toggle.setAttribute("aria-controls", question.id);
+          var questionCell = question.insertCell();
+          questionCell.colSpan = 4;
+          clueButton.setAttribute("aria-controls", question.id);
+          var qKey = (button.dataset.key || "") + "|" + attempt.id + "|" + (attempt.ts || "");
+          clueButton.onclick = toggle.onclick = function () {
+            question.hidden = !question.hidden;
+            S.openRows[qKey] = !question.hidden;
+            toggle.setAttribute("aria-expanded", String(!question.hidden));
+            clueButton.setAttribute("aria-expanded", String(!question.hidden));
+            if (question.hidden || questionCell.firstChild) return;
+            var text = document.createElement("div");
+            text.className = "bp-q";
+            if (full && full.q) {
+              var qv = questionView(full.q, attempt.buzz, attempt.words);
+              renderWordsInto(text, qv.words, qv.words.length, qv.at, true, qv.star);
+            } else {
+              text.textContent = "Question text is unavailable for this attempt.";
+            }
+            questionCell.appendChild(text);
+            if (full && full.a) {
+              var answerLine = document.createElement("div");
+              answerLine.className = "bp-a";
+              setAnswerFormatted(answerLine, full.ah || "", full.a);
+              questionCell.appendChild(answerLine);
+            }
+          };
+          if (S.openRows[qKey]) toggle.onclick();
+        });
+      }
+      draw();
       wrap.appendChild(table);
       panel.appendChild(wrap);
       cell.appendChild(panel);
