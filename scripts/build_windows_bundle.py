@@ -9,7 +9,8 @@ publishes the ZIP to the windows-app release (.github/workflows/windows-bundle.y
 """
 import argparse
 import hashlib
-import io
+import os
+import subprocess
 import urllib.request
 import zipfile
 from pathlib import Path
@@ -70,7 +71,24 @@ def build(out):
         for f in sorted(LAUNCHERS.iterdir()):
             if f.suffix in (".cmd", ".txt"):
                 z.writestr(TOP + f.name, crlf(f.read_bytes()))
+            elif f.name == "update.py":
+                z.write(f, TOP + f.name)
+        z.writestr(TOP + "version.txt", commit() + "\n")
+    # what update.py checks: the commit, and the hash it verifies the download against
+    digest = hashlib.sha256(target.read_bytes()).hexdigest()
+    (out / "version.txt").write_text("%s %s\n" % (commit(), digest), encoding="utf-8")
     return target
+
+
+def commit():
+    """The commit this bundle is built from (GitHub Actions sets GITHUB_SHA)."""
+    sha = os.environ.get("GITHUB_SHA")
+    if not sha:
+        try:
+            sha = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True).stdout.strip()
+        except OSError:
+            sha = ""
+    return sha[:12] or "local"
 
 
 def main(argv=None):
@@ -80,7 +98,7 @@ def main(argv=None):
     target = build(args.out.resolve())
     with zipfile.ZipFile(target) as z:
         count = len(z.namelist())
-    print("%s: %d files, %.1f MB (Python %s)" % (target, count, target.stat().st_size / 1e6, PYTHON))
+    print("%s: %d files, %.1f MB (Python %s, %s)" % (target, count, target.stat().st_size / 1e6, PYTHON, commit()))
 
 
 if __name__ == "__main__":

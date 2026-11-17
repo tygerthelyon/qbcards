@@ -12,7 +12,11 @@ Keep the black window open while you use an app. Close it to quit.
 If Windows asks whether to run the file, click Run. If it says
 "Windows protected your PC", click More info, then Run anyway.
 
-Your Buzz Drill results are saved in the data folder here. To update, download
-the new QBCards-Windows.zip, extract it, and copy your old data folder into it.
+Each start checks for a newer version and updates itself. Your Buzz Drill
+results stay in the data folder here and are never replaced.
+
+Anki (optional): to see which answers are already in your Anki cards, open the
+Anki desktop app with the AnkiConnect add-on (Tools > Add-ons > Get Add-ons,
+code 2055492159, then restart Anki).
 
 Help and the full guide: https://github.com/tygerthelyon/qbcards

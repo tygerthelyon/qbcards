@@ -54,5 +54,7 @@ jobs:
             gh release create windows-app --title "Buzz Drill and StockFisher for Windows" --latest=false --notes-file scripts/windows_bundle/release_notes.md
           }
           gh release upload windows-app dist/QBCards-Windows.zip --clobber
+          # version.txt last: an installed copy only sees the new version once its ZIP is up
+          gh release upload windows-app dist/version.txt --clobber
           $notes = (Get-Content -Raw scripts/windows_bundle/release_notes.md) + "`nBuilt from $($env:GITHUB_SHA.Substring(0, 7)) on $(Get-Date -Format yyyy-MM-dd)."
           gh release edit windows-app --notes "$notes"

@@ -196,35 +196,45 @@ def _answer_anki_meta(ans_text, names, text_blob, _key, parse_answer):
     return main, accepts, status
 
 
-# Match within the decks that study the question's subject.
-_ANSWER_DECKS = {
-    "literature": ("Literature",),
-    "geography": ("Geography",),
-    "history": ("History",),
-    "science": ("Science",),
-    "philosophy": ("Philosophy",),
-    "fine arts": ("VFA", "OVFA", "AFA", "OAFA"),
+# Match within the decks that study the question's subject: any deck with a part of its path ("QB::Fine Arts::Music")
+# named after the category or one of its usual subjects. A category no deck is named for uses the whole collection, so
+# any deck layout works.
+_CATEGORY_DECK_NAMES = {
+    "fine arts": {"art", "arts", "visual fine arts", "auditory fine arts", "other fine arts", "music", "classical music",
+                  "opera", "architecture", "film", "photography", "dance", "jazz", "painting", "sculpture", "art history",
+                  "vfa", "afa", "ovfa", "oafa"},
+    "literature": {"lit", "poetry", "poems", "novels", "drama", "fiction"},
+    "science": {"biology", "chemistry", "physics", "math", "mathematics", "astronomy", "earth science",
+                "computer science"},
+    "history": {"world history", "american history", "us history", "european history", "ancient history"},
+    "mythology": {"myth", "myths"},
+    "social science": {"economics", "psychology", "linguistics", "sociology", "anthropology"},
+    "pop culture": {"trash"},
 }
-_ANSWER_CATEGORY_INDEXES = {}
+_ANSWER_CATEGORY_INDEXES = {}        # Anki search -> (time, index), shared by every category that ends up searching it
 _ANSWER_CATEGORY_LOCK = threading.Lock()
+
+
+def _category_query(anki, category):
+    want = _CATEGORY_DECK_NAMES.get(category, set()) | {category}
+    decks = [d for d in anki._call("deckNames") if any(part.strip().casefold() in want for part in d.split("::"))]
+    escape = lambda d: d.replace("\\", "\\\\").replace('"', '\\"').replace("*", "\\*").replace("_", "\\_")
+    return " OR ".join('deck:"%s"' % escape(d) for d in decks) or "deck:*"
 
 
 def _answer_category_index(category):
     category = (category or "").strip().casefold()
-    decks = _ANSWER_DECKS.get(category)
-    if not decks:
-        return {}
     with _ANSWER_CATEGORY_LOCK:
-        cached = _ANSWER_CATEGORY_INDEXES.get(category)
-        if cached and time.monotonic() - cached[0] < 300:
-            return cached[1]
         try:
             from qbr import anki
-            query = " OR ".join(f'deck:"{deck}"' for deck in decks)
+            query = _category_query(anki, category)
+            cached = _ANSWER_CATEGORY_INDEXES.get(query)
+            if cached and time.monotonic() - cached[0] < 300:
+                return cached[1]
             index = anki.build(query, persist=False)
         except Exception:
             return {}
-        _ANSWER_CATEGORY_INDEXES[category] = (time.monotonic(), index)
+        _ANSWER_CATEGORY_INDEXES[query] = (time.monotonic(), index)
         return index
 
 

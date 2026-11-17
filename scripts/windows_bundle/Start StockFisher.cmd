@@ -2,6 +2,7 @@
 title StockFisher
 cd /d "%~dp0"
 if not exist "runtime\python.exe" goto :not_extracted
+"runtime\python.exe" update.py
 "runtime\python.exe" -c "from qbr import store; raise SystemExit(0 if store.meta('synced') else 1)" >nul 2>&1
 if errorlevel 1 goto :first_run
 :start

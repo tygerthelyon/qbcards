@@ -73,7 +73,6 @@ body {
 .wrap { max-width: 880px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
 header.top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 h1 { font-family: var(--serif); font-weight: 600; font-size: 1.75rem; margin: 0; letter-spacing: -0.01em; }
-h1 small { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-3); font-weight: 400; margin-left: 8px; letter-spacing: 0; }
 h2 { font-size: 1rem; margin: 0; text-wrap: balance; }
 .tabs { display: flex; gap: 4px; background: var(--rule); padding: 3px; border-radius: 999px; }
 .tabs button { border: 0; background: transparent; color: var(--ink-2); font: 600 0.9rem var(--sans); padding: 6px 16px; border-radius: 999px; cursor: pointer; }
@@ -282,7 +281,7 @@ summary { cursor: pointer; }
 
 <div class="wrap">
   <header class="top">
-    <h1>Buzz Drill <small id="built"></small></h1>
+    <h1>Buzz Drill</h1>
     <div class="tabs" role="tablist" aria-label="App mode">
       <button id="mode-deck" role="tab" aria-selected="true">Deck Drill</button>
       <button id="mode-pack" role="tab" aria-selected="false">Pack Analysis</button>
@@ -307,8 +306,8 @@ summary { cursor: pointer; }
       <div class="row" style="gap:10px">
         <label class="label" for="pack-src">Set</label>
         <select id="pack-src" class="select"></select>
-        <label class="btn ghost sm upload-box" for="upload-input">Upload pack <small>.json or .zip</small></label>
-        <input id="upload-input" type="file" accept=".json,.zip,application/json,application/zip" multiple hidden>
+        <label class="btn ghost sm upload-box" for="upload-input">Upload pack <small>.docx, .json or .zip</small></label>
+        <input id="upload-input" type="file" accept=".docx,.json,.zip,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/json,application/zip" multiple hidden>
         <button id="rm-local" type="button" class="btn ghost sm" hidden>Remove selected pack</button>
       </div>
       <span id="pack-summary" class="meta"></span>
@@ -324,7 +323,7 @@ summary { cursor: pointer; }
 
   <section id="view-drill" class="wrap" style="gap:18px;width:100%">
     <div id="setup" class="panel">
-      <p id="set-desc" class="note">Practice tossups from your studied Anki collection. Buzz when you know the answer, score yourself, and track your progress.</p>
+      <p id="set-desc" class="note">Real tournament tossups on answers studied in the QBCards Anki decks. Buzz when you know the answer, score yourself, and track your progress.</p>
       <div class="row" style="gap:18px 24px">
         <div id="qkind-wrap" class="row" hidden><span class="label">Format</span>
           <div class="seg" id="qkind">
@@ -852,7 +851,14 @@ summary { cursor: pointer; }
     return new Uint8Array(buf);
   }
 
-  async function unzipJsonFiles(buf) {
+  // A pack upload's question files: .json (QBReader format) and .docx (the Word packets on the packet archives).
+  function isPacketFile(name) {
+    var low = name.toLowerCase(), base = low.split("/").pop();
+    return (low.endsWith(".json") || low.endsWith(".docx")) && low.indexOf("__macosx") < 0 &&
+      base.charAt(0) !== "." && base.indexOf("~$") !== 0;
+  }
+
+  async function unzipEntries(buf, keep) {
     var u8 = new Uint8Array(buf), dv = new DataView(buf), eocd = findEocd(u8);
     if (eocd < 0) throw new Error("Not a valid .zip archive.");
     var total = dv.getUint16(eocd + 10, true), cdOff = dv.getUint32(eocd + 16, true), entries = [], pos = cdOff;
@@ -867,20 +873,174 @@ summary { cursor: pointer; }
       var name = decodeUtf8(u8.subarray(pos + 46, pos + 46 + nameLen));
       pos += 46 + nameLen + extraLen + cmtLen;
       var base = name.split("/").pop();
-      if (!name.toLowerCase().endsWith(".json") || name.indexOf("__MACOSX") >= 0 || base.startsWith(".")) continue;
+      if (!keep(name)) continue;
       if (dv.getUint32(lfhOff, true) !== 0x04034b50) continue;
       var lNameLen = dv.getUint16(lfhOff + 26, true), lExtraLen = dv.getUint16(lfhOff + 28, true);
       var raw = u8.subarray(lfhOff + 30 + lNameLen + lExtraLen, lfhOff + 30 + lNameLen + lExtraLen + compSize);
       var plain = method === 0 ? raw : method === 8 ? await inflateRaw(raw) : null;
       if (!plain) throw new Error("Unsupported ZIP compression method (" + method + ") in " + name);
-      entries.push({ name: base, text: decodeUtf8(plain) });
+      entries.push({ name: base, bytes: plain });
     }
     entries.sort(function (a, b) { return naturalCmp(a.name, b.name); });
     return entries;
   }
 
   function cleanLabel(name) {
-    return (name || "Uploaded Pack").replace(/\.(zip|json)$/i, "").replace(/[_]+/g, " ").trim() || "Uploaded Pack";
+    return (name || "Uploaded Pack").replace(/\.(zip|json|docx)$/i, "").replace(/[_]+/g, " ").trim() || "Uploaded Pack";
+  }
+
+  // ---------- .docx packets ----------
+  // Packets follow the usual layout: "1." starts a question (or Word's own list numbering, or the first line after a
+  // "Tossups"/"Bonus" heading), "ANSWER:" lines carry the answer with the required part bold and underlined, bonus parts
+  // start "[10]" ("[10e]", "[10h]"...), and an optional tag like <JD, History - American History> gives the category.
+  var WNS = "http://schemas.openxmlformats.org/wordprocessingml/2006/main";
+  var DOCX_HEAD = /^(?:.*\W)?(?:tossups?|bonus(?:es)?|tiebreakers?|tb|extras?|replacements?|overtime)\W*$/i;
+  var DOCX_NUM = /^\s*(?:(?:tossup|tu|bonus)\s*)?(?:\d{1,2}|tb|tiebreaker)\s*[.)](?:\s+|$)/i;
+  // "ANSWER:", plus the typos packets ship with ("ANWER:", "ANSWER" with no colon), but not "Answer the following..."
+  var DOCX_ANSWER = /^\s*(?:[Aa][Nn][Ss]?[Ww][Ss]?[Ee][Rr]\s*[:.]|ANS?WS?ER\b)\s*/;
+  var DOCX_ANSWER_HTML = /an?s?ws?er(?:\s*(?:<[^>]*>\s*)*[:.])?\s*/i;
+  var DOCX_PART = /^\s*\[\s*(\d{1,2})\s*([emh])?\s*\]\s*/i;
+  var DOCX_TAG = /<([^<>]{1,100})>[^<>]{0,20}$/;      // PACE adds an id after the tag: <Bentley, Literature> ~15868~
+  var DOCX_SPLIT = /\s+(?=(?:<[^>]*>)*(?:ANSWER\s*:|\[\s*\d{1,2}\s*[emhEMH]?\s*\]))/;
+  // The standard quizbowl categories (QBReader's), longest first so "Social Science" wins over "Science".
+  var QB_CATEGORIES = ["Other Academic", "Social Science", "Current Events", "Pop Culture", "Fine Arts", "Literature",
+    "Mythology", "Philosophy", "Geography", "Religion", "History", "Science", "Trash"];
+  var QB_SUBJECTS = {
+    biology: "Science", chemistry: "Science", physics: "Science", math: "Science", mathematics: "Science",
+    astronomy: "Science", "earth science": "Science", "computer science": "Science",
+    painting: "Fine Arts", sculpture: "Fine Arts", music: "Fine Arts", opera: "Fine Arts", architecture: "Fine Arts",
+    film: "Fine Arts", dance: "Fine Arts", jazz: "Fine Arts", photography: "Fine Arts", visual: "Fine Arts",
+    auditory: "Fine Arts", art: "Fine Arts", arts: "Fine Arts", classical: "Fine Arts", myth: "Mythology",
+    poetry: "Literature", drama: "Literature", islam: "Religion", buddhism: "Religion", christianity: "Religion",
+    judaism: "Religion", hinduism: "Religion", bible: "Religion", economics: "Social Science",
+    psychology: "Social Science", linguistics: "Social Science", sociology: "Social Science",
+    anthropology: "Social Science", popular: "Pop Culture", other: "Other Academic"
+  };
+
+  function escHtml(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  function htmlText(h) {
+    return h.replace(/<[^>]*>/g, "").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
+  }
+
+  // One line per paragraph or line break, as {text, html, numbered}; html keeps bold and underline.
+  function docxLines(xml) {
+    var doc = new DOMParser().parseFromString(xml, "application/xml"), lines = [];
+    Array.prototype.forEach.call(doc.getElementsByTagNameNS(WNS, "p"), function (p) {
+      var html = "", numbered = p.getElementsByTagNameNS(WNS, "numPr").length > 0;
+      function flush() {
+        html.trim().split(DOCX_SPLIT).forEach(function (h, i) {
+          var text = htmlText(h);
+          if (text) lines.push({ text: text, html: h.trim(), numbered: numbered && i === 0 });
+        });
+        html = ""; numbered = false;
+      }
+      Array.prototype.forEach.call(p.getElementsByTagNameNS(WNS, "r"), function (r) {
+        var pr = r.getElementsByTagNameNS(WNS, "rPr")[0];
+        function has(tag, offValues) {
+          var el = pr && pr.getElementsByTagNameNS(WNS, tag)[0];
+          return !!el && offValues.indexOf(el.getAttributeNS(WNS, "val")) < 0;
+        }
+        var bold = has("b", ["0", "false"]), under = has("u", ["none"]);
+        Array.prototype.forEach.call(r.childNodes, function (ch) {
+          if (ch.namespaceURI !== WNS) return;
+          if (ch.localName === "t") {
+            var h = escHtml(ch.textContent);
+            if (under) h = "<u>" + h + "</u>";
+            if (bold) h = "<b>" + h + "</b>";
+            html += h;
+          } else if (ch.localName === "tab") html += " ";
+          else if (ch.localName === "br" || ch.localName === "cr") flush();
+        });
+      });
+      flush();
+    });
+    return lines;
+  }
+
+  // <JD, History - American History> -> History / American History; editor initials and names are skipped.
+  function tagCategory(tag) {
+    var cands = (tag || "").split(/[,;()]/).map(function (s) { return s.trim(); }).filter(Boolean).reverse();
+    for (var i = 0; i < cands.length; i++) {
+      var cand = cands[i], bits = cand.split(/\s+[-–—:]\s+/), head = bits[0], rest = bits.slice(1).join(" - ");
+      for (var j = 0; j < QB_CATEGORIES.length; j++) {
+        var c = QB_CATEGORIES[j];
+        var sub = head.toLowerCase() === c.toLowerCase() ? rest : new RegExp("\\b" + c + "\\b", "i").test(cand) ? rest || cand : null;
+        if (sub !== null) return { g: c, sub: sub.toLowerCase() === c.toLowerCase() ? "" : sub };
+      }
+      // "Classical Music", "Painting/Sculpture", "RMP - Islam": any subject word; "Other" only when nothing else names one
+      var subjects = cand.toLowerCase().split(/[^a-z]+/).map(function (w) { return QB_SUBJECTS[w]; }).filter(Boolean);
+      var subject = subjects.filter(function (s) { return s !== "Other Academic"; })[0] || subjects[0];
+      if (subject) return { g: subject, sub: cand };
+    }
+    return { g: "", sub: "" };
+  }
+
+  function docxQuestion(block) {
+    var lead = [], parts = [], answers = [], answer = null, tag = "";
+    block.forEach(function (l, i) {
+      var text = l.text, html = l.html, m = DOCX_TAG.exec(text);
+      if (m) {
+        tag = tag || m[1];
+        text = text.slice(0, m.index).trim();
+        html = html.replace(/\s*(?:<[^>]*>)*&lt;(?:(?!&lt;)[\s\S])*$/, "");
+      }
+      if (!text) return;
+      if (DOCX_ANSWER.test(text)) {
+        html = html.replace(DOCX_ANSWER_HTML, "");
+        if (parts.length) { if (answers[parts.length - 1] === undefined) answers[parts.length - 1] = html; }
+        else if (answer === null) answer = html;
+        return;
+      }
+      var pm = DOCX_PART.exec(text);
+      if (pm) { parts.push({ value: +pm[1], mod: (pm[2] || "").toLowerCase(), text: text.slice(pm[0].length) }); return; }
+      if (i === 0) text = text.replace(DOCX_NUM, "");
+      if (parts.length && answers[parts.length - 1] === undefined) parts[parts.length - 1].text += " " + text;
+      else if (!parts.length && answer === null) { if (text) lead.push(text); }
+    });
+    var cat = tagCategory(tag), base = { category: cat.g || "General", subcategory: cat.sub };
+    if (parts.length) {
+      if (answers.filter(Boolean).length < parts.length) return null;
+      return Object.assign(base, {
+        type: "bonus", leadin: lead.join(" "), leadin_sanitized: lead.join(" "),
+        parts: parts.map(function (p) { return p.text; }), parts_sanitized: parts.map(function (p) { return p.text; }),
+        answers: answers, answers_sanitized: answers.map(htmlText),
+        values: parts.map(function (p) { return p.value; }), difficultyModifiers: parts.map(function (p) { return p.mod; })
+      });
+    }
+    if (!lead.length || !answer || !htmlText(answer)) return null;
+    var q = lead.join(" ");
+    return Object.assign(base, { type: "tossup", question: q, question_sanitized: q, answer: answer, answer_sanitized: htmlText(answer) });
+  }
+
+  // A .docx packet as QBReader-style {tossups, bonuses}, ready for extractPack.
+  async function docxPacket(bytes, packet) {
+    var parts = await unzipEntries(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength),
+      function (name) { return name === "word/document.xml"; });
+    if (!parts.length) throw new Error("not a Word document");
+    var blocks = [], cur = null, afterHeading = false;
+    docxLines(decodeUtf8(parts[0].bytes)).forEach(function (l) {
+      if (l.text.length <= 60 && l.text.indexOf("<") < 0 && DOCX_HEAD.test(l.text) && !DOCX_ANSWER.test(l.text)) { cur = null; afterHeading = true; return; }
+      var starts = DOCX_NUM.test(l.text) || l.numbered ||
+        (afterHeading && !cur && !DOCX_ANSWER.test(l.text) && !DOCX_PART.test(l.text));
+      if (starts) { cur = []; blocks.push(cur); afterHeading = false; }
+      if (cur) cur.push(l);
+    });
+    var out = { tossups: [], bonuses: [] };
+    blocks.forEach(function (b) {
+      var q = docxQuestion(b);
+      if (!q) return;
+      var list = q.type === "tossup" ? out.tossups : out.bonuses;
+      q.number = list.length + 1;
+      if (packet) q.packet = packet;
+      list.push(q);
+    });
+    return out;
+  }
+
+  // "MRNA Packet 03.docx" -> "Packet 3"; other names as written.
+  function docxPacketLabel(name) {
+    var label = cleanLabel(name), m = /\b(?:packet|round)\s*0*(\d+)/i.exec(label);
+    return m ? "Packet " + m[1] : label;
   }
 
   function mergeBonusLogs(a, b) {
@@ -978,35 +1138,56 @@ summary { cursor: pointer; }
     files.sort(function (a, b) { return naturalCmp(a.name, b.name); });
     uploadNote("Reading " + (files.length === 1 ? files[0].name : files.length + " files") + "...");
     try {
-      var jsonEntries = [];
+      var entries = [];
       for (var i = 0; i < files.length; i++) {
-        var f = files[i], low = f.name.toLowerCase();
-        if (low.endsWith(".zip")) {
-          var zEntries = await unzipJsonFiles(await f.arrayBuffer());
-          zEntries.forEach(function (ze) { jsonEntries.push(ze); });
-        } else if (low.endsWith(".json")) {
-          jsonEntries.push({ name: f.name, text: await f.text() });
+        var f = files[i];
+        if (f.name.toLowerCase().endsWith(".zip")) {
+          (await unzipEntries(await f.arrayBuffer(), isPacketFile)).forEach(function (ze) { entries.push(ze); });
+        } else if (isPacketFile(f.name)) {
+          entries.push({ name: f.name, bytes: new Uint8Array(await f.arrayBuffer()) });
         }
       }
-      if (!jsonEntries.length) { uploadNote("No .json files found inside that selection."); return; }
-      var setName = files.length === 1 ? cleanLabel(files[0].name) : cleanLabel(files[0].name) + " (+" + (files.length - 1) + ")";
+      if (!entries.length) {
+        uploadNote("No .json or .docx packets found. PDF and old .doc packets can't be read; most tournament sets are also on QBReader, so try its name in the QBReader box.");
+        return;
+      }
+      var setName = files.length === 1 ? cleanLabel(files[0].name) : sharedName(files);
       var setSlug = slugify(setName);
-      var isMultiPacket = jsonEntries.length > 1 || files[0].name.toLowerCase().endsWith(".zip");
-      var items = [], bonuses = [];
-      jsonEntries.forEach(function (ent) {
+      var isMultiPacket = entries.length > 1 || files[0].name.toLowerCase().endsWith(".zip");
+      var items = [], bonuses = [], unread = [], docxNo = 0;
+      for (var k = 0; k < entries.length; k++) {
+        var ent = entries[k];
         try {
-          var ex = extractPack(JSON.parse(ent.text), ent.name, isMultiPacket, setSlug);
+          var data;
+          if (/\.docx$/i.test(ent.name)) {
+            docxNo++;
+            data = await docxPacket(ent.bytes, isMultiPacket ? { number: docxNo, name: docxPacketLabel(ent.name) } : null);
+            data.tossups.concat(data.bonuses).forEach(function (q) { q.set = { name: setName }; });
+          } else {
+            data = JSON.parse(decodeUtf8(ent.bytes));
+          }
+          var ex = extractPack(data, ent.name, isMultiPacket, setSlug);
+          if (!ex.tossups.length && !ex.bonuses.length) unread.push(ent.name);
           items = items.concat(ex.tossups);
           bonuses = bonuses.concat(ex.bonuses);
-        } catch (err) {}
-      });
+        } catch (err) { unread.push(ent.name); }
+      }
       if (!items.length && !bonuses.length) { uploadNote("Could not find any valid tossups or bonuses."); return; }
       await savePack(setName, setSlug, items, bonuses);
+      if (unread.length) uploadNote($("upload-msg").textContent + " No questions found in " + unread.join(", ") + ".");
     } catch (e) {
       uploadNote("Upload failed: " + (e && e.message ? e.message : String(e)));
     } finally {
       $("upload-input").value = "";
     }
+  }
+
+  // A set's name from its packet files: "MRNA Packet 1.docx" ... "MRNA Packet 16.docx" -> "MRNA".
+  function sharedName(files) {
+    var names = files.map(function (f) { return cleanLabel(f.name); }), p = names[0];
+    names.forEach(function (n) { while (p && n.toLowerCase().indexOf(p.toLowerCase()) !== 0) p = p.slice(0, -1); });
+    p = p.replace(/[\s\-_.,:#]*(?:packet|round)?[\s\-_.,:#]*\d*$/i, "").trim();
+    return p.length >= 3 ? p : names[0] + " (+" + (files.length - 1) + ")";
   }
 
   // Store a parsed pack (on the local server, or in this browser without one) and open it.
@@ -1198,9 +1379,8 @@ summary { cursor: pointer; }
     if (!setId) {
       S.setId = null; S.setMeta = null; S.kind = "tossups"; S.items = []; S.itemsById = {}; S.bonuses = []; S.bonusesById = {}; S.groups = []; S.packets = [];
       S.buzzes = []; S.bonusLogs = []; S.sessions = [];
-      $("built").textContent = "";
-      $("pack-summary").textContent = "Upload any .json or .zip pack to analyze";
-      $("poolinfo").textContent = "Upload a .json or .zip pack above to start.";
+      $("pack-summary").textContent = "Download a set from QBReader or upload packets (.docx, .json or .zip)";
+      $("poolinfo").textContent = "Pick a QBReader set or upload packets above to start.";
       $("start").disabled = true;
       if (S.tab === "buzzpoints") renderBuzzpoints();
       if (S.tab === "progress") renderProgress();
@@ -1215,14 +1395,12 @@ summary { cursor: pointer; }
 
     var items = preloadedItems || (localEntry && localEntry.items) || (meta && meta._preloaded && meta._preloaded.items) || null;
     var bonuses = preloadedBonuses || (localEntry && localEntry.bonuses) || null;
-    var built = (meta && meta.built) || "";
     if (!items && meta && meta.url) {
       var res = await fetch(meta.url);
       if (!res.ok) throw new Error("Could not load " + meta.url);
       var json = await res.json();
       items = json.items || [];
       if (!bonuses && json.bonuses) bonuses = json.bonuses;
-      built = built || json.built || "";
     }
     if (S.mode === "pack" && !bonuses && S.serverOk && !setId.startsWith("local_") && meta && (meta.bonusCount || setId === "acfw26")) {
       try {
@@ -1245,11 +1423,8 @@ summary { cursor: pointer; }
     S.hasPackets = S.mode === "pack" && items.concat(bonuses).some(function (t) { return !!t.p; });
     S.hasAnki = S.mode === "pack" && (items.some(function (t) { return t.anki !== undefined; }) || bonuses.some(function (b) { return !!(b.part_meta && b.part_meta.length); }));
 
-    $("built").textContent = S.mode === "deck"
-      ? (built ? "set built " + built : items.length + " studied tossups")
-      : "";
     $("set-desc").textContent = S.mode === "deck"
-      ? "Practice tossups from your studied Anki collection. Buzz when you know the answer, score yourself, and track your progress."
+      ? "Real tournament tossups on answers studied in the QBCards Anki decks. Buzz when you know the answer, score yourself, and track your progress."
       : "Play tossups or bonuses with Anki coverage tracking, then inspect every round on Buzzpoints or break down performance in Category Stats.";
     $("skip-lbl").textContent = S.mode === "deck" ? "Skip tossups heard in last 30 days" : (S.kind === "bonuses" ? "Skip bonuses I've already heard" : "Skip tossups I've already heard");
 

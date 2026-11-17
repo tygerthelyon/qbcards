@@ -10,7 +10,7 @@ Two quizbowl study apps, [StockFisher](#stockfisher) and [Buzz Drill](#buzz-dril
 2. Right-click it and choose **Extract All**.
 3. In the extracted QBCards folder, double-click **Start Buzz Drill** or **Start StockFisher**.
 
-If Windows asks whether to run the file, click **Run** (or **More info**, then **Run anyway**). Keep the black window open while you use an app; close it to quit. StockFisher's first start downloads the QBReader questions (about 900 MB, around 10 to 20 minutes).
+If Windows asks whether to run the file, click **Run** (or **More info**, then **Run anyway**). Keep the black window open while you use an app; close it to quit. StockFisher's first start downloads the QBReader questions (about 900 MB, around 10 to 20 minutes). Each start checks for a newer version and updates itself, keeping your results.
 
 **Mac or Linux:** open Terminal, paste this line, and press Return. It downloads the apps into your home folder and starts Buzz Drill:
 
@@ -19,6 +19,8 @@ curl -fsSL https://github.com/tygerthelyon/qbcards/archive/refs/heads/main.zip -
 ```
 
 If your Mac asks to install the command line developer tools, click **Install**, wait for it to finish, and paste the line again. Pasting it again later also updates the apps and keeps your results. For StockFisher, paste `cd qbcards-main && python3 -m qbr sync && python3 -m qbr.app` instead.
+
+**Anki (optional):** both apps can mark which answers and clues are already in your Anki cards. This needs the Anki desktop app open with the free AnkiConnect add-on: in Anki choose **Tools → Add-ons → Get Add-ons**, enter `2055492159`, and restart Anki. Any decks work: StockFisher searches all of them, and Buzz Drill checks a question against the decks named after its category (a "Science" or "Biology" deck for science questions), or all of them when none is. Without Anki everything else works the same.
 
 ## StockFisher
 
@@ -65,8 +67,8 @@ Packaged `.apkg` files are available on the [releases page](https://github.com/t
 
 A tossup reader for practising on real questions. It has two modes:
 
-- **Deck Drill** reads 1,905 tossups on 695 answers from the study collection. Pick categories, question count, and reading speed, buzz with `Space`, press `G` to mark a guess, and score yourself. Questions you heard in the last 30 days are skipped.
-- **Pack Analysis** plays a whole tournament set in pack order, tossups or bonuses. Type the name of any of the 700+ sets on QBReader and click **Download and play**, or upload a set as QBReader-format question JSON (or a `.zip` of pack files). Then review every buzz on **Buzzpoints** and your performance on **Stats**.
+- **Deck Drill** reads 1,905 real tournament tossups on 695 answers studied in the Anki decks, filed under QBReader's standard categories. Pick categories, question count, and reading speed, buzz with `Space`, press `G` to mark a guess, and score yourself. Questions you heard in the last 30 days are skipped.
+- **Pack Analysis** plays a whole tournament set in pack order, tossups or bonuses. Type the name of any of the 700+ sets on QBReader and click **Download and play**, or upload packets: the Word (`.docx`) files from the [packet archive](https://collegiate.quizbowlpackets.com/), QBReader-format `.json`, or a `.zip` of either. Then review every buzz on **Buzzpoints** and your performance on **Stats**.
 
 ![Buzz Drill setup screen](docs/images/buzz-drill.png)
 
