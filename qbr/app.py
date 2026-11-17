@@ -1,4 +1,4 @@
-"""Local StockFisher app. Run with python -m qbr.app; no notebook is required.
+"""Local StockFisher app. Run with python -m qbr.app.
 
 One request thread owns the engine's SQLite connection. The server only binds to
 loopback, serves an explicit asset list, and authenticates API calls from its UI.
@@ -8,10 +8,12 @@ import hmac
 import json
 import os
 import secrets
+import signal
 import sqlite3
 import subprocess
 import sys
 import threading
+import time
 import webbrowser
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
@@ -81,9 +83,6 @@ class Application:
                                exact=data.get("exact", False), anki=data.get("anki", False),
                                exclude=[s.strip() for s in _text(data, "exclude").split(",") if s.strip()],
                                **filters)
-        if action == "search":
-            return qbr.search(_text(data, "query", required=True), n=20,
-                              offset=_integer(data, "offset", 0, 0, 1000000), **filters)
         if action == "check":
             return qbr.verify_clue(_text(data, "answer", required=True),
                                    _text(data, "clue", 4000, required=True), **filters)
@@ -153,7 +152,7 @@ class Handler(BaseHTTPRequestHandler):
         if not self._allowed(api=url.path.startswith("/api/")):
             return
         if url.path == "/health":
-            return self._json(200, {"app": "StockFisher", "version": 1,
+            return self._json(200, {"app": "StockFisher", "version": 1, "pid": os.getpid(),
                                     "root": str(Path(__file__).resolve().parent), "mtime": self.server.mtime})
         if url.path == "/":
             page = (ASSETS / "index.html").read_text(encoding="utf-8").replace("__SESSION_TOKEN__", self.server.token)
@@ -184,7 +183,7 @@ class Handler(BaseHTTPRequestHandler):
             self._json(200, {"closed": True})
             threading.Thread(target=self.server.shutdown, daemon=True).start()
             return
-        if action not in ("profile", "search", "check", "database"):
+        if action not in ("profile", "check", "database"):
             return self._json(404, {"error": "Unknown action."})
         try:
             size = int(self.headers.get("Content-Length", "0"))
@@ -214,6 +213,22 @@ def open_window(url):
     webbrowser.open(url)
 
 
+def _replace(pid, port):
+    """Stop an out-of-date StockFisher server and take over its port; None if that fails."""
+    if not isinstance(pid, int) or pid == os.getpid():
+        return None
+    try:
+        os.kill(pid, signal.SIGTERM)
+    except OSError:
+        return None
+    for _ in range(20):
+        try:
+            return AppServer(port)
+        except OSError:
+            time.sleep(0.25)
+    return None
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--port", type=int, default=8766)
@@ -227,6 +242,7 @@ def main(argv=None):
     ports = [args.port] if explicit_port else [args.port, 8767, 8768, 8769, 8770]
 
     server = None
+    root = str(Path(__file__).resolve().parent)
     for port in ports:
         try:
             server = AppServer(port)
@@ -236,15 +252,18 @@ def main(argv=None):
             try:
                 with urlopen(url + "/health", timeout=2) as response:
                     health = json.load(response)
-                if (health.get("app") == "StockFisher"
-                        and health.get("root") == str(Path(__file__).resolve().parent)
-                        and health.get("mtime") == _code_mtime()):
-                    if not args.no_browser:
-                        open_window(url)
-                    return 0
             except (OSError, ValueError):
-                pass
-            continue
+                continue
+            if health.get("app") != "StockFisher" or health.get("root") != root:
+                continue
+            if health.get("mtime") == _code_mtime():
+                if not args.no_browser:
+                    open_window(url)
+                return 0
+            # This app, started before its code last changed: replace it rather than leave it running beside a new one.
+            server = _replace(health.get("pid"), port)
+            if server:
+                break
 
     if server is None:
         print("Port %s is in use. Try --port with another number." % args.port, file=sys.stderr)

@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
 <style>
-/* Layout: a moderator's packet on a desk. Deck Drill is default; Pack Analysis adds set upload, Buzzpoints, and Anki coverage. */
+/* Layout: a moderator's pack on a desk. Deck Drill is default; Pack Analysis adds set upload, Buzzpoints, and Anki coverage. */
 :root {
   --paper: #f6f7f9;
   --card: #ffffff;
@@ -18,20 +18,21 @@
   --ink-2: #4a505a;
   --ink-3: #7b828d;
   --rule: #e1e4e9;
-  --accent: #2547c7;
+  --accent: #00274c;
   --accent-ink: #ffffff;
   --lamp: #e3a008;
   --lamp-soft: #fdf3d6;
   --good: #1b7f45;
   --good-soft: #e3f4ea;
+  --stat: #725600;       /* maize, darkened for contrast on white */
   --bad: #b3261e;
   --bad-soft: #fbe7e5;
-  --series-1: #2a78d6;
+  --series-1: #00274c;
   --grid: #e7e9ed;
-  --bp-pw-bg: #ccefd9;
-  --bp-pw-ink: #0f4b28;
-  --bp-ok-bg: #dff4e6;
-  --bp-ok-ink: #13532d;
+  --bp-pw-bg: #c4e6ca;
+  --bp-pw-ink: #123c1e;
+  --bp-ok-bg: #e4f4e6;
+  --bp-ok-ink: #164323;
   --bp-neg-bg: #fbe2df;
   --bp-neg-ink: #7d1b15;
   --bp-zero-bg: #f1f3f6;
@@ -43,22 +44,22 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --paper: #121418; --card: #1a1d22; --ink: #eceef1; --ink-2: #b6bcc6; --ink-3: #868d98; --rule: #2b3038;
-    --accent: #7d97ff; --accent-ink: #0d1020; --lamp: #f2b52e; --lamp-soft: #3a2f12;
-    --good: #5fd08e; --good-soft: #15301f; --bad: #ff8a80; --bad-soft: #3a1a18;
-    --series-1: #3987e5; --grid: #262a31; color-scheme: dark;
-    --bp-pw-bg: #156d2a; --bp-pw-ink: #ffffff;
-    --bp-ok-bg: #185c27; --bp-ok-ink: #f4fbf6;
+    --accent: #9db9d5; --accent-ink: #0d1020; --lamp: #f2b52e; --lamp-soft: #3a2f12;
+    --good: #5fd08e; --good-soft: #15301f; --bad: #ff8a80; --bad-soft: #3a1a18; --stat: #ffcb05;
+    --series-1: #9db9d5; --grid: #262a31; color-scheme: dark;
+    --bp-pw-bg: #346548; --bp-pw-ink: #ffffff;
+    --bp-ok-bg: #294c36; --bp-ok-ink: #d9efdc;
     --bp-neg-bg: #7a2121; --bp-neg-ink: #fff2f2;
     --bp-zero-bg: #23272f; --bp-zero-ink: #c6ccd5;
   }
 }
 :root[data-theme="dark"] {
   --paper: #121418; --card: #1a1d22; --ink: #eceef1; --ink-2: #b6bcc6; --ink-3: #868d98; --rule: #2b3038;
-  --accent: #7d97ff; --accent-ink: #0d1020; --lamp: #f2b52e; --lamp-soft: #3a2f12;
-  --good: #5fd08e; --good-soft: #15301f; --bad: #ff8a80; --bad-soft: #3a1a18;
-  --series-1: #3987e5; --grid: #262a31; color-scheme: dark;
-  --bp-pw-bg: #156d2a; --bp-pw-ink: #ffffff;
-  --bp-ok-bg: #185c27; --bp-ok-ink: #f4fbf6;
+  --accent: #9db9d5; --accent-ink: #0d1020; --lamp: #f2b52e; --lamp-soft: #3a2f12;
+  --good: #5fd08e; --good-soft: #15301f; --bad: #ff8a80; --bad-soft: #3a1a18; --stat: #ffcb05;
+  --series-1: #9db9d5; --grid: #262a31; color-scheme: dark;
+  --bp-pw-bg: #346548; --bp-pw-ink: #ffffff;
+  --bp-ok-bg: #294c36; --bp-ok-ink: #d9efdc;
   --bp-neg-bg: #7a2121; --bp-neg-ink: #fff2f2;
   --bp-zero-bg: #23272f; --bp-zero-ink: #c6ccd5;
 }
@@ -107,6 +108,15 @@ button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px s
 .status-dot::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--ink-3); }
 .status-dot.ok { color: var(--good); }
 .status-dot.ok::before { background: var(--good); }
+.btn.ghost[aria-pressed="true"] { background: var(--lamp-soft); border-color: var(--lamp); }
+.pill.guess { background: var(--lamp-soft); color: var(--ink); }
+.status-dot.wait { color: var(--ink); }
+.curve-marks { display: flex; gap: 8px 32px; flex-wrap: wrap; }
+.curve-marks div { display: flex; flex-direction: column; }
+.curve-marks b { font: 700 1.3rem var(--sans); }
+.curve-marks span { font-size: 0.8rem; color: var(--ink-2); }
+.curve-marks .note { align-self: flex-end; font-size: 0.8rem; }
+.status-dot.wait::before { background: var(--lamp); }
 .tossup { font-family: var(--serif); font-size: 1.18rem; line-height: 1.62; min-height: 9.5em; overflow-wrap: anywhere; }
 .tossup.sz-lg { font-size: 1.32rem; }
 .tossup.sz-xl { font-size: 1.48rem; }
@@ -115,7 +125,7 @@ button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px s
 .statstrip b { color: var(--ink); font-weight: 600; }
 .tossup .ahead { color: transparent; }
 .tossup .star, .bp-q .star { font-family: var(--mono); font-size: 0.8em; color: var(--lamp); font-weight: 700; }
-.tossup .bz, .bp-q .bz { display: inline-block; font: 700 0.7rem var(--mono); color: var(--card); background: var(--lamp); border-radius: 4px; padding: 0 5px; margin: 0 4px; vertical-align: 0.15em; }
+.tossup .bz, .bp-q .bz { display: inline-block; color: #ffda54; -webkit-text-stroke: 0.5px #876500; margin: 0 4px; }
 .bar { position: relative; height: 6px; background: var(--rule); border-radius: 3px; }
 .bar .fill { position: absolute; inset: 0 auto 0 0; background: var(--accent); border-radius: 3px; width: 0; }
 .bar .pm { position: absolute; top: -4px; width: 2px; height: 14px; background: var(--lamp); }
@@ -150,7 +160,7 @@ button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px s
 table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
 th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
 th { font: 600 0.72rem var(--sans); text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3); }
-td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: right; }
+td.num { font-family: var(--sans); font-variant-numeric: tabular-nums; text-align: right; }
 th.num { text-align: right; }
 ul.misses { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 ul.misses li { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--rule); padding-bottom: 8px; min-width: 0; }
@@ -173,11 +183,12 @@ th abbr[title] { cursor: inherit; color: inherit; }
 .bp-row.b10 { background: var(--lamp-soft); color: var(--ink); }
 .bp-row.neg { background: var(--bp-neg-bg); color: var(--bp-neg-ink); }
 .bp-row.zero { background: var(--bp-zero-bg); color: var(--bp-zero-ink); }
+.attempt-panel .attempt-question > td { background: var(--card); color: var(--ink); }
 .bp-row td.wrapcell { white-space: normal; min-width: 145px; max-width: 240px; }
 .bp-sub { display: block; font-size: 0.78rem; opacity: 0.85; }
 .bp-ans-btn { background: none; border: 0; padding: 0; color: inherit; font: inherit; font-weight: 600; text-align: left; text-decoration: underline; text-underline-offset: 2px; cursor: pointer; white-space: normal; }
 .bp-ans-btn:hover { opacity: 0.85; }
-.bp-val { font-family: var(--mono); font-weight: 700; text-align: right; }
+.bp-val { font-family: var(--sans); font-variant-numeric: tabular-nums; font-weight: 700; text-align: right; }
 .bp-row .pill { background: rgba(0, 0, 0, 0.24); color: inherit; border: 1px solid rgba(255, 255, 255, 0.22); }
 :root:not([data-theme="dark"]) .bp-row .pill { background: rgba(255, 255, 255, 0.72); border-color: rgba(0, 0, 0, 0.14); }
 @media (prefers-color-scheme: dark) {
@@ -204,6 +215,67 @@ th abbr[title] { cursor: inherit; color: inherit; }
 
 @media (max-width: 480px) { .tossup { font-size: 1.06rem; } .panel { padding: 16px; } }
 @media (prefers-reduced-motion: no-preference) { .bar .fill { transition: width 0.15s linear; } }
+summary { cursor: pointer; }
+.stat-group { border: 0; padding: 2px 0; background: transparent; color: var(--ink); font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; text-align: left; }
+.stat-attempts td { white-space: normal; }
+.stat-attempts .tablewrap { margin: 8px 0; }
+.clue-review-item { border-top: 1px solid var(--rule); padding: 10px 0; }
+.clue-review-item .meta { display: block; margin: 4px 0 0 16px; }
+.clue-review-item ul { padding-left: 34px; }
+#pack-src { max-width: 100%; }
+.play-actions { display: grid; gap: 8px; }
+.mobile-buzz-summary { display: none; }
+.bp-row.ok .mobile-buzz-outcome, .bp-row.pw .mobile-buzz-outcome { color: var(--good); }
+.bp-row.neg .mobile-buzz-outcome { color: var(--bad); }
+
+@media (max-width: 600px) {
+  #pack-bar .srcbar, #pack-bar .row { align-items: flex-start; flex-wrap: wrap; min-width: 0; }
+  #play .play-actions {
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+    padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+    background: var(--card);
+  }
+  #play .play-actions button { min-height: 48px; }
+  #play .buzzer { padding: 12px; }
+  #play #judge > button { flex: 1; }
+  #buzz-log { width: 100%; min-width: 0; }
+  #buzz-log thead, #buzz-log .bp-row > td:not(:nth-child(5)) { display: none; }
+  #buzz-log .bp-row > td:nth-child(5) { padding: 0; }
+  #buzz-log .bp-ans-btn { display: block; width: 100%; padding: 12px; text-align: left; overflow-wrap: anywhere; }
+  .mobile-buzz-summary { display: flex; flex-wrap: wrap; gap: 4px 12px; justify-content: space-between; font-size: .82rem; font-weight: 500; margin-top: 4px; }
+  #buzz-log .bp-detail td { padding: 12px; }
+}
+#view-progress { gap: 10px !important; }
+#view-progress .panel { padding: 12px 16px; gap: 10px; }
+#view-progress .tiles { gap: 8px; }
+#view-progress .tile { padding: 9px 12px; }
+#view-progress .tile .k { line-height: 1.35; }
+#view-progress details.panel > summary { font-weight: 650; }
+.stats-fold-body { display: grid; gap: 8px; margin-top: 8px; min-width: 0; }
+#view-progress details.panel > .panel { margin-top: 8px; border: 0; padding: 8px 0; }
+#view-progress .bp-table th,
+#view-progress .bp-table td { padding: 7px 9px; }
+#stats-headlines { grid-template-columns: repeat(auto-fit, minmax(95px, 1fr)); }
+#stats-headlines .tile { background: var(--card); border-top: 3px solid var(--stat); }
+#stats-headlines .tile .v { font-size: clamp(1.15rem, 4vw, 1.85rem); }
+#ptiles .tile .v { font-size: 1.05rem; font-weight: 650; }
+#ptiles .tile .k { font-size: .78rem; }
+#cat-toggle::after { content: ""; display: inline-block; width: .4em; height: .4em; border: solid currentColor; border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); margin-left: 6px; }
+#cat-toggle[aria-expanded="true"]::after { transform: rotate(225deg); }
+.upload-box { border-style: dashed; }
+.upload-box small { color: var(--ink-3); font-weight: 400; margin-left: 4px; }
+#view-progress .stat-attempts > td { background: var(--paper); padding: 10px; }
+.attempt-panel { border: 1px solid var(--rule); border-left: 3px solid var(--series-1); border-radius: 8px; background: var(--card); padding: 10px; }
+.stat-attempts .attempt-panel .tablewrap { margin: 5px 0 0; }
+.attempt-panel .bp-table td:first-child { font-weight: 600; }
+.attempt-correct { color: var(--good); }
+.attempt-neg { color: var(--bad); }
+#view-progress .stat-attempts > td,
+#view-progress .attempt-panel { background: var(--card); color: var(--ink); }
+#view-progress .attempt-panel { border-left: 1px solid var(--rule); }
+#view-progress .attempt-question td { background: var(--card); padding: 12px; }
 </style>
 </head>
 <body>
@@ -225,7 +297,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
     <div id="pack-subtabs" class="tabs" role="tablist" aria-label="Pack views" hidden>
       <button id="ptab-play" role="tab" aria-selected="true">Play</button>
       <button id="ptab-buzzpoints" role="tab" aria-selected="false">Buzzpoints</button>
-      <button id="ptab-stats" role="tab" aria-selected="false">Category Stats</button>
+      <button id="ptab-stats" role="tab" aria-selected="false">Stats</button>
     </div>
     <span id="mon" class="status-dot">Checking local monitor...</span>
   </div>
@@ -233,11 +305,11 @@ th abbr[title] { cursor: inherit; color: inherit; }
   <div id="pack-bar" class="panel" hidden style="padding:14px 18px;gap:10px">
     <div class="srcbar">
       <div class="row" style="gap:10px">
-        <label class="label" for="pack-src">Pack</label>
+        <label class="label" for="pack-src">Set</label>
         <select id="pack-src" class="select"></select>
-        <label class="btn ghost sm" for="upload-input" title="Upload .json packets, QBReader exports, or a .zip of packets">+ Upload pack (.json / .zip)</label>
+        <label class="btn ghost sm upload-box" for="upload-input">Upload pack <small>.json or .zip</small></label>
         <input id="upload-input" type="file" accept=".json,.zip,application/json,application/zip" multiple hidden>
-        <button id="rm-local" type="button" class="btn ghost sm" hidden>Remove</button>
+        <button id="rm-local" type="button" class="btn ghost sm" hidden>Remove selected pack</button>
       </div>
       <span id="pack-summary" class="meta"></span>
     </div>
@@ -253,15 +325,15 @@ th abbr[title] { cursor: inherit; color: inherit; }
             <button data-k="tossups" aria-pressed="true">Tossups</button><button data-k="bonuses" aria-pressed="false">Bonuses</button>
           </div>
         </div>
-        <div id="pkt-wrap" class="row" hidden><label class="label" for="pkt">Packet</label>
+        <div id="pkt-wrap" class="row" hidden><label class="label" for="pkt">Pack</label>
           <select id="pkt" class="select"></select>
         </div>
         <div class="row"><span class="label">Categories</span>
-          <button id="cat-toggle" type="button" class="chip" aria-expanded="false" aria-controls="groups"><span id="cat-summary">All</span><span id="cat-caret" class="n" aria-hidden="true">▾</span></button>
+          <button id="cat-toggle" type="button" class="chip" aria-expanded="false" aria-controls="groups"><span id="cat-summary">All</span></button>
         </div>
         <div id="order-wrap" class="row" hidden><span class="label">Order</span>
           <div class="seg" id="order">
-            <button data-o="random" aria-pressed="true">Random</button><button data-o="packet" aria-pressed="false" id="order-seq-lbl">Packet order</button>
+            <button data-o="packet" aria-pressed="true" id="order-seq-lbl">Pack order</button><button data-o="random" aria-pressed="false">Random</button>
           </div>
         </div>
         <div id="len-wrap" class="row"><span class="label">Tossups</span>
@@ -306,12 +378,15 @@ th abbr[title] { cursor: inherit; color: inherit; }
       <div class="bar" aria-hidden="true"><div class="fill" id="fill"></div><div class="pm" id="pm"></div></div>
       <div id="text" class="tossup" aria-live="off"></div>
       <div id="state" class="row"></div>
+      <div class="play-actions">
       <button id="buzz" class="buzzer">BUZZ</button>
       <div id="judge" class="row" hidden>
         <button id="reveal" class="btn ghost">Show answer</button>
+        <button id="guess" type="button" class="btn ghost" aria-pressed="false" title="Mark this answer as a guess (G). Points are unchanged; stats show it as not known." hidden>Guess</button>
         <button id="right" class="btn good" hidden>Correct</button>
         <button id="wrong" class="btn bad" hidden>Incorrect</button>
         <button id="next" class="btn" hidden>Next tossup</button>
+      </div>
       </div>
       <div id="ans" class="answer" hidden>
         <div class="label">Answer</div>
@@ -324,6 +399,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
           <span class="keyitem" data-st="reading,paused,dead"><kbd>Space</kbd><span>Buzz</span></span>
           <span class="keyitem" data-st="reading,paused"><kbd>P</kbd><span id="key-pause">Pause</span></span>
           <span class="keyitem" data-st="buzzed,dead"><kbd>Enter</kbd><span>Show answer</span></span>
+          <span class="keyitem" data-st="buzzed,revealed"><kbd>G</kbd><span>Guess</span></span>
           <span class="keyitem" data-st="revealed"><kbd>1</kbd><span>Correct</span></span>
           <span class="keyitem" data-st="revealed"><kbd>2</kbd><span>Incorrect</span></span>
           <span class="keyitem" data-st="judged"><kbd>N</kbd> / <kbd>Enter</kbd><span>Next</span></span>
@@ -355,6 +431,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
         </div>
         <div class="row" id="b-judge">
           <button id="b-reveal" class="btn ghost">Show answer</button>
+          <button id="b-guess" type="button" class="btn ghost" aria-pressed="false" title="Mark this part as a guess (G). Points are unchanged; stats show it as not known." hidden>Guess</button>
           <button id="b-right" class="btn good" hidden>Correct</button>
           <button id="b-wrong" class="btn bad" hidden>Incorrect</button>
           <button id="b-next" class="btn" hidden>Next bonus</button>
@@ -364,6 +441,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
       <div class="keys">
         <div class="keylist" id="b-keylist">
           <span class="keyitem" data-bst="asking"><kbd>Space</kbd> / <kbd>Enter</kbd><span>Show answer</span></span>
+          <span class="keyitem" data-bst="asking,revealed"><kbd>G</kbd><span>Guess</span></span>
           <span class="keyitem" data-bst="revealed"><kbd>1</kbd><span>Correct</span></span>
           <span class="keyitem" data-bst="revealed"><kbd>2</kbd><span>Incorrect</span></span>
           <span class="keyitem" data-bst="done"><kbd>N</kbd> / <kbd>Enter</kbd><span>Next bonus</span></span>
@@ -378,8 +456,6 @@ th abbr[title] { cursor: inherit; color: inherit; }
       <div class="tablewrap"><table><thead><tr><th>Answer</th><th id="sumcol2">Category</th><th class="num">Heard</th><th>Result</th></tr></thead><tbody id="sumrows"></tbody></table></div>
       <div class="row">
         <button id="again" class="btn">New session</button>
-        <button id="sum-bp" class="btn ghost" hidden>View Buzzpoints</button>
-        <button id="sum-prog" class="btn ghost">View Progress</button>
       </div>
     </div>
   </section>
@@ -393,8 +469,6 @@ th abbr[title] { cursor: inherit; color: inherit; }
           <div id="bp-kind-seg" class="seg" hidden>
             <button data-bk="tossups" aria-pressed="true">Tossups</button><button data-bk="bonuses" aria-pressed="false">Bonuses</button>
           </div>
-          <button id="bp-to-stats" type="button" class="btn sm">View Category Stats</button>
-          <button id="bp-to-play" type="button" class="btn ghost sm">Play Pack</button>
         </div>
       </div>
       <div class="tiles" id="bp-tiles"></div>
@@ -403,6 +477,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
           <option value="ALL">All outcomes</option>
           <option value="pw">Powers (15)</option>
           <option value="ok">All Correct (10 / 15)</option>
+          <option value="guess">Guesses</option>
           <option value="neg">Negs (−5)</option>
           <option value="miss">Misses / No buzz</option>
         </select>
@@ -414,15 +489,15 @@ th abbr[title] { cursor: inherit; color: inherit; }
           <option value="text">Note text only</option>
           <option value="none">Not in Anki</option>
         </select>
-        <input id="bp-q" class="input" type="search" placeholder="Search answer, packet, category..." aria-label="Filter buzzes">
+        <input id="bp-q" class="input" type="search" placeholder="Search answer, pack, category..." aria-label="Filter buzzes">
         <span id="bp-count" class="meta"></span>
       </div>
       <div class="tablewrap">
-        <table class="bp-table">
+        <table class="bp-table" id="buzz-log">
           <thead>
             <tr id="bp-head">
               <th data-col="round">Round<span class="sortind"></span></th>
-              <th data-col="pkt">Packet<span class="sortind"></span></th>
+              <th data-col="pkt">Pack<span class="sortind"></span></th>
               <th data-col="n" class="num">#<span class="sortind"></span></th>
               <th data-col="cat">Category<span class="sortind"></span></th>
               <th data-col="ans">Answer<span class="sortind"></span></th>
@@ -438,30 +513,54 @@ th abbr[title] { cursor: inherit; color: inherit; }
   </section>
 
   <section id="view-progress" class="wrap" style="gap:18px;width:100%" hidden>
-    <div class="row" style="justify-content:space-between">
-      <div class="meta">Showing stats for <b id="prog-set"></b></div>
-      <button id="prog-to-bp" type="button" class="btn ghost sm" hidden>View Buzzpoints</button>
-    </div>
+    <div class="tiles" id="stats-headlines"></div>
     <div class="tiles" id="ptiles"></div>
+    <div class="panel">
+      <h2>Correct by buzz depth</h2>
+      <div class="curve-marks" id="auc-badge"></div>
+      <div class="chart" id="c-auc"></div>
+      <details>
+        <summary>How to read this chart</summary>
+        <p class="note">The horizontal axis shows how much of the question has been read. The vertical axis shows the share of all attempts you got right by that point. BPA (buzz point AUC) is the shaded area under the curve: your conversion at every 1% of the question, added up, so 0 to 100. A correct buzz halfway through adds half as much as one at the start. A correct answer at the end still counts toward conversion.</p>
+      </details>
+    </div>
+    <details class="panel stats-fold">
+      <summary>By category</summary>
+      <div class="stats-fold-body">
+      <div class="tablewrap"><table id="tbl-gt" class="bp-table"><thead></thead><tbody></tbody></table></div>
+      </div>
+    </details>
+    <details id="sub-panel" class="panel stats-fold" hidden>
+      <summary>By subcategory</summary>
+      <div class="stats-fold-body">
+      <div class="tablewrap"><table id="tbl-st" class="bp-table"><thead></thead><tbody></tbody></table></div>
+      </div>
+    </details>
+    <details id="pkt-panel" class="panel stats-fold" hidden>
+      <summary>By pack</summary>
+      <div class="stats-fold-body">
+      <div class="tablewrap"><table id="tbl-pt" class="bp-table"><thead></thead><tbody></tbody></table></div>
+      </div>
+    </details>
+    <details id="clue-review" class="panel stats-fold" hidden>
+      <summary>Missed or late despite a matching Anki clue</summary>
+      <div class="stats-fold-body">
+      <p class="note">Review misses and correct buzzes after 70%. Open an answer to see the matching phrases from Anki notes in its category.</p>
+      <p class="note" id="clue-review-count" aria-live="polite"></p>
+      <div id="clue-gaps"></div>
+      <button id="clue-more" class="btn ghost sm" type="button" hidden></button>
+      </div>
+    </details>
+    <details class="panel">
+      <summary>Buzz timing</summary>
+      <div class="tablewrap"><table id="tbl-zt" class="bp-table"><thead></thead><tbody></tbody></table></div>
+    </details>
+    <details class="panel" id="anki-detail" hidden>
+      <summary>Anki coverage details</summary>
     <div id="audit-panel" class="panel" hidden>
       <h2>Study Efficiency &amp; Anki Coverage Audit</h2>
       <p class="note">Separates missed questions already in your Anki deck (recall / card leaks) from missed questions not yet in your deck (content gaps).</p>
       <div class="tiles" id="audit-tiles"></div>
-    </div>
-    <div class="panel">
-      <h2>Cumulative buzz curve (Buzz AUC) <small id="auc-badge" class="meta" style="display:inline;margin-left:8px"></small></h2>
-      <p class="note">Share of all tossups answered correctly by each point in the question. The shaded area under the curve (0.000 to 1.000) equals your conversion rate multiplied by average celerity (1 − buzz depth).</p>
-      <div class="chart" id="c-auc"></div>
-    </div>
-    <div class="panel">
-      <h2>Where you buzz on tossups you get right</h2>
-      <p class="note">Share of the question read before your buzz, averaged per session. Lower is earlier.</p>
-      <div class="chart" id="c-buzz"></div>
-    </div>
-    <div class="panel">
-      <h2>Tossups answered correctly</h2>
-      <p class="note">Per session, out of every tossup heard.</p>
-      <div class="chart" id="c-acc"></div>
     </div>
     <div id="anki-panel" class="panel" hidden>
       <h2>By Anki coverage</h2>
@@ -469,38 +568,17 @@ th abbr[title] { cursor: inherit; color: inherit; }
     </div>
     <div id="clue-audit-panel" class="panel" hidden>
       <h2>Clue-Level Comparison (Clues in Deck vs Not in Deck)</h2>
-      <p class="note" id="clue-audit-note">Matches the sentences you heard against your full Anki collection so you can compare conversion and celerity on clues present anywhere in your deck versus unfamiliar clues.</p>
+      <p class="note" id="clue-audit-note">Checks for specific phrases in Anki notes from the question's category. Matches can come from card backs.</p>
       <div class="tiles" id="clue-audit-tiles"></div>
       <h3 style="font-size:14px;margin:14px 0 6px;color:var(--muted)">By whether any heard clue appears in your deck</h3>
       <div class="tablewrap"><table id="tbl-hc" class="bp-table"><thead></thead><tbody></tbody></table></div>
       <h3 style="font-size:14px;margin:14px 0 6px;color:var(--muted)">By the specific sentence you buzzed on</h3>
       <div class="tablewrap"><table id="tbl-bc" class="bp-table"><thead></thead><tbody></tbody></table></div>
-      <h3 style="font-size:14px;margin:14px 0 6px;color:var(--muted)">Missed or late questions whose clues were in your deck</h3>
-      <ul class="misses" id="clue-gaps"></ul>
     </div>
-    <div class="panel">
-      <h2>By category</h2>
-      <div class="tablewrap"><table id="tbl-gt" class="bp-table"><thead></thead><tbody></tbody></table></div>
-    </div>
-    <div id="sub-panel" class="panel" hidden>
-      <h2>By subcategory</h2>
-      <div class="tablewrap"><table id="tbl-st" class="bp-table"><thead></thead><tbody></tbody></table></div>
-    </div>
-    <div id="pkt-panel" class="panel" hidden>
-      <h2>By packet</h2>
-      <div class="tablewrap"><table id="tbl-pt" class="bp-table"><thead></thead><tbody></tbody></table></div>
-    </div>
-    <div class="panel">
-      <h2>Buzz timing</h2>
-      <div class="tablewrap"><table id="tbl-zt" class="bp-table"><thead></thead><tbody></tbody></table></div>
-    </div>
-    <div class="panel">
-      <h2>Recent misses</h2>
-      <p class="note">Answers you missed or heard in full during recent sessions.</p>
-      <ul class="misses" id="misses"></ul>
-    </div>
-    <div id="bonus-stats-section" class="wrap" style="gap:18px;width:100%" hidden>
-      <h2 style="margin-top:8px">Bonus Stats</h2>
+    </details>
+    <details id="bonus-stats-section" class="panel stats-fold" hidden>
+      <summary>Bonus stats</summary>
+      <div class="stats-fold-body">
       <div class="tiles" id="bptiles"></div>
       <div id="b-anki-panel" class="panel" hidden>
         <h2>Bonus parts by Anki coverage</h2>
@@ -510,15 +588,16 @@ th abbr[title] { cursor: inherit; color: inherit; }
         <h2>Bonuses by category</h2>
         <div class="tablewrap"><table id="tbl-bgt" class="bp-table"><thead></thead><tbody></tbody></table></div>
       </div>
+      <div id="b-sub-panel" class="panel" hidden>
+        <h2>Bonuses by subcategory</h2>
+        <div class="tablewrap"><table id="tbl-bst" class="bp-table"><thead></thead><tbody></tbody></table></div>
+      </div>
       <div id="b-pkt-panel" class="panel" hidden>
-        <h2>Bonuses by packet</h2>
+        <h2>Bonuses by pack</h2>
         <div class="tablewrap"><table id="tbl-bpt" class="bp-table"><thead></thead><tbody></tbody></table></div>
       </div>
-      <div class="panel">
-        <h2>Recent missed bonus parts</h2>
-        <ul class="misses" id="b-misses"></ul>
       </div>
-    </div>
+    </details>
   </section>
 </div>
 
@@ -547,7 +626,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
     hasAnki: false,
     chosen: {},
     pkt: "ALL",
-    order: "random",
+    order: "packet",  // "packet" | "random" (pack mode only)
     skipHeard: true,
     showMeta: false,
     sz: "md",
@@ -567,7 +646,8 @@ th abbr[title] { cursor: inherit; color: inherit; }
     bpExpanded: {},
     tblSort: {},
     clueCache: {},
-    clueAuditCache: null
+    clueAuditCache: null,
+    openRows: {}      // Stats drill-downs the user has open: group keys and attempt keys
   };
 
   function store(k, v) {
@@ -585,7 +665,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
   if (saved.wps) S.wps = saved.wps;
   if (saved.pacing) S.pacing = saved.pacing;
   if (saved.len !== undefined) S.len = saved.len;
-  if (saved.order) S.order = saved.order;
+  if (saved.order && saved.orderV === 2) S.order = saved.order;   // before v2, deck mode overwrote the choice with random
   if (saved.skipHeard !== undefined) S.skipHeard = !!saved.skipHeard;
   if (saved.showMeta !== undefined) S.showMeta = !!saved.showMeta;
   if (saved.sz) S.sz = saved.sz;
@@ -675,6 +755,72 @@ th abbr[title] { cursor: inherit; color: inherit; }
     });
     out.sort(function (x, y) { return (x.startedAt || 0) - (y.startedAt || 0); });
     return out;
+  }
+
+  // Question text -> the words to read, and where the power mark "(*)" falls (as a count of words before it; -1 = none).
+  // The mark is not a word: it takes no reading time and does not count toward the question's length.
+  function parseQuestion(q) {
+    var parts = String(q || "").split("(*)");
+    var head = parts[0].trim(), rest = parts.slice(1).join(" ").trim();
+    if (parts.length < 2 || !/[A-Za-z0-9]/.test(rest)) {
+      // no mark, or one with nothing after it (powerless sets exported with a mark at the very end)
+      var all = (head + rest).trim();
+      return { words: all ? all.split(/\s+/) : [], star: -1 };
+    }
+    var before = head ? head.split(/\s+/) : [];
+    return { words: before.concat(rest.split(/\s+/)), star: before.length };
+  }
+
+  // A logged buzz placed on the question as parsed now. Buzzes logged before 2026-11-16 counted a standalone "(*)" as a word.
+  function questionView(q, buzz, loggedWords) {
+    var pq = parseQuestion(q), at = buzz;
+    if (at !== null && at !== undefined && pq.star >= 0 && loggedWords === pq.words.length + 1 && at > pq.star) at--;
+    return { words: pq.words, star: pq.star, at: at };
+  }
+
+  // ---------- saving: an outbox that survives reloads and retries until the server has it ----------
+  // The server skips a buzz or bonus it already has (same session, question, and time), so a resend never double counts.
+  var outbox = store("bd-outbox") || [], flushing = null;
+
+  function syncNote() {
+    if (!S.serverOk) return;
+    var el = $("mon");
+    el.className = outbox.length ? "status-dot wait" : "status-dot ok";
+    el.textContent = outbox.length ? outbox.length + " unsaved, retrying" : "Local server connected";
+  }
+
+  function flush() {
+    if (flushing) return flushing;
+    if (!S.serverOk || !outbox.length) return Promise.resolve();
+    function step() {
+      if (!outbox.length) return Promise.resolve();
+      var op = outbox[0];
+      return fetch(op.url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(op.body)
+      }).then(function (r) {
+        if (!r.ok && r.status >= 500) throw new Error("HTTP " + r.status);
+        outbox.shift(); store("bd-outbox", outbox);   // saved, or refused outright (4xx) and not worth repeating
+        return step();
+      });
+    }
+    flushing = step().catch(function () { setTimeout(flush, 5000); }).then(function () { flushing = null; syncNote(); });
+    return flushing;
+  }
+
+  function send(url, body) {
+    if (!S.serverOk || !body.setId || String(body.setId).indexOf("local_") === 0) return;
+    outbox.push({ url: url, body: body });
+    if (!store("bd-outbox", outbox)) saveNote("Browser storage is full; unsaved buzzes will be lost if this window closes.");
+    syncNote(); flush();
+  }
+
+  // The question files call each pack a "packet" ("Packet A"); the page says "pack" throughout.
+  function packWord(s) { return typeof s === "string" ? s.replace(/\bPacket\b/g, "Pack").replace(/\bpacket\b/g, "pack") : s; }
+  function packNames(list) {
+    (list || []).forEach(function (x) { if (x) { x.pl = packWord(x.pl); x.s = packWord(x.s); } });
+    return list;
   }
 
   // ---------- upload parsers (.json / .zip) ----------
@@ -947,7 +1093,9 @@ th abbr[title] { cursor: inherit; color: inherit; }
     var localSess = store(sessStorageKey(setId)) || [];
     var localBonuses = store(bonusStorageKey(setId)) || [];
     if (S.serverOk && setId && !setId.startsWith("local_")) {
-      return fetch("/api/state?set=" + encodeURIComponent(setId)).then(function (r) {
+      return flush().then(function () {
+        return fetch("/api/state?set=" + encodeURIComponent(setId));
+      }).then(function (r) {
         if (!r.ok) throw new Error("no state");
         return r.json();
       }).then(function (st) {
@@ -956,10 +1104,16 @@ th abbr[title] { cursor: inherit; color: inherit; }
         S.sessions = mergeSessions(st.sessions || [], localSess);
       }).catch(function () {
         S.buzzes = []; S.bonusLogs = localBonuses; S.sessions = localSess;
-      });
+      }).then(logPackNames);
     }
     S.buzzes = []; S.bonusLogs = localBonuses; S.sessions = localSess;
+    logPackNames();
     return Promise.resolve();
+  }
+
+  function logPackNames() {
+    packNames(S.buzzes); packNames(S.bonusLogs);
+    S.sessions.forEach(function (s) { packNames(s.items); });
   }
 
   async function loadActiveSet(setId, preloadedItems, preloadedBonuses) {
@@ -969,9 +1123,9 @@ th abbr[title] { cursor: inherit; color: inherit; }
     if (!setId) {
       S.setId = null; S.setMeta = null; S.kind = "tossups"; S.items = []; S.itemsById = {}; S.bonuses = []; S.bonusesById = {}; S.groups = []; S.packets = [];
       S.buzzes = []; S.bonusLogs = []; S.sessions = [];
-      $("built").textContent = "Pack Analysis";
+      $("built").textContent = "";
       $("pack-summary").textContent = "Upload any .json or .zip pack to analyze";
-      $("poolinfo").textContent = "Upload a .json or .zip packet above to start.";
+      $("poolinfo").textContent = "Upload a .json or .zip pack above to start.";
       $("start").disabled = true;
       if (S.tab === "buzzpoints") renderBuzzpoints();
       if (S.tab === "progress") renderProgress();
@@ -1003,6 +1157,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
     }
     items = items || [];
     bonuses = S.mode === "pack" ? (bonuses || []) : [];
+    packNames(items); packNames(bonuses);
     S.items = items;
     S.itemsById = {};
     items.forEach(function (t) { S.itemsById[t.id] = t; });
@@ -1017,7 +1172,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
 
     $("built").textContent = S.mode === "deck"
       ? (built ? "set built " + built : items.length + " studied tossups")
-      : ((meta ? meta.name + " · " : "") + items.length + " TU" + (bonuses.length ? " · " + bonuses.length + " B" : ""));
+      : "";
     $("set-desc").textContent = S.mode === "deck"
       ? "Practice tossups from your studied Anki collection. Buzz when you know the answer, score yourself, and track your progress."
       : "Play tossups or bonuses with Anki coverage tracking, then inspect every round on Buzzpoints or break down performance in Category Stats.";
@@ -1050,21 +1205,10 @@ th abbr[title] { cursor: inherit; color: inherit; }
     S.groups.forEach(function (x) { S.chosen[x.g] = catPrefs ? !!catPrefs[x.g] : true; });
     S.pkt = (saved.pktBySet && saved.pktBySet[S.setId]) || "ALL";
     if (S.pkt !== "ALL" && !p[S.pkt]) S.pkt = "ALL";
-    if (!S.hasPackets && S.mode === "deck") S.order = "random";
   }
 
   function updatePackSummary() {
-    var box = $("pack-summary");
-    if (S.mode !== "pack" || (!S.items.length && !S.bonuses.length)) { box.textContent = ""; return; }
-    var rec = allSetRecords();
-    var ok = rec.filter(function (x) { return x.result === "correct"; }).length;
-    var parts = [];
-    if (S.items.length) parts.push(rec.length + "/" + S.items.length + " TU" + (rec.length ? " (" + Math.round(100 * ok / rec.length) + "%)" : ""));
-    if (S.bonuses.length || S.bonusLogs.length) {
-      var bt = S.bonusLogs.reduce(function (a, b) { return a + (b.totalPts || 0); }, 0);
-      parts.push(S.bonusLogs.length + "/" + S.bonuses.length + " B" + (S.bonusLogs.length ? " (" + (bt / S.bonusLogs.length).toFixed(1) + " PPB)" : ""));
-    }
-    box.textContent = parts.join(" · ");
+    $("pack-summary").textContent = "";
   }
 
   async function setMode(m) {
@@ -1074,8 +1218,6 @@ th abbr[title] { cursor: inherit; color: inherit; }
     $("deck-subtabs").hidden = m !== "deck";
     $("pack-subtabs").hidden = m !== "pack";
     $("pack-bar").hidden = m !== "pack";
-    $("sum-bp").hidden = m !== "pack";
-    $("prog-to-bp").hidden = m !== "pack";
 
     if (m === "deck") {
       setTab(S.tab === "progress" ? "progress" : "drill", true);
@@ -1114,11 +1256,6 @@ th abbr[title] { cursor: inherit; color: inherit; }
   $("ptab-play").onclick = function () { setTab("drill"); };
   $("ptab-buzzpoints").onclick = function () { setTab("buzzpoints"); };
   $("ptab-stats").onclick = function () { setTab("progress"); };
-  $("bp-to-stats").onclick = function () { setTab("progress"); };
-  $("bp-to-play").onclick = function () { setTab("drill"); show("setup"); };
-  $("prog-to-bp").onclick = function () { setTab("buzzpoints"); };
-  $("sum-bp").onclick = function () { setTab("buzzpoints"); };
-  $("sum-prog").onclick = function () { setTab("progress"); };
 
   $("pack-src").onchange = function () {
     S.packSetId = this.value;
@@ -1210,9 +1347,9 @@ th abbr[title] { cursor: inherit; color: inherit; }
     $("order-wrap").hidden = !(S.mode === "pack" && activeList.length);
     $("len-wrap").hidden = S.mode !== "deck";
     $("speed-wrap").hidden = S.mode === "pack" && S.kind === "bonuses";
-    $("order-seq-lbl").textContent = S.hasPackets ? "Packet order" : "In order";
+    $("order-seq-lbl").textContent = S.hasPackets ? "Pack order" : "In order";
     var pktSel = $("pkt"); pktSel.textContent = "";
-    var o0 = document.createElement("option"); o0.value = "ALL"; o0.textContent = "All packets (" + activeList.length + ")"; pktSel.appendChild(o0);
+    var o0 = document.createElement("option"); o0.value = "ALL"; o0.textContent = "All packs (" + activeList.length + ")"; pktSel.appendChild(o0);
     S.packets.forEach(function (x) {
       var o = document.createElement("option"); o.value = x.p; o.textContent = x.pl + " (" + x.n + ")"; pktSel.appendChild(o);
     });
@@ -1250,7 +1387,6 @@ th abbr[title] { cursor: inherit; color: inherit; }
       var open = $("groups").hidden;
       $("groups").hidden = !open;
       $("cat-toggle").setAttribute("aria-expanded", open ? "true" : "false");
-      $("cat-caret").textContent = open ? "▴" : "▾";
     };
 
     $("skip-heard").checked = S.skipHeard;
@@ -1320,6 +1456,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
     p.pacing = S.pacing;
     p.len = S.len;
     p.order = S.order;
+    p.orderV = 2;
     p.skipHeard = S.skipHeard;
     p.showMeta = S.showMeta;
     p.sz = S.sz;
@@ -1426,8 +1563,22 @@ th abbr[title] { cursor: inherit; color: inherit; }
     return (c.stage === "reading" || c.stage === "paused") && S.sess && S.sess.i > 0 && S.sess.items.length > 0;
   }
 
+  // A guess keeps its points; it is flagged so the stats can tell a known answer from a lucky one.
+  function canGuess() {
+    var c = S.cur;
+    return !!c && (c.stage === "buzzed" || c.stage === "revealed") && c.buzz !== null;
+  }
+
+  function toggleGuess() {
+    if (!canGuess()) return;
+    S.cur.guess = !S.cur.guess;
+    renderKeys();
+  }
+
   function renderKeys() {
     var st = (S.cur && S.cur.stage) || "reading";
+    $("guess").hidden = !canGuess();
+    $("guess").setAttribute("aria-pressed", S.cur && S.cur.guess ? "true" : "false");
     var hasBuzz = S.cur && S.cur.buzz !== null;
     var allowUndo = canUndo();
     if ($("undo-btn")) $("undo-btn").disabled = !allowUndo;
@@ -1446,18 +1597,32 @@ th abbr[title] { cursor: inherit; color: inherit; }
     $("setname").textContent = revealed ? (c.t.pl ? (c.t.pl + (c.t.n ? " · TU " + c.t.n : "")) : (c.t.s || "")) : "";
   }
 
-  function renderWordsInto(el, words, pos, buzzIdx, showAll) {
+  // pos: words read so far; buzzIdx: words heard at the buzz (null = none); star: words before the power mark (-1 = none)
+  function renderWordsInto(el, words, pos, buzzIdx, showAll, star) {
     el.textContent = "";
+    function addBuzzMarker() {
+      var marker = document.createElement("span");
+      marker.className = "bz";
+      marker.textContent = "★";
+      marker.title = "Buzzpoint";
+      marker.setAttribute("role", "img");
+      marker.setAttribute("aria-label", "Buzzpoint");
+      el.appendChild(marker);
+    }
     words.forEach(function (word, i) {
-      if (buzzIdx !== null && buzzIdx !== undefined && i === buzzIdx) {
-        var bz = document.createElement("span"); bz.className = "bz"; bz.textContent = "BUZZ"; el.appendChild(bz);
+      if (i === buzzIdx) addBuzzMarker();
+      if (i === star) {
+        var st = document.createElement("span");
+        st.className = !showAll && i >= pos ? "star ahead" : "star";
+        st.textContent = "(*) ";
+        el.appendChild(st);
       }
       var s = document.createElement("span");
-      if (word === "(*)") s.className = "star";
-      if (!showAll && i >= pos) s.className = (s.className + " ahead").trim();
+      if (!showAll && i >= pos) s.className = "ahead";
       s.textContent = word + " ";
       el.appendChild(s);
     });
+    if (buzzIdx === words.length) addBuzzMarker();
   }
 
   function resetPauseUI(disabled) {
@@ -1492,8 +1657,8 @@ th abbr[title] { cursor: inherit; color: inherit; }
   }
 
   function loadTossup() {
-    var t = S.sess.queue[S.sess.i], words = t.q.split(/\s+/);
-    S.cur = { t: t, words: words, n: words.length, star: words.indexOf("(*)"), pos: 0, buzz: null, stage: "reading" };
+    var t = S.sess.queue[S.sess.i], pq = parseQuestion(t.q);
+    S.cur = { t: t, words: pq.words, n: pq.words.length, star: pq.star, pos: 0, buzz: null, stage: "reading" };
     $("pos").textContent = (S.sess.i + 1) + " / " + S.sess.queue.length;
     renderTossupMeta();
     $("score").textContent = S.sess.points + " pts";
@@ -1510,7 +1675,6 @@ th abbr[title] { cursor: inherit; color: inherit; }
   function wordDelayMs(word) {
     var base = 1000 / S.wps;
     if (S.pacing === "steady") return base;
-    if (word === "(*)") return Math.round(base * 0.35);
     var clean = (word || "").replace(/^["'“‘(\[]+|["'”’),.;:!?…\]]+$/g, "");
     var len = Math.max(2, clean.length);
     var mult = Math.max(0.65, Math.min(2.3, 0.45 + 0.55 * (len / 5.3)));
@@ -1537,7 +1701,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
   function paint() {
     var c = S.cur;
     var showAll = c.stage === "revealed" || c.stage === "judged";
-    renderWordsInto($("text"), c.words, c.pos, c.buzz, showAll);
+    renderWordsInto($("text"), c.words, c.pos, c.buzz, showAll, c.star);
     $("fill").style.width = (100 * Math.min(c.pos, c.n) / c.n) + "%";
   }
 
@@ -1592,7 +1756,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
     var det = document.createElement("details");
     var sum = document.createElement("summary");
     if (data.matchedName) {
-      sum.textContent = "Card clue match" + (data.noteType ? " · " + data.noteType : "") + " (\"" + data.matchedName + "\") · " + onCount + "/" + data.sentences.length + " sentences on card" + (deckCount ? " · " + deckCount + " other in deck" : "");
+      sum.textContent = "Answer note phrase matches" + (data.noteType ? " · " + data.noteType : "") + " (\"" + data.matchedName + "\") · " + onCount + "/" + data.sentences.length + " sentences with a phrase match" + (deckCount ? " · " + deckCount + " on other notes" : "");
     } else {
       sum.textContent = "Deck clue matches · " + deckCount + "/" + data.sentences.length + " sentences appear on other Anki notes";
     }
@@ -1603,7 +1767,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
       var hasDeck = !!(st.deckHits && st.deckHits.length);
       var row = document.createElement("div"); row.className = "cluerow";
       var tag = document.createElement("span"); tag.className = "cluetag " + ((st.covered || hasDeck) ? "on" : "off");
-      tag.textContent = st.stage + " · " + (st.covered ? "on card" : (hasDeck ? "in deck" : (data.matchedName ? "not on card" : "not in deck")));
+      tag.textContent = st.stage + " · " + (st.covered ? "phrase on answer note" : (hasDeck ? "phrase on another same-category note" : "no phrase match"));
       var body = document.createElement("span");
       body.textContent = st.s;
       if (st.matches && st.matches.length) {
@@ -1628,7 +1792,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
   function fetchClueMatch(item) {
     if (!S.serverOk || !item || !item.q) return Promise.resolve(null);
     if (S.clueCache[item.id] !== undefined) return Promise.resolve(S.clueCache[item.id]);
-    return post("/api/clue-match", { q: item.q, a: item.a, main: item.main || "" }).then(function (res) {
+    return post("/api/clue-match", { q: item.q, a: item.a, main: item.main || "", category: item.g || "" }).then(function (res) {
       S.clueCache[item.id] = res;
       return res;
     }).catch(function () { return null; });
@@ -1649,7 +1813,8 @@ th abbr[title] { cursor: inherit; color: inherit; }
   function record(result) {
     var c = S.cur; if (!c || c.stage === "judged") return;
     c.stage = "judged";
-    var power = result === "correct" && c.star >= 0 && c.buzz < c.star;
+    // c.buzz counts the words heard, so a buzz with every heard word ahead of the mark is still in power
+    var power = result === "correct" && c.star >= 0 && c.buzz <= c.star;
     var pts = result === "correct" ? (power ? 15 : 10) : (result === "wrong" && c.buzz < c.n ? -5 : 0);
     S.sess.points += pts;
     var ev = {
@@ -1660,15 +1825,18 @@ th abbr[title] { cursor: inherit; color: inherit; }
       power: power, result: result, pts: pts
     };
     if (c.t.anki !== undefined) ev.anki = c.t.anki;
+    if (c.t.d !== undefined && c.t.d !== null) ev.d = c.t.d;
+    if (c.guess && result !== "none") ev.guess = true;
     S.sess.items.push(ev);
     S.buzzes.push(ev);
-    post("/api/buzz", ev).catch(function () {});
+    send("/api/buzz", ev);
 
     $("score").textContent = S.sess.points + " pts";
     $("state").textContent = "";
     var v = document.createElement("span");
     v.className = "verdict " + (result === "correct" ? "good" : result === "wrong" ? "bad" : "none");
     v.textContent = result === "correct" ? (power ? "Power · +15" : "Correct · +10") : result === "wrong" ? (pts ? "Neg · −5" : "Wrong · 0") : "No buzz · 0";
+    if (ev.guess) v.textContent += " · guess";
     $("state").appendChild(v);
     $("right").hidden = true; $("wrong").hidden = true; $("next").hidden = false;
     updatePackSummary(); renderStatStrip(); renderKeys();
@@ -1683,7 +1851,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
     S.sessions.push(body);
     var savedOk = store(sessStorageKey(S.setId), S.sessions);
     if (!savedOk && !S.serverOk) saveNote("Browser storage is full, so session history wasn't saved locally.");
-    post("/api/session", body).catch(function () {});
+    send("/api/session", body);
   }
 
   function popLastBuzzRecord() {
@@ -1696,7 +1864,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
         break;
       }
     }
-    post("/api/unbuzz", { setId: S.setId, sessionId: ev.sessionId, id: ev.id, ts: ev.ts }).catch(function () {});
+    send("/api/unbuzz", { setId: S.setId, sessionId: ev.sessionId, id: ev.id, ts: ev.ts });
     return ev;
   }
 
@@ -1779,11 +1947,11 @@ th abbr[title] { cursor: inherit; color: inherit; }
       stopTimer();
       S.sess.i--;
       var ev = popLastBuzzRecord();
-      var prevT = S.sess.queue[S.sess.i], prevWords = prevT.q.split(/\s+/);
+      var prevT = S.sess.queue[S.sess.i], prevQ = parseQuestion(prevT.q), prevWords = prevQ.words;
       var prevBuzz = ev ? ev.buzz : null;
       c = {
-        t: prevT, words: prevWords, n: prevWords.length, star: prevWords.indexOf("(*)"),
-        pos: prevWords.length, buzz: prevBuzz, stage: prevBuzz === null ? "dead" : "revealed"
+        t: prevT, words: prevWords, n: prevWords.length, star: prevQ.star,
+        pos: prevWords.length, buzz: prevBuzz, stage: prevBuzz === null ? "dead" : "revealed", guess: !!(ev && ev.guess)
       };
       S.cur = c;
       $("pos").textContent = (S.sess.i + 1) + " / " + S.sess.queue.length;
@@ -1819,6 +1987,8 @@ th abbr[title] { cursor: inherit; color: inherit; }
   }
 
   $("buzz").onclick = buzz; $("undo-btn").onclick = undo; $("pause-btn").onclick = togglePause; $("reveal").onclick = reveal; $("next").onclick = next;
+  $("guess").onclick = toggleGuess;
+  $("b-guess").onclick = toggleBonusGuess;
   $("right").onclick = function () { record("correct"); };
   $("wrong").onclick = function () { record("wrong"); };
 
@@ -1844,12 +2014,14 @@ th abbr[title] { cursor: inherit; color: inherit; }
       });
     });
     var pStr = pCounts.map(function (c, i) { return "P" + (i + 1) + " " + (c ? Math.round(100 * pOk[i] / c) + "%" : "–"); }).join(" / ");
+    var guessed = 0;
+    all.forEach(function (b) { (b.parts || []).forEach(function (p) { if (p.ok && p.guess) guessed++; }); });
     box.textContent = ""; box.hidden = false;
     [
       ["Bonuses", all.length + " / " + S.bonuses.length],
       ["PPB", (pts / all.length).toFixed(2)],
       ["Part rates", pStr]
-    ].forEach(function (pair) {
+    ].concat(guessed ? [["Guessed", guessed + " correct parts"]] : []).forEach(function (pair) {
       var sp = document.createElement("span");
       sp.textContent = pair[0] + " ";
       var b = document.createElement("b"); b.textContent = pair[1];
@@ -1864,8 +2036,17 @@ th abbr[title] { cursor: inherit; color: inherit; }
     return S.bsess && S.bsess.i > 0 && S.bsess.items.length > 0;
   }
 
+  function toggleBonusGuess() {
+    var bc = S.bcur;
+    if (!bc || (bc.stage !== "asking" && bc.stage !== "revealed")) return;
+    bc.guess = !bc.guess;
+    renderBonusKeys();
+  }
+
   function renderBonusKeys() {
     var st = (S.bcur && S.bcur.stage) || "asking";
+    $("b-guess").hidden = st !== "asking" && st !== "revealed";
+    $("b-guess").setAttribute("aria-pressed", S.bcur && S.bcur.guess ? "true" : "false");
     var allowUndo = canBonusUndo();
     $("b-undo").disabled = !allowUndo;
     Array.prototype.forEach.call($("b-keylist").children, function (el) {
@@ -1886,7 +2067,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
       }
     }
     store(bonusStorageKey(S.setId), S.bonusLogs);
-    post("/api/unbonus", { setId: S.setId, sessionId: ev.sessionId, id: ev.id, ts: ev.ts }).catch(function () {});
+    send("/api/unbonus", { setId: S.setId, sessionId: ev.sessionId, id: ev.id, ts: ev.ts });
     return ev;
   }
 
@@ -1914,7 +2095,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
       var lhs = document.createElement("span"); lhs.textContent = "Part " + (idx + 1) + ": " + (pr.main || pr.a);
       if (pr.anki !== undefined) { lhs.appendChild(document.createTextNode(" ")); lhs.appendChild(renderAnkiPill(pr.anki)); }
       var rhs = document.createElement("span"); rhs.className = "verdict " + (pr.ok ? "good" : "bad");
-      rhs.textContent = pr.ok ? ("Correct · +" + pr.pts) : "Incorrect · 0";
+      rhs.textContent = (pr.ok ? ("Correct · +" + pr.pts) : "Incorrect · 0") + (pr.guess ? " · guess" : "");
       top.appendChild(lhs); top.appendChild(rhs);
       var qtxt = document.createElement("div"); qtxt.textContent = b.parts[idx] || "";
       d.appendChild(top); d.appendChild(qtxt);
@@ -1962,7 +2143,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
       if (S.serverOk && (pm.anki === "card" || pm.anki === "suspended")) {
         var cid = b.id + "_p" + pi;
         var qForMatch = (b.leadin ? b.leadin + " " : "") + (b.parts[pi] || "");
-        fetchClueMatch({ id: cid, q: qForMatch, a: ansPlain, main: pm.main || "" }).then(function (data) {
+        fetchClueMatch({ id: cid, q: qForMatch, a: ansPlain, main: pm.main || "", g: b.g || "" }).then(function (data) {
           if (S.bcur && S.bcur.b.id === b.id && S.bcur.pi === pi && S.bcur.stage === "revealed") {
             renderClueBox($("b-clue-match"), data);
           }
@@ -1998,6 +2179,8 @@ th abbr[title] { cursor: inherit; color: inherit; }
       a: ans.slice(0, 140)
     };
     if (pm.anki !== undefined) pObj.anki = pm.anki;
+    if (bc.guess) pObj.guess = true;
+    bc.guess = false;
     bc.partsRes.push(pObj);
     S.bsess.points += pts;
 
@@ -2017,7 +2200,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
       S.bsess.items.push(ev);
       S.bonusLogs.push(ev);
       store(bonusStorageKey(S.setId), S.bonusLogs);
-      post("/api/bonus", ev).catch(function () {});
+      send("/api/bonus", ev);
       updatePackSummary();
     }
     renderBonusView();
@@ -2028,6 +2211,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
     if (bc.stage === "done") {
       var ev = popLastBonusRecord();
       if (ev) bc.partsRes = (ev.parts || []).slice(0, -1);
+      bc.guess = !!(ev && ev.parts && ev.parts.length && ev.parts[ev.parts.length - 1].guess);
       bc.pi = Math.max(0, bc.b.parts.length - 1);
       bc.stage = "revealed";
       updatePackSummary();
@@ -2042,6 +2226,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
     if (bc.pi > 0) {
       var prev = bc.partsRes.pop();
       if (prev) S.bsess.points -= (prev.pts || 0);
+      bc.guess = !!(prev && prev.guess);
       bc.pi--;
       bc.stage = "revealed";
       renderBonusView();
@@ -2054,7 +2239,8 @@ th abbr[title] { cursor: inherit; color: inherit; }
       var lastPi = Math.max(0, prevB.parts.length - 1);
       var restoredParts = ev2 ? (ev2.parts || []).slice(0, lastPi) : [];
       if (ev2) S.bsess.points += restoredParts.reduce(function (a, p) { return a + (p.pts || 0); }, 0);
-      S.bcur = { b: prevB, pi: lastPi, partsRes: restoredParts, stage: "revealed" };
+      S.bcur = { b: prevB, pi: lastPi, partsRes: restoredParts, stage: "revealed",
+                 guess: !!(ev2 && ev2.parts && ev2.parts[lastPi] && ev2.parts[lastPi].guess) };
       updatePackSummary();
       renderBonusView();
     }
@@ -2078,11 +2264,11 @@ th abbr[title] { cursor: inherit; color: inherit; }
     $("sumh").textContent = "Bonus session done: " + totPts + " points (" + ppb + " PPB)";
     tiles($("sumtiles"), [
       [its.length, "bonuses heard"],
-      [String(ppb), "points per bonus"],
+      [String(ppb), "PPB"],
       [allParts.length ? Math.round(100 * okParts / allParts.length) + "%" : "–", "part conversion (" + okParts + "/" + allParts.length + ")"],
       [sweeps + " / " + zeros, "30s / 0s"]
     ]);
-    $("sumcol2").textContent = "Category / Packet";
+    $("sumcol2").textContent = "Category / Pack";
     var tb = $("sumrows"); tb.textContent = "";
     its.forEach(function (x) {
       var tr = document.createElement("tr");
@@ -2093,7 +2279,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
       td1.textContent = [x.sub || x.g, x.pl ? x.pl + (x.n ? " B" + x.n : "") : ""].filter(Boolean).join(" · ");
       tr.appendChild(td1);
       var td2 = document.createElement("td"); td2.className = "num";
-      td2.textContent = (x.parts || []).map(function (p) { return p.ok ? "✓" : "✗"; }).join(" ");
+      td2.textContent = (x.parts || []).map(function (p) { return (p.ok ? "✓" : "✗") + (p.guess ? "?" : ""); }).join(" ");
       tr.appendChild(td2);
       var td3 = document.createElement("td"); td3.className = "num";
       td3.textContent = String(x.totalPts);
@@ -2118,6 +2304,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
       if (e.key === "1" && S.bcur.stage === "revealed") { e.preventDefault(); recordBonusPart(true); return; }
       if (e.key === "2" && S.bcur.stage === "revealed") { e.preventDefault(); recordBonusPart(false); return; }
       if ((e.key === "n" || e.key === "N" || e.key === "Enter") && S.bcur.stage === "done") { e.preventDefault(); nextBonus(); return; }
+      if (e.key === "g" || e.key === "G") { e.preventDefault(); toggleBonusGuess(); return; }
       return;
     }
     if ($("play").hidden) return;
@@ -2128,6 +2315,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
     else if ((e.key === "n" || e.key === "N") && S.cur && S.cur.stage === "judged") { e.preventDefault(); next(); }
     else if (e.key === "[") { e.preventDefault(); setSpeed(S.wps - 0.5); }
     else if (e.key === "]") { e.preventDefault(); setSpeed(S.wps + 0.5); }
+    else if (e.key === "g" || e.key === "G") { e.preventDefault(); toggleGuess(); }
     else if (e.key === "1" && S.cur && S.cur.stage === "revealed" && S.cur.buzz !== null) record("correct");
     else if (e.key === "2" && S.cur && S.cur.stage === "revealed" && S.cur.buzz !== null) record("wrong");
   });
@@ -2148,7 +2336,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
       [its.filter(function (x) { return x.pts < 0; }).length, "negs"],
       [avg === null ? "–" : Math.round(avg * 100) + "%", "heard before a correct buzz"]
     ]);
-    $("sumcol2").textContent = S.mode === "deck" ? "Card deck" : "Category / Packet";
+    $("sumcol2").textContent = S.mode === "deck" ? "Card deck" : "Category / Pack";
     var tb = $("sumrows"); tb.textContent = "";
     its.forEach(function (x) {
       var tr = document.createElement("tr");
@@ -2166,7 +2354,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
       tr.appendChild(td2);
 
       var td3 = document.createElement("td");
-      td3.textContent = x.result === "correct" ? (x.power ? "Power" : "Correct") : x.result === "wrong" ? (x.pts ? "Neg" : "Wrong") : "No buzz";
+      td3.textContent = (x.result === "correct" ? (x.power ? "Power" : "Correct") : x.result === "wrong" ? (x.pts ? "Neg" : "Wrong") : "No buzz") + (x.guess ? " (guess)" : "");
       tr.appendChild(td3);
       tb.appendChild(tr);
     });
@@ -2174,24 +2362,24 @@ th abbr[title] { cursor: inherit; color: inherit; }
   }
 
   var ACRONYM_TIPS = {
-    "Buzz AUC": "Buzz Area Under Curve (0.000–1.000) — correct rate × average celerity; equals your average (1 − buzz depth) across all tossups heard. Multiply by 20 for a 20-tossup packet scale.",
+    "Known conversion": "Conversion without the answers you marked as guesses (G). Points and PPB still count guesses; this shows what you actually knew.",
+    "Known part conversion": "Bonus part conversion without the parts you marked as guesses (G).",
+    "BPA": "Buzz Point AUC (0–100) — the area under your buzz curve: your conversion at every 1% of the question, added up. A correct buzz at the very start adds 100 for that tossup, one halfway through about 50, one at the end 1. QBWiki puts a typical lead scorer at 5–10 in real games.",
     "part conv": "Bonus Part Conversion — correct bonus parts ÷ total bonus parts heard.",
     "Avg buzz": "Average Correct Buzz Depth — % of the question read before correct buzzes (lower = earlier).",
     "15 / 10 / −5": "Power (+15 before *), Get (+10 after *), and Neg (−5 wrong interrupt) counts.",
     "30 / 20 / 10 / 0": "Bonus outcomes: counts of 30-point sweeps, 20-pt, 10-pt, and 0-pt bonuses.",
-    "PP20": "Points Per 20 Tossups — (total points ÷ tossups heard) × 20, normalized to a standard 20-tossup packet.",
-    "PPTU": "Points Per Tossup — total points ÷ tossups heard.",
+    "PP20TUH": "Points per 20 tossups heard — tossup points ÷ tossups heard × 20, the standard quizbowl stat (a 20-tossup game). Powers +15, gets +10, negs −5.",
     "PPB": "Points Per Bonus — total bonus points ÷ bonuses heard (max 30.0).",
-    "Conv%": "Buzz Conversion Rate — correct buzzes ÷ total buzz attempts.",
+    "Conv%": "Conversion — correct answers ÷ tossups heard (as on Buzzpoints). Buzz accuracy, correct ÷ buzzes, shows on hover and on the Buzzpoints tab.",
     "Strength": "Sample-size-adjusted Category Strength (0–100) — blends accuracy, buzz earliness (celerity), and −5 negs, shrunk toward your overall average (prior k = 8 tossups) so tiny samples don't dominate.",
-    "In Anki": "Share of tossups matching an active card in your Anki deck.",
+    "In Anki": "Share of audited tossup sentences with a matching clue in Anki notes. Each tossup counts once per group.",
     "P1%": "Part 1 Conversion — % correct on the 1st bonus part (typically easiest).",
     "P2%": "Part 2 Conversion — % correct on the 2nd bonus part (typically medium).",
     "P3%": "Part 3 Conversion — % correct on the 3rd bonus part (typically hardest).",
-    "AUC": "Area Under Curve (0.000–1.000) — correct rate × average celerity across tossups heard (×20 for a 20-tossup packet scale).",
     "cel": "Average Celerity (1 − buzz depth) on correct buzzes: 1.000 = buzzed at start, 0.000 = buzzed at end."
   };
-  var ACRONYM_RE = /(Buzz AUC|part conv|Avg buzz|15 \/ 10 \/ −5|30 \/ 20 \/ 10 \/ 0|PP20|PPTU|PPB|Conv%|Strength|In Anki|P1%|P2%|P3%|\bAUC\b|\bcel\b)/g;
+  var ACRONYM_RE = /(Known part conversion|Known conversion|\bBPA\b|part conv|Avg buzz|15 \/ 10 \/ −5|30 \/ 20 \/ 10 \/ 0|PP20TUH|PPB|Conv%|Strength|In Anki|P1%|P2%|P3%|\bcel\b)/g;
 
   function appendTippedText(el, text) {
     el.textContent = "";
@@ -2282,19 +2470,47 @@ th abbr[title] { cursor: inherit; color: inherit; }
     return null;
   }
 
+  // BPA (buzz point AUC, Ryan Rosenberg's metric): conversion sampled at each 1% of the question, added up, so 0 to 100.
+  // A correct buzz after share f of the question counts at every sample point from there to the end.
+  function bpaPoints(f) { return 101 - Math.max(1, Math.ceil(f * 100 - 1e-9)); }
+
   function calcAuc(items) {
-    if (!items.length) return { auc: 0, cel: null, okN: 0 };
+    if (!items.length) return { bpa: 0, cel: null, okN: 0 };
     var sum = 0, celSum = 0, celN = 0;
     items.forEach(function (x) {
       if (x.result === "correct") {
         var fr = fracOf(x);
         if (fr !== null) {
-          var cel = Math.max(0, Math.min(1, 1 - fr));
-          sum += cel; celSum += cel; celN++;
+          fr = Math.max(0, Math.min(1, fr));
+          sum += bpaPoints(fr); celSum += 1 - fr; celN++;
         }
       }
     });
-    return { auc: sum / items.length, cel: celN ? (celSum / celN) : null, okN: celN };
+    return { bpa: sum / items.length, cel: celN ? (celSum / celN) : null, okN: celN };
+  }
+
+  function addMobileBuzzSummary(button, packet, outcome) {
+    var summary = document.createElement("span");
+    summary.className = "mobile-buzz-summary";
+    var context = document.createElement("span");
+    context.textContent = packet;
+    var verdict = document.createElement("span");
+    verdict.className = "mobile-buzz-outcome";
+    verdict.textContent = outcome;
+    summary.append(context, verdict);
+    button.appendChild(summary);
+  }
+
+  function bindBuzzDetail(trigger, key) {
+    var id = "buzz-detail-" + key;
+    trigger.id = id + "-toggle";
+    trigger.setAttribute("aria-expanded", String(!!S.bpExpanded[key]));
+    trigger.onclick = function () {
+      S.bpExpanded[key] = !S.bpExpanded[key];
+      renderBuzzpoints();
+      var replacement = $(trigger.id);
+      if (replacement) replacement.focus();
+    };
   }
 
   function renderBuzzpoints() {
@@ -2313,7 +2529,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
     if (S.bpKind === "bonuses") { renderBonusBuzzpoints(); return; }
 
     var headCells = [
-      { col: "round", label: "Round" }, { col: "pkt", label: "Packet" }, { col: "n", label: "#", num: true },
+      { col: "round", label: "Round" }, { col: "pkt", label: "Pack" }, { col: "n", label: "#", num: true },
       { col: "cat", label: "Category" }, { col: "ans", label: "Answer" },
       { col: "buzz", label: "Buzzpoint", num: true }, { col: "pts", label: "Value", num: true },
       { col: "anki", label: "Anki", id: "bp-th-anki" }
@@ -2348,19 +2564,17 @@ th abbr[title] { cursor: inherit; color: inherit; }
     var gets = ok - pw;
     var neg = rows.filter(function (r) { return r.pts < 0; }).length;
     var attempts = rows.filter(function (r) { return r.buzz !== null && r.buzz !== undefined; }).length;
-    var pptu = rows.length ? (pts / rows.length).toFixed(2) : "–";
-    var pp20 = rows.length ? Math.round(pts * 20 / rows.length) : "–";
+    var pp20 = rows.length ? (pts * 20 / rows.length).toFixed(1) : "–";
     var okWithFrac = okRows.filter(function (r) { return r.frac !== null && r.frac !== undefined; });
     var avgBuzz = okWithFrac.length ? Math.round(100 * okWithFrac.reduce(function (a, r) { return a + r.frac; }, 0) / okWithFrac.length) + "%" : "–";
     var aucStat = calcAuc(rows);
     $("bp-sub").textContent = (S.items.length ? (rows.length + " / " + S.items.length + " tossups") : (rows.length + " tossups heard")) + " · " + pts + " pts";
     tiles($("bp-tiles"), [
-      [rows.length ? String(pts) : "0", "total points"],
-      [rows.length ? String(pp20) : "–", rows.length ? ("PP20 (" + pptu + " PPTU)") : "PP20"],
+      [pp20, "PP20TUH", rows.length ? pts + " pts on " + rows.length + " tossups heard" : ""],
       [pw + " / " + gets + " / " + neg, "15 / 10 / −5"],
-      [attempts ? Math.round(100 * ok / attempts) + "%" : "–", attempts ? ("buzz acc (" + ok + "/" + attempts + ")") : "buzz accuracy"],
-      [avgBuzz, aucStat.cel !== null ? ("avg buzz (cel " + aucStat.cel.toFixed(3) + ")") : "avg correct buzz"],
-      [rows.length ? aucStat.auc.toFixed(3) : "–", "Buzz AUC (0.000–1.000)", rows.length ? ("20-tossup eq: " + (aucStat.auc * 20).toFixed(1) + " / 20 tossups · celerity-weighted gets") : ""]
+      [rows.length ? Math.round(100 * ok / rows.length) + "%" : "–", "Conv%", rows.length ? ok + " of " + rows.length + " heard" + (attempts ? " · buzz accuracy " + Math.round(100 * ok / attempts) + "%" : "") : ""],
+      [avgBuzz, "Avg. correct buzz", aucStat.cel !== null ? "Celerity: " + aucStat.cel.toFixed(3) : ""],
+      [rows.length ? aucStat.bpa.toFixed(1) : "–", "BPA", rows.length ? "out of 100" : ""]
     ]);
 
     // Populate category filter dynamically preserving choice
@@ -2383,6 +2597,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
     var filtered = rows.filter(function (r) {
       if (outF === "pw" && !r.power) return false;
       if (outF === "ok" && r.result !== "correct") return false;
+      if (outF === "guess" && !r.raw.guess) return false;
       if (outF === "neg" && !(r.pts < 0)) return false;
       if (outF === "miss" && r.result === "correct") return false;
       if (catF !== "ALL" && r.cat !== catF) return false;
@@ -2456,8 +2671,10 @@ th abbr[title] { cursor: inherit; color: inherit; }
       var ansBtn = document.createElement("button"); ansBtn.type = "button"; ansBtn.className = "bp-ans-btn";
       ansBtn.textContent = r.ans;
       var rowKey = r.seq + "|" + r.raw.id;
-      ansBtn.onclick = function () { S.bpExpanded[rowKey] = !S.bpExpanded[rowKey]; renderBuzzpoints(); };
+      bindBuzzDetail(ansBtn, rowKey);
+      addMobileBuzzSummary(ansBtn, packetLabel(r.raw), buzzLabel(r.raw));
       tdAns.appendChild(ansBtn);
+      if (r.raw.guess) { var gp = document.createElement("span"); gp.className = "pill guess"; gp.textContent = "guess"; tdAns.appendChild(document.createTextNode(" ")); tdAns.appendChild(gp); }
       tr.appendChild(tdAns);
 
       var tdBuzz = document.createElement("td"); tdBuzz.className = "num";
@@ -2490,7 +2707,8 @@ th abbr[title] { cursor: inherit; color: inherit; }
         var full = S.itemsById[r.raw.id];
         if (full && full.q) {
           var qDiv = document.createElement("div"); qDiv.className = "bp-q";
-          renderWordsInto(qDiv, full.q.split(/\s+/), full.q.split(/\s+/).length, r.buzz, true);
+          var qv = questionView(full.q, r.buzz, r.words);
+          renderWordsInto(qDiv, qv.words, qv.words.length, qv.at, true, qv.star);
           tdD.appendChild(qDiv);
         }
         var aDiv = document.createElement("div"); aDiv.className = "bp-a";
@@ -2501,7 +2719,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
         tdD.appendChild(aDiv);
 
         var mDiv = document.createElement("div"); mDiv.className = "meta";
-        var bits = [r.pkt !== "–" ? r.pkt : "", r.n ? "TU " + r.n : "", r.buzz !== null && r.words ? "Buzzed at word " + r.buzz + " / " + r.words + " (" + Math.round((r.frac || 0) * 100) + "%)" : "No buzz", r.raw.wps ? r.raw.wps + " wps" : "", r.raw.ts ? new Date(r.raw.ts).toLocaleString() : ""].filter(Boolean);
+        var bits = [r.pkt !== "–" ? r.pkt.replace(/^Packet\b/i, "Pack") : "", r.n ? "TU " + r.n : "", r.buzz !== null && r.words ? "Buzzed at word " + r.buzz + " / " + r.words + " (" + Math.round((r.frac || 0) * 100) + "%)" : "No buzz"].filter(Boolean);
         mDiv.textContent = bits.join(" · ");
         tdD.appendChild(mDiv);
         if (S.serverOk && full && (S.mode === "pack" || r.anki === "card" || r.anki === "suspended")) {
@@ -2533,6 +2751,118 @@ th abbr[title] { cursor: inherit; color: inherit; }
     return 0;
   }
 
+  function packetLabel(attempt) {
+    var packet = attempt.pl || attempt.p || "Unknown pack";
+    return packet + (attempt.n ? " #" + attempt.n : "");
+  }
+
+  function buzzLabel(attempt) {
+    var depth = fracOf(attempt);
+    var outcome = attempt.result === "correct" ? "Correct"
+      : attempt.pts < 0 ? "Neg" : attempt.result === "wrong" ? "Wrong" : "No buzz";
+    return depth === null ? outcome : outcome + " at " + Math.round(100 * depth) + "%";
+  }
+
+  function addAttemptRows(body, button, attempts, columnCount) {
+    var detail = body.insertRow();
+    detail.className = "stat-attempts";
+    detail.hidden = true;
+    detail.id = button.id + "-attempts";
+    button.setAttribute("aria-controls", detail.id);
+    var cell = detail.insertCell();
+    cell.colSpan = columnCount;
+    button.onclick = function () {
+      detail.hidden = !detail.hidden;
+      button.setAttribute("aria-expanded", String(!detail.hidden));
+      if (button.dataset.key) S.openRows[button.dataset.key] = !detail.hidden;
+      if (detail.hidden || cell.firstChild) return;
+      var panel = document.createElement("div");
+      panel.className = "attempt-panel";
+      var wrap = document.createElement("div");
+      wrap.className = "tablewrap";
+      var table = document.createElement("table");
+      table.className = "bp-table";
+      var header = table.createTHead().insertRow();
+      ["Answer", "Pack / TU", "Buzzpoint", "Value"].forEach(function (label, i) {
+        var th = document.createElement("th");
+        th.scope = "col";
+        if (i >= 2) th.className = "num";
+        th.textContent = label;
+        header.appendChild(th);
+      });
+      var list = table.createTBody();
+      attempts.forEach(function (attempt) {
+        var row = list.insertRow();
+        var outcome = attempt.result === "correct" ? (attempt.power ? "pw" : "ok")
+          : attempt.pts < 0 ? "neg" : "zero";   // as on Buzzpoints: wrong at the end scores 0, so it is not a neg
+        row.className = "bp-row " + outcome;
+        var depth = fracOf(attempt);
+        var full = S.itemsById[attempt.id];
+        var answer = attempt.main || attempt.k || attempt.a || "Unknown answer";
+        var answerCell = row.insertCell();
+        var toggle = document.createElement("button");
+        toggle.type = "button";
+        toggle.className = "bp-ans-btn";
+        toggle.textContent = answer;
+        toggle.setAttribute("aria-expanded", "false");
+        answerCell.appendChild(toggle);
+        row.insertCell().textContent = packetLabel(attempt);
+        var clueButton = document.createElement("button");
+        clueButton.type = "button";
+        clueButton.className = "bp-ans-btn";
+        clueButton.textContent = Number.isFinite(attempt.buzz) ? String(attempt.buzz) : "–";
+        clueButton.title = buzzLabel(attempt) + (Number.isFinite(attempt.buzz) && attempt.words ? " · word " + attempt.buzz + " of " + attempt.words : "");
+        clueButton.setAttribute("aria-expanded", "false");
+        var buzzCell = row.insertCell();
+        buzzCell.className = "num";
+        buzzCell.appendChild(clueButton);
+        if (Number.isFinite(attempt.buzz) && depth !== null) {
+          var pctSub = document.createElement("span"); pctSub.className = "bp-sub";
+          pctSub.textContent = Math.round(100 * depth) + "%";
+          buzzCell.appendChild(pctSub);
+        }
+        var ptsCell = row.insertCell();
+        ptsCell.className = "num bp-val";
+        ptsCell.textContent = (attempt.pts || 0) < 0 ? "−" + Math.abs(attempt.pts) : String(attempt.pts || 0);
+        var question = list.insertRow();
+        question.className = "bp-detail attempt-question";
+        question.id = detail.id + "-question-" + row.sectionRowIndex;
+        question.hidden = true;
+        toggle.setAttribute("aria-controls", question.id);
+        var questionCell = question.insertCell();
+        questionCell.colSpan = 4;
+        clueButton.setAttribute("aria-controls", question.id);
+        var qKey = (button.dataset.key || "") + "|" + attempt.id + "|" + (attempt.ts || "");
+        clueButton.onclick = toggle.onclick = function () {
+          question.hidden = !question.hidden;
+          S.openRows[qKey] = !question.hidden;
+          toggle.setAttribute("aria-expanded", String(!question.hidden));
+          clueButton.setAttribute("aria-expanded", String(!question.hidden));
+          if (question.hidden || questionCell.firstChild) return;
+          var text = document.createElement("div");
+          text.className = "bp-q";
+          if (full && full.q) {
+            var qv = questionView(full.q, attempt.buzz, attempt.words);
+            renderWordsInto(text, qv.words, qv.words.length, qv.at, true, qv.star);
+          } else {
+            text.textContent = "Question text is unavailable for this attempt.";
+          }
+          questionCell.appendChild(text);
+          if (full && full.a) {
+            var answerLine = document.createElement("div");
+            answerLine.className = "bp-a";
+            setAnswerFormatted(answerLine, full.ah || "", full.a);
+            questionCell.appendChild(answerLine);
+          }
+        };
+        if (S.openRows[qKey]) toggle.onclick();
+      });
+      wrap.appendChild(table);
+      panel.appendChild(wrap);
+      cell.appendChild(panel);
+    };
+  }
+
   function renderGroupTable(items, keyFn, tableId, opts) {
     opts = opts || {};
     var tbl = $(tableId), thead = tbl.querySelector("thead"), tb = tbl.querySelector("tbody");
@@ -2544,10 +2874,14 @@ th abbr[title] { cursor: inherit; color: inherit; }
     items.forEach(function (x) { totQ += tossupQuality(x); });
     var priorMu = items.length ? (totQ / items.length) : 0;
 
-    var g = {};
+    var g = Object.create(null), attemptsByGroup = new Map();
     items.forEach(function (x) {
       var k = keyFn(x) || "Unknown";
-      var r = g[k] = g[k] || { k: k, n: 0, pw: 0, gets: 0, ok: 0, neg: 0, att: 0, pts: 0, f: 0, fn: 0, w: 0, wn: 0, celSum: 0, qSum: 0, qSq: 0, inAnki: 0 };
+      var r = g[k] = g[k] || { k: k, n: 0, pw: 0, gets: 0, ok: 0, guessed: 0, neg: 0, att: 0, pts: 0, f: 0, fn: 0, w: 0, wn: 0, celSum: 0, bpaSum: 0, qSum: 0, qSq: 0, coveredClues: 0, totalClues: 0, audited: new Set() };
+      if (opts.drillDown) {
+        if (!attemptsByGroup.has(k)) attemptsByGroup.set(k, []);
+        attemptsByGroup.get(k).push(x);
+      }
       r.n++;
       r.pts += (x.pts || 0);
       var qv = tossupQuality(x);
@@ -2556,13 +2890,20 @@ th abbr[title] { cursor: inherit; color: inherit; }
       if (x.buzz !== null && x.buzz !== undefined) r.att++;
       if (x.result === "correct") {
         r.ok++;
+        if (x.guess) r.guessed++;
         if (x.power) r.pw++; else r.gets++;
         var fr = fracOf(x);
-        if (fr !== null) { r.f += fr; r.fn++; r.celSum += Math.max(0, Math.min(1, 1 - fr)); }
+        if (fr !== null) { r.f += fr; r.fn++; r.celSum += Math.max(0, Math.min(1, 1 - fr)); r.bpaSum += bpaPoints(Math.max(0, Math.min(1, fr))); }
         if (x.buzz !== null && x.buzz !== undefined) { r.w += x.buzz; r.wn++; }
       }
       if ((x.pts || 0) < 0) r.neg++;
-      if (x.anki === "card") r.inAnki++;
+      var coverage = S.clueAuditCache && S.clueAuditCache.setId === S.setId
+        ? S.clueAuditCache.byId.get(x.id) : null;
+      if (showAnkiCol && coverage && !r.audited.has(x.id)) {
+        r.audited.add(x.id);
+        r.coveredClues += coverage.coveredClues;
+        r.totalClues += coverage.totalClues;
+      }
     });
 
     var cols = [
@@ -2572,9 +2913,9 @@ th abbr[title] { cursor: inherit; color: inherit; }
       { id: "gets", label: "10", num: true, tip: "Regular Gets (+10) — correct buzzes after the * power mark" },
       { id: "neg", label: "−5", num: true, tip: "Negs (−5) — wrong interrupts before the end of the tossup" },
       { id: "conv", label: "Conv%", num: true },
-      { id: "pptu", label: "PPTU", num: true },
+      { id: "pptu", label: "PP20TUH", num: true },
       { id: "buzz", label: "Avg buzz", num: true },
-      { id: "auc", label: "Buzz AUC", num: true },
+      { id: "bpa", label: "BPA", num: true },
       { id: "str", label: "Strength", num: true }
     ];
     if (showAnkiCol) cols.push({ id: "ankiPct", label: "In Anki", num: true });
@@ -2599,16 +2940,16 @@ th abbr[title] { cursor: inherit; color: inherit; }
 
     var rows = Object.keys(g).map(function (k) {
       var r = g[k];
-      r.conv = r.att ? r.ok / r.att : -1;
+      r.conv = r.n ? r.ok / r.n : -1;
       r.pptu = r.n ? r.pts / r.n : 0;
       r.avgF = r.fn ? r.f / r.fn : 99;
-      r.auc = r.n ? r.celSum / r.n : 0;
+      r.bpa = r.n ? r.bpaSum / r.n : 0;
       r.rawQ = r.n ? (r.qSum / r.n) : 0;
       r.postQ = (r.qSum + priorN * priorMu) / (r.n + priorN);
       r.str = Math.max(0, Math.min(100, Math.round(r.postQ * 100)));
       var qVar = r.n > 1 ? Math.max(0, (r.qSq / r.n) - r.rawQ * r.rawQ) : 0.16;
       r.strCi = Math.round(196 * Math.sqrt(qVar / (r.n + priorN)));
-      r.ankiPct = r.n ? r.inAnki / r.n : 0;
+      r.ankiPct = r.totalClues ? r.coveredClues / r.totalClues : -1;
       return r;
     });
 
@@ -2628,7 +2969,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
         else if (c === "conv") cmp = a.conv - b.conv;
         else if (c === "pptu") cmp = a.pptu - b.pptu;
         else if (c === "buzz") cmp = a.avgF - b.avgF;
-        else if (c === "auc") cmp = a.auc - b.auc;
+        else if (c === "bpa") cmp = a.bpa - b.bpa;
         else if (c === "str") cmp = (a.postQ - b.postQ);
         else if (c === "ankiPct") cmp = a.ankiPct - b.ankiPct;
         return (cmp || (b.n - a.n)) * sortState.dir;
@@ -2641,7 +2982,8 @@ th abbr[title] { cursor: inherit; color: inherit; }
       td0.colSpan = cols.length; td0.className = "empty"; td0.textContent = "Data appears after your first tossup.";
       tr0.appendChild(td0); tb.appendChild(tr0); return;
     }
-    rows.forEach(function (r) {
+    rows.forEach(function (r, index) {
+      var groupButton;
       var tr = document.createElement("tr");
       var vals = [
         r.k,
@@ -2649,23 +2991,44 @@ th abbr[title] { cursor: inherit; color: inherit; }
         String(r.pw),
         String(r.gets),
         String(r.neg),
-        r.att ? Math.round(100 * r.ok / r.att) + "%" : "–",
-        r.pptu.toFixed(1),
+        r.n ? Math.round(100 * r.ok / r.n) + "%" : "–",
+        (r.pptu * 20).toFixed(1),
         r.fn ? Math.round(100 * r.f / r.fn) + "%" : "–",
-        r.n ? r.auc.toFixed(3) : "–",
+        r.n ? r.bpa.toFixed(1) : "–",
         r.n ? String(r.str) : "–"
       ];
-      if (showAnkiCol) vals.push(Math.round(100 * r.ankiPct) + "%");
+      if (showAnkiCol) {
+        var scanning = S.clueAuditPending && S.clueAuditPending.startsWith(S.setId + ":");
+        vals.push(r.ankiPct < 0 ? (scanning ? "Scanning..." : "Unavailable") : Math.round(100 * r.ankiPct) + "%");
+      }
       vals.forEach(function (v, i) {
         var td = document.createElement("td");
-        td.textContent = v;
+        if (i === 0 && opts.drillDown) {
+          groupButton = document.createElement("button");
+          groupButton.className = "stat-group";
+          groupButton.type = "button";
+          groupButton.id = tableId + "-group-" + index;
+          groupButton.textContent = v;
+          groupButton.setAttribute("aria-expanded", "false");
+          td.appendChild(groupButton);
+        } else {
+          td.textContent = v;
+        }
         if (i) td.className = "num";
         if (i === 7 && r.wn) td.title = "Avg word " + Math.round(r.w / r.wn);
-        if (i === 8 && r.n) td.title = "Avg celerity " + (r.fn ? (r.celSum / r.fn).toFixed(3) : "–") + " · 20-tossup eq: " + (r.auc * 20).toFixed(1) + " / 20";
+        if (i === 5 && r.att) td.title = "Buzz accuracy " + Math.round(100 * r.ok / r.att) + "% (" + r.ok + " of " + r.att + " buzzes)"
+          + (r.guessed ? " · known " + Math.round(100 * (r.ok - r.guessed) / r.n) + "% (" + r.guessed + " guessed)" : "");
+        if (i === 5 && r.guessed) td.textContent += " (" + r.guessed + "?)";
+        if (i === 8 && r.n) td.title = "Avg celerity " + (r.fn ? (r.celSum / r.fn).toFixed(3) : "–");
         if (i === 9 && r.n) td.title = "Strength " + r.str + "/100 (raw " + Math.round(Math.max(0, r.rawQ) * 100) + ", shrunk toward overall " + Math.round(Math.max(0, priorMu) * 100) + " with k=" + priorN + " · ±" + r.strCi + ")";
         tr.appendChild(td);
       });
       tb.appendChild(tr);
+      if (groupButton) {
+        groupButton.dataset.key = tableId + "|" + r.k;
+        addAttemptRows(tb, groupButton, attemptsByGroup.get(r.k), cols.length);
+        if (S.openRows[groupButton.dataset.key]) groupButton.onclick();
+      }
     });
   }
 
@@ -2689,15 +3052,15 @@ th abbr[title] { cursor: inherit; color: inherit; }
     }
 
     var inDeck = enriched.filter(function (x) { return x.heardKind !== "none"; });
-    var inDeckOk = inDeck.filter(function (x) { return x.result === "correct"; });
+    var inDeckOk = inDeck.filter(function (x) { return x.result === "correct" && !x.guess; });
     var offDeck = enriched.filter(function (x) { return x.heardKind === "none"; });
-    var offDeckOk = offDeck.filter(function (x) { return x.result === "correct"; });
+    var offDeckOk = offDeck.filter(function (x) { return x.result === "correct" && !x.guess; });
     var buzzed = enriched.filter(function (x) { return x.buzz !== null && x.buzz !== undefined; });
     var buzzDeck = buzzed.filter(function (x) { return x.buzzKind !== "none"; });
-    var buzzDeckOk = buzzDeck.filter(function (x) { return x.result === "correct"; });
+    var buzzDeckOk = buzzDeck.filter(function (x) { return x.result === "correct" && !x.guess; });
     var slowOrMissDeck = inDeck.filter(function (x) {
       var fr = fracOf(x);
-      return x.result !== "correct" || (fr !== null && fr > 0.70);
+      return x.result !== "correct" || x.guess || (fr !== null && fr > 0.70);
     });
 
     tiles($("clue-audit-tiles"), [
@@ -2723,31 +3086,48 @@ th abbr[title] { cursor: inherit; color: inherit; }
     var bOrder = [bLabels.card, bLabels.deck, bLabels.none];
     renderGroupTable(buzzed, function (x) { return bLabels[x.buzzKind] || bLabels.none; }, "tbl-bc", { col0: "Buzz sentence", fixedOrder: bOrder, showAnkiCol: showAnki });
 
-    var ul = $("clue-gaps"); ul.textContent = "";
-    var shown = slowOrMissDeck.slice().reverse().slice(0, 25);
-    if (!shown.length) {
-      var li0 = document.createElement("li"); li0.className = "empty";
-      li0.textContent = "No missed or late questions with matching Anki clues yet.";
-      ul.appendChild(li0);
-    } else {
-      shown.forEach(function (x) {
-        var li = document.createElement("li"), a = document.createElement("span"), b = document.createElement("span");
-        a.textContent = x.main || x.k || x.a;
-        b.className = "meta";
-        var fr = fracOf(x);
-        var stateTxt = x.result === "correct" ? ("late @" + Math.round((fr || 0) * 100) + "%") : (x.result === "wrong" ? "buzzed wrong" : "no buzz");
-        var whereTxt = x.heardKind === "card" ? "on matching card" : "on other Anki note";
-        var cluesTxt = (x.clueInfo.clues || []).slice(0, 3).join("; ");
-        b.textContent = [x.sub || x.g, stateTxt, whereTxt, cluesTxt].filter(Boolean).join(" · ");
-        li.appendChild(a); li.appendChild(b); ul.appendChild(li);
+    var list = $("clue-gaps"), more = $("clue-more"), limit = 0;
+    var review = slowOrMissDeck.slice().reverse().sort(function (a, b) {
+      return Number(a.result === "correct") - Number(b.result === "correct");
+    });
+    list.textContent = "";
+    $("clue-review").hidden = false;
+    function showMore() {
+      review.slice(limit, limit + 6).forEach(function (attempt) {
+        var item = document.createElement("details");
+        item.className = "clue-review-item";
+        var title = document.createElement("summary");
+        title.textContent = attempt.main || attempt.k || attempt.a || "Unknown answer";
+        var meta = document.createElement("span");
+        meta.className = "meta";
+        meta.textContent = [attempt.sub || attempt.g, packetLabel(attempt), buzzLabel(attempt)].join(" · ");
+        title.appendChild(meta);
+        item.appendChild(title);
+        var clues = document.createElement("ul");
+        (attempt.clueInfo.clues || []).forEach(function (clue) {
+          var li = document.createElement("li");
+          li.textContent = clue;
+          clues.appendChild(li);
+        });
+        item.appendChild(clues);
+        list.appendChild(item);
       });
+      limit = Math.min(limit + 6, review.length);
+      $("clue-review-count").textContent = review.length
+        ? "Showing " + limit + " of " + review.length + " attempts"
+        : "No missed or late attempts with matching clues.";
+      more.hidden = limit >= review.length;
+      more.textContent = "Show " + Math.min(6, review.length - limit) + " more";
     }
-    $("clue-audit-note").textContent = "Analyzed " + enriched.length + " heard tossups against your Anki collection (clues matched both on the answer card and on other cards in your deck).";
+    more.onclick = showMore;
+    showMore();
+    $("clue-audit-note").textContent = "Analyzed " + enriched.length + " heard tossups against Anki notes from their question categories.";
     $("clue-audit-panel").hidden = false;
   }
 
   function renderSetClueAudit(all, showAnki) {
     var panel = $("clue-audit-panel");
+    $("clue-review").hidden = true;
     if (!S.serverOk || S.mode !== "pack" || !all.length) {
       panel.hidden = true;
       return;
@@ -2759,8 +3139,8 @@ th abbr[title] { cursor: inherit; color: inherit; }
       recItems.push({
         ev: x,
         req: {
-          id: x.id, q: full.q, a: full.a || x.a || "", main: x.main || full.main || "",
-          buzz: x.buzz === undefined ? null : x.buzz, words: x.words || full.q.split(/\s+/).length,
+          id: x.id, q: full.q, a: full.a || x.a || "", main: x.main || full.main || "", category: full.g || x.g || "",
+          buzz: x.buzz === undefined ? null : x.buzz, words: x.words || parseQuestion(full.q).words.length,
           result: x.result, pts: x.pts || 0, power: !!x.power, anki: x.anki || full.anki || ""
         }
       });
@@ -2777,62 +3157,107 @@ th abbr[title] { cursor: inherit; color: inherit; }
     }
 
     $("clue-audit-note").textContent = "Scanning " + recItems.length + " heard tossups against your Anki deck...";
-    post("/api/set-clue-audit", { records: recItems.map(function (p) { return p.req; }) }).then(function (res) {
-      var items = (res && res.items) || [];
-      S.clueAuditCache = { key: auditKey, items: items };
-      if (S.tab === "progress" && S.mode === "pack") {
-        drawSetClueAudit(all, recItems, items, showAnki);
-      }
+    if (S.clueAuditFailed === auditKey) {
+      $("clue-audit-note").textContent = "Could not scan clues against the Anki deck. Reload to retry.";
+      return;
+    }
+    if (S.clueAuditPending === auditKey) return;
+    S.clueAuditPending = auditKey;
+    var setId = S.setId;
+    var records = recItems.map(function (p) { return p.req; });
+    var batches = Promise.resolve([]);
+    for (var i = 0; i < records.length; i += 600) {
+      batches = batches.then(function (batch, items) {
+        return post("/api/set-clue-audit", { records: batch }).then(function (res) {
+          return items.concat(res.items || []);
+        });
+      }.bind(null, records.slice(i, i + 600)));
+    }
+    batches.then(function (items) {
+      if (S.clueAuditPending !== auditKey) return;
+      S.clueAuditPending = null;
+      if (S.setId !== setId) return;
+      var byId = new Map(items.filter(function (item) {
+        return item.totalClues > 0;
+      }).map(function (item) { return [item.id, item]; }));
+      S.clueAuditCache = { key: auditKey, setId: setId, items: items, byId: byId };
+      if (S.tab === "progress" && S.mode === "pack") renderProgress();
     }).catch(function () {
-      $("clue-audit-note").textContent = "Could not scan clues against the Anki deck.";
+      if (S.clueAuditPending !== auditKey) return;
+      S.clueAuditPending = null;
+      if (S.setId === setId) {
+        if (S.tab === "progress") {
+          S.clueAuditFailed = auditKey;
+          renderProgress();
+        }
+        $("clue-audit-note").textContent = "Could not scan clues against the Anki deck.";
+      }
     });
   }
 
   function renderProgress() {
-    $("prog-set").textContent = (S.setMeta && S.setMeta.name) || (S.mode === "deck" ? "Studied collection" : "Uploaded pack");
     var all = allSetRecords();
-    var ss = S.sessions.filter(function (s) { return (s.items || []).length; });
-    var bySid = {};
-    ss.forEach(function (s) { bySid[s.id] = s; });
-    all.forEach(function (b) {
-      var sid = b.sessionId || "default";
-      if (!bySid[sid]) bySid[sid] = { id: sid, startedAt: b.ts || Date.now(), items: [] };
-      if (ss.indexOf(bySid[sid]) < 0) bySid[sid].items.push(b);
-    });
-    var allSess = Object.keys(bySid).map(function (k) { return bySid[k]; })
-      .filter(function (s) { return (s.items || []).length; })
-      .sort(function (a, b) { return (a.startedAt || 0) - (b.startedAt || 0); });
-
     var n = all.length;
     var ok = all.filter(function (x) { return x.result === "correct"; });
-    var pw = all.filter(function (x) { return x.power; }).length;
-    var gets = ok.length - pw;
     var neg = all.filter(function (x) { return (x.pts || 0) < 0; });
-    var att = all.filter(function (x) { return x.buzz !== null && x.buzz !== undefined; });
     var totalPts = all.reduce(function (a, x) { return a + (x.pts || 0); }, 0);
-    var pptu = n ? (totalPts / n).toFixed(2) : "–";
-    var pp20 = n ? Math.round(totalPts * 20 / n) : "–";
+    var pp20 = n ? (totalPts * 20 / n).toFixed(1) : "–";
     var okF = ok.filter(function (x) { return fracOf(x) !== null; });
     var avgOk = okF.length ? okF.reduce(function (a, x) { return a + fracOf(x); }, 0) / okF.length : null;
-    var negF = neg.filter(function (x) { return fracOf(x) !== null; });
-    var avgNeg = negF.length ? negF.reduce(function (a, x) { return a + fracOf(x); }, 0) / negF.length : null;
     var aucStat = calcAuc(all);
 
-    tiles($("ptiles"), [
-      [S.mode === "pack" && S.items.length ? (n + " / " + S.items.length) : String(n), "tossups heard"],
-      [n ? String(pp20) : "–", n ? ("PP20 (" + pptu + " PPTU)") : "PP20"],
-      [pw + " / " + gets + " / " + neg.length, "15 / 10 / −5"],
-      [att.length ? Math.round(100 * ok.length / att.length) + "%" : "–", att.length ? ("buzz conversion (" + ok.length + "/" + att.length + ")") : "buzz conversion"],
-      [avgOk === null ? "–" : Math.round(avgOk * 100) + "%", ok.length ? ("avg correct buzz (cel " + (aucStat.cel !== null ? aucStat.cel.toFixed(3) : "–") + ")") : "avg correct buzz"],
-      [n ? aucStat.auc.toFixed(3) : "–", "Buzz AUC (0.000–1.000)", n ? ("20-tossup eq: " + (aucStat.auc * 20).toFixed(1) + " / 20 tossups · celerity-weighted gets") : ""],
-      [n ? Math.round(100 * neg.length / n) + "%" : "–", avgNeg === null ? "neg rate" : ("neg rate · avg neg @" + Math.round(avgNeg * 100) + "%")]
-    ]);
-    appendTippedText($("auc-badge"), n ? ("AUC " + aucStat.auc.toFixed(3) + " (" + (aucStat.auc * 20).toFixed(1) + "/20)" + (aucStat.cel !== null ? " · cel " + aucStat.cel.toFixed(3) : "")) : "");
+    var uniqueHeard = new Set(all.filter(function (x) {
+      return S.itemsById[x.id];
+    }).map(function (x) { return x.id; })).size;
+    var coverage = S.mode === "pack" && S.items.length
+      ? [[uniqueHeard + " / " + S.items.length, "unique tossups heard"]] : [];
+
+    var guessedOk = ok.filter(function (x) { return x.guess; }).length;
+    var headlines = [
+      [n ? Math.round(100 * ok.length / n) + "%" : "–",
+        "Tossup conversion", n ? ok.length + " of " + n : ""],
+      [n ? aucStat.bpa.toFixed(1) : "–", "BPA", n ? "out of 100" : ""]
+    ];
+    if (guessedOk) headlines.splice(1, 0, [Math.round(100 * (ok.length - guessedOk) / n) + "%", "Known conversion",
+      guessedOk + " of your " + ok.length + " gets were guesses; points still count them"]);
+    if (S.mode === "pack" && (S.bonuses.length || S.bonusLogs.length)) {
+      var bonusCount = S.bonusLogs.length;
+      var bonusPoints = S.bonusLogs.reduce(function (sum, bonus) {
+        return sum + (bonus.totalPts || 0);
+      }, 0);
+      headlines.push([bonusCount ? (bonusPoints / bonusCount).toFixed(2) : "–",
+        "PPB", bonusCount ? bonusCount + " played" : ""]);
+    }
+    tiles($("stats-headlines"), headlines);
+
+    tiles($("ptiles"), coverage.concat([
+      [pp20, "PP20TUH", n ? totalPts + " pts on " + n + " tossups heard" : ""],
+      [n ? Math.round(100 * neg.length / n) + "%" : "–", "Neg rate", neg.length + " of " + n + " attempts"],
+      [avgOk === null ? "–" : Math.round(avgOk * 100) + "%", "average correct buzz depth"]
+    ]));
+    // share of all tossups heard already answered correctly at each checkpoint (the points marked on the curve)
+    var marks = $("auc-badge"); marks.textContent = "";
+    if (n) {
+      [[0.5, "by halfway"], [0.75, "by three-quarters"], [1, "by the end"]].forEach(function (m) {
+        var count = okF.filter(function (x) { return fracOf(x) <= m[0]; }).length;
+        var d = document.createElement("div");
+        d.title = count + " of " + n + " tossups answered correctly " + m[1];
+        var v = document.createElement("b"); v.textContent = Math.round(100 * count / n) + "%";
+        var k = document.createElement("span"); k.textContent = m[1];
+        d.appendChild(v); d.appendChild(k); marks.appendChild(d);
+      });
+      if (okF.length < ok.length) {
+        var nt = document.createElement("span"); nt.className = "note"; nt.textContent = "some correct buzzes lack timing";
+        marks.appendChild(nt);
+      }
+    }
     aucChart($("c-auc"), all, aucStat);
 
     var showAnki = S.mode === "pack" && (S.hasAnki || all.some(function (x) { return x.anki !== undefined; }));
+    renderSetClueAudit(all, showAnki);
     var showSub = all.some(function (x) { return !!x.sub; });
     var showPkt = S.hasPackets || all.some(function (x) { return !!(x.pl || x.p); });
+    $("anki-detail").hidden = !showAnki;
     $("audit-panel").hidden = !showAnki;
     $("anki-panel").hidden = !showAnki;
     $("sub-panel").hidden = !showSub;
@@ -2856,9 +3281,9 @@ th abbr[title] { cursor: inherit; color: inherit; }
         return "Not in Anki";
       }, "tbl-at", { col0: "Status" });
     }
-    renderGroupTable(all, function (x) { return x.g || "General"; }, "tbl-gt", { col0: "Category", showAnkiCol: showAnki });
-    if (showSub) renderGroupTable(all, function (x) { return x.sub || x.g || "General"; }, "tbl-st", { col0: "Subcategory", showAnkiCol: showAnki });
-    if (showPkt) renderGroupTable(all, function (x) { return x.pl || x.p || "Unknown"; }, "tbl-pt", { col0: "Packet", showAnkiCol: showAnki });
+    renderGroupTable(all, function (x) { return x.g || "General"; }, "tbl-gt", { drillDown: true, col0: "Category", showAnkiCol: showAnki });
+    if (showSub) renderGroupTable(all, function (x) { return x.sub || x.g || "General"; }, "tbl-st", { drillDown: true, col0: "Subcategory", showAnkiCol: showAnki });
+    if (showPkt) renderGroupTable(all, function (x) { return x.pl || x.p || "Unknown"; }, "tbl-pt", { drillDown: true, col0: "Pack", showAnkiCol: showAnki });
     var zones = ["Lead (<25%)", "Early-Mid (25–50%)", "Mid-Late (50–75%)", "Late (>75%)", "End / No buzz"];
     renderGroupTable(all, function (x) {
       var fr = fracOf(x);
@@ -2869,25 +3294,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
       return zones[3];
     }, "tbl-zt", { col0: "Zone", fixedOrder: zones });
 
-    var pts = allSess.map(function (s) {
-      var c = s.items.filter(function (x) { return x.result === "correct"; });
-      var cf = c.filter(function (x) { return fracOf(x) !== null; });
-      return { t: s.startedAt, n: s.items.length, buzz: cf.length ? cf.reduce(function (a, x) { return a + fracOf(x); }, 0) / cf.length : null, acc: c.length / s.items.length };
-    });
-    line($("c-buzz"), pts.filter(function (p) { return p.buzz !== null; }).map(function (p) { return { t: p.t, y: p.buzz, n: p.n }; }), "heard");
-    line($("c-acc"), pts.map(function (p) { return { t: p.t, y: p.acc, n: p.n }; }), "correct");
 
-    var ul = $("misses"); ul.textContent = "";
-    var miss = all.filter(function (x) { return x.result !== "correct"; }).slice().reverse();
-    if (!miss.length) { var li0 = document.createElement("li"); li0.className = "empty"; li0.textContent = "Nothing missed yet."; ul.appendChild(li0); }
-    miss.slice(0, 30).forEach(function (x) {
-      var li = document.createElement("li"), a = document.createElement("span"), b = document.createElement("span");
-      a.textContent = x.main || x.k || x.a; b.className = "meta";
-      var tags = [x.sub || x.g, x.pl ? (x.pl + (x.n ? " #" + x.n : "")) : "", x.result === "wrong" ? "buzzed wrong" : "no buzz"].filter(Boolean);
-      b.textContent = tags.join(" · ");
-      li.appendChild(a); li.appendChild(b); ul.appendChild(li);
-    });
-    renderSetClueAudit(all, showAnki);
     renderBonusStats();
   }
 
@@ -3006,25 +3413,21 @@ th abbr[title] { cursor: inherit; color: inherit; }
 
     var parts = bonusPartBuckets();
     var pOk = parts.filter(function (x) { return x.p.ok; }).length;
+    var pGuess = parts.filter(function (x) { return x.p.ok && x.p.guess; }).length;
     var dRate = function (code) {
       var sub = parts.filter(function (x) { return x.p.diff === code; });
-      if (!sub.length) return "–";
-      return Math.round(100 * sub.filter(function (x) { return x.p.ok; }).length / sub.length) + "%";
-    };
-    var pRate = function (idx) {
-      var sub = parts.filter(function (x) { return x.idx === idx; });
       if (!sub.length) return "–";
       return Math.round(100 * sub.filter(function (x) { return x.p.ok; }).length / sub.length) + "%";
     };
 
     tiles($("bptiles"), [
       [S.bonuses.length ? (logs.length + " / " + S.bonuses.length) : String(logs.length), "bonuses heard"],
-      [String(ppb), "points per bonus (PPB)"],
+      [String(ppb), "PPB"],
       [b30 + " / " + b20 + " / " + b10 + " / " + b0, "30 / 20 / 10 / 0"],
-      [parts.length ? Math.round(100 * pOk / parts.length) + "%" : "–", parts.length ? ("part conv (" + pOk + "/" + parts.length + ")") : "part conversion"],
-      [pRate(0) + " / " + pRate(1) + " / " + pRate(2), "Part 1 / 2 / 3 %"],
+      [parts.length ? Math.round(100 * pOk / parts.length) + "%" : "–", "Part conversion", parts.length ? pOk + " of " + parts.length + " parts correct" : ""],
       [dRate("e") + " / " + dRate("m") + " / " + dRate("h"), "Easy / Med / Hard %"]
-    ]);
+    ].concat(pGuess ? [[Math.round(100 * (pOk - pGuess) / parts.length) + "%", "Known part conversion",
+      pGuess + " of the " + pOk + " correct parts were guesses; PPB still counts them"]] : []));
 
     var hasBAnki = parts.some(function (x) { return x.p.anki !== undefined; });
     $("b-anki-panel").hidden = !hasBAnki;
@@ -3062,23 +3465,14 @@ th abbr[title] { cursor: inherit; color: inherit; }
     }
 
     renderBonusGroupTable(logs, function (b) { return b.g || "General"; }, "tbl-bgt", "Category");
+    var subLogs = logs.filter(function (b) { return !!b.sub; });
+    $("b-sub-panel").hidden = !subLogs.length;
+    if (subLogs.length) renderBonusGroupTable(subLogs, function (b) { return b.sub; }, "tbl-bst", "Subcategory");
     var hasBPkt = logs.some(function (b) { return !!(b.pl || b.p); });
     $("b-pkt-panel").hidden = !hasBPkt;
-    if (hasBPkt) renderBonusGroupTable(logs, function (b) { return b.pl || b.p || "Unknown"; }, "tbl-bpt", "Packet");
+    if (hasBPkt) renderBonusGroupTable(logs, function (b) { return b.pl || b.p || "Unknown"; }, "tbl-bpt", "Pack");
 
-    var ulB = $("b-misses"); ulB.textContent = "";
-    var bMiss = parts.filter(function (x) { return !x.p.ok; }).slice().reverse();
-    if (!bMiss.length) {
-      var li0 = document.createElement("li"); li0.className = "empty"; li0.textContent = "No missed bonus parts yet."; ulB.appendChild(li0);
-    } else {
-      bMiss.slice(0, 30).forEach(function (x) {
-        var li = document.createElement("li"), a = document.createElement("span"), sp = document.createElement("span");
-        a.textContent = x.p.main || x.p.a; sp.className = "meta";
-        var dLbl = x.p.diff === "e" ? "Easy" : x.p.diff === "m" ? "Med" : x.p.diff === "h" ? "Hard" : "";
-        sp.textContent = [x.b.sub || x.b.g, x.b.pl ? (x.b.pl + " B" + x.b.n + " p" + (x.idx + 1)) : ("p" + (x.idx + 1)), dLbl].filter(Boolean).join(" · ");
-        li.appendChild(a); li.appendChild(sp); ulB.appendChild(li);
-      });
-    }
+
   }
 
   function renderBonusBuzzpoints() {
@@ -3087,7 +3481,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
     $("bp-title").textContent = packName + " — Bonuses";
 
     var headCells = [
-      { col: "round", label: "Session" }, { col: "pkt", label: "Packet" }, { col: "n", label: "#", num: true },
+      { col: "round", label: "Session" }, { col: "pkt", label: "Pack" }, { col: "n", label: "#", num: true },
       { col: "cat", label: "Category" }, { col: "ans", label: "Answers" },
       { col: "parts", label: "Parts" }, { col: "pts", label: "Value", num: true }
     ];
@@ -3124,7 +3518,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
       [String(totPts), "total bonus points"],
       [String(ppb), "PPB"],
       [b30 + " / " + b20 + " / " + b10 + " / " + b0, "30 / 20 / 10 / 0"],
-      [allParts.length ? Math.round(100 * pOk / allParts.length) + "%" : "–", allParts.length ? ("part accuracy (" + pOk + "/" + allParts.length + ")") : "part accuracy"]
+      [allParts.length ? Math.round(100 * pOk / allParts.length) + "%" : "–", "Part accuracy", allParts.length ? pOk + " of " + allParts.length + " parts correct" : ""]
     ]);
 
     var catSel = $("bp-cat"), prevCat = catSel.value, cats = {};
@@ -3145,7 +3539,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
         cat: b.g || "General",
         sub: b.sub || "",
         ans: (b.parts || []).map(function (p) { return p.main || p.a; }).join(" / "),
-        partsStr: (b.parts || []).map(function (p) { return p.ok ? "✓" : "✗"; }).join(" "),
+        partsStr: (b.parts || []).map(function (p) { return (p.ok ? "✓" : "✗") + (p.guess ? "?" : ""); }).join(" "),
         pts: b.totalPts || 0,
         raw: b
       };
@@ -3207,7 +3601,8 @@ th abbr[title] { cursor: inherit; color: inherit; }
       var tdAns = document.createElement("td"); tdAns.className = "wrapcell";
       var btn = document.createElement("button"); btn.type = "button"; btn.className = "bp-ans-btn"; btn.textContent = r.ans;
       var rk = "B|" + r.seq + "|" + r.raw.id;
-      btn.onclick = function () { S.bpExpanded[rk] = !S.bpExpanded[rk]; renderBuzzpoints(); };
+      bindBuzzDetail(btn, rk);
+      addMobileBuzzSummary(btn, packetLabel(r.raw), r.pts + " / 30 points");
       tdAns.appendChild(btn); tr.appendChild(tdAns);
 
       var tdParts = document.createElement("td"); tdParts.className = "num"; tdParts.textContent = r.partsStr; tr.appendChild(tdParts);
@@ -3244,6 +3639,13 @@ th abbr[title] { cursor: inherit; color: inherit; }
     });
   }
 
+  var compactBuzz = window.matchMedia("(max-width: 600px)");
+  compactBuzz.addEventListener("change", function () {
+    if (S.tab !== "progress") return;
+    var records = allSetRecords();
+    aucChart($("c-auc"), records, calcAuc(records));
+  });
+
   function aucChart(box, items, aucStat) {
     box.textContent = "";
     if (!items.length) {
@@ -3269,7 +3671,7 @@ th abbr[title] { cursor: inherit; color: inherit; }
     });
     pts.push({ x: 1, y: cur / n, count: cur });
 
-    var W = 640, H = 220, L = 44, R = 16, T = 12, B = 30, NS = "http://www.w3.org/2000/svg";
+    var W = compactBuzz.matches ? 390 : 640, H = compactBuzz.matches ? 230 : 220, L = 44, R = 16, T = 12, B = 30, NS = "http://www.w3.org/2000/svg";
     var sx = function (v) { return L + (W - L - R) * v; };
     var sy = function (v) { return T + (H - T - B) * (1 - v); };
     var svg = document.createElementNS(NS, "svg"); svg.setAttribute("viewBox", "0 0 " + W + " " + H); svg.setAttribute("role", "img");
@@ -3284,13 +3686,13 @@ th abbr[title] { cursor: inherit; color: inherit; }
 
     var lineD = pts.map(function (p, i) { return (i ? "L" : "M") + sx(p.x).toFixed(1) + " " + sy(p.y).toFixed(1); }).join(" ");
     var areaD = lineD + " L" + sx(1).toFixed(1) + " " + sy(0).toFixed(1) + " L" + sx(0).toFixed(1) + " " + sy(0).toFixed(1) + " Z";
-    el("path", { d: areaD, fill: "var(--series-1)", "fill-opacity": 0.16 });
-    el("path", { d: lineD, fill: "none", stroke: "var(--series-1)", "stroke-width": 2, "stroke-linejoin": "round" });
+    el("path", { d: areaD, fill: "var(--stat)", "fill-opacity": 0.16 });
+    el("path", { d: lineD, fill: "none", stroke: "var(--stat)", "stroke-width": 2, "stroke-linejoin": "round" });
 
     var tip = document.createElement("div"); tip.className = "tip"; tip.hidden = true; box.appendChild(tip);
-    [0.1, 0.25, 0.4, 0.5, 0.6, 0.75, 0.9, 1].forEach(function (t) {
+    [0.5, 0.75, 1].forEach(function (t) {
       var c = okFracs.filter(function (f) { return f <= t; }).length, yv = c / n;
-      el("circle", { cx: sx(t), cy: sy(yv), r: t === 1 ? 5 : 3.5, fill: "var(--series-1)", stroke: "var(--card)", "stroke-width": 1.5 });
+      el("circle", { cx: sx(t), cy: sy(yv), r: 4.5, fill: "var(--stat)", stroke: "var(--card)", "stroke-width": 2 });
       var hit = el("circle", { cx: sx(t), cy: sy(yv), r: 12, fill: "transparent", tabindex: 0 });
       var showTip = function () {
         tip.hidden = false;
@@ -3302,43 +3704,11 @@ th abbr[title] { cursor: inherit; color: inherit; }
     });
 
     var aucLbl = el("text", { x: sx(0.98), y: sy(0.06), "text-anchor": "end", "font-size": 12, fill: "var(--ink)", "font-family": "var(--mono)", "font-weight": 600 });
-    aucLbl.textContent = "Buzz AUC = " + aucStat.auc.toFixed(3) + " (" + (aucStat.auc * 20).toFixed(1) + "/20)";
+    aucLbl.textContent = "BPA " + aucStat.bpa.toFixed(1);
     box.insertBefore(svg, tip);
   }
 
-  function line(box, data, what) {
-    box.textContent = "";
-    if (data.length < 2) { var p = document.createElement("p"); p.className = "empty"; p.textContent = data.length ? "One session so far. The line starts with your second." : "Your sessions will chart here."; box.appendChild(p); return; }
-    var W = 640, H = 220, L = 44, R = 16, T = 12, B = 30, NS = "http://www.w3.org/2000/svg";
-    var x = function (i) { return L + (W - L - R) * (data.length === 1 ? 0.5 : i / (data.length - 1)); };
-    var y = function (v) { return T + (H - T - B) * (1 - v); };
-    var svg = document.createElementNS(NS, "svg"); svg.setAttribute("viewBox", "0 0 " + W + " " + H); svg.setAttribute("role", "img");
-    svg.setAttribute("aria-label", (what === "heard" ? "Share of question heard before a correct buzz" : "Share correct") + ", by session");
-    function el(n, a) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); svg.appendChild(e); return e; }
-    [0, 0.25, 0.5, 0.75, 1].forEach(function (v) {
-      el("line", { x1: L, x2: W - R, y1: y(v), y2: y(v), stroke: "var(--grid)", "stroke-width": 1 });
-      var t = el("text", { x: L - 8, y: y(v) + 4, "text-anchor": "end", "font-size": 11, fill: "var(--ink-3)", "font-family": "var(--mono)" }); t.textContent = Math.round(v * 100) + "%";
-    });
-    var fmt = function (t) { var d = new Date(t); return (d.getMonth() + 1) + "/" + d.getDate(); };
-    var step = Math.max(1, Math.ceil(data.length / 6));
-    data.forEach(function (d, i) { if (i % step === 0 || i === data.length - 1) { var t = el("text", { x: x(i), y: H - 8, "text-anchor": "middle", "font-size": 11, fill: "var(--ink-3)", "font-family": "var(--mono)" }); t.textContent = fmt(d.t); } });
-    el("path", { d: data.map(function (d, i) { return (i ? "L" : "M") + x(i).toFixed(1) + " " + y(d.y).toFixed(1); }).join(" "), fill: "none", stroke: "var(--series-1)", "stroke-width": 2, "stroke-linejoin": "round", "stroke-linecap": "round" });
-    var tip = document.createElement("div"); tip.className = "tip"; tip.hidden = true; box.appendChild(tip);
-    data.forEach(function (d, i) {
-      var last = i === data.length - 1;
-      el("circle", { cx: x(i), cy: y(d.y), r: last ? 5 : 4, fill: "var(--series-1)", stroke: "var(--card)", "stroke-width": 2 });
-      var hit = el("circle", { cx: x(i), cy: y(d.y), r: 14, fill: "transparent", tabindex: 0 });
-      var showTip = function () {
-        tip.hidden = false; tip.textContent = new Date(d.t).toLocaleDateString() + " · " + Math.round(d.y * 100) + "% " + (what === "heard" ? "heard" : "correct") + " · " + d.n + " tossups";
-        tip.style.left = (100 * x(i) / W) + "%"; tip.style.top = (100 * y(d.y) / H) + "%";
-      };
-      hit.addEventListener("mouseenter", showTip); hit.addEventListener("focus", showTip);
-      hit.addEventListener("mouseleave", function () { tip.hidden = true; }); hit.addEventListener("blur", function () { tip.hidden = true; });
-    });
-    var lastD = data[data.length - 1], lab = el("text", { x: Math.min(x(data.length - 1), W - R), y: y(lastD.y) - 10, "text-anchor": "end", "font-size": 12, fill: "var(--ink)", "font-family": "var(--mono)", "font-weight": 600 });
-    lab.textContent = Math.round(lastD.y * 100) + "%";
-    box.insertBefore(svg, tip);
-  }
+
 })();
 </script>
 </body>

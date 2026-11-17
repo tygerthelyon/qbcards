@@ -28,10 +28,10 @@ class AppQueryTests(unittest.TestCase):
                     Application().query("profile", dict({"query": "Example"}, **changes))
                 profile.assert_not_called()
 
-    def test_search_paginates_without_changing_scope(self):
-        with patch("qbr.app.qbr.search", return_value={"hits": []}) as search:
-            Application().query("search", {"query": "butterflies", "category": "fa", "offset": 20})
-        self.assertEqual(search.call_args.kwargs, {"n": 20, "offset": 20, "cat": "fa", "diff": None, "year": None})
+    def test_search_is_not_an_app_action(self):
+        # passage search lives in the CLI (python -m qbr search); the app only profiles answers
+        with self.assertRaises(ValueError):
+            Application().query("search", {"query": "butterflies"})
 
 
 class AppHttpTests(unittest.TestCase):

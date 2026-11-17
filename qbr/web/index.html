@@ -13,7 +13,7 @@
   <a class="skip-link" href="#query">Skip to search</a>
   <header class="app-header">
     <a href="/" class="wordmark" aria-label="StockFisher home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M4 12h11M4 19h6"/><circle cx="19" cy="17" r="3"/><path d="m21 19 2 2"/></svg>StockFisher</a>
-    <div class="header-actions"><span id="index-status" hidden></span><button id="database-open" class="text-button">Index</button></div>
+    <div class="header-actions"><button id="database-open" class="text-button">Index</button></div>
   </header>
 
   <main>
@@ -123,15 +123,15 @@
                 <label class="option-field">
                   <span class="option-label">Rank clues by</span>
                   <select id="ranking">
-                    <option value="spec">Importance (frequency, position &amp; difficulty)</option>
+                    <option value="spec">Importance (frequency × uniqueness)</option>
                     <option value="n">Frequency (most questions first)</option>
-                    <option value="pyramid">Clue position (pyramidal order)</option>
+                    <option value="pyramid">Clue position (power first)</option>
                   </select>
                 </label>
                 <div class="options-checkboxes">
                   <label class="check-option">
                     <input id="anki" type="checkbox" checked>
-                    <span>Audit against Anki (mark in-deck &amp; missing)</span>
+                    <span>Show Anki coverage</span>
                   </label>
                   <label class="check-option">
                     <input id="exact" type="checkbox">
@@ -143,7 +143,6 @@
           </div>
         </fieldset>
       </form>
-      <p id="mode-hint" class="mode-hint" hidden></p>
     </section>
 
     <div id="live-status" class="sr-only" role="status" aria-live="polite"></div>
@@ -151,12 +150,11 @@
     <div id="dirty-notice" class="notice" hidden>Inputs changed. Search again to update these results before exporting.</div>
     <div id="workspace" class="workspace">
       <section id="results" aria-label="Research results">
-        <div id="welcome" class="welcome" hidden></div>
         <div id="loading" class="loading" hidden><span class="spinner" aria-hidden="true"></span><span>Searching…</span></div>
         <div id="result-content" hidden>
           <div class="result-heading">
             <div>
-              <p id="result-kicker" class="eyebrow">Answer profile</p>
+              <p class="eyebrow">Answer profile</p>
               <h2 id="result-title"></h2>
               <p id="result-summary"></p>
               <div id="answerlines" class="answerlines-row" hidden>
@@ -169,7 +167,6 @@
           <div id="result-warning" class="notice" hidden></div>
           <div id="selection-bar" class="selection-bar"><label><input id="select-all" type="checkbox"> <span id="selection-count">Select clues</span></label><button id="export-button" class="secondary" disabled>Export CSV ↓</button></div>
           <div id="result-list" class="result-list"></div>
-          <div id="pagination" class="pagination" hidden><button id="previous-page" class="secondary">Previous</button><span id="page-label"></span><button id="next-page" class="secondary">Next</button></div>
         </div>
       </section>
       <dialog id="source-reader" class="source-reader" aria-labelledby="reader-label">
@@ -194,13 +191,6 @@
       </div>
     </form>
     <p id="database-error" class="error-text" role="alert"></p>
-  </dialog>
-  <dialog id="help-dialog" aria-labelledby="help-title">
-    <div class="dialog-heading"><h2 id="help-title">A short guide</h2><button class="icon-button" data-close="help-dialog" aria-label="Close help">×</button></div>
-    <h3>Find and read</h3><p>StockFisher finds recurring clues for a person, work, place, or concept. Click any clue card to open the full source alongside your results.</p>
-    <h3>Understand the numbers</h3><p>Question counts tell you how often a clue appears on this answer. Specificity compares target-associated units found by the profile with all matching units in the index. Ranking balances frequency and association.</p>
-    <h3>Keep useful clues</h3><p>Select clues with their checkboxes, then use <b>Export CSV</b>. Your browser saves the file with the answer, source, and filters. <b>Check a draft</b> checks a proposed clue for answer words and supporting passages.</p>
-    <p class="hint">Keyboard: Ctrl+K or ⌘K focuses search. Escape closes the reading panel or dialog.</p>
   </dialog>
   <dialog id="draft-dialog" aria-labelledby="draft-title">
     <div class="dialog-heading"><h2 id="draft-title">Check a draft clue</h2><button class="icon-button" data-close="draft-dialog" aria-label="Close draft check">×</button></div>

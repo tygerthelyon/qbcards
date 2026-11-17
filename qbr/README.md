@@ -1,4 +1,4 @@
-# `qbr` ? StockFisher CLI & Python API
+# `qbr`: StockFisher CLI & Python API
 
 `qbr` is the indexing and clue-extraction engine behind StockFisher. It mirrors questions from the QBReader API into a local SQLite database with FTS5 (`qbr/data/qbreader.sqlite`, ~900 MB) so searches, frequency lists, and clue rankings run offline in milliseconds.
 
@@ -24,7 +24,7 @@ python -m qbr sync                                # fetch new sets; `status` pri
 
 Most commands accept the same filter flags:
 - `-c` category (`vfa`, `phil`, `architecture`, `"Other Fine Arts"`, or comma-separated `vfa,ofa`)
-- `-d` difficulty (`7`, `7-9`, `hs`, `college`, `open`; levels 6?9 correspond to 1?4 college dots, 10 is open)
+- `-d` difficulty (`7`, `7-9`, `hs`, `college`, `open`; levels 6–9 correspond to 1–4 college dots, 10 is open)
 - `-y` year (`2018-`, `2015-2020`)
 - `-s` set name substring
 - `-t` question type (`tossup` or `bonus`)
@@ -37,11 +37,13 @@ Most commands accept the same filter flags:
    16   1   58%  3-10    giveaway  Black Square  (title)
 ```
 
-- `n`: questions on this answer that use the clue. Default `--spec` ranking orders clues by importance across frequency/exclusivity (`n`, `tied`, `lift`), tossup position (`pos`, `power`), and difficulty (`davg`). Pass `--pyramid` to sort strictly from lead-in to giveaway.
+- `n`: questions on this answer that use the clue in any of its forms (a surname with its full name, plurals, a fragment that is nearly always the whole title). Clues are listed by `n`; `--spec` ranks by importance instead, `(n + 0.35 m) × log(1 + lift) × (0.1 + 0.9 × tied^0.7)`, the app's default; `--pyramid` orders from lead-in to giveaway. Other wording of a listed clue is shown after it as `[also: ...]`.
 - `+m`: questions on other answers that mention this clue alongside the target answer.
-- `tied`: share of all occurrences of the clue across the mirror that involve this answer. Near 100% means the clue uniquely identifies the answer; a low percentage means the clue is shared across several topics.
-- `levels`: lowest and highest difficulty (`dmin`?`dmax`) at which the clue appears.
-- `where`: median position in a tossup (`lead-in`, `early`, `middle`, `late`, `giveaway`, or `bonus`). An asterisk `*` marks clues that appear in power (`(*)`) at least half the time.
+- `tied`: of all units in the mirror holding the clue as shown, the share that involve this answer (answer it or name it), regardless of filters. Near 100% means the clue uniquely identifies the answer; a low percentage means the clue is shared across several topics.
+- `levels`: lowest and highest difficulty (`dmin`–`dmax`) at which the clue appears.
+- `where`: median position of the clue itself in this answer's tossups (`lead-in`, `early`, `middle`, `late`, `giveaway`, or `bonus`). An asterisk `*` marks clues that come before the power mark `(*)` in at least half of them.
+
+These are home-made measures; quizbowl has no standard statistic for clue importance.
 
 ## Search syntax
 

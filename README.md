@@ -2,11 +2,11 @@
 
 ## StockFisher
 
-StockFisher downloads the [QBReader](https://www.qbreader.org/) question database into a local SQLite index (671,413 tossups and bonus parts across 716 sets as of November 2026) and extracts the recurring stock clues for any answerline. Clues are grouped by where they fall in the tossup (Power, Middle, Giveaways, Bonuses) and ordered by importance across three factors: how often the clue appears (weighted by how exclusive it is to that answer), how early in the question it shows up, and the difficulty levels at which it gets asked.
+StockFisher downloads the [QBReader](https://www.qbreader.org/) question database into a local SQLite index (671,413 tossups and bonus parts across 716 sets as of November 2026) and extracts the recurring stock clues for any answerline. Each clue shows how many questions on the answer use it, how unique it is to that answer (the share of every question holding those words that is about this answer), where it falls in a tossup (in power, middle, giveaway, or bonus only), and its usual difficulty. Clues are ranked by importance, questions × uniqueness, so a classic clue asked twenty times outranks a one-off and a clue unique to the answer outranks a common word. Other wordings of the same clue are folded into one card.
 
 ![StockFisher showing recurring clues for the photoelectric effect alongside a full source question](docs/images/stockfisher-app.png)
 
-Clicking any clue card opens the full tournament question beside your results with the matching sentence highlighted. If Anki is open with AnkiConnect, StockFisher also checks your collection and marks which clues are already covered by active cards, which sit on suspended cards, and which are missing. You can also test a draft clue for answer giveaways or export a shortlist to CSV.
+Clicking any clue card opens the full tournament question beside your results with the matching sentence highlighted. If Anki is open with AnkiConnect, StockFisher also checks your collection and marks each clue as studied, a card not yet studied, suspended, written on the answer's own note, only mentioned in another note, or missing. You can also test a draft clue for answer giveaways or export a shortlist to CSV.
 
 ### Setup
 
@@ -43,17 +43,24 @@ Packaged `.apkg` files are available on the [releases page](https://github.com/t
 
 ## Buzz Drill
 
-A single-page tossup reader containing 1,864 tossups matched to answers in the study collection. Pick your categories, question count, and reading speed (words per second), buzz with `Space`, and score yourself. It prioritizes questions you haven't heard recently and charts your buzz depth and accuracy across sessions in `localStorage`.
+A tossup reader for practising on real questions. It has two modes:
+
+- **Deck Drill** reads 1,905 tossups on 695 answers from the study collection. Pick categories, question count, and reading speed, buzz with `Space`, press `G` to mark a guess, and score yourself. Questions you heard in the last 30 days are skipped.
+- **Pack Analysis** plays a whole tournament set in pack order, tossups or bonuses. Upload a set as QBReader-format question JSON (or a `.zip` of pack files), then review every buzz on **Buzzpoints** and your performance on **Stats**.
 
 ![Buzz Drill setup screen](docs/images/buzz-drill.png)
 
-To run it locally:
+Stats use standard quizbowl measures: conversion (correct ÷ tossups heard), BPA (buzz point AUC, 0–100: conversion at every point of the question, summed), points per 20 tossups heard (PP20TUH), and points per bonus (PPB), with breakdowns by category, pack, and buzz timing.
+
+![Buzz Drill pack stats: conversion, BPA, and correct-by-buzz-depth chart for a full set](docs/images/buzz-drill-pack-stats.png)
+
+To run it, start the local server and open the page it prints (<http://127.0.0.1:8788/>):
 
 ```bash
-python -m http.server 8000
+python drill_server.py --open
 ```
 
-Then open <http://localhost:8000/drill/buzz-drill.html>.
+On Windows, double-clicking `launch_drill.pyw` does the same in an app window. The server saves every buzz, bonus, and session to `data/drill/` (one file per set, never committed), so results survive closing the browser. If Anki is open with AnkiConnect, the server also marks which answers are already in your collection. Served by any plain web server instead (`python -m http.server`, then open `/drill/buzz-drill.html`), the page runs Deck Drill in standalone mode and keeps results in the browser.
 
 ## Tests & attribution
 

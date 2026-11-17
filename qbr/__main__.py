@@ -116,15 +116,17 @@ def cmd_profile(a):
         for i, t in enumerate(rows):
             lev = "%s-%s" % (t["dmin"], t["dmax"]) if t["dmin"] else "  -"
             pwr = "*" if t.get("power", 0) >= 0.5 else " "
-            print("  %3d %3d  %s  %-6s  %-8s%s %s%s%s" % (
+            print("  %3d %3d  %s  %-6s  %-8s%s %s%s%s%s" % (
                 t["n"], t["m"], _pct(t["tied"]), lev, t["where"], pwr, ("%-10s " % (t.get("anki") or "-")) if a.anki else "",
-                t["thing"], "" if t["kind"] == "name" else "  (%s)" % t["kind"]))
+                t["thing"], "" if t["kind"] == "name" else "  (%s)" % t["kind"],
+                "  [also: %s]" % ", ".join(t["variants"]) if t.get("variants") else ""))
             if i < examples and t["example"]:
                 print("                                    > %s  [%s]" % (t["example"], t["source"]))
 
     if p["things"]:
         print("\nSTOCK CLUES  (n = questions on this answer that use it; +m = other questions that use it of this answer;")
-        print("              tied = share of everything holding it that involves this answer; * = >=50% power)")
+        print("              tied = share of everything holding it that involves this answer; * = before the power mark")
+        print("              in at least half its tossups)")
         table(p["things"], a.examples)
     if p["elsewhere"]:
         print("\nSAID OF IT IN OTHER ANSWERS' QUESTIONS" if not p["questions"] else
@@ -148,7 +150,7 @@ def cmd_top(a):
         for g in r:
             g["anki"] = anki.have(idx, g["akey"], g["also"])
         if a.missing:
-            r = [g for g in r if g["anki"] not in ("card", "suspended")][:a.n]
+            r = [g for g in r if g["anki"] not in ("studied", "card", "suspended")][:a.n]
     if a.json:
         return r
     print("       n  toss bonus  level  years       last %dy  %sanswer" % (a.recent, "anki       " if a.anki or a.missing else ""))

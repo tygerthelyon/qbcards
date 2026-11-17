@@ -31,18 +31,26 @@ Type an artist, work, place, or concept into the search box and press `Enter`. L
 | Years | Under `More options`: e.g. `2018-`, `2015-2022`, or a single year. |
 | Exclude answer terms | Under `More options`: comma-separated words to exclude when an answerline has collisions (e.g. `shark, diamond`). |
 | Rank clues by | Under `More options`: `Importance` (default), `Frequency`, or `Clue position`. |
-| Audit against Anki | Under `More options`: checks each clue against your open Anki collection via AnkiConnect. |
+| Show Anki coverage | Under `More options`: marks each clue with its state in your Anki collection (see below). |
 | Exact answerline match | Under `More options`: restricts the profile to exact answerline matches. |
+
+### What the numbers mean
+
+Each clue card shows:
+
+- **Questions**: how many questions on this answer use the clue, in any of its forms. A surname counts with the full name (Stravinsky with Igor Stravinsky), plurals and spellings count together, and a fragment counts with its whole title only when it is nearly always that title.
+- **% unique**: of every question in the mirror holding these words, the share that is about this answer (answers it or names it), whatever filters you set. 100% means the clue points only here.
+- **Position**: where the clue itself falls in this answer's tossups. `In power` means it comes before the (*) in at least half of them; otherwise `Lead-in`, `Early`, `Middle`, `Late`, `Giveaway` (the "for 10 points" sentence) or `Bonus only`.
+- **Level badge**: the median difficulty of the questions using the clue (hover for the range).
+- **Also worded**: other wording of the same clue, folded into this card rather than listed again.
+
+None of these is a standard quizbowl statistic; quizbowl has no agreed measure of clue importance.
 
 ### How clues are ordered
 
-Quizbowl clues aren't all equally useful: a clue that only appears once in a four-dot packet shouldn't sit above a classic two-dot clue asked twenty times. By default, StockFisher organizes results in two layers:
-
-1. Clues are bucketed by where they typically fall in a tossup: `Power` (lead-in and early clues), `Middle`, `Giveaways`, and `Bonuses`.
-2. Within each bucket, clues are ordered by an importance score that weighs three factors together:
-   - Frequency and exclusivity: how many questions on this answer use the clue (`n`), plus how strongly the clue points to this answer over the rest of the database (`tied` and `lift`).
-   - Position: earlier tossup clues and reliable power clues receive a boost over late or bonus-only mentions.
-   - Difficulty: clues that reach down into high school and regular college packets (`davg`, `dmin`?`dmax`) rank ahead of obscure open-only clues with similar raw counts.
+- `Importance` (default): questions × uniqueness, `(n + 0.35 m) × log(1 + lift) × (0.1 + 0.9 × tied^0.7)`, where `m` counts other answers' questions that say it of this answer and `lift` is how much more often it turns up here than across the mirror. A classic clue asked twenty times outranks a one-off, and a clue unique to the answer outranks a common word.
+- `Frequency`: most questions first.
+- `Clue position`: groups the clues as a tossup reads them: `Power`, `After power`, `Giveaway`, `Bonuses only`.
 
 If an answer goes by multiple names in the corpus, clickable `Alternates` chips appear under the heading so you can pivot to a specific variant.
 
@@ -53,17 +61,20 @@ Click any clue card to open the full source tossup or bonus in a side-by-side pa
 ## Checking a draft clue & exporting
 
 - `Check a draft` (top right of a profile) tests a clue you're writing against the corpus: it flags accidental answer-word giveaways, checks character length, and pulls the closest matching sentences from real packets.
-- Ticking clue checkboxes (or `Select clues`) enables `Export CSV`, which downloads the selected clues along with their question counts, specificity ratios, tossup positions, example sentences, and packet citations.
+- Ticking clue checkboxes (or `Select clues`) enables `Export CSV`, which downloads the selected clues along with their other wordings, question counts, % unique, positions, levels, example sentences, packet citations and Anki state.
 
 ## Anki coverage badges
 
-When `Audit against Anki` is enabled under `More options` and Anki is running with AnkiConnect, each clue card shows its status in your deck:
+When `Show Anki coverage` is on, each clue card shows its state in your collection. The app reads Anki through AnkiConnect and keeps a copy for twelve hours; when Anki is closed it uses the last copy and says so.
 
 | Badge | Meaning |
 | --- | --- |
-| `● In deck` | Covered by an active (unsuspended) card in your collection, or present on the target answer's own note. |
-| `● In deck (suspended)` | A matching note exists in Anki, but all of its cards are currently suspended. |
-| `○ Missing` | Not found on any audited note in your collection. |
+| `● Studied` | A note is named this clue and has an unsuspended card you have reviewed. |
+| `◐ Card, not studied` | A note is named this clue and has an unsuspended card you have not reviewed yet. |
+| `● Suspended` | A note is named this clue, but all its cards are suspended. |
+| `◑ On its note` | Written on the answer's own note (back information), not a card of its own. `(suspended)` if that note's cards are all suspended. |
+| `○ Only in another note` | The words appear in some other note's text. This is not coverage. |
+| `○ Missing` | Nowhere in your collection. |
 
 ## Keyboard shortcuts
 
@@ -71,7 +82,7 @@ When `Audit against Anki` is enabled under `More options` and Anki is running wi
 - `Escape`: Close an open filter menu, the source question panel, or a modal dialog.
 - `Enter`: Run the search.
 
-## Scripting & notebook
+## Scripting
 
 The web app calls the `qbr` Python package directly:
 
@@ -83,4 +94,4 @@ for clue in profile["things"]:
     print(clue["thing"], clue["n"], clue["where"], clue["example"])
 ```
 
-If you prefer working in Jupyter, `StockFisher.ipynb` is also in the repository root (`python -m notebook StockFisher.ipynb`). For CLI commands and full-text search across answers (`python -m qbr search`), see [`qbr/README.md`](../qbr/README.md).
+For CLI commands and full-text search across answers (`python -m qbr search`), see [`qbr/README.md`](../qbr/README.md).

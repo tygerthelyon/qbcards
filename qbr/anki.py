@@ -2,14 +2,18 @@
 """qbr.anki -- what the Anki collection already holds, so a search can mark it. Read-only: this never writes to Anki.
 
     idx = index()
-    have(idx, "black square")   -> "card"       a note is named this and has a card that is not suspended
+    have(idx, "black square")   -> "studied"    a note is named this and has an unsuspended card that has been reviewed
+                                   "card"       a note is named this and has an unsuspended card, none reviewed yet
                                    "suspended"  a note is named this, every card suspended
-                                   "text"       no note is named this, but a note's text holds it
+                                   "on-note"    the answer's own note holds it (back information, not a card of its own);
+                                   "on-note-suspended"  the same, but that note's cards are all suspended
+                                   "text"       only some other note's text holds it: not coverage
                                    ""           nowhere in the collection
 
-A note's name is its first field when that is short (a title or a term, not a cloze sentence), plus anything in a
-field called Alternate. Reading goes through AnkiConnect, so Anki must be open; the result is cached in
-qbr/data/anki_index.json for twelve hours, and a stale cache is used (and said to be stale) when Anki is closed.
+A note's name is its first field when that is short (a title or a term, not a cloze sentence), its Title/Name-type
+fields, plus anything in a field called Alternate. Reading goes through AnkiConnect, so Anki must be open; the
+result is cached in qbr/data/anki_index.json for twelve hours, and a stale cache is used (and said to be stale) when
+Anki is closed.
 """
 import json
 import os
@@ -25,6 +29,8 @@ _CLOZE = re.compile(r"\{\{c\d+::(.*?)(?:::[^}]*)?\}\}", re.S)
 _MIDDOT = re.compile(r"(?<=[A-Za-z0-9])[\u00b7\u2022\u22c5](?=[A-Za-z0-9])")
 _ALT = {"alternate", "alternates", "alt", "aliases", "also"}
 _NAME_FIELDS = {"title", "work", "name", "answerline", "term"}
+VERSION = 2                     # index layout: 2 added studied cards and the answer notes' suspension
+_RANK = {"studied": 6, "card": 5, "suspended": 4, "on-note": 3, "on-note-suspended": 2, "text": 1, "": 0}
 _CREATOR_FIELDS = {"composer", "artist", "creator", "author", "poet", "architect", "librettist",
                    "choreographer", "conductor", "painter", "designer"}
 
@@ -55,19 +61,20 @@ def _call(action, **params):
     return r["result"]
 
 
-def build():
+def build(query="deck:*", *, persist=True):
     """read every note from Anki and write the cache"""
-    nids = _call("findNotes", query="deck:*")
-    live = set(_call("findNotes", query="-is:suspended"))
-    names, by_name, texts = {}, {}, []
+    nids = _call("findNotes", query=query)
+    live = set(_call("findNotes", query=f"({query}) -is:suspended"))
+    studied = set(_call("findNotes", query=f"({query}) -is:suspended -is:new"))
+    names, by_name, by_status, texts = {}, {}, {}, []
     for i in range(0, len(nids), 500):
         for n in _call("notesInfo", notes=nids[i:i + 500]):
             fields = sorted(n["fields"].items(), key=lambda kv: kv[1]["order"])
             vals = [(k, plain(_CLOZE.sub(r"\1", v["value"]))) for k, v in fields]
-            status = "card" if n["noteId"] in live else "suspended"
+            status = "studied" if n["noteId"] in studied else "card" if n["noteId"] in live else "suspended"
             own = [vals[0][1]] if vals and len(vals[0][1].split()) <= 8 else []
             for k, v in vals:
-                if k.lower().strip() in _NAME_FIELDS and v and len(v.split()) <= 10:
+                if k.lower().strip() in _NAME_FIELDS and v and len(v.split()) <= 16:   # long titles are names too
                     own.append(v)
                 if k.lower() in _ALT and v:
                     own += re.split(r"\s*(?:;|/|,|\bor\b)\s*", v)
@@ -76,14 +83,20 @@ def build():
             for x in own:
                 k = _key(x)
                 if len(k) > 1:
-                    if names.get(k, ("", ""))[0] != "card":
+                    if _RANK[status] > _RANK[names.get(k, ("", ""))[0]]:
                         names[k] = (status, n["modelName"])
                     by_name[k] = (by_name.get(k, "") + " " + ntext).strip()
+                    if status != "suspended":
+                        by_status[k] = "active"
+                    else:
+                        by_status.setdefault(k, "suspended")
             texts.append(ntext)
-    idx = {"built": time.time(), "notes": len(nids), "names": names, "by_name": by_name, "text": " | ".join(texts)}
-    os.makedirs(os.path.dirname(CACHE), exist_ok=True)
-    with open(CACHE, "w", encoding="utf-8") as f:
-        json.dump(idx, f, ensure_ascii=False)
+    idx = {"v": VERSION, "built": time.time(), "notes": len(nids), "names": names, "by_name": by_name,
+           "by_status": by_status, "text": " | ".join(texts)}
+    if persist:
+        os.makedirs(os.path.dirname(CACHE), exist_ok=True)
+        with open(CACHE, "w", encoding="utf-8") as f:
+            json.dump(idx, f, ensure_ascii=False)
     return idx
 
 
@@ -94,7 +107,7 @@ def index(max_age_h=12, refresh=False):
     if os.path.exists(CACHE):
         with open(CACHE, encoding="utf-8") as f:
             old = json.load(f)
-        if not refresh and "by_name" in old and time.time() - old["built"] < max_age_h * 3600:
+        if not refresh and old.get("v") == VERSION and time.time() - old["built"] < max_age_h * 3600:
             return old
     try:
         return build()
@@ -102,32 +115,29 @@ def index(max_age_h=12, refresh=False):
         if old:
             old["stale"] = "Anki not reachable (%s); using the index from %s" % (
                 type(e).__name__, time.strftime("%Y-%m-%d %H:%M", time.localtime(old["built"])))
+            if old.get("v") != VERSION:
+                old["stale"] += ", which cannot tell studied cards from new ones"
             return old
         raise RuntimeError("Anki is not reachable through AnkiConnect (localhost:8765) and there is no saved index. "
                            "Open Anki and run this again.") from e
 
 
-_RANK = {"card": 4, "suspended": 3, "on-note": 2, "text": 1, "": 0}
-
-
 def have(idx, key, also=(), target_names=()):
-    """Is this folded name in the collection, and how?
-        "card"       a note is named this and has an active card
-        "suspended"  a note is named this, all cards suspended
-        "on-note"    appears in the text of the target answer's own Anki note(s) (`target_names`)
-        "text"       appears only in some other note's text across the collection
-        ""           nowhere in the collection
-    """
+    """Is this folded name in the collection, and how? One of the labels in the module docstring; "on-note" looks
+    in the target answer's own notes (`target_names`)."""
     best = ""
     by_name = idx.get("by_name") or {}
-    own_blob = " " + " ".join(by_name.get(_key(n), "") for n in target_names if _key(n) in by_name) + " "
+    by_status = idx.get("by_status") or {}
+    own = [_key(n) for n in target_names if _key(n) in by_name]
+    own_blob = " " + " ".join(by_name[k] for k in own) + " "
+    own_live = any(by_status.get(k, "active") == "active" for k in own)
     for k in [_key(key)] + [_key(a) for a in also]:
         if not k:
             continue
         if k in idx["names"]:
             got = idx["names"][k][0]
         elif (" %s " % k) in own_blob:
-            got = "on-note"
+            got = "on-note" if own_live else "on-note-suspended"
         elif (" %s " % k) in (" %s " % idx["text"]):
             got = "text"
         else:

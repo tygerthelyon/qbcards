@@ -317,7 +317,7 @@ def answered(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=F
     if out:
         canon = Counter(r["akey"] for r in out).most_common(1)[0][0]
         back = {a for r in out for a in r["accepts"].split(SEP)[1:]}
-        out += [r for r in second if r["akey"] in back or near(r["akey"], canon)]
+        out += [r for r in second if r["akey"] in back or (near(r["akey"], canon) and _one_thing(r, canon, back))]
     elif second:
         # A name that only ever appears as an alternate. If nearly all of those lines are one answer (Samuel Clemens
         # under Mark Twain), the question was about that answer: return all of it.
@@ -340,10 +340,26 @@ def answered(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=F
                and not (bad and bad & set(s["akey"].split()))]
         if add:
             have = {r["uid"] for r in out}
+            back = {a for r in out for a in r["accepts"].split(SEP)[1:]}
             out += [dict(r) for r in con.execute(
                 "SELECT %s FROM u WHERE u.rkey=? AND u.akey IN (%s)%s" % (COLS, ",".join("?" * len(add)), wsql),
-                [rk] + add + wargs) if r["uid"] not in have]
+                [rk] + add + wargs) if r["uid"] not in have and _one_thing(r, canon, back)]
     return out
+
+
+def _one_thing(row, canon, back):
+    """Is an answer line that reaches `canon` only by reading as the same name about that one thing? Not if
+    it also accepts something else: "Sophia [or Holy Wisdom ...; accept Hagia Sophia]" is the concept, and "spring
+    [accept Appalachian Spring or The Rite of Spring]" is the season. A single word built on the name (Kantian) is
+    still the name."""
+    stem = canon.split()[-1] if canon else ""
+    for a in row["accepts"].split(SEP):
+        if a == row["akey"] or a == canon or a in back or near(a, canon):
+            continue
+        if " " not in a and len(stem) >= 4 and a.startswith(stem):
+            continue
+        return False
+    return True
 
 
 def rows(cat=None, diff=None, year=None, sets=None, kind=None, answer=None):

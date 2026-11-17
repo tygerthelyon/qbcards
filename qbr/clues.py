@@ -9,10 +9,16 @@ capitalised names, and recurring phrases. The index counts each candidate:
     n     distinct questions on this answer that hold it
     m     distinct other questions that hold it in a sentence about this answer
     all   units in the whole mirror that hold it
-    tied  the share of `all` that involve this answer at all -- 100% means the clue is unique to it
+    tied  the share of `all` that involve this answer at all (answer it or name it), whatever the filters -- 100%
+          means the clue is unique to it
     lift  how many times more often it turns up here than across the mirror
-The profile filters out common candidates and combines overlapping forms. It does not merge clues by semantic
-similarity, which can group unrelated clues together.
+    pos, power  where the clue itself sits in this answer's tossups (median, 0 = start) and how often it comes
+          before the power mark
+    score n x uniqueness: (n + 0.35 m) x log(1 + lift) x (0.1 + 0.9 tied^0.7). Home-made; quizbowl has no standard.
+The profile filters out common candidates and combines forms of one clue: plurals, near-spellings, a surname with
+its full name, a fragment with its whole title. A fragment much commoner across the mirror than the whole ("earth"
+in The Adoration of the Earth) is a broader word, not another form, and its questions are not counted. Wording that
+restates a clue already listed is kept on that clue as a variant.
 
 A name that is never an answer line (Tilman Riemenschneider) still gets a profile, built from the questions that
 mention it.
@@ -24,7 +30,7 @@ import statistics
 from collections import Counter, defaultdict
 
 from . import find, store
-from .text import SEP, _key, _OPEN, _STOP, dot_difficulty, fold, grams, nested, sentences, things, where
+from .text import SEP, _key, _OPEN, _STOP, dot_difficulty, fold, grams, nested, no_guides, sentences, things, where
 
 CAP_MENTIONS = 4000      # most "mentioned in" units read for one answer
 CAP_COMMON = 12000       # a candidate in more units than this (novel, painting) is a common word, not a clue
@@ -125,10 +131,12 @@ def profile(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=Fa
     """
     con = store.db()
     A = find.answered(name, cat, diff, year, sets, kind, exact, exclude)
+    asked = name
     # Retry work titles without an opus number if the full title has no matches.
     lookup_name = _without_catalogue_suffix(name)
     if not A and lookup_name and lookup_name != name:
         A = find.answered(lookup_name, cat, diff, year, sets, kind, exact, exclude)
+        asked = lookup_name
     names = _names(con, A, _key(name))
     name_sets = [set(x.split()) for x in dict.fromkeys(list(names) + [a for r in A for a in r["accepts"].split(SEP)]) if x]
     a_uids = {r["uid"]: r for r in A}
@@ -145,10 +153,15 @@ def profile(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=Fa
         [find.CLUE + "(" + " OR ".join('"%s"' % n for n in names) + ")"] + wargs + [CAP_MENTIONS + len(A) + 1]).fetchall()
     mentioned_truncated = len(m_rows) > CAP_MENTIONS + len(A)
     M = [dict(r) for r in m_rows[:CAP_MENTIONS + len(A)] if r["uid"] not in a_uids]
-    m_uids = {r["uid"] for r in M}
     if not A and not M:
         guess = find.search(name, cat, diff, year, sets, kind, scope="answer", mode="any", n=0)["answers"][:8]
         return {"found": False, "name": name, "suggest": [(g["answer"], g["n"]) for g in guess]}
+    # Every unit in the mirror that involves this answer, whatever the filters and the mention cap: the units it
+    # answers and the units that name it. `tied` is a clue's share of all its units that fall in here.
+    filtered = any(v for v in (cat, diff, year, sets, kind))
+    involved = {r["uid"] for r in (find.answered(asked, exact=exact, exclude=exclude) if filtered else A)}
+    involved |= {r[0] for r in con.execute("SELECT rowid FROM f WHERE f MATCH ?",
+                                           (find.CLUE + "(" + " OR ".join('"%s"' % n for n in names) + ")",))}
 
     # Candidates from questions answered by this name.
     bodies = {q: store.body(con, q) for q in a_qids}
@@ -236,19 +249,24 @@ def profile(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=Fa
     worded = sorted(worded_cands, key=lambda x: -len(x[1]))[:CAP_GRAMS]
 
     def _recalc(t):
-        S = t["all_uids"]
+        """n and the levels count this answer's questions holding any form of the clue (all_uids); all, tied and lift
+        describe the form shown (own), so "% unique" is true of the words on screen"""
+        S, own = t["all_uids"], t["own"]
         mine = [a_uids[u] for u in S if u in a_uids]
         t["q"] = {r["qid"] for r in mine}
         t["n"] = len(t["q"])
         t["sets"] = len({r["set_name"] for r in mine})
-        t["suids"] = [u for u in S if u not in a_uids]
-        t["all"] = len(S)
-        t["tied"] = sum(1 for u in S if u in a_uids or u in m_uids) / max(1, len(S))
-        t["lift"] = (len(mine) / max(1, len(a_uids))) / (len(S) / total_units)
+        t["suids"] = [u for u in own if u not in a_uids]
+        t["all"] = len(own)
+        t["tied"] = sum(1 for u in own if u in involved) / max(1, len(own))
+        t["lift"] = (sum(1 for u in own if u in a_uids) / max(1, len(a_uids))) / (len(own) / total_units)
         d = [r["difficulty"] for r in mine if r["difficulty"]]
         t["dmin"] = min(d) if d else None
         t["dmax"] = max(d) if d else None
         t["davg"] = round(sum(d) / len(d), 2) if d else None
+        t["dmed"] = statistics.median_low(d) if d else None      # a real level: the mean of HS 3 and college 7 is not 5
+        y = [r["year"] for r in mine if r["year"]]
+        t["first"], t["last"] = (min(y), max(y)) if y else (None, None)
         return t
 
     raw_cur = con.cursor()
@@ -261,12 +279,7 @@ def profile(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=Fa
                                            ('%s"%s"' % (find.CLUE, key), CAP_COMMON + 1))}
         if not S or len(S) > CAP_COMMON:
             return None
-        mine = [a_uids[u] for u in S if u in a_uids]
-        d = [r["difficulty"] for r in mine if r["difficulty"]]
-        y = [r["year"] for r in mine if r["year"]]
-        return _recalc({"key": key, "kind": kind_, "m": len(mq), "spans": spans, "all_uids": S,
-                        "first": min(y) if y else None, "last": max(y) if y else None,
-                        "dmin": min(d) if d else None, "dmax": max(d) if d else None})
+        return _recalc({"key": key, "kind": kind_, "m": len(mq), "spans": spans, "all_uids": S, "own": frozenset(S)})
 
     kept = {}
     for k, c in named:
@@ -311,44 +324,57 @@ def profile(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=Fa
     def _stem(w):
         if w.startswith(("eject", "emitt", "emiss")):
             return "eject"
+        if len(w) > 4 and w.endswith("s") and not w.endswith("ss"):
+            w = w[:-1]                                        # riots / riot
         return w[:5] if len(w) >= 6 else w
 
-    def kin(a, b):
-        """do two keys share a word, or a word's stem (suprematist / suprematism, ejected / ejection)?"""
-        x, y = set(a.split()) - _STOP, set(b.split()) - _STOP
-        return bool(x & y) or any(_stem(w) == _stem(v) for w in x for v in y if len(w) >= 5 and len(v) >= 5)
+    def _content(key):
+        return {_stem(w) for w in key.split() if w not in _STOP and w not in _FRAME and len(w) >= 4}
 
-    def _redundant_phrase(t, o):
-        if not kin(t["key"], o["key"]):
-            return False
-        if len(t["q"] & o["q"]) >= 0.65 * t["n"]:
+    def _restates(t, o):
+        """Is t, ranked below o, the same clue again? Its words all inside o ("Shark" under "shark preserved in
+        formaldehyde", "Thomas Higginson" under "Thomas Wentworth Higginson"), or, for loose wording, its key word
+        shared ("sparked a riot" under "caused a riot"). A title sharing one word is another work: "In and Out of
+        Love" is not "For the Love of God"."""
+        whole = lambda key: {w[:-1] if len(w) > 3 and w.endswith("s") else w for w in key.split()}
+        if whole(t["key"]) <= whole(o["key"]):
             return True
-        tx = {_stem(w) for w in t["key"].split() if w not in _STOP}
-        ox = {_stem(w) for w in o["key"].split() if w not in _STOP}
-        if ox and (ox <= tx or tx <= ox):
-            return True
-        return False
+        return t["kind"] == "phrase" and bool(_content(t["key"]) & _content(o["key"]))
 
-    main = {k: t for k, t in kept.items() if strong(t)}
-    # Combine overlapping candidates when they occur in mostly the same questions.
-    # Prefer the form more often presented as a complete span.
+    def same_thing(short, whole):
+        """Is the shorter form only another way of writing the whole one? Only then do their units count together.
+        A fragment far commoner across the mirror ("earth" in The Adoration of the Earth, "Futurist" in Cubo-Futurist)
+        is a broader word. A surname is the same person: answer lines underline it (Albert <u>Einstein</u>), and
+        otherwise it may run up to four times its full name."""
+        ratio = len(short["own"]) / max(1, len(whole["own"]))
+        if short["kind"] == "name" and whole["kind"] == "name" and nested(short["key"], whole["key"]) and \
+           not set(whole["key"].split()) & _STOP:
+            return ratio <= 4 or con.execute("SELECT 1 FROM u WHERE akey=? AND rkey=? LIMIT 1",
+                                             (whole["key"], short["key"])).fetchone() is not None
+        return ratio <= 2
+
+    # the word the questions call the answer ("this ballet") is not a clue to it
+    main = {k: t for k, t in kept.items() if strong(t) and k not in called}
+    # Combine a form inside another when they are one clue; prefer the form more often presented as a complete span.
     for k in sorted(main, key=lambda k: len(k.split())):
         for o in [o for o in main if o != k and _in(k, " %s " % o)]:
             if k not in main:
                 break
             a, b = main[k], main[o]                           # a is inside b
+            if not same_thing(a, b):
+                continue                                      # a broader word; dropped below if b covers it
             # Combine an unambiguous short name with its full form, preserving its question count.
             if a["kind"] == "name" and b["kind"] == "name" and nested(k, o) and \
                not any(w in o.split() for w in ("on", "in", "with", "over", "for", "to", "at", "from", "by", "after", "before", "under", "into", "as")) and \
                len([x for x in main if x != k and main[x]["kind"] == "name" and nested(k, x)
                     and not any(w in x.split() for w in ("on", "in", "with", "over", "for", "to", "at", "from", "by", "after", "before", "under", "into", "as"))]) == 1:
                 b["all_uids"] |= a["all_uids"]
+                if not set(o.split()) & _STOP:                # a surname is the clue itself: "Einstein" is asked too
+                    b["own"] = b["own"] | a["own"]
                 b["m"], b["spans"] = max(a["m"], b["m"]), a["spans"] + b["spans"]
                 _recalc(b)
                 del main[k]
                 break
-            if b["n"] < 0.7 * a["n"]:
-                continue
             if b["spans"] >= a["spans"] or (b["kind"] == "title" and a["kind"] != "title" and len(a["q"] & b["q"]) >= 0.85 * a["n"]) or (len(b["key"].split()) >= 4 and len(a["q"] & b["q"]) >= 0.7 * a["n"]):
                 b["all_uids"] |= a["all_uids"]
                 b["m"] = max(a["m"], b["m"])
@@ -381,16 +407,28 @@ def profile(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=Fa
                 del main[k]
                 break
     def locate(t, sents):
+        """the sentences holding a clue; and, over this answer's tossups, where the clue itself falls (pos), how
+        often it comes before the power mark (power) and whether it usually sits in the giveaway"""
         got = [(s, r) for f, s, r in sents if _in(t["key"], f)]
-        by_tu = {}
-        for s, r in got:
-            if r["kind"] == "T" and r["qid"] not in by_tu:
-                by_tu[r["qid"]] = s
-        tu = list(by_tu.values())
-        if tu:
-            t["pos"] = round(statistics.median(s["pos"] for s in tu), 2)
-            t["power"] = round(sum(1 for s in tu if s["power"]) / len(tu), 2)
-            t["where"] = where(t["pos"], sum(s["give"] for s in tu) > len(tu) / 2)
+        pat = re.compile(r"(?<![A-Za-z0-9])" + r"[\W_]+".join(map(re.escape, t["key"].split())) + r"(?![A-Za-z0-9])",
+                         re.I)
+        pos, pwr, give, seen = [], [], 0, set()
+        for s, r in got:                                      # sentences come in order: the first is the first use
+            if r["kind"] != "T" or r["qid"] in seen:
+                continue
+            seen.add(r["qid"])
+            text = no_guides(r["text"] or "")
+            m = pat.search(fold_keep(text))
+            if not m:
+                continue
+            star = text.find("(*)")
+            pos.append(m.start() / max(1, len(text)))
+            pwr.append(0 <= m.start() < star)
+            give += s["give"]
+        if pos:
+            t["pos"] = round(statistics.median(pos), 2)
+            t["power"] = round(sum(pwr) / len(pwr), 2)
+            t["where"] = where(t["pos"], give > len(pos) / 2)
         else:
             t["pos"], t["power"] = 1.0, 0.0
             t["where"] = "bonus" if got else ""
@@ -402,16 +440,19 @@ def profile(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=Fa
         if not got:
             got = locate(t, m_sents)
         sents_by_key[t["key"]] = got
-        base = (t["n"] + 0.35 * t["m"]) * math.log1p(max(1.0, t["lift"])) * (0.1 + 0.9 * (t["tied"] ** 0.7))
-        pos_w = 1.0 + 0.15 * (1.0 - t["pos"]) + 0.1 * t["power"]
-        diff_w = 1.0 + 0.15 * max(0.0, (9.0 - (t["davg"] or 7.5)) / 6.0)
-        t["score"] = round(base * pos_w * diff_w, 2)
+        t["score"] = round((t["n"] + 0.35 * t["m"]) * math.log1p(max(1.0, t["lift"])) *
+                           (0.1 + 0.9 * (t["tied"] ** 0.7)), 2)
 
     ranked = []
-    for t in sorted(main.values(), key=(lambda t: (-t["score"], -t["n"], t["pos"], t["davg"] or 10, t["key"])) if sort == "spec"
-                    else (lambda t: (-t["n"], t["kind"] == "phrase", -t["tied"], t["pos"], t["davg"] or 10, t["key"]))):
-        # wording that only ever appears alongside a thing already listed is that thing again ("opera victory")
-        if t["kind"] == "phrase" and any(_redundant_phrase(t, o) for o in ranked):
+    for t in sorted(main.values(), key=(lambda t: (-t["score"], -t["n"], t["pos"], t["key"])) if sort == "spec"
+                    else (lambda t: (-t["n"], t["kind"] == "phrase", -t["tied"], t["pos"], t["key"]))):
+        # wording that restates a clue already listed ("sparked a riot" after "caused a riot") stays on that clue
+        same = next((o for o in ranked if _restates(t, o)), None)
+        if same:
+            tw, ow = t["key"].split(), same["key"].split()
+            # a run of text across the clue's edge ("love of god consists") is not other wording; leave it out
+            if not any(tw[:k] == ow[-k:] or tw[-k:] == ow[:k] for k in range(2, min(len(tw), len(ow)) + 1)):
+                same.setdefault("variants", []).append(t["thing"])
             continue
         ranked.append(t)
     ranked = ranked[:top]
@@ -519,6 +560,7 @@ def profile(name, cat=None, diff=None, year=None, sets=None, kind=None, exact=Fa
         t.pop("q", None)
         t.pop("suids", None)
         t.pop("all_uids", None)
+        t.pop("own", None)
     if anki:
         from . import anki as deck
         idx = deck.index()

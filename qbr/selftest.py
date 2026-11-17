@@ -528,7 +528,7 @@ def main():
         camp_status = anki_module.have(idx, "cAMP", target_names=("DNA polymerase",))
         lc3_status = anki_module.have(idx, "LC3", target_names=("DNA polymerase",))
         ruvc_status = anki_module.have(idx, "RuvC", target_names=("DNA polymerase",))
-        ok = (answer_status == "card" and camp_status == "on-note" and
+        ok = (answer_status == "studied" and camp_status == "on-note" and
               lc3_status == "on-note" and ruvc_status == "on-note")
         if not report("QB Cloze Answerline and dotted acronyms index as on-note",
                       ok, "Answerline=%s; cAMP=%s; LC3=%s; RuvC=%s" %
@@ -589,29 +589,29 @@ def main():
     try:
         result = clue_profile("photoelectric effect", cat="Physics", top=1000, sort="spec")
         einstein = next(t for t in result["things"] if fold(t["thing"]) == "albert einstein")
+        # A surname merged into its full name is the same clue, so n, all, tied and lift all count both forms; tied
+        # counts units that answer or name the answer anywhere in the mirror (no category filter, no mention cap).
+        # (A fragment merged into a title adds only its questions on this answer; see the Adoration check below.)
+        db = store.db()
         answer_rows = search_answered("photoelectric effect", cat="Physics")
         answer_by_uid = {r["uid"]: r for r in answer_rows}
-        expr = find_module.CLUE + '("einstein" OR "albert einstein")'
-        units = {r[0] for r in store.db().execute("SELECT rowid FROM f WHERE f MATCH ?", (expr,))}
-        mine = {u: answer_by_uid[u] for u in units if u in answer_by_uid}
-        wsql, wargs = find_module.where("Physics")
-        mention_names = result["names"]
-        mention_expr = find_module.CLUE + "(" + " OR ".join('"%s"' % n for n in mention_names) + ")"
-        mention_rows = store.db().execute(
-            "SELECT u.uid FROM f JOIN u ON u.uid=f.rowid WHERE f MATCH ?%s ORDER BY u.year DESC LIMIT ?" % wsql,
-            [mention_expr] + wargs + [clue_module.CAP_MENTIONS + len(answer_rows)]).fetchall()
-        mentioned_uids = {r[0] for r in mention_rows if r[0] not in answer_by_uid}
-        total_units = store.db().execute("SELECT count(*) FROM u").fetchone()[0]
-        expected_n = len({r["qid"] for r in mine.values()})
-        expected_tied = sum(u in answer_by_uid or u in mentioned_uids for u in units) / max(1, len(units))
-        expected_lift = (len(mine) / max(1, len(answer_rows))) / (len(units) / total_units)
-        ok = (einstein["all"] == len(units) and einstein["n"] == expected_n and
+        both = {r[0] for r in db.execute("SELECT rowid FROM f WHERE f MATCH ?",
+                                         (find_module.CLUE + '("einstein" OR "albert einstein")',))}
+        shown = both
+        mention_expr = find_module.CLUE + "(" + " OR ".join('"%s"' % n for n in result["names"]) + ")"
+        involved = {r["uid"] for r in search_answered("photoelectric effect")} | \
+            {r[0] for r in db.execute("SELECT rowid FROM f WHERE f MATCH ?", (mention_expr,))}
+        total_units = db.execute("SELECT count(*) FROM u").fetchone()[0]
+        expected_n = len({answer_by_uid[u]["qid"] for u in both if u in answer_by_uid})
+        expected_tied = sum(u in involved for u in shown) / max(1, len(shown))
+        expected_lift = (sum(u in answer_by_uid for u in shown) / max(1, len(answer_rows))) / (len(shown) / total_units)
+        ok = (einstein["all"] == len(shown) and einstein["n"] == expected_n and
               math.isclose(einstein["tied"], expected_tied, rel_tol=1e-9, abs_tol=1e-9) and
               math.isclose(einstein["lift"], expected_lift, rel_tol=1e-9, abs_tol=1e-9))
         if not report("merged clue statistics and unit-based lift", ok,
                       "reported n/all/tied/lift=%d/%d/%.4f/%.3f; expected=%d/%d/%.4f/%.3f" %
                       (einstein["n"], einstein["all"], einstein["tied"], einstein["lift"],
-                       expected_n, len(units), expected_tied, expected_lift)):
+                       expected_n, len(shown), expected_tied, expected_lift)):
             failures += 1
     except Exception as e:
         if not report("merged clue statistics and unit-based lift", False, repr(e)):
@@ -648,24 +648,89 @@ def main():
     try:
         result = clue_profile("photoelectric effect", cat="Physics", top=1000, sort="spec")
         planck = next(t for t in result["things"] if fold(t["thing"]) == "planck")
-        answer_rows = search_answered("photoelectric effect", cat="Physics")
+        # where the clue itself sits, not the start of its sentence: a clue after the (*) in the sentence that holds
+        # the mark is not in power
         by_tossup = {}
-        for r in answer_rows:
-            if r["kind"] != "T":
+        for r in search_answered("photoelectric effect", cat="Physics"):
+            if r["kind"] != "T" or r["qid"] in by_tossup:
                 continue
-            for s in sentences(r["lead"]) + sentences(r["text"]):
-                if " " + planck["key"] + " " in " " + fold(s["s"]) + " ":
-                    by_tossup.setdefault(r["qid"], s)
-                    break
-        expected_power = sum(s["power"] for s in by_tossup.values()) / max(1, len(by_tossup))
-        expected_pos = round(statistics.median(s["pos"] for s in by_tossup.values()), 2)
-        ok = bool(by_tossup) and planck["power"] == round(expected_power, 2) and planck["pos"] == expected_pos
+            m = re.search(r"\bplanck\b", r["text"], re.I)
+            if m:
+                star = r["text"].find("(*)")
+                by_tossup[r["qid"]] = (m.start() / len(r["text"]), 0 <= m.start() < star)
+        expected_power = sum(p for _, p in by_tossup.values()) / max(1, len(by_tossup))
+        expected_pos = round(statistics.median(x for x, _ in by_tossup.values()), 2)
+        ok = bool(by_tossup) and planck["power"] == round(expected_power, 2) and abs(planck["pos"] - expected_pos) <= 0.02
         if not report("tossup-level power and position", ok,
                       "reported power/pos=%.2f/%.2f; per-tossup=%0.2f/%.2f over %d tossups" %
                       (planck["power"], planck["pos"], expected_power, expected_pos, len(by_tossup))):
             failures += 1
     except Exception as e:
         if not report("tossup-level power and position", False, repr(e)):
+            failures += 1
+
+    # Audit 2026-11-16: a common fragment ("earth") merged into a title counted every question in the mirror holding
+    # it, showing The Adoration of the Earth as 1% unique; and a title sharing one word was folded into another.
+    try:
+        rite = {fold(t["thing"]): t for t in clue_profile("The Rite of Spring", sort="spec", top=50)["things"]}
+        hirst = {fold(t["thing"]) for t in clue_profile("Damien Hirst", sort="spec", top=50)["things"]}
+        adoration = rite.get("the adoration of the earth")
+        ok = (adoration is not None and adoration["tied"] >= 0.9 and adoration["all"] < 200 and
+              "ballet" not in rite and "in and out of love" in hirst)
+        if not report("fragments do not swamp a title; distinct titles and the answer's own noun", ok,
+                      "Adoration=%s; ballet listed=%s; In and Out of Love listed=%s" % (
+                          adoration and (adoration["n"], adoration["all"], round(adoration["tied"], 2)),
+                          "ballet" in rite, "in and out of love" in hirst)):
+            failures += 1
+    except Exception as e:
+        if not report("fragment merge regression", False, repr(e)):
+            failures += 1
+
+    try:
+        sophia = {r["akey"] for r in search_answered("Hagia Sophia")}
+        rite_lines = {r["akey"] for r in search_answered("The Rite of Spring")}
+        malevich = {r["akey"] for r in search_answered("Kazimir Malevich")}
+        ok = "sophia" not in sophia and "spring" not in rite_lines and "kazimir malevich" in malevich
+        if not report("broader answer lines that merely accept the name stay out", ok,
+                      "Hagia Sophia lines=%s; Rite lines=%s" % (sorted(sophia), sorted(rite_lines))):
+            failures += 1
+    except Exception as e:
+        if not report("broader answer line regression", False, repr(e)):
+            failures += 1
+
+    try:
+        original_call, original_cache = anki_module._call, anki_module.CACHE
+        long_title = "The Physical Impossibility of Death in the Mind of Someone Living"
+        notes = [
+            {"noteId": 1, "modelName": "Art", "fields": {"Title": {"order": 0, "value": long_title}}},
+            {"noteId": 2, "modelName": "Art", "fields": {"Title": {"order": 0, "value": "Black Square"}}},
+            {"noteId": 3, "modelName": "Art", "fields": {"Title": {"order": 0, "value": "Le Sacre"},
+                                                         "Notes": {"order": 1, "value": "Sacrificial Dance"}}},
+            {"noteId": 4, "modelName": "Art", "fields": {"Title": {"order": 0, "value": "Guitar"},
+                                                         "Notes": {"order": 1, "value": "Synthetic Cubism"}}},
+        ]
+        with tempfile.TemporaryDirectory() as tmp:
+            anki_module.CACHE = os.path.join(tmp, "anki_index.json")
+
+            def fake_call(action, **params):
+                if action == "notesInfo":
+                    return [n for n in notes if n["noteId"] in params["notes"]]
+                q = params["query"]
+                return [1] if q.endswith("-is:new") else [1, 2] if q.endswith("-is:suspended") else [1, 2, 3, 4]
+            anki_module._call = fake_call
+            try:
+                idx = anki_module.build()
+            finally:
+                anki_module._call, anki_module.CACHE = original_call, original_cache
+        got = (anki_module.have(idx, long_title), anki_module.have(idx, "black square"),
+               anki_module.have(idx, "sacrificial dance", target_names=("Le Sacre",)),
+               anki_module.have(idx, "synthetic", target_names=("Le Sacre",)))
+        ok = got == ("studied", "card", "on-note-suspended", "text")
+        if not report("Anki states: studied, new card, suspended answer note, other note; long titles", ok,
+                      "got=%s" % (got,)):
+            failures += 1
+    except Exception as e:
+        if not report("Anki state regression", False, repr(e)):
             failures += 1
 
     try:

@@ -58,3 +58,6 @@ audio_inbox/
 !/README.md
 docs/designs*/
 audit/
+
+# Buzz Drill: packs and your own buzz/session logs stay local
+data/
