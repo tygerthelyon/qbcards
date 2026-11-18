@@ -1669,12 +1669,14 @@ summary { cursor: pointer; }
       }
     });
     merged.sort(byYearDesc);
+    S.hasSets = merged.length > 0;
     if (!merged.length) setSrcTab("find");          // nothing of your own yet: start where sets come from
     else if (!S.srcTabChosen) setSrcTab("mine");
+    updateCompactTop();
     var sel = $("pack-src"); sel.textContent = "";
     if (!merged.length) {
       var opt0 = document.createElement("option");
-      opt0.value = ""; opt0.textContent = "No sets yet: find one above";
+      opt0.value = ""; opt0.textContent = "No sets yet: use Find a set";
       sel.appendChild(opt0);
       $("rm-local").hidden = true;
       $("pack-summary").textContent = "";
@@ -1922,7 +1924,7 @@ summary { cursor: pointer; }
     $("view-buzzpoints").hidden = t !== "buzzpoints";
     $("view-progress").hidden = t !== "progress";
     $("view-compare").hidden = t !== "compare";
-    document.body.classList.toggle("compact-top", S.mode === "pack" && t !== "drill");   // one-line set bar off Play
+    updateCompactTop();
 
     $("dtab-drill").setAttribute("aria-selected", t === "drill" ? "true" : "false");
     $("dtab-progress").setAttribute("aria-selected", t === "progress" ? "true" : "false");
@@ -1950,6 +1952,12 @@ summary { cursor: pointer; }
 
   // The set bar's two tabs, My sets and Find a set (QBReader): only the chosen one's row shows, so it's plain which
   // you're on. A set downloaded or uploaded lands in My sets, and the bar follows it there.
+  // The one-line set bar is for picking among your sets, off Play. With none yet the full bar stays, so Find a set
+  // is still there (a phone opening the hosted copy for the first time has no sets).
+  function updateCompactTop() {
+    document.body.classList.toggle("compact-top", S.mode === "pack" && S.tab !== "drill" && !!S.hasSets);
+  }
+
   function setSrcTab(t, chosen) {
     S.srcTab = t;
     if (chosen) S.srcTabChosen = true;
