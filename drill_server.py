@@ -4,10 +4,15 @@
 Serves the drill/ folder next to this file on http://127.0.0.1:8788. Everything it plays and records, one file per set:
 
     drill/tossups.json                 the studied collection (qb_drill_build.py)
-    data/drill/sets/<id>.json          packs, tossups + bonuses (acfw26 = 2026 ACF Winter, from acf_winter_drill_prep.py)
+    data/drill/sets/<id>.json          packs, tossups + bonuses (built by scripts, or uploaded in the page)
     data/drill/buzzes/<id>.jsonl       one line per tossup heard
     data/drill/bonuses/<id>.jsonl      one line per bonus heard
     data/drill/sessions/<id>.json      whole sessions as the page saved them at the end
+    data/drill/buzzpoints/<id>.json    real tournaments' buzzpoints for "Against the field" (buzzpoints_build.py, or
+                                       uploaded in the page); raw/ holds what they were built from
+
+A set or buzzpoints file marked "private" (not on QBReader or public anywhere) never leaves this machine: the page
+doesn't sync its records to the cloud.
 
 Writes that replace a file go through a temp file, and appends skip a record already logged (same session, question,
 and time), so the page can resend after a dropped connection without double counting.
@@ -31,12 +36,18 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 DRILL_DIR = os.path.join(HERE, "drill")
 STORE_DIR = os.path.join(HERE, "data", "drill")
 SETS_DIR = os.path.join(STORE_DIR, "sets")
+BP_DIR = os.path.join(STORE_DIR, "buzzpoints")
+PROFILE_JSON = os.path.join(STORE_DIR, "profile.json")   # who the player is in real games: {"realNames": [...]}
+# Tossups marked "Add to Anki" in the page: the clues to work into the decks (a missed clue onto a card's back, or a
+# new card) by the deck rules, report first. {"items": [{key, set, id, q, answer, buzz, words, result, ...}]}
+ANKI_QUEUE_JSON = os.path.join(STORE_DIR, "anki_queue.json")
 STUDIED_JSON = os.path.join(DRILL_DIR, "tossups.json")
 
 PORT = 8788
 LOCK = threading.Lock()
 _ANKI_CACHE = None
-_PACK_CACHE = {}
+_PACK_CACHE = {}   # set file -> (mtime, the set as served, Anki-annotated; when, time.time())
+_BP_INDEX = {}   # file -> (mtime, summary)
 
 
 def _slug(s):
@@ -515,9 +526,96 @@ def _list_sets():
                     "url": "/api/set?id=" + sid,
                     "hasPackets": any(it.get("p") for it in items + bonuses),
                     "custom": True,
+                    "private": bool(d.get("private")),
                 })
             except Exception:
                 pass
+    return out
+
+
+def _built_by_script(sid):
+    path = os.path.join(SETS_DIR, sid + ".json")
+    if not os.path.isfile(path):
+        return False
+    try:
+        return not json.load(open(path, encoding="utf-8")).get("uploaded")
+    except Exception:
+        return True
+
+
+# A set as served: Anki-annotated, which takes seconds (one AnkiConnect check per answer). Each set's copy is kept in
+# memory and on disk (data/drill/.cache), so switching sets and restarting the server don't redo it; a copy over 10
+# minutes old is served as it is and rechecked in the background, as cards change. A changed set file starts over.
+PACK_CACHE_DIR = os.path.join(STORE_DIR, ".cache")
+_PACK_REFRESHING = set()
+
+
+def _build_pack(set_path, mtime):
+    with open(set_path, encoding="utf-8") as f:
+        pack = json.load(f)
+    _annotate_anki(pack.get("items") or [], pack.get("bonuses") or [])
+    body = json.dumps(pack, ensure_ascii=False).encode("utf-8")
+    _PACK_CACHE[set_path] = (mtime, body, time.time())
+    try:
+        os.makedirs(PACK_CACHE_DIR, exist_ok=True)
+        stem = os.path.splitext(os.path.basename(set_path))[0]
+        for old in os.listdir(PACK_CACHE_DIR):   # the set's earlier versions
+            if old.startswith(stem + "@"):
+                os.remove(os.path.join(PACK_CACHE_DIR, old))
+        with open(os.path.join(PACK_CACHE_DIR, "%s@%d.json" % (stem, int(mtime))), "wb") as f:
+            f.write(body)
+    except OSError:
+        pass
+    return body
+
+
+def _refresh_pack(set_path, mtime):
+    try:
+        _build_pack(set_path, mtime)
+    finally:
+        _PACK_REFRESHING.discard(set_path)
+
+
+def _pack_body(set_path):
+    mtime = os.path.getmtime(set_path)
+    hit = _PACK_CACHE.get(set_path)
+    if not (hit and hit[0] == mtime):
+        disk = os.path.join(PACK_CACHE_DIR, "%s@%d.json" % (os.path.splitext(os.path.basename(set_path))[0], int(mtime)))
+        if os.path.isfile(disk):
+            with open(disk, "rb") as f:
+                hit = (mtime, f.read(), os.path.getmtime(disk))
+            _PACK_CACHE[set_path] = hit
+        else:
+            return _build_pack(set_path, mtime)
+    if time.time() - hit[2] > 600 and set_path not in _PACK_REFRESHING:
+        _PACK_REFRESHING.add(set_path)
+        threading.Thread(target=_refresh_pack, args=(set_path, mtime), daemon=True).start()
+    return hit[1]
+
+
+def _list_buzzpoints():
+    out = []
+    if not os.path.isdir(BP_DIR):
+        return out
+    for fn in sorted(os.listdir(BP_DIR)):
+        if not fn.endswith(".json") or fn.startswith("_"):
+            continue
+        path = os.path.join(BP_DIR, fn)
+        mtime = os.path.getmtime(path)
+        hit = _BP_INDEX.get(fn)
+        if not hit or hit[0] != mtime:
+            try:
+                d = json.load(open(path, encoding="utf-8"))
+            except Exception:
+                continue
+            if d.get("format") != "buzzdrill-buzzpoints":
+                continue
+            hit = (mtime, {"id": fn[:-5], "set": d.get("set") or fn[:-5], "private": bool(d.get("private")),
+                           "sites": [s.get("name") for s in d.get("sites") or []], "built": d.get("built") or "",
+                           "tossups": len(d.get("tossups") or []), "bonuses": len(d.get("bonuses") or []),
+                           "url": "/api/buzzpoints?id=" + fn[:-5]})
+            _BP_INDEX[fn] = hit
+        out.append(hit[1])
     return out
 
 
@@ -550,16 +648,28 @@ class DrillHandler(BaseHTTPRequestHandler):
             if not os.path.isfile(set_path):
                 return self._send(404, json.dumps({"error": "Set not found"}))
             # checking every answer against Anki takes about a second, so keep the result until the file changes
-            stamp = (set_path, os.path.getmtime(set_path))
-            body = _PACK_CACHE.get(stamp)
-            if body is None:
-                with open(set_path, encoding="utf-8") as f:
-                    pack = json.load(f)
-                _annotate_anki(pack.get("items") or [], pack.get("bonuses") or [])
-                body = json.dumps(pack, ensure_ascii=False).encode("utf-8")
-                _PACK_CACHE.clear()
-                _PACK_CACHE[stamp] = body
-            return self._send(200, body)
+            return self._send(200, _pack_body(set_path))
+        if path == "/api/anki-queue":
+            try:
+                queue = json.load(open(ANKI_QUEUE_JSON, encoding="utf-8"))
+            except Exception:
+                queue = {"items": []}
+            return self._send(200, json.dumps(queue, ensure_ascii=False))
+        if path == "/api/profile":
+            try:
+                prof = json.load(open(PROFILE_JSON, encoding="utf-8"))
+            except Exception:
+                prof = {}
+            return self._send(200, json.dumps(prof, ensure_ascii=False))
+        if path == "/api/buzzpoints":
+            bid = (qs.get("id") or [""])[0]
+            if not bid:
+                return self._send(200, json.dumps({"files": _list_buzzpoints()}, ensure_ascii=False))
+            bp_path = os.path.join(BP_DIR, _slug(bid) + ".json")
+            if not os.path.isfile(bp_path):
+                return self._send(404, json.dumps({"error": "Buzzpoints file not found"}))
+            with open(bp_path, "rb") as f:
+                return self._send(200, f.read())
         if path == "/api/bonuses":
             sid = _slug((qs.get("set") or qs.get("id") or [""])[0])
             bonuses = _load_set_bonuses(sid)
@@ -605,7 +715,7 @@ class DrillHandler(BaseHTTPRequestHandler):
         if not isinstance(data, dict):
             return self._send(400, json.dumps({"error": "Expected a JSON object"}))
         if path in ("/api/buzz", "/api/unbuzz", "/api/bonus", "/api/unbonus", "/api/session"):
-            # a record with no set used to land in the ACF Winter log; now it is refused
+            # a record with no set used to land in the first pack's log; now it is refused
             sid = data.get("setId")
             if not sid:
                 return self._send(400, json.dumps({"error": "Missing setId"}))
@@ -623,6 +733,30 @@ class DrillHandler(BaseHTTPRequestHandler):
             return self._send(200, json.dumps(_clue_match(data), ensure_ascii=False))
         if path == "/api/set-clue-audit":
             return self._send(200, json.dumps(_set_clue_audit(data), ensure_ascii=False))
+        if path == "/api/anki-queue":
+            with LOCK:
+                try:
+                    queue = json.load(open(ANKI_QUEUE_JSON, encoding="utf-8"))
+                except Exception:
+                    queue = {"items": []}
+                items = [x for x in queue.get("items") or [] if x.get("key") != (data.get("key") or (data.get("item") or {}).get("key"))]
+                if data.get("op") == "add" and isinstance(data.get("item"), dict) and data["item"].get("key"):
+                    items.append(data["item"])
+                _write_atomic(ANKI_QUEUE_JSON, json.dumps({"items": items}, ensure_ascii=False, indent=1))
+            return self._send(200, json.dumps({"ok": True, "count": len(items)}))
+        if path == "/api/profile":
+            names = [str(n).strip()[:80] for n in data.get("realNames") or [] if str(n).strip()][:20]
+            with LOCK:
+                _write_atomic(PROFILE_JSON, json.dumps({"realNames": names}, ensure_ascii=False, indent=2))
+            return self._send(200, json.dumps({"ok": True, "realNames": names}, ensure_ascii=False))
+        if path == "/api/buzzpoints":
+            if data.get("format") != "buzzdrill-buzzpoints" or not isinstance(data.get("tossups"), list):
+                return self._send(400, json.dumps({"error": "Not a Buzz Drill buzzpoints file"}))
+            bid = _slug(data.get("id") or data.get("set") or "uploaded")
+            os.makedirs(BP_DIR, exist_ok=True)
+            with LOCK:
+                _write_atomic(os.path.join(BP_DIR, bid + ".json"), json.dumps(data, ensure_ascii=False, separators=(",", ":")))
+            return self._send(200, json.dumps({"ok": True, "id": bid, "url": "/api/buzzpoints?id=" + bid}))
         if path == "/api/sets":
             name = (data.get("name") or "Uploaded Pack").strip()[:120]
             items = data.get("items") or []
@@ -630,10 +764,11 @@ class DrillHandler(BaseHTTPRequestHandler):
             if (not isinstance(items, list) or not items) and (not isinstance(bonuses, list) or not bonuses):
                 return self._send(400, json.dumps({"error": "No tossups or bonuses in uploaded pack"}))
             sid = _slug(data.get("id") or name)
-            if sid in ("acfw26", "studied"):
+            if sid == "studied" or _built_by_script(sid):   # an upload never replaces a set a build script made
                 sid = sid + "_custom"
             items, bonuses = _annotate_anki(items, bonuses)
-            payload = {"built": time.strftime("%Y-%m-%d %H:%M"), "set": name, "items": items, "bonuses": bonuses}
+            payload = {"built": time.strftime("%Y-%m-%d %H:%M"), "set": name, "items": items, "bonuses": bonuses,
+                       "private": bool(data.get("private")), "uploaded": True}
             with LOCK:
                 _write_atomic(os.path.join(SETS_DIR, sid + ".json"),
                               json.dumps(payload, ensure_ascii=False, separators=(",", ":")))
